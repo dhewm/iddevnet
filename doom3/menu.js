@@ -1,6 +1,6 @@
 
 var a = {
-"":"Home",
+"index":"Home",
 "downloads":"Downloads",
 "contact":"Contact",
 
@@ -68,11 +68,11 @@ for ( var i in a ) {
         document.write( "<br>" );
         continue;
     }
-    if ( document.location.pathname.indexOf("/" + i + ".php") >= 0 || ( i == "" && document.location.pathname.indexOf(".php") == -1 ) ) {
+    if ( document.location.pathname.indexOf("/" + i + ".html") >= 0 || ( i == "" && document.location.pathname.indexOf(".html") == -1 ) ) {
 		document.write( "<font color='#FFCC66'><b>" + a[i] + "</b></font><br>");
     } else if ( i == "" ) {
         document.write( " <a href=\"/\">" + a[i] + "</a><br>");
 	} else {
-		document.write( " <a href=\"" + i + ".php\">" + a[i] + "</a><br>");
+		document.write( " <a href=\"" + i + ".html\">" + a[i] + "</a><br>");
 	}
 }
