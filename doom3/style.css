@@ -1,0 +1,135 @@
+
+/* Header and Footer Styles */
+
+body {
+	background-color: #000;
+}
+a {
+	color: black;
+}
+a:visited {
+    color: black;
+}
+.leftMenu {
+	vertical-align: top;
+    text-align: left;
+	padding: 5px;
+    font-family: Arial;
+    font-size: 10pt;
+}
+.leftMenu a {
+	color: #A8A38E;
+    text-decoration: none;
+}
+.leftMenu a:visited {
+    color: #A8A38E;
+}
+.leftMenu a:hover {
+	color: #FFFFFF;
+}
+
+.title {
+    font-family: arial;
+    font-size: 10pt;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.mainContent {
+    padding: 0px 5px 0px 10px;
+    background: #CCC url("images/boxleft.gif") repeat-y;
+    vertical-align: top;
+    text-align: left;
+}
+
+.legalese {
+	color: #AAA;
+	font-size: 8pt;
+}
+.legalese a {
+	color: #AAA;
+}
+
+
+/* Page Styles */
+
+.subsection {
+    clear: both;
+	background-color: #666;
+	color: #FFF;
+	padding: 0px;
+	padding-left: 10px;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	font-size: 12pt;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+.code {
+    border: 1px groove;
+	background-color: #EEE;
+	font-size: 10pt;
+	font-family: monospace;
+}
+samp {
+	font-size: 10pt;
+	font-family: monospace;
+}
+code {
+	background-color: #EEE;
+	font-size: 10pt;
+	font-family: monospace;
+	white-space: pre;
+}
+
+.newspost {
+	border: solid 1px black;
+	border-spacing: 0px;
+	border-collapse: collapse;
+    width: 100%;
+}
+.newspost td {
+	vertical-align: top;
+	border: solid 1px black;
+	margin: 2px;
+	padding: 10px 4px;
+}
+.newspost th {
+    text-align: left;
+    padding: 2px 4px 2px 20px;
+}
+.newspost td.date {
+    background-color: #CCC;
+    width: 15%;
+    text-align: center;
+	padding: 2px 4px;
+}
+.newspost td.name {
+    background-color: #CCC;
+    width: 15%;
+    text-align: center;
+    padding: 2px 4px;
+}
+
+.datatable {
+	border: solid 1px black;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+.datatable td {
+	vertical-align: top;
+	border: solid 1px black;
+	margin: 2px;
+	padding: 2px;
+}
+.datatable th {
+	valign: top;
+	margin: 2px;
+	padding: 2px;
+}
+.nobr {
+    white-space: nowrap;
+}

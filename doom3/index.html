@@ -1,0 +1,1827 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+	<TITLE>id.sdk [Introduction]</title>
+    <LINK REL="stylesheet" HREF="style.css">
+</HEAD>
+
+
+<BODY marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Introduction</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+<p>
+This guide is meant to acquaint you with the features and the possibilities
+of the Doom 3 engine.  In a creative medium such as video games, it is really
+impossible to describe every thing that can be done.  A huge part of creation
+is experimentation.  This guide will point you in the right direction, provide
+some samples, and list all the tools at your disposal.  I have no doubt that
+the community will take these tools and create things that will blow us away.
+
+ 
+
+
+<p><table class="newspost">
+<tr><td class="date">8/3/05</td>
+<th>Compiling on Linux</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+For information on how to get the SDK to compile under Linux, there is a pretty handy <a href="http://www.modwiki.net/wiki/Building_on_linux">guide</a> up on <a href="http://www.modwiki.net/">modwiki.net</a>.
+
+
+</td></tr>
+</table>
+
+
+
+<p><table class="newspost">
+<tr><td class="date">7/25/05</td>
+<th>com_speeds</th>
+</tr>
+<tr><td colspan="2">
+
+
+Someone asked me what exactly the numbers in com_speeds mean.
+<br>
+<samp>frame:100 all:15 gfr:5 rf:3 bk:6</samp>
+<br>
+frame is the frame number, it's just an always incrementing value.<br>
+all is the milliseconds it took to render that frame (60fps is ~ 16ms)<br>
+gfr is the game code<br>
+rf is the render front end<br>
+bk is the render back end<br>
+<p>
+The render front end is responsible for traversing the scene, portal and view frustum culling, shadow generation, dynamic model generation, and sorting.  The back end is responsible for issuing the actual draw calls (the back end is what changes when r_renderer changes).
+<p>
+While I'm at it, here are what some of the other performance counters mean:
+<br>
+<samp>r_showPrimitives 1</samp>
+<br>
+<samp>views:2 draws:445 tris:11580 (shdw:3216) (vbo:0) image:  5.3 MB</samp>
+<br>
+views is the number of camera views that are drawn (increases with mirrors, etc)<br>
+draws is the number of draw calls sent to the video card (try to keep this low)<br>
+tris is the number of triangles sent to the video card (not as important as draws)<br>
+shdw is the number of shadow triangles sent<br>
+vbo is the number of vertex buffers used<br>
+image is the amount of image data used<br>
+<p>
+<samp>r_showPrimitives 2</samp>
+<br>
+<samp>v:2 ds:376 t:8058/4018 v:8796/4660 st:3060 sv:12240 image:  5.3 MB</samp>
+<br>
+v is the number of camera views that are drawn (increases with mirrors, etc)<br>
+ds is the number of draw calls sent to the video card (try to keep this low)<br>
+t is the number of regular triangles (not shadow tris) / "ambient" triangles<br>
+v is the number of regular verticies (not shadow) / "ambient" verticies<br>
+st is the number of shadow triangles<br>
+sv is the number of shadow verticies<br>
+image is the amount of image data used<br>
+<p>
+<samp>r_showDynamic</samp><br>
+Shows the number of dynamic surfaces that were regenerated this frame (light flares, particles, guis)
+<p>
+<samp>r_showInteractions</samp><br>
+This shows the number of light/surface interactions thate were generated that frame, as well as the number of shadows that were generated.  Take out your flashlight while this is set to see why the flashlight makes everything so bloody slow.
+
+</td></tr>
+</table>
+
+
+
+<p><table class="newspost">
+<tr><td class="date">7/18/05</td>
+<th>Where to put MayaImportx86.dll</th>
+</tr>
+<tr><td colspan="2">
+
+
+I've had a couple of people asking how exactly to run the <a href="http://www.iddevnet.com/doom3/downloads.php">Maya importer</a>.  The zip file contains a single dll "MayaImportx86.dll" that goes in the Doom 3 folder along with doom3.exe.  You must have Maya installed, though it doesn't have to be running when you launch Doom 3.  Type "exportModels somefile.def" where somefile.def is the name of the def file that contains your export section.  For more information on the format of the export section, <a href="modelexport.php">see this page</a>.
+
+
+</td></tr>
+</table>
+
+
+
+<p><table class="newspost">
+<tr><td class="date">6/24/05</td>
+<th>fragment program.env[0]</th>
+</tr>
+<tr><td colspan="2">
+
+
+Thomas writes:<br>
+<i>
+"In post processing shaders used in doom 3 (like heat haze) the window space fragment position (fragment.position) is multiplied by program.env[1] to convert to 0-1 range (which would be pos*[1/width,1/height]) then it's multiplied by program.env[0] which is scaling by a non-pow-2 adjust. Now I can see why this is done b/c the game resolution is usually not a power of two so it's rendered to a power of 2 texture thus this conversion needs to be done to access the correct texel. What I'm wondering is, how is env[0] computed?"
+</i>
+
+<p>
+
+program.env[0] is calculated as <samp>{ w / Pw, h / Ph, 0, 1 }</samp> where w is the viewport width + 1, h is the viewport height + 1, Pw is the width of the uploaded texture, and Ph is the height of the uploaded texture.  The 1 is added becasue an extra row and column is copied for the bilerp.
+
+<p>
+
+Thomas was correct that program.env[1] is calculated as <samp>{ 1 / w, 1 / h, 0, 1 }</samp>
+
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">6/24/05</td>
+<th>listDef</th>
+</tr>
+<tr><td colspan="2">
+
+
+James writes:<br>
+<i>
+"I'm wondering how listDefs work in the Doom 3 engine.  I've done plenty
+of searching in the SDK, but can't seem to find how they are generated.
+ListGUI.h is the most promising thing I've found so far, but a lot of the
+lists (modsList, serverlist, etc.) don't seem to be in the SDK.
+Are the lists handled in the exe?
+Is there anyway to make up custom lists for use with listdefs?
+If so, which commands do I use?"
+</i>
+
+<p>
+
+Most of the lists are generated in the engine code (like the mod list, the server list, the save game list, etc) but there are a couple of
+lists that are generated in the game code.  All the lists in the PDA (the email list, the PDA list, the video list, the audio log list) are
+generated in <samp>UpdatePDAInfo</samp> and <samp>AddGuiPDAData</samp>.
+
+<p>
+
+If you create a listDef called "foo" then setting "foo_item_0" with <samp>SetStateString</samp> will set the first item in the foo list.
+When the list is rendered, it searches from 0 until it stops finding items.  This means if you have 0, 1, and 3 set then the third item
+will not be drawn (because it will see that 2 is not set and stop).  You can get (and set) the index of the selected item with "foo_sel_0".
+If multiple selection is supported ("multipleSel" is set to 1 in the listDef) then you can set the other selections with "foo_sel_%i" (which
+works the same as the item data).  Multiple columns are supported by inserting \t (the tab character) in the string (note that "tabstops" must
+be set in the listDef).
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">6/2/05</td>
+<th>Heartbeat</th>
+</tr>
+<tr><td colspan="2">
+
+
+There is an issue where sometimes a server will stop sending heartbeats to the master server (which causes it to drop off the list).  The problem isn't major enough to warrant a new patch, but mods can fix it by putting this in <samp>idGameLocal::InitFromNewMap</samp>:
+<pre class="code">
+cmdSystem-&gt;BufferCommandText( CMD_EXEC_APPEND, "heartbeat\n" );
+</pre>
+
+<p>
+
+Next time there is a patch (whenever that may be), the issue will be fixed in the main engine code.
+
+
+</td></tr>
+</table>
+
+
+
+<p><table class="newspost">
+<tr><td class="date">5/31/05</td>
+<th>1.3 Auto Download Setup Instructions</th>
+</tr>
+<tr><td colspan="2">
+
+
+Mouse over at <a href="http://www.umk-inthegame.com/">UMK</a> set up a really nice page detailing exactly how to set up
+your server for autodownloads.  He also is offering webspace for servers that cannot provide their own.  Check it out
+<a href="http://mouse.umk-inthegame.net/instructions.html">here</a>.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">5/31/05</td>
+<th>Doom 3 Mod Wiki</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Looks like the guys over at Doom 3 Reference started up a <a href="http://www.modwiki.net/">Doom 3 mod wiki</a>.
+Their goal is to create a robust and complete Doom 3 editing manual.  The information is contributed by community members
+and can be edited by other community members.  It's like an open source users manual.  Head on over and contribute some
+information.
+
+
+</td></tr>
+</table>
+
+
+
+<p><table class="newspost">
+<tr><td class="date">5/31/05</td>
+<th>gameLocal.sessionCommand</th>
+</tr>
+<tr><td colspan="2">
+
+
+Arne asks:<br>
+<i>
+"Is there a reason to sometimes copy a command to the sessionCommand array
+instead of using cmdSystem->BufferCommandText() to perform any commands?"
+</i>
+
+<p>
+There are only 5 valid commands that can be used with sessionCommand:<br>
+<ul>
+<li>map / devmap
+<li>died
+<li>disconnect
+<li>endOfDemo
+<li>game_startMenu
+</ul>
+
+<p>
+"disconnect" and "endOfDemo" actually just call BufferCommandText so it doesn't really matter for those two.  For the other three, you should use sessionCommand.
+
+<p>
+"map" in sessionCommand will save persistent info but "map" in BufferCommandText will not.  "died" and "game_startMenu" aren't available as console commands.
+
+
+</td></tr>
+</table>
+
+
+
+<p><table class="newspost">
+<tr><td class="date">5/24/05</td>
+<th>Doom III 1.3 released</th>
+</tr>
+<tr><td colspan="2">
+
+
+It took longer than any of us had wanted, but Doom III 1.3 is there.
+Below is the list of fixes and updates in the patch. Please refer to the
+documentation after installation for complete changes information since
+version 1.0
+<p>
+The files will be avaible shortly on <a href="ftp://ftp.idsoftware.com/idstuff/doom3/">id's ftp server</a>, on <a href="http://www.doom3.com/update.asp">doom3.com</a>
+and on <a href="http://zerowing.idsoftware.com:6969/">the tracker</a>.
+<p>
+The Linux version adds support for Doom III: Resurrection of Evil. See
+<a href="http://zerowing.idsoftware.com/linux/doom/">the Linux FAQ</a> for installation instructions.
+<p>
+We are also releasing updated SDKs for version 1.3, you can find some
+documentation of the new features in <a href="http://zerowing.idsoftware.com/linux/doom/FrontPage#head-68edbf8a1721998a8a59e91ebad1e09849f7b751">the FAQ</a>. This new SDK also has
+source code for the RoE gamecode.
+<p>
+
+<b>Fixes & Updates in 1.3:</b>
+<ul>
+<li>PunkBuster(TM) support has been added.
+<li>EAX(R) ADVANCED HD(TM) support in the sound engine contributed by
+Creative Labs(R). Doom 3 base game comes with room reverb data.
+<li>To utilize EAX(R) ADVANCED HD(TM) in Doom 3, you must have 100% EAX
+4.0 compatible sound card.  Please refer to your sound card
+manufacturer for details on whether or not your sound card supports EAX 4.0.
+<li>Sound Blaster(R) Audigy(R) 2 users who wish to utilize the new EAX 4.0
+feature in Doom 3 should download the latest Creative Beta Drivers for
+the card released on April 5th, 2005. Not using these drivers may result
+in game instability while using EAX 4.0.
+<li>Server provides .pk4 file download URLs (http/ftp), client has
+internal download.
+<li>New class of .pk4 files: 'addon paks' are only referenced when the map
+is loaded in.
+<li>.pk4 downloads and addon paks come with a number of fixes to the 'pure
+server mode' filesystem code.
+<li>Fixed ragdoll bounciness.
+<li>Fixed how Doom 3 detects LAN client vs. Internet clients.
+<li>LZW compression of render demos.
+<li>Fixed command line parameter passing.
+<li>Added a QuakeIII-style graph of the connection quality for network clients
+  controlled with net_clientLagOMeter cvar
+  displays a graph of how much the client predicts ahead of the server
+  note that you can change the minimum predict ahead of a client by
+setting   net_clientPrediction
+</ul>
+
+Changes relevant to mod developers (SDK):
+<ul>
+<li>Added UploadImage to idRenderSystem interface. This lets the user blit
+images to the renderer.
+<li>Supports fs_game_base; this lets you base a mod off base game + d3xp +
+your own content.
+<li>Most of the download redirection is handled in the game code, and can
+be extended.
+</ul>
+
+Linux specific:
+<ul>
+<li>ALSA device opened non-blocking to avoid hangs.
+</ul>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">4/27/05</td>
+<th>binary.conf, visportals, and 1.3</th>
+</tr>
+<tr><td colspan="2">
+
+
+I've seen quite a few mods being released without a binary.conf file.  <b>Always include a
+binary.conf file when you release a mod with an updated gamex86.dll!</b>  The format is quite simple, it's
+a single character indicating which operating system the dll is for.  0 for windows, 1 for mac, 2 for Linux.
+In 1.1 and 1.2 it doesn't matter a whole lot because the windows version will load the dll anyway, but in
+1.3, the dll will only be loaded from a pak file where there exists a binary.conf file and the number matches
+the operating system.  If it can't find a binary.conf file, it will load the dll from base.  This is probably
+not what you want.
+<p>
+A bunch of people have asked me for some clarification on how exactly vis portals work.  I put up a brief guide
+<a href="visportals.php">Here</a>
+<p>
+Every other email I get asks where 1.3 is.  I understand the frustration of not being able to release an updated
+version of your mod, and not being able to play any mods with RoE installed.  All I can say is we're working diligently
+on getting 1.3 out as soon as possible.  The new SDK (with RoE game source code included) will be released shortly after.
+I could tell you an exact date, but due to Heisenberg's Uncertainty Principle, as soon as I say it, it would change.
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">03/29/05</td>
+<th>Load/Save GUI</th>
+</tr>
+<tr><td colspan="2">
+
+
+Rob asks:<br>
+<i>"How exactly does the Load/Save game GUI menu work? Also, what is the function of "UpdateSaveGameInfo" and how does it actually
+relate back to the game code?"</i>
+<p>
+
+When the Load/Save menu comes up, the engine scans the 'savegames' folder for any files matching *.save.  It then looks for a .txt
+file for each .save file.  If it finds one, it pulls the name from the first line of that text file.  If not, it uses the name of
+the file minus the .save extension.  It appends the \t and timestamp of the file and sets the gui state var "loadgame_item_%i" for
+each file found.  The listDef is set up to look at those gui vars to populate the list.
+<p>
+When the user clicks on an item in the list, the menu sends an "updateSaveGameInfo" command to the engine.  This command gets the
+selected item (from the loadgame_sel_0 gui var), looks up that item in the list of files it scanned earlier and sets the following
+gui vars: loadgame_shot, saveGameName, saveGameDescription, saveGameDate, saveGameTime.  The date and time are set from the timestamp
+of the .save file.  The name and description are set from the first and second lines of the .txt file.  The screenshot is set from
+the third line of the text file or (if that line is blank) from a .tga with the same name as the .save file.
+<p>
+When the user clicks Load, the "loadGame" command is sent to the engine.  This command looks up the selected item in the list and loads
+the specified .save file.  This is the same as if the user typed 'loadgame x' in the console.
+<p>
+When the user clicks Save, the "saveGame" command is sent to the engine.  This command gets the name from the "saveGameName" gui var,
+sees if there is already a .save with that name.  If there is, it triggers the "saveGameOverwrite" named event.  That event pops up a
+confirmation dialog that triggers "saveGame 1" if the user clicks Yes.  The '1' forces an overwrite.  From there the code takes the
+same path as if the user had typed "saveGame x" in the console.
+<p>
+When the user clicks Delete, the "deleteGame" command is sent to the engine.  This command looks up the selected item in the list and
+deletes the .save, .tga, and .txt files.
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">03/24/05</td>
+<th>User info cvars</th>
+</tr>
+<tr><td colspan="2">
+
+
+Silly Rabbit asks:<br>
+<i>"How are the ui_* cvars synced up to the server?"<br>
+"How does the server sync them down to the other clients?"</i>
+<p>
+When the game code defines a cvar, it can set the CVAR_USERINFO flag. When the client modifies a cvar with this flag,
+the network system sends a 'userinfo changed' packet to the server.  The server calls <samp>idGame::SetUserInfo</samp> then repeats
+that message to all clients.  The clients then call <samp>idGame::SetUserInfo</samp> as well.
+
+<p>
+The userinfo block is delta compressed so only the changes are sent over the wire.  If three things change in the userinfo
+block in the same frame, only one 'userinfo changed' message is sent with all three values in it.  This is important because
+that means <samp>idGame::SetUserInfo</samp> will not be called once per change.  When that function is called, every single value may have
+changed, or only a single value may have changed.
+<p>
+Note the default implementation of <samp>idGame::SetUserInfo</samp> copies the dictionary to gameLocal.userinfo and calls 
+<samp>idPlayer::UserInfoChanged</samp>, so if you are adding a new userinfo cvar, chances are you will only have to set
+CVAR_USERINFO and add some code to <samp>idPlayer::UserInfoChanged</samp>.
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">03/18/05</td>
+<th>Getting all entities of type X</th>
+</tr>
+<tr><td colspan="2">
+
+
+I've gotten a few emails asking how to find all entities of a certain type.  For example, how to find all light entities.
+Here's some example code that works in idGameLocal:
+
+<p>
+<pre class="code" style="width: 590px; overflow: scroll">
+for ( ent = spawnedEntities.Next(); ent != NULL; ent = ent-&gt;spawnNode.Next() ) {
+    if ( ent-&gt;IsType( idLight::Type ) ) {
+        idLight *light = static_cast&lt;idLight *&gt;(ent);
+    }
+}
+
+</pre>
+
+<p>
+You can also do some additional checks, for example you can test the exact class name by throwing in this check:
+<pre class="code">
+if ( idStr::Cmp( ent-&gt;GetClassname(), "flickeringlight" ) == 0 ) {
+}
+</pre>
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">02/17/05</td>
+<th>idCollisionModelManager::LoadModel</th>
+</tr>
+<tr><td colspan="2">
+
+
+Chris asks,<br>
+<i>"If one attempts to load a modelname that has no collision model, does LoadModel just
+load a default model, or does it load nothing and set some value on the cmHandle_t to
+reflect an error, like -1?"</i>
+<p>
+idCollisionModelManager::LoadModel will load the surfaces of the render model as a
+collision model if a .cm file doesn't exist for that model and <b>none</b> of the surfaces in
+the model have SURF_COLLISION set.  Of course render models can have a <b>lot</b> of polys, and
+generally make crappy collision models, so I highly suggest always using a cm or a collision
+surface.
+
+<p>
+idCollisionModelManager::LoadModel will return 0 in the following conditions:
+<ul>
+<li>If there are no more slots left (also calls common-&gt;Error)
+<li>If <samp>precache</samp> is true and there is no .cm file
+<li>If the render model is not .ase or .lwo
+<li>If the render model doesn't exist or is invalid
+</ul>
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">02/01/05</td>
+<th>Deforms</th>
+</tr>
+<tr><td colspan="2">
+
+
+<table class="datatable">
+<tr><td class="nobr">sprite</td><td>Deform the triangles of this surface to always face the viewer</td></tr>
+<tr><td class="nobr">tube</td><td>Pivot a rectangular quad along the center of its long axis<br>Note that a geometric tube with even quite a few sides tube will almost certainly render much faster than this, so this should only be for faked volumetric tubes.  Make sure this is used with twosided translucent shaders, because the exact side order may not be correct.</td></tr>
+
+<tr><td class="nobr">flare &lt;size&gt;</td><td>Build a translucent border that's always facing the viewer.  This only works on quads (surfaces with 4 vertices).  Used to make lens flares around lights.</td></tr>
+<tr><td class="nobr">expand &lt;amount&gt;</td><td>Expand the surface along it's normals.</td></tr>
+<tr><td class="nobr">move &lt;amount&gt;</td><td>Moves the surface along the X axis, mostly just for demoing the deforms.  Example: <samp>deform move (time * 1)</samp></td></tr>
+<tr><td class="nobr">turbulent &lt;table&gt; &lt;range&gt;<br>  &lt;timeoffset&gt; &lt;domain&gt;</td><td>Turbulently deforms the S, and T values.<br>Example: <samp>deform turbulent sinTable 0.05 (time * 1) 10</samp></td></tr>
+
+<tr><td class="nobr">eyeBall</td><td>Each eyeball surface should have an separate upright triangle behind it, long end pointing out the eye, and another single triangle in front of the eye for the focus point.  The texture coordinates on the eyeball surface will be deformed so that the center is lined up with the vector going from the origin triangle to the focus triangle.</td></tr>
+<tr><td class="nobr">particle &lt;particleDecl&gt;</td><td>Emit particles from the surface instead of drawing it.</td></tr>
+<tr><td class="nobr">particle2 &lt;particleDecl&gt;</td><td>Like particle, but ignores the surface area so small surfaces emit the same number of particles as large surfaces.</td></tr>
+</table>
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">01/31/05</td>
+<th>Map Loading</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+When you issue a "map" command, the following process happens:<br>
+<ul>
+<li>Mute Sound System
+<li>Run Wipe
+    <ul>
+    <li>Capture screen to "_scratch"
+    <li>Display "wipeMaterial" for "com_wipeSeconds" seconds.
+    </ul>
+
+<li>Unload Previous Map (Call <samp>idGame::MapShutdown</samp>)
+<li>Show the loading gui for the next map (guis/map/____.gui)
+<li>Initialize Render World
+    <ul>
+    <li>Parse Map File
+    <li>Build lists of portals and models
+    <li>Populate areas with models (but don't load them yet)
+    </ul>
+<li>Clear user input buffers
+<li>Set user info (<samp>idGame::SetUserInfo</samp> and <samp>idGame::SetPersistentPlayerInfo</samp>)
+
+<li>Call <samp>idGame::InitFromSaveGame</samp> or <samp>idGame::InitFromNewMap</samp>
+<li>Call <samp>idGame::SpawnPlayer</samp>
+<li>Load all deferred data
+    <ul>
+    <li>Load all models
+    <li>Load all images
+    <li>Load all sounds
+    <li>Load all decls
+    <li>Load all guis
+    </ul>
+
+<li>Call idGame::RunFrame 10 times to let things settle
+<li>Create static light interactions
+<li>Run Wipe
+    <ul>
+    <li>Capture screen to "_scratch"
+    <li>Display "wipe2Material" for "com_wipeSeconds" seconds.
+    </ul>
+<li>Un-Mute Sound System
+</ul>
+<p>
+The question that prompted me to post this was, "How can I display the previous screen the player saw
+when switching levels?"  Now that we know how the loading process works, the easiest way to implement that
+would be to use "_scratch" as the background in "guis/map/____.gui"
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">01/28/05</td>
+<th>Controlling Monsters</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Grim asks:<br>
+"I am creating a map now, and when ever I get a gun and shoot it off all the monsters
+come running tward my location from all over the map. Is there anyway to make it to where
+they stay in one spot until I open a door or walk into the room?"
+
+<p>
+There are a couple of ways to do this.<br>
+If you set "ambush 1" on the entity, then the monster will only attack if it sees the player
+(it ignores sounds).  Alternatively, you can set "hide 2" on the monster, then set up a trigger_once
+that targets the monster.  When the player hits the trigger_once, the monster will unhide and wake up
+(this can also help speed up the game a bit because when the monster is hidden, the game can skip
+processing it).
+
+<p>
+
+There are other flags that you can set on the monsters.  For example, you can set it so the
+monster is visible, but still doesn't attack until triggered, useful if you can see the monster
+through a window.  You can also make the monster play an animation when it's triggered, or play
+the 'teleport' effect.  You can even control what type of teleport effect it plays.  You can get
+a list of all the key/value pairs with a brief description in the entity info window in Radiant.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">01/14/05</td>
+<th>dmap options</th>
+</tr>
+<tr><td colspan="2">
+
+
+<table class='datatable' width='100%'>
+<tr><td>glview</td><td>Not implemented</td></tr>
+
+<tr><td>v</td><td>Print extra information as the map is compiling</td></tr>
+<tr><td>draw</td><td>Render the level as it's compiling (not sure if this works anymore)</td></tr>
+<tr><td>noFlood</td><td>Don't 'flood' the level marking outside surfaces invisible</td></tr>
+<tr><td>noLightCarve</td><td>Don't carve geometry based light volumes (default)</td></tr>
+<tr><td>lightCarve</td><td>Carve the geometry based on the volume of the lights that touch them</td></tr>
+<tr><td>noOpt</td><td>Don't optimize (merge and cut) triangles</td></tr>
+
+<tr><td>verboseentities</td><td>Print extra information about entities (more so than with just verbose)</td></tr>
+<tr><td>noCurves</td><td>Don't process patches</td></tr>
+<tr><td>noModels</td><td>Not implemented</td></tr>
+<tr><td>noClipSides</td><td>For debugging, don't clip the sides of a brush to other solid parts of the world</td></tr>
+<tr><td>noCarve</td><td>Don't cut up any surfaces (like adding noFragment to every surface)</td></tr>
+<tr><td>shadowOpt&nbsp;&lt;n&gt;</td><td>Set the shadow optimize level:
+
+<br>0 - No optimization
+<br>1 - SO_MERGE_SURFACES (default)
+<br>2 - SO_CULL_OCCLUDED
+<br>3 - SO_CLIP_OCCLUDERS
+<br>4 - SO_CLIP_SILS
+<br>5 - SO_SIL_OPTIMIZE
+</td></tr>
+<tr><td>noTjunc</td><td>Don't fix t-juctions.  (Triangle optimization won't work without t-junction fixing)</td></tr>
+<tr><td>noCM</td><td>Don't generate .cm (collision) information</td></tr>
+<tr><td>noAAS</td><td>Don't generate .aas (pathfinding) information</td></tr>
+<tr><td>editorOutput</td><td>Pipe status messages to the editor window</td></tr>
+
+</table>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">01/06/05</td>
+<th>What noSelfShadow does</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+The way the renderer handles noSelfShadow is it:
+
+<ol>
+<li>Renders all selfShadow objects shadows to the stencil buffer
+<li>Renders all noSelfShadow objects with lighting
+<li>Renders all noSelfShadow objects shadows to the stencil buffer
+<li>Renders all selfShadow objects with lighting
+</ol>
+
+<p>
+So basically what happens is when 'noSelfShadow' objects are rendered, their shadows haven't been rendered to the stencil buffer yet.  But by the time 'selfShadow' objects are rendered, all shadows have been rendered (self and otherwise).
+
+<p>
+This means an object with 'noSelfShadow' will not cast a shadow onto a different object with 'noSelfShadow'
+
+<p>
+In other news, we're back from the holidays :)
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">12/09/04</td>
+<th>WARNING: Backwards Triangle Generated!</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+This message is generated when the optimizer is generating triangles and finds one with
+a zero or negative normal.  It is a fairly benign warning.  Most often this happens because
+the optimizer generated a degenerate triangle [a triangle with no surface area] because
+of floating point error.
+
+<P>
+To put it in John's words:<br>
+"This can happen reasonably when a triangle is nearly degenerate in
+optimization planar space, and winds up being degenerate in 3D space."
+
+<p>
+In other news, me and others from id are going to be out of the office much of this month
+due to Christmas, New Years, Chanukah, and other such holidays.  Emails sent to us may not
+be answered for a while.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">12/02/04</td>
+<th>Maya Importer Source Code</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Looks like the last installer was missing some files to compile the Maya Importer.<br>
+I have put up an installer which contains only the missing files <a href="downloads/D3SDK2_MayaImport_Setup.exe">here</a>.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/23/04</td>
+<th>More Clean Pack Files</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Eutectic is at it again, he has a clean skin pack <a href="http://www.doom3world.org/phpbb2/viewtopic.php?t=7479">here</a>
+and a clean shound shader pack <a href="http://www.doom3world.org/phpbb2/viewtopic.php?t=7439&highlight=">here</a>.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/18/04</td>
+<th>Clean def Files</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Eutectic cleaned up all the def files, removing entities that are invalid, and providing more accurate comments
+for the valid ones.  You can download his pack file <a href="http://www.pcgamemods.com/8596/">here</a>.  Also,
+if you missed it, he also has a clean materials pack <a href="http://www.pcgamemods.com/7707">here</a>.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/16/04</td>
+<th>SDK Version 2 -- Now With Vehicles!</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+We just packaged up a newer version of the SDK.
+<p>
+You can find the Windows version <a href="ftp://ftp.idsoftware.com/idstuff/doom3/source/win32/DOOM3_SDK_2.exe">here</a><br>
+
+The Linux version is <a href="ftp://ftp.idsoftware.com/idstuff/doom3/source/linux/doom3-linux-1.1.1282-sdk.x86.run">here</a><br>
+<p><b>Vehicles</b><br>
+Be sure to read the readme.txt in the vehicles folder<br>
+<p><b>Maya Importer Source</b><br>
+To compile the Maya Import dll, you will need to get the Maya 4.5 or the Maya 6.0 SDK from <a href="http://www.alias.com/">Alias</a>.
+There is a note in the directory explaining where the files need to go.  The project comes
+set up to compile a dll for Maya 4.5.  If you want to compile a dll for Maya 6.0,
+instructions are in maya_main.cpp.  For Maya 6.0, you will need Visual Studio 2003 or higher.
+The Maya 6.0 SDK does not work with Visual Studio 2002.
+<p><b>Linux Source</b><br>
+TTimo put together an official release for the Linux code.  The code itself is the same as windows,
+but there are some different build options and an included SCons file.
+<p><b>Random Fixes</b><br>
+
+Including (but not limited to) compiling 'out the box' in Visual Studio 2003 and 2005
+<p>
+If you have already done significant work on a mod, I would recommend installing this to a clean
+directory, then running windiff against your code base.  Alternatively you could diff against the
+first SDK and manually copy the changes over.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/12/04</td>
+<th>Maya Importer Round-up</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+There has been a bit of confusion over the Maya importers, so to set it all
+straight: You need the import dll that matches your version of Maya.  If you
+are running Maya 4.5 then you need the MayaImportx86.dll for Maya 4.5.
+<p>
+Here are import dlls for all the versions of Maya I could find:
+<ul>
+<li><a href="downloads/MayaImportx86_Maya45.zip">Maya 4.5</a><br>
+<li><a href="downloads/MayaImportx86_Maya50.zip">Maya 5.0</a><br>
+<li><a href="downloads/MayaImportx86_Maya60.zip">Maya 6.0</a><br>
+</ul>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/12/04</td>
+<th>Rendering Order</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Mathias was curious as to the exact render order for the different
+stages in a material.  In particular, what happens with multiple
+diffuse or bump stages.  Here's a very high level overview on how
+the Doom 3 engine renders:
+<ul>
+<p>
+<li>Step 1:<br>
+Renders all solid (non-translucent) geometry in black.  If a stage
+has an alpha test, then it gets rendered with the alpha test enabled. 
+This is to fill the depth buffer so early z can prevent expensive
+shader ops later.
+<p>
+<li>Step 2:<br>
+
+Render all light interactions.
+</ul>
+<pre class="code">
+For each light {
+    Render shadows into the stencil buffer;
+    For each stage in the light material {
+        For each surface in the light volume {
+            inter.diffuse = inter.specular = inter.bump = NULL;
+            For each stage in the surface material {
+                if stage is Diffuse {
+                    if ( inter.diffuse && inter.bump ) Render( inter );
+                    inter.diffuse = thisStage;
+                }
+                if stage is Specular {
+                    if ( inter.specular && inter.bump ) Render( inter );
+                    inter.specular = thisStage;
+                }
+                if stage is Bump {
+                    if ( inter.bump ) Render( inter );
+                    inter.diffuse = inter.specular = NULL;
+                    inter.bump = thisStage;
+                }
+            }
+            Render( inter );
+        }
+    }
+}
+</pre>
+<ul>
+<p>
+<li>Step 3:<br>
+Renders any stage with "blend" set to something other than "diffusemap",
+"specularmap", or "bumpmap".  This is where guis and other translucent
+or alpha blended surfaces get rendered (including particles).
+<p>
+<li>Step 4:<br>
+
+Render any stage that references _currentRender.  This would be heat
+haze, glass distortions, and other crazy post process effects.
+<p>
+To stay safe, I would always put my stages in the following order:
+bump, diffuse, specular.  That way you'll always know how it will
+get rendered.
+</ul>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/11/04</td>
+<th>Adding a new event</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+To add a new event to an entity, for example idPlayer, there are four things you
+will need to do:
+<p>
+<b>Create a new idEventDef</b><br>
+Open up Player.cpp, at the top you will see a whole bunch of lines similar to this:<br>
+<samp>const idEventDef EV_SpectatorTouch( "spectatorTouch", "et" );</samp><br>
+The first string is the name of the function in the script, the second string describes
+the parameters it takes (in this example an Entity and a Trace).  It can be NULL if the
+function doesn't take any parameters.  The last character is the return value.  It can
+be omitted (such as in this example) for functions that return nothing.
+<p>
+<b>Add a new function</b><br>
+You will need to create a function in your class that has the same function signature
+as the event def.  For example, a SpectatorTouch function would need to take an idEntity
+pointer and a trace_t pointer.  All event functions should return void because there is
+a special syntax for returning values back to a script (<samp>idThread::ReturnInt(0);</samp>).
+<p>
+
+<b>Add a new event map entry</b><br>
+You need a way to tie your script event to the function you added.  A line such as this
+will add your event to your function:<br>
+<samp>EVENT( EV_Gibbed, idPlayer::Event_Gibbed )</samp><br>
+<p>
+<b>Add an entry to doom_events.script</b><br>
+Lastly, the scripting system needs to be aware of this new event.  You have two options,
+the first is you can open up doom_events.script and add your event function signature
+to the very bottom (or top).  The second (better) option is you can add your event signature
+to a new file and #include it at the top of doom_main.script.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/11/04</td>
+<th>Tutorials List</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+This is a bit old, but still really handy.  The people over at Doom3World.org
+have a gajillion tutorials up, mostly on level editing, but there's a few on
+modeling or editing guis.
+<p>
+You can find <a href="http://www.doom3world.org/phpbb2/viewtopic.php?t=3017">the master list here.</a>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/02/04</td>
+<th>Using Fonts, Part 2</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+One of the problems with the code I posted yesterday was it only renders fonts
+in a single size (small).  The following code adds the ability to render fonts
+using a specified size (which is a floating point value with 1.0 meaning 48pt).
+Use "seta hud_textsize " to change the text size.  Note that for brevity, I just
+hard coded the thresholds for small and medium font, but the engine uses the
+cvars specified in the comment.
+
+<p>
+Also note that inside the engine "english" is used for french, german, spanish and italian,
+so to create a completely correct system, you'd need to use the "english" font for
+all 5 of those languages.
+<p>
+Code in <b>bold</b> changed from yesterday.
+<p>
+
+<pre class="code">
+const char *lang = cvarSystem-&gt;GetCVarString( "sys_lang" );
+const char *fontname = "an";
+const char *message = "This is a test";
+float x = 20.0f;
+float y = 300.0f;
+
+<b>float size = cvarSystem-&gt;GetCVarFloat( "hud_textsize" );</b>
+
+renderSystem-&gt;SetColor4( 1.0f, 1.0f, 1.0f, 1.0f );
+
+fontInfoEx_t fontInfo;
+renderSystem-&gt;RegisterFont( va("fonts/%s/%s", lang, fontname), fontInfo );
+
+<b>
+fontInfo_t *fontInfo2 = &fontInfo.fontInfoLarge;
+if ( size &lt;= 0.30f ) { // gui_smallFontLimit
+    fontInfo2 = &fontInfo.fontInfoSmall;
+} else if ( size &lt;= 0.60f ) { // gui_mediumFontLimit
+    fontInfo2 = &fontInfo.fontInfoMedium;
+
+}
+float scale = size * fontInfo2-&gt;glyphScale;
+</b>
+
+for ( const char *p=message; *p; p++ ) {
+    glyphInfo_t &glyph = <b>fontInfo2-&gt;</b>glyphs[*p];
+    renderSystem-&gt;DrawStretchPic( x, y - glyph.top <b>* scale</b>,
+        glyph.imageWidth <b>* scale</b>, glyph.imageHeight <b>* scale</b>,
+        glyph.s, glyph.t, glyph.s2, glyph.t2,
+        glyph.glyph );
+
+    x += glyph.xSkip <b>* scale</b>;
+}
+
+</pre>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/01/04</td>
+<th>Using Fonts</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Trevor was asking how he could render some text directly to the screen without having
+to use the GUI code.  Here's a simple example (paste it at the bottom of <kbd>idPlayerView::SingleView</kbd>)
+
+<p>
+<pre class="code">
+const char *lang = cvarSystem-&gt;GetCVarString( "sys_lang" );
+const char *fontname = "an";
+const char *message = "This is a test";
+float x = 20.0f;
+float y = 100.0f;
+
+renderSystem-&gt;SetColor4( 1.0f, 1.0f, 1.0f, 1.0f );
+
+fontInfoEx_t fontInfo;
+renderSystem-&gt;RegisterFont( va("fonts/%s/%s", lang, fontname), fontInfo );
+
+for ( const char *p=message; *p; p++ ) {
+    glyphInfo_t &glyph = fontInfo.fontInfoSmall.glyphs[*p];
+    renderSystem-&gt;DrawStretchPic( x, y - glyph.top,
+        glyph.imageWidth, glyph.imageHeight,
+        glyph.s, glyph.t, glyph.s2, glyph.t2,
+        glyph.glyph );
+    x += glyph.xSkip;
+}
+</pre>
+<p>
+Of course you'd want to wrap that up in a nice function and cache the fontInfoEx_t
+so you wouldn't have to do the lookup every time, but you get the idea.
+<p>
+A similar question, that I have been asked a few times is how to create these
+fonts.  The structure is the same as it was in Quake 3 Team Arena, and
+Arnout van Meer of Q3F (and now of Splash Damage) wrote a special tool for
+creating them.  Check out <a href="http://www.splashdamage.com/files/q3font_1.52.zip">q3font</a>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">11/01/04</td>
+<th>Game overwritting the dll, Part 2</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Romout offers an other suggestion for solving the 'game overwriting the dll' problem:
+<p>
+You can simply create a post build process similar to this one:<br>
+
+<samp>./PostBuild "$(TargetPath)" "e:\games\doom3\MODNAME\$(TargetFileName)"</samp>
+<p>
+Where PostBuild is a .bat looking like this:
+<pre class="code">
+@echo off
+attrib -r -s -h "%2"
+echo Copying from %1 to %2
+copy /Y "%1" "%2"
+attrib +r "%2"
+</pre>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/28/04</td>
+<th>Where the client ends the server begins</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Chris asks a pretty straight forward question: "where does client end and server begin?"
+<p>
+The executable (doom3.exe) and the dll are both run on the server and all the clients.
+This is different from Quake 2 where the dll only ran on the server, and different from
+Quake 3 where qagame only ran on the server and cgame/ui only ran on the client.  Having
+the dll run on both makes a lot of things much easier, for example prediction.
+<p>
+Client prediction was a bit of a pain in Quake 3 (and almost nonexistant in Quake 2), but
+with Doom 3, the client can predict everything because it is literally running the same
+code that the server is running.  The physics system is run on every machine, so a lot
+of things that don't matter (such as shattering glass or falling shells) can be run on
+the client side without taking up any bandwidth.
+<p>
+This programmability gives a lot of power to mod authors, as you can now do things that
+were simply impossible in the previous engines, but with great power comes great problems.
+Autodownloading of a client side dll is rather difficult.  A dll is native executable
+code, which means it is very possible to contain a virus.  Autodownloading a virus would
+make a lot of people very unhappy.  To run a mod, the client has to download and install
+it from another source (a website).  If a client tries to connect to a game with a different
+dll than the server is running, he will get a "Data not in sync with server data" message.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/28/04</td>
+<th>TGA's and DDS's</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+A few people have asked about the TGA and the DDS files.  DDS is a Direct Draw Surface
+file, which is basically a texture that is precompressed (using S3TC aka DXTC) and has
+all the mip maps pre-generated.  The TGA file is the uncompressed version.  The TGA files
+are used when running in high or ultra quality mode (in high quality, the diffuse maps
+use the compressed DDS files, but the normal maps use the uncompressed TGA files).
+<p>
+You can force everything to load from the TGA files by setting "image_usePrecompressedTextures"
+to 0.  The images will still get compressed dynamically at load time (which will slow down
+loading significantly), but it will make it so that when you change a TGA it will actually
+show up in game without having to regenerate the DDS files.  You can also set
+"image_useCompression" and "image_useNormalCompression" to 0, which will prevent them from
+getting compressed at load time (this is similar to running in ultra quality mode).
+<p>
+For generating the DDS files, we use <a href="http://www.ati.com/developer/compressonator.html">The Compressonator</a> from ATI.
+It has a nifty command line interface, which is useful for generating a lot of DDS files at
+once.  The commands "startBuild" and "finishBuild" along with "image_useOfflineCompression"
+will generate a batch file (makedds.bat) that contains the commands needed to generate DDS
+files for all the images that were referenced.
+<p>
+
+nVidia has some useful tools for viewing DDS files (including a plugin for Photoshop), which
+you can find on <a href="http://developer.nvidia.com/object/nv_texture_tools.html">this page</a>.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/28/04</td>
+<th>Deform Tube</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Brendon Chung asks:<br>
+"In an attempt at creating grass &amp; tree foliage, I am using a DEFORM TUBE sprite.
+However, while DEFORM TUBE works fine with BLEND ADD, it doesn't seem to work with BLEND DIFFUSEMAP (the sprite simply disappears)."
+<p>
+For those that are confused, deform tube is a deform that will rotate the surface
+around its major axis (the longest side) so that it's always facing the camera.  This can create
+a cool looking "tube" effect (hence the name).  Note that a geometric tube with even quite a few
+sides will almost certainly render much faster than this, so it should only be for faked
+volumetric tubes.
+<p>
+The problem that Brendon is running in to is that, when the new quad is generated, the winding
+order may not be correct.  For this reason, it should only be used with two sided translucent
+shaders.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/28/04</td>
+<th>How materials affect sounds</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Inside the material declaration, you can put one of sixteen different surface types,
+ten of which are predifined types: none, metal, stone, flesh, wood, cardboard, liquid,
+glass, plastic, ricochet.  The other six are generic: surftype10, surftype11, surftype12,
+surftype13, surftype14, surftype15
+<p>
+The surface type in the material determines which sound is played for footsteps, projectile hits, and other types of impacts.
+<p>
+The footstep sound is determined by looking at the surface type for the material under the
+actor.  For example, if it is "flesh" then the "snd_footstep_flesh" sound in the actor entityDef
+is played. If that sound is not defined then "snd_footstep" is played instead.  In Doom 3, we
+don't actually use this feature (all footsteps play the same sound).
+<p>
+The projectile impact sounds are handled the same way.  If a fist hits a material with "glass"
+set, then the "snd_glass" sound is played from the "weapon_fist" entityDef.  If that sound is not
+defined then it uses "snd_metal".  If that sound is not defined either then it uses "snd_impact".
+If that sound is not defined then it plays nothing.
+<p>
+This is all defined inside the game code.  As a mod author, you can completely change up this
+entire system.  To see where this is all defined, search the code base for "sufaceTypeNames".
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/26/04</td>
+<th>Game overwriting the dll</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Some people have been having issues with their game dll being overwritten.  The
+reason for this is the dll in the pack file is always used instead of the dll in
+the directory.  The way around it is to always zip up your dll, but that's obviously
+a pain.  The other way around it is to put your dll in the doom3 folder next to
+doom3.exe (in other words, not in your mod folder).  You'll only be able to play
+your mod, and you won't be able to play on pure servers, but it tends to be a lot
+easier to develop this way.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/26/04</td>
+<th>Debugging the dll</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+We are aware that the copy protection system prevents mod authors from debugging
+the game dll.  We're looking in to a fix for that right now.  The only way to really
+debug is with the shotgun printf approach.  I understand that's a really hacky way to
+program, and wish I had a better answer.
+
+
+</td></tr>
+</table>
+
+
+
+<p><table class="newspost">
+<tr><td class="date">10/26/04</td>
+<th>DOOMEdit 80% Memory Error</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+I've gotten some reports of people getting the following error when they have a lot
+of memory in their system (like 2gb): "Physical memory is over 80% utilized. Consider
+saving and restarting".  I looked in to it, and apparently the &lt; sign should have
+been a &gt; sign (in other words, the error only appears if more than 80% of your
+memory is free).  It should be fixed in the next patch, but until then you can pretty
+much ignore the error.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/26/04</td>
+<th>Compiling on Linux</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+A couple dozen people have asked me about getting the SDK to compile in Linux.  We
+have an SCons file to build the code, but it has a lot of stuff for the main engine
+in there, which is why we didn't release it with the SDK.  Dante over on the Doom 3 World
+forums wrote up a make file that seems to do the trick.  You can find more information
+about it <a href="http://www.doom3world.org/phpbb2/viewtopic.php?p=58400#58400">here</a>.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/26/04</td>
+<th>_button7 doesn't work</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+As some people have discovered, BUTTON_7 is always set to false.  I just checked
+the code and there was a &lt; 7 where there should have been a &lt;= 7.  I fixed it, but
+until the next patch, you'll just have to use buttons 0-6.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/26/04</td>
+<th>Where did my toolbar go?</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+If you manage to close your toolbar in Radiant, and can't seem to get it back,
+open the registry editor (Start-&gt;Run, "regedit", OK) and delete the following
+key and all it's subkeys: <kbd>HKEY_CURRENT_USER\Software\DOOMRadiant</kbd>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/19/04</td>
+<th>The Vehicle</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+I've gotten quite a few emails asking about the vehicle we talked about at Quakecon.
+That is going to be released some time in the near future.  We didn't have it packed
+up in a state that could be easily distributed, and we really didn't want to delay
+the SDK any more.  I'll post it here as soon as I can.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/19/04</td>
+<th>MayaImportx86.dll</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+It looks like we completely forgot to include the file MayaImportx86.dll in the SDK.  oops.
+<p>
+You can find it <a href="downloads/MayaImportx86.zip">here</a>.
+It needs to be extracted to the same folder doom3.exe is in (C:\Doom3)
+
+<p>
+This should make the <a href="modelexport.php">exportModels</a> command magically start working.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/19/04</td>
+<th>Mirrors</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+If you are having issues downloading the SDK from our site, here are a few mirrors:
+<p>
+<a href="http://www.fileplanet.com/files/140000/146754.shtml">File Planet</a><br>
+<a href="http://www.3dgamers.com/dlselect/games/doom3/thirdparty/doom3_sdk.exe.html">3dgamers</a><br>
+<a href="http://www.fileshack.com/file.x?fid=5646">File Shack</a><br>
+<a href="http://www.gamershell.com/download_7278.shtml">gamershell</a><br>
+<a href="http://doom3.filefront.com/file/DOOM_3_Software_Development_Kit_SDK;31586">FileFront</a><br>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/19/04</td>
+<th>Compiling in Visual Studio.NET 2005</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Wow, the repsonse to the release has been incredible, I'm sifting through the emails now
+and will post up some of the more common ones later, but the topic I got the most email
+about was compiling in Visual Studio.NET 2003 / 2005.  We developed Doom 3 with VS 2002,
+and there have been some subtle changes to the compiler, which cause some warnings and
+errors.  In order to get it to compile without errors, the following changes
+have to be made:
+
+<p>
+
+In PlayerView.cpp, line 527 needs to change to:<br>
+<code>
+float shift = scale * sin( sqrt( (float)offset ) *
+g_dvFrequency.GetFloat() );                       </code>
+
+<p>
+In PlayerView.cpp, line 662 needs to change to:<br>
+<code>int offset =  25 + sin( (float)gameLocal.time );</code>
+
+<p>
+Additionally, there's apparently an internal compiler error in idLib with 2003.  This appears
+to be a bug in the compiler which can be solved by making the following change (thanks
+<a href="http://www.doom3world.org/phpbb2/viewtopic.php?t=6752">Beafy</a>):
+
+<p>
+
+Change line 5385 in matrix.cpp from this:<br>
+<code>sum = sum * sum + v[0]</code>
+
+<p>
+To this:<br>
+<code>
+double v0 = v[0];
+sum = sum * sum; 
+sum = sum + v0;  
+</code>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/15/04</td>
+<th>Where do I get the SDK?</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+I'm sure this is the question that everyone wants the answer to...
+<p>
+<center><a href="ftp://ftp.idsoftware.com/idstuff/doom3/source/Doom3_SDK.exe">Here</a></center>
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">10/07/04</td>
+<th>How should I install Doom 3?</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+If you plan on modifying Doom 3 at all, I highly recommend installing it in
+C:\Doom3.  A lot of the built in tools get really upset if there are spaces
+in the file name, so installing it in "Program Files" is not really an option.
+
+<p>
+As for the pack files, I recommend leaving them packed up, and only unpacking
+the files you need.  This will keep your install pure so you can play on pure
+servers, and it also keeps your directories clean.  It makes the things you
+modified much easier to find than if there were a bunch of standard id files
+laying around.  Since the tools (like DOOMEdit) are all built in to the game,
+they don't care if the files come from the directory or from in a pack file.
+
+<p>
+I would also recommend keeping all your modified assets in a seperate folder,
+such as "mymod" rather than in "base".  This makes reinstalling much easier
+and allows you to seperate your stuff that you're working on from the default
+game stuff and stuff other people have made.  You can create a shortcut to
+Doom 3 with <samp>+set fs_game mymod</samp> in the "target" so you don't have
+to keep selecting your mod every time you start the game.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">9/30/04</td>
+<th>Why are some textures black in the editor?</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+If you've played around with radiant much, I'm sure you've found more than a
+few textures that show up as black when used.  You may be asking why those are
+still in the game when they obviously don't work.  The short answer is all those
+textures exist here at id, but we only copy the images to the CD that are actually
+used in the game (using the cvar fs_copyfiles).  Even if a material is not
+actually used in the game, the material text file will still get
+copied over, but the images won't be.  This is because a single text file can
+contain materials that are used as well as materials that are not used.
+<p>
+Eutectic created a custom pack file that cleaned up a lot of the missing shaders,
+which you can find <a href="http://www.doom3world.org/phpbb2/viewtopic.php?t=6025">here</a>.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">9/28/04</td>
+<th>My Radiant's broken!</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+When you open Doom 3 Radiant, if you see a white screen instead of a grid,
+turn off antialiasing (r_multiSamples 0).  Nine times out of ten that fixes it.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">9/26/04</td>
+<th>More on doom_main</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+If you are not planning on using any of the id maps in your mod, then you should
+really remove them from doom_main in order to speed up compile time and cut down
+on memory usage.  If you are making a multiplayer only mod, you can further cut
+it down by removing the monster scripts.  Here is a base doom_main that could
+be used for a multiplayer only mod:
+<p>
+<pre class="code">
+// base defines and util functions 
+#include "script/doom_defs.script" 
+#include "script/doom_events.script" 
+#include "script/doom_util.script" 
+#include "script/weapon_base.script" 
+#include "script/ai_base.script" 
+ 
+// weapons 
+#include "script/weapon_fists.script" 
+#include "script/weapon_pistol.script" 
+#include "script/weapon_shotgun.script" 
+#include "script/weapon_machinegun.script" 
+#include "script/weapon_chaingun.script" 
+#include "script/weapon_handgrenade.script" 
+#include "script/weapon_plasmagun.script" 
+#include "script/weapon_rocketlauncher.script" 
+#include "script/weapon_bfg.script" 
+#include "script/weapon_soulcube.script" 
+#include "script/weapon_chainsaw.script" 
+#include "script/weapon_flashlight.script" 
+#include "script/weapon_pda.script" 
+ 
+#include "script/ai_player.script"  
+</pre>
+
+<p>
+If you are making a total conversion, you can further slim it down by removing
+the weapon scripts.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">9/22/04</td>
+<th>How do I add a weapon?</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+One of the first things that any mod maker wants to do is add a new weapon.  Luckily, Doom 3
+makes this much easier than it has been in the past.  In fact, for most weapon types, you won't
+even need to open up the code -- it can all be done through scripts.  For our new weapon let's
+make a fireball, that way we can reuse the current models and sounds.
+
+<p>
+The first thing you'll want to do is open player.def.  If you remember on Monday we found out
+that weapon 13 isn't quite as usable is it looks, so move weapon_pda to slot 13, and set
+"def_weapon12" to "weapon_fireball".   "weapon12_cycle" should be 1, and all the else should
+be 0.  Next, scroll down to the "weapon" key and add "weapon_fireball" to the list after
+"weapon_pda", this will make us start with fireballs (since there aren't any fireball pickups
+on any maps, we have to do it this way or cheat by typing "give weapon_fireball").
+
+<p>
+Next we begin the process of duplicating the hand grenade:
+
+<ul>
+<li>Create a new file named weapon_fireball.def
+<li>Start off by copying the weapon_handgrenade entityDef and name it weapon_fireball
+<li>Change the following keys from "grenade" to "fireball"
+<ul>
+<li>model_view
+<li>model_world
+<li>def_dropItem
+<li>inv_weapon
+<li>weapon_scriptobject
+<li>def_projectile
+</ul>
+We'll leave ammoType as grenades for now
+
+
+<li>Copy over moveable_item_grenades and rename it to moveable_item_fireballs, making sure to
+change "inherit" in the process.
+
+<li>Copy over worldmodel_grenade and rename it to worldmodel_fireball.
+<li>Copy over viewmodel_grenade and rename it to viewmodel_fireball.
+<li>Copy over projectile_impfireball (from monster_demon_imp.def) and rename it to projectile_fireball.
+<li>Copy over damage_impfireball and damage_impfireball_splash (also from monster_demon_imp.def) and rename
+them so they are not imp fire balls.  Change the references in projectile_fireball to point to the new name.
+Change the damage for both to 100.
+
+<li>Make a copy of weapon_handgrenade.script and rename it to weapon_fireball.script.  Open
+weapon_fireball.script and use find/replace for handgrenade to fireball.
+
+<li>Be sure to add #include "script/weapon_fireball.script" to doom_main.script
+</ul>
+
+<p>
+At this point if you run your mod, you should be able to cycle to something that looks like a hand grenade,
+but shoots fireballs.
+
+<p>
+The biggest problem with it now is it takes grenade ammo, and as we all know fireballs don't take any
+ammo at all (they are summoned from hell).  We must rectify this situation.  Open player.def and set
+"weapon12_allowempty" to 1.  Inside the weapon_fireball, remove "inv_ammo_grenades", set the "ammoType"
+to "", and set "ammoRequired" to 0.  You should now be able to fire as many fire balls as you want.
+
+<p>
+Now the problem is it still looks like a grenade when you are holding it.  If I were an artist, I would
+create a new model that looked less like a grenade and more like hands waving around, but since I'm a
+programmer I'm just going to put a random lava texture on it.  Create a new file in the 'skins' folder
+called 'skins_fireball.skin' and inside it, put:
+<pre class="code">
+skin skins/models/weapons/fireball {
+    models/weapons/grenades/grenades3 textures/hell/lavascroll_ns
+    models/weapons/grenades/grenades3fx textures/hell/lavascroll_ns
+}
+
+skin skins/models/weapons/fireball_invis {
+    models/weapons/grenades/grenades3 textures/hell/lavascroll_ns
+    models/weapons/grenades/grenades3fx textures/hell/lavascroll_ns
+	models/characters/player/arm2 models/characters/player/arm2_invis
+}
+
+skin skins/models/weapons/nofireball {
+	models/weapons/grenades/grenades3 textures/common/nodraw
+	models/weapons/grenades/grenades3fx textures/common/nodraw
+}
+
+skin skins/models/weapons/nofireball_invis {
+	models/weapons/grenades/grenades3 textures/common/nodraw
+	models/weapons/grenades/grenades3fx textures/common/nodraw
+	models/characters/player/arm2 models/characters/player/arm2_invis
+}
+
+</pre>
+
+Then in weapon_fireball, change the skin_nade, skin_nade_invis, skin_nonade, and skin_nonade_invis keys to
+point to the new skins we just made.
+
+<p>
+Once we do this, the fireball actually looks pretty good as long as we throw it overhanded, but quick tosses
+look kind of funny.  This is an easy fix, just open weapon_fireball.script and change FIREBALL_QUICKTHROWTIME
+from .2 to 0.
+
+<p>
+There you go, your own weapon in the game.  You can actually place these in radiant now, but if you want to
+do that then I would recommend not making them have infinite ammo (how to add ammo may be covered later, but
+it's not any more difficult than adding a weapon).  The hardest part of adding a new weapon is getting it
+modeled and animated correctly.  I would strongly recommend prototyping all weapons using existing art.
+
+<p>
+If you are having problems, you can <a href="downloads/fireballmod.zip">download my version</a> and
+compare it against your own version.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">9/21/04</td>
+<th>I added my script but it's not working!</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+If you create a new map, weapon, or monster you're probably going to want to add a new script file to go along
+with it.  However, if you just drop the .script file in the scripts directory you will notice that it doesn't
+get recognized automatically.
+
+<p>
+The scripts directory does not just get scanned and loaded automatically.  The
+only file it loads up is doom_main.script, that file then includes all the other script files.  If you want to
+add your own script, you need to be sure to #include it in doom_main.script!
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">9/20/04</td>
+<th>Why can't I select weapon 13?</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+If you look in player.def, you will see that the weapons go up to 15, but weapons 13, 14, and 15 are
+unused.  To select a weapon 3, you use _impulse3, for weapon 9 it's _impulse9, etc...  So if you add
+a new weapon 14, you may think you can select it with _impulse14 but that's not actually the case.
+Impulse 13 is reload weapon, impulse 14 is prev wepon, and impulse 15 is next weapon.  You can only
+use impulse commands to select weapons 0-12.  Weapons 13, 14, and 15 cannot be selected directly
+(they can only be cycled to).
+
+<p>
+Why was it done this way?  To be completely honest, it just kind of happened.  We didn't use the last
+3 weapon slots so we didn't think about not being able to select them directly.  Oops.
+
+<p>
+There is some good news, though.  The PDA can be opened with _impulse19 (which is showscores in multiplayer),
+so you can move the PDA up higher in the list, freeing a slot for a new weapon.  The really good news
+is all this is handled in the game code, so mod developers can change it up however they want.  It is
+not likely to ever get changed in the main game code though, because that would require moving reload,
+prev, and next to different impulse commands, thereby breaking everyones config files.
+
+
+</td></tr>
+</table>
+
+
+<p><table class="newspost">
+<tr><td class="date">9/19/04</td>
+<th>The Code</th>
+</tr>
+<tr><td colspan="2">
+
+
+
+Just a quick update, I added a new section for <a href="code.php">The Code</a>
+
+
+</td></tr>
+</table>
+
+
+
+<script>
+function convertEmail( n, d ) {
+    var aTags=document.getElementsByTagName("A");
+    for (var i=0; i<aTags.length; i++) {
+        if (aTags[i].className == "email_" + n ) {
+            aTags[i].href="mailto:"+n+"@"+d;
+        }
+    }
+} 
+
+
+</script>
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan=2 bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</table>
+
+<table border=0 cellpadding=0 cellspacing=0 width=770>
+    <tr>
+        <td align=left class="legalese">Copyright &copy; 2004 <a href="http://www.idsoftware.com">id software</a></td>
+    </tr>
+</table>
+</body>
+</html>
