@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>ArtReference Q4Shaders Extra Passes - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/ArtReference_Q4Shaders_Extra_Passes?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/ArtReference_Q4Shaders_Extra_Passes?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/ArtReference_Q4Shaders_Extra_Passes?action=fullsearch&amp;value=linkto%3A%22ArtReference+Q4Shaders+Extra+Passes%22&amp;context=180">ArtReference Q4Shaders Extra Passes</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/ArtReference_Q4Shaders_Extra_Passes">ArtReferenc...xtra Passes</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?action=info">Info</a></li><li><a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line874">This section is by no means complete, as the shader system has more options in it than I could cover in one document. In this section we’ll go over some basics with extra passes in the shader system. <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867">
+<h3 id="head-83c2e9183e258e1407dc4875953c689576cf605a">Definitions</h3>
+<span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line867"><strong>What is an extra pass?</strong> Every time you open and close a shader entry in the same shader entry you’re writing a pass. Extra passes are any entries other than the diffuse, bump, height, specular, and imagemap entries.  <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867"><strong>Time</strong>: A unit of measure in game. When the game starts, the games begins counting, and stops when the level is disconnected, or is shut down. No one really knows what the unit is, but its assumed its 1 to 1, although I think it uses fuzzy logic.  <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867"><strong>Modulation</strong>: Changes the UV values of vertices on a surface. Usually the first number is the U or horizontal direction, and the second value is V or the vertical direction.   <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line867"><strong>Tables</strong>: Tables are numeric strings that act as modulation over time. See the tables’ section for more info. <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line867"><strong>Scroll</strong>: Changes the UV values of vertices on a surface. Moves the textures across a surface. There are 2 entries, the first number is for the positive and negative horizontal while the second number represents the positive and negative vertical. (Example: scroll 1, 0.) The range can be controlled over time.   <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><p class="line867"><strong>Scale</strong>: Scales occur to the lower left hand portion of the textures. 2 values, the lower the number the larger the image, so a ‘scale 3, 3 would be smaller than a scale .5, .5. Scale can be modulated over time. <span class="anchor" id="line-18"></span><span class="anchor" id="line-19"></span><p class="line867"><strong>Centerscale</strong>: Same rules apply as Scale, but it scales from the center. (Example: centerscale 1, 1.) Centerscale can be modulated over time. <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line867"><strong>Shear</strong>: skews the texture from its center. The 2 entries represent the amount of shear you want. A little goes a long way, I think 1 = a 45 degree increment. (Example: shear .5, .5) Shear can be modulated over time. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line867"><strong>Rotate</strong>: spins the texture (0 to 1), 0 = 0 degree and 1 = 360 degrees. Can be modulated over time.  <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line867"><strong>Color</strong>: Numerically modulate the existing texture. Can be modulated over time through an expression.  <span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><p class="line867"><strong>Colored</strong>: Pays attention to the parm 0 parm 1 and parm 2. Shortcut to use the parms. Breaks if you define color values. <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><p class="line867"><strong>RGB</strong>: Monochromatic. Applies modulation to the RGB value (meaning an entity)  <span class="anchor" id="line-30"></span><strong>RGBA</strong>: Monochromatic with alpha. Same as above except includes alpha. <span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span><p class="line867"><strong><span class="u">Blend modes</span></strong>: <span class="anchor" id="line-33"></span>Blend modes have 2 entries: One is, what do I do with the thing I’m drawing right now (Source Blend Mode), and the second is what is happening to the values that are already there. (Destination Blend Mode). The first is the source blend and the second is the destination blend on the blend line. (example blend gl_one, gl_one)  <span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><p class="line867">
+<h3 id="head-2d22d9d2e001ed207fc4c8a8aa142f92bf2c2a8a">Source Blend modes</h3>
+<span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><p class="line867"><strong>GL_ONE</strong>: Add the color of whatever is in the buffer. <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><p class="line867"><strong>GL_ZERO</strong>: Don’t draw whatever is in the source.     <span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><p class="line867"><strong>GL_DST_COLOR</strong>: Draw the source only over areas that have positive RGB values. <span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span><p class="line867"><strong>GL_ONE_MINUS_DST_COLOR</strong>: Darken the colors based on the colors behind it. (If you invert the colors, it’s a way to make targas work without an alpha pass) re-write. <span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span><p class="line867"><strong>GL_SRC_ALPHA</strong>: Only draw areas based on the positive alpha  <span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span><p class="line867"><strong>GL_ONE_MINUS_SRC_ALPHA</strong>: Only draw the inverse of the alpha source channel <span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span><p class="line867"><strong>GL_DST_ALPHA</strong>: Use the alpha from the surface you are drawing on. <span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span><p class="line867"><strong>GL_ONE_MINUS_DST_ALPHA</strong>: Use the inverse alpha from the surface you’re drawing the source on. <span class="anchor" id="line-54"></span><span class="anchor" id="line-55"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span><p class="line867">
+<h3 id="head-79a228e0846d8088559b08318baa87f3dc5b1dea">Destination Blend Modes</h3>
+<span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span><p class="line867"><strong>GL_ONE</strong>: Take whatever colors are already there, and add it into the scene.  <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span><p class="line867"><strong>GL_ZERO</strong>: Do not draw the images behind the color.          <span class="anchor" id="line-62"></span><span class="anchor" id="line-63"></span><p class="line867"><strong>GL_SRC_ALPHA</strong>: Draw the background in, according the source alpha. <span class="anchor" id="line-64"></span><span class="anchor" id="line-65"></span><p class="line867"><strong>GL_ONE_MINUS_SRC_ALPHA</strong>: Draw the background in according to the inverse of the source alpha.  <span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span><p class="line867"><strong>GL_DST_ALPHA</strong>: Draw the background based on the destination alpha. <span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span><p class="line867"><strong>GL_ONE_MINUS_DST_ALPHA</strong>: Draw the background based on the inverse of the background alpha <span class="anchor" id="line-70"></span><span class="anchor" id="line-71"></span><p class="line867"><strong>GL_SRC_COLOR</strong>: Draw the background based on the source color. (makes transparent, good for glass)  <span class="anchor" id="line-72"></span><span class="anchor" id="line-73"></span><p class="line867"><strong>GL_ONE_MINUS_SRC_COLOR</strong>: Fill in whatever is not being used by the source color.   <span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-76"></span><span class="anchor" id="line-77"></span><p class="line867">
+<h3 id="head-8ba85be6beac4ceddc6f230f1fb915b1215299e1">Shorcuts</h3>
+<span class="anchor" id="line-78"></span><p class="line874">There are shortcuts. If you know you’re going to be writing a lot of these, or if you want to avoid the GL stuff, use these:     <span class="anchor" id="line-79"></span><span class="anchor" id="line-80"></span><p class="line867"><strong>Blend add</strong>: GL_ONE, GL_ONE: typical glow pass. Draw the background and add the foreground onto it. Set up the file so that your colors are the glow pass and the black are dropped out. <span class="anchor" id="line-81"></span><span class="anchor" id="line-82"></span><p class="line867"><strong>Blend blend</strong>: GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA = Draw as much of your source as your alpha will allow and make up the rest with your background colors. Set up your .tga with an alpha.  <span class="anchor" id="line-83"></span><span class="anchor" id="line-84"></span><p class="line867"><strong>Blend filter</strong>: GL_DST_COLOR, GL_ZERO : Drops out the White of the file, darkening to the degree of black in the image. Basic multiply parameter. <span class="anchor" id="line-85"></span><span class="anchor" id="line-86"></span><p class="line867"><strong>Blend None</strong>: Only when writing to the depth buffer… For <a class="nonexistent" href="/quake4/MaskAlpha">MaskAlpha</a>. <span class="anchor" id="line-87"></span><span class="anchor" id="line-88"></span><p class="line867"><strong>Shader Parameters</strong>: These options affect the whole shader entry, do not use these in individual shader passes. Its best to place these at the top of the shader after you open the initial pass.   Nonsolid: Makes the texture or model surface non-solid. All shots and characters pass through it. <span class="anchor" id="line-89"></span><span class="anchor" id="line-90"></span><p class="line867"><strong>Noimpact</strong>: Makes the texture or model surface non-solid. All shots pass through the texture. <span class="anchor" id="line-91"></span><span class="anchor" id="line-92"></span><p class="line867"><strong>Noshadows</strong>: The texture or model will not cast a shadow. <span class="anchor" id="line-93"></span><span class="anchor" id="line-94"></span><p class="line867"><strong>Noselfshadows</strong>: The model will not cast a shadow on itself. <span class="anchor" id="line-95"></span><span class="anchor" id="line-96"></span><p class="line867"><strong>Playerclip</strong>: Texture blocks the player but nothing else.  <span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><p class="line867"><strong>Monsterclip</strong>: Texture blocks monsters but nothing else. <span class="anchor" id="line-99"></span><span class="anchor" id="line-100"></span><p class="line867"><strong>Unsmoothedtangents</strong>: This has to functions. The first thing it does is, average the normals during a _local.tga render. The second is, it must stay in the shader to mark it as using averaged normals. Used for animated or moving models. <span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span><p class="line867">
+<h3 id="head-5a96fb734a23b44e3e8d9ed9cea2fa6b4db92bf1">Image Rendering</h3>
+<span class="anchor" id="line-105"></span><span class="anchor" id="line-106"></span><p class="line867"><strong>Clamp</strong>: Disables the tiling of a texture on a polygon. Used in stages <span class="anchor" id="line-107"></span><span class="anchor" id="line-108"></span><p class="line867"><strong>Zeroclamp</strong>: Same as Clamp, except a black border on of one pixel will be preserves on all mip levels. Used in stages. <span class="anchor" id="line-109"></span><span class="anchor" id="line-110"></span><p class="line867"><strong><a class="nonexistent" href="/quake4/AlphaZeroClamp">AlphaZeroClamp</a></strong>: Same as Clamp, except a translucent white border on of one pixel will be preserves on all mip levels. <span class="anchor" id="line-111"></span><span class="anchor" id="line-112"></span><p class="line867"><strong>Smoothnormals</strong>: Effects the bumpmap line only. Can smooth the local and height, or local or height. Should be used sparingly, since it can drastically alter the normal. Example: <span class="anchor" id="line-113"></span><span class="anchor" id="line-114"></span><pre>Bumpmap addnormals ((smoothnormals models/blah_local.tga), heightmap (models/blah_h.tga, 3)) This would smooth the local but not the height. 
+<span class="anchor" id="line-115"></span></pre><span class="anchor" id="line-116"></span><span class="anchor" id="line-117"></span><p class="line867"><strong>Deforms</strong>:  <span class="anchor" id="line-118"></span><strong>Deform Flare</strong>: Must be a quad. (2 tris) Creates new set of polygons around the original edges of the quad. Pushes them away from the corners, perpendicular to the camera, by the amount placed in the shader line. By default, the original polygon is assigned a white shader and the new border edges are mapped with a quadratic falloff. (Example: Deform flare 50)   <span class="anchor" id="line-119"></span><span class="anchor" id="line-120"></span><p class="line867"><strong>Deform Sprite</strong>: Rotates the polygon to the camera. Must be a quad. (2 tris)  <span class="anchor" id="line-121"></span><span class="anchor" id="line-122"></span><p class="line867"><strong>Deform Expand</strong>: Takes the polygons and scales them by the amount listed. They can be use a table and be modulated over time. (Example : Deform Expand 30) <span class="anchor" id="line-123"></span>(On a table: deform expand sintable [time] ) <span class="anchor" id="line-124"></span><span class="anchor" id="line-125"></span><p class="line867"><strong>Alpha</strong>: <span class="anchor" id="line-126"></span><strong>Alphatest</strong>: Hard edged alpha. Goes through each pixel and determines whether the alpha value is greater or equal to the number, and draws it. (Example <a class="nonexistent" href="/quake4/AlphaTest">AlphaTest</a> .5) Bilinear filtering happens after the Alphatest. Example: <span class="anchor" id="line-127"></span><span class="anchor" id="line-128"></span><p class="line867"><strong><a class="nonexistent" href="/quake4/IgnoreAlphatest">IgnoreAlphatest</a></strong>: Ignores Alpha test for that stage.  <span class="anchor" id="line-129"></span><span class="anchor" id="line-130"></span><p class="line867"><strong><a class="nonexistent" href="/quake4/MaskAlpha">MaskAlpha</a></strong>: Current pass is not allowed to change the alpha values.  <span class="anchor" id="line-131"></span><span class="anchor" id="line-132"></span><p class="line867"><strong><a class="nonexistent" href="/quake4/InverseAlpha">InverseAlpha</a></strong>: Inverts the previous alpha pass in this stage.  <span class="anchor" id="line-133"></span><span class="anchor" id="line-134"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-135"></span><span class="anchor" id="line-136"></span><p class="line867">
+<h3 id="head-5bf20a871ea6a10aa1972ae016f98986c873e3af">Some Common shader passes</h3>
+<span class="anchor" id="line-137"></span><span class="anchor" id="line-138"></span><p class="line867"><strong>Glow pass: (additive passes)</strong> <span class="anchor" id="line-139"></span>The glow pass is the most common extra pass. Through this entry we can fake a lighting effect without adding a dynamic light in game.  <span class="anchor" id="line-140"></span><span class="anchor" id="line-141"></span><pre>        {
+<span class="anchor" id="line-142"></span>                blend           add
+<span class="anchor" id="line-143"></span>                map             textures/stroyent/stroy_pillar2alight_add.tga
+<span class="anchor" id="line-144"></span>        }
+<span class="anchor" id="line-145"></span></pre><span class="anchor" id="line-146"></span><p class="line867"><strong>Hard edged Alpha</strong> <span class="anchor" id="line-147"></span>In this pass, the diffuse map will need an alpha channel with just black and white.  <span class="anchor" id="line-148"></span><span class="anchor" id="line-149"></span><pre>        {       
+<span class="anchor" id="line-150"></span>                blend           diffuseMap 
+<span class="anchor" id="line-151"></span>                map             textures/terminal/t_floor_1a_d.tga
+<span class="anchor" id="line-152"></span>                alphaTest .5
+<span class="anchor" id="line-153"></span>        }
+<span class="anchor" id="line-154"></span></pre><span class="anchor" id="line-155"></span><p class="line867"><strong>Soft edged Alpha</strong> <span class="anchor" id="line-156"></span>In this, you’ll need to make an alpha channel with shades of gray. White is opaque and black is transparent. All the ranges in between are viable. <span class="anchor" id="line-157"></span><span class="anchor" id="line-158"></span><pre>        {
+<span class="anchor" id="line-159"></span>                blend blend
+<span class="anchor" id="line-160"></span>                map textures/glass/dirty2_d.tga
+<span class="anchor" id="line-161"></span>        }
+<span class="anchor" id="line-162"></span></pre><span class="anchor" id="line-163"></span><span class="anchor" id="line-164"></span><p class="line874">Well…that’s all. There are a lot of different combinations of shaders you can use to get different effects. A lot of shaders have been written, so if there is something you’d want to try in a shader, nine times out of ten there are examples in the *.mtr files. <span class="anchor" id="line-165"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ArtReference Q4Shaders Extra Passes  (last edited 2005-11-04 21:51:06 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?action=info">Info</a></li><li><a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

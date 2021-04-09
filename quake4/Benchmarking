@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Benchmarking - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/Benchmarking?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/Benchmarking?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/Benchmarking?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Benchmarking?action=fullsearch&amp;value=linkto%3A%22Benchmarking%22&amp;context=180">Benchmarking</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/Benchmarking">Benchmarking</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Benchmarking?action=info">Info</a></li><li><a href="/quake4/Benchmarking?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-507c841f1225d77a6759e712557a4309f4175376">Benchmarking with Quake 4</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867"><em>July 12th 2006</em> <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867">
+<h2 id="head-d3609ac4a6b7a165cb63bf051d1b679831bf4628">1. Net Time Demos</h2>
+<span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line862">A network demo is a recording of the network traffic during a multiplayer game. A network demo can be recorded at the a client connected to a multiplayer server. Such network demos are referred to as <em>client netdemos</em>. A network demo can also be recorded at the server. These network demos are referred to as <em>server netdemos</em>. ( see <a href="/quake4/NetworkDemos">NetworkDemos</a> ) <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line862">When playing back a <em>client netdemo</em> Quake 4 will behave exactly as if playing a live game. <em>Server netdemos</em> record more information than <em>client netdemos</em>, and when playing back a server demo the view can be moved freely through the world or the view can be attached to any of the players that were playing on the server at the time of the recording. <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line862">Quake 4 allows playback of <em>client netdemos</em> as fast as possible where the engine continuously runs one game frame and one render frame. Playing back a network demo as fast as possible is referred to as a <em>net time demo</em>. Net time demos can be used to rate the <em>overall</em> performance of a system configuration. However, anyone using Quake 4 net time demos should be careful in properly using this tool for benchmarking. <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line862">First of all Quake 4 can be run in single or multi-threaded mode. When a system has multiple CPUs or a CPU with multiple cores the Quake 4 performance can be improved by enabling multi-threading (SMP) by setting the console variable <strong>r_useSMP</strong> to <strong>1</strong>. However, when a system does neither have multiple CPUs nor a CPU with multiple cores the performance may not improve if multi-threading is enabled. Also make sure the lag-o-meter is disabled by setting the console variable <strong>net_clientLagOMeter</strong> to <strong>0</strong>. The lag-o-meter aversely affects the performance when multi-threading is enabled. When enabling multi-threading in Quake 4 it is advised to disable multi-threading in the graphics driver. The multi-threading in Quake 4 generally outperforms the multi-threading in the graphics driver and once multi-threading in Quake 4 is enabled the multi-threading in the graphics driver may aversely affect the performance. <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line862">The net time demos reflect the <em>overall</em> system performance including CPU speed, memory speed and GPU speed. At any time one of the many components in a PC can become a bottleneck and limit the performance. As such correct interpretation of the results from net time demos requires identifying the bottlenecks in the system. <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><p class="line862">At higher resolutions the Quake 4 performance quickly becomes limited by the graphics card. This means that graphics card cannot keep up with the speed of the CPU and memory. On multi-processor or multi-core systems with the Quake 4 SMP code enabled the graphics card typically becomes more of a bottleneck because the load on the first cpu/core is reduced by moving work to the second cpu/core. To exclude the graphics card as a bottleneck the console variable <strong>r_skipRenderContext</strong> can be set to <strong>1</strong>. With this console variable set to 1 all 3D rendering on the graphics card is skipped and the Quake 4 performance becomes limited only by the speed of the CPU, FSB, memory etc. <span class="anchor" id="line-18"></span><span class="anchor" id="line-19"></span><p class="line874">The Quake 4 performance is not only dependent on the CPU speed but also very much dependent on the memory speed. Increasing the memory speed can have close to the same effect on the performance as increasing the CPU speed. Quake 4 may not utilize all the available memory bandwidth but increasing the memory speed also lowers the memory access time which affects the performance. <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line862">The Quake 4 net time demos are meant to be used to rate the <em>overall</em> system performance. However, when using Quake 4 to benchmark the speed of graphics cards always make sure the system has the fastest CPU and the fastest memory available to make sure the CPU and memory subsystem have as little effect on the performance as possible. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line862">When benchmarking the speed of CPUs always make sure the system has the fastest memory available to make sure the effect of the memory speed on the performance is as small as possible. Furthermore use a low resolution with the fastest graphics card solution available (SLI, Dual Cross Fire, etc.) and disable features like anti-aliasing. When benchmarking the speed of CPUs it is even better to set <strong>r_skipRenderContext</strong> to <strong>1</strong> to make sure the graphics card cannot be the bottleneck and does not affect the performance results. <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line862">When playing back a network demo, it is essential that the game code and assets are exactly the same as they were at the time of recording. If a lot of custom pak files were added to a Quake 4 installation it is very likely the filesystem needs to be reconfigured before it can play a demo with the right assets. First run a net time demo with the console variable <strong>demo_enforceFS</strong> set to <strong>1</strong> before doing any benchmarking. This will cause the filesystem to restart with the correct pak files and will also make sure all the right assets are cached and the performance is not affected by loading assets. To get the actual benchmark results set <strong>demo_enforceFS</strong> back to <strong>0</strong> and run the net time demo a couple of times and list the best result. <span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><p class="line862">A net time demo can be started with the <strong>playNetTimeDemo</strong> console command. For benchmarking it is advised to use the <strong>demo001.netdemo</strong> that comes with Quake 4 ( version 1.2 and up ). This allows everyone to reproduce the same tests on the same hardware. <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><p class="line867">
+<h2 id="head-a59dbf29130c15ab676d25651e3b3e3272172020">2. Do Not Use Render Demos</h2>
+<span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line862">Quake 4 also supports so called "render demos". These render demos were used to test driver compatibility and are not meant for benchmarking. A render demo stores render commands and feeds them to the graphics driver. As such render demos do <em>not</em> reflect the performance of a system during actual gameplay because render demos push commands directly through the renderer and completely bypass the game code. In other words the game logic, physics etc. are not run when playing back a render demo. <span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><p class="line862">The bottom line is that render demos do <strong>not</strong> reflect the performance during actual gameplay while net time demos <strong>do</strong> reflect the performance during actual gameplay. When playing a <em>time demo</em> with the <strong>playTimeDemo</strong> console command (as opposed to a <em>net time demo</em> with the <strong>playNetTimeDemo</strong> console command) Quake 4 plays a "render demo". In other words do not use <em>time demos</em> (<strong>playTimeDemo</strong>) but use <em>net time demos</em> (<strong>playNetTimeDemo</strong>) for benchmarking. <span class="anchor" id="line-34"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Benchmarking  (last edited 2006-07-17 22:08:49 by <span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Benchmarking?action=info">Info</a></li><li><a href="/quake4/Benchmarking?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

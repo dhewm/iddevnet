@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>LevelEditor MPMapDefs - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/LevelEditor_MPMapDefs?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/LevelEditor_MPMapDefs?action=print">
+<link rel="Appendix" title="path.jpg" href="/quake4/LevelEditor_MPMapDefs?action=AttachFile&amp;do=view&amp;target=path.jpg">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/LevelEditor_MPMapDefs?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/LevelEditor_MPMapDefs?action=fullsearch&amp;value=linkto%3A%22LevelEditor+MPMapDefs%22&amp;context=180">LevelEditor MPMapDefs</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/LevelEditor_MPMapDefs">LevelEditor MPMapDefs</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_MPMapDefs?action=info">Info</a></li><li><a href="/quake4/LevelEditor_MPMapDefs?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-14beff8f4120089cdc0c563cb835a01af7782e39">Multiplayer mapDefs and addon.conf</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">Multiplayer mapDefs require a bit more setup than <a class="nonexistent" href="/quake4/LevelEditor_SPMapDefs">Single Player mapDefs</a> but are still pretty easy. The big consideration is making sure your level is compatible with autodownload support that has been added in Quake 4 1.1. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line862">The addonPak system is virtually identical to that implemented for <a class="http" href="http://zerowing.idsoftware.com/linux/doom/AddonPaks">Doom III</a>, just with some different mapDef keys and slightly different loadscreen support. In a nutshell, making your pk4 an addonPak will allow servers to run your map but only require players to have it installed if it is currently running. <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line867">
+<h2 id="head-826e10607062d2cb45ae898a9abf66d5686df037">pk4 Structure</h2>
+<span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line874">First, let's quickly cover the pk4 directory structure. (You can create an empty pk4 file simply by creating a new .zip file in the software of your choice and changing the file extension.) Files in your pk4 need to match the directory structure they would have freely within your q4base directory: <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867"><span class="anchor" id="line-12"></span><pre>-q4base/
+<span class="anchor" id="line-13"></span>        -your.pk4
+<span class="anchor" id="line-14"></span>                addon.conf
+<span class="anchor" id="line-15"></span>                -def/
+<span class="anchor" id="line-16"></span>                        -yourmap.def
+<span class="anchor" id="line-17"></span>                -maps/
+<span class="anchor" id="line-18"></span>                        -yourmap.map
+<span class="anchor" id="line-19"></span>                        -yourmap.proc
+<span class="anchor" id="line-20"></span>                        -yourmap.cm
+<span class="anchor" id="line-21"></span>                -materials/
+<span class="anchor" id="line-22"></span>                        -(any custom material files should fall under this path)
+<span class="anchor" id="line-23"></span>                -models/
+<span class="anchor" id="line-24"></span>                        -(any custom models should fall under this path)
+<span class="anchor" id="line-25"></span>                -scripts/
+<span class="anchor" id="line-26"></span>                        -(any custom scripts should fall under this path. Primarily SP)
+<span class="anchor" id="line-27"></span>                -sound/
+<span class="anchor" id="line-28"></span>                        -(any custom sounds should fall under this path.)
+<span class="anchor" id="line-29"></span>                -textures/
+<span class="anchor" id="line-30"></span>                        -(any custom textures should fall under this path.)
+<span class="anchor" id="line-31"></span></pre><span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><p class="line867">
+<h2 id="head-23c1fbb06a24d4185b1195194c7b5341e7e3ccba">addon.conf</h2>
+<span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><p class="line874">addonPaks are defined by including a file named 'addon.conf' to the base of your pk4 file. If no maps are included in the pk4, this file may be left empty: <span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><p class="line867"><span class="anchor" id="line-38"></span><pre>
+<span class="anchor" id="line-39"></span></pre><span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><p class="line874">If you do have a map or multiple maps in the pk4, this file includes an 'addonDef' entry and mapDef entries for all maps in the pk4. <span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><p class="line874">Here is an example addon.conf that you can use as a base for your own map releases: <span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span><p class="line867"><span class="anchor" id="line-46"></span><pre>// Example Quake 4 addonDef
+<span class="anchor" id="line-47"></span>// Feel free to use this as a base for your own releases.
+<span class="anchor" id="line-48"></span>
+<span class="anchor" id="line-49"></span>// Marks this pk4 as an addonPak for autodownload.
+<span class="anchor" id="line-50"></span>addonDef        {}
+<span class="anchor" id="line-51"></span>
+<span class="anchor" id="line-52"></span>// mapDefs for each map present in the pk4. Use [mapname].def to define loadscreen paths.
+<span class="anchor" id="line-53"></span>mapDef [MAP PATH] {
+<span class="anchor" id="line-54"></span>
+<span class="anchor" id="line-55"></span>        // Map name (Displayed in Server Creation window)
+<span class="anchor" id="line-56"></span>        "name"          "[MAP NAME]"
+<span class="anchor" id="line-57"></span>                
+<span class="anchor" id="line-58"></span>        // Available Gametypes (1 enables, 0 disables)
+<span class="anchor" id="line-59"></span>        "DM"            "1"
+<span class="anchor" id="line-60"></span>        "Team DM"       "1"
+<span class="anchor" id="line-61"></span>        "Tourney"       "1"
+<span class="anchor" id="line-62"></span>        "CTF"           "0"
+<span class="anchor" id="line-63"></span>        "Arena CTF"     "0"
+<span class="anchor" id="line-64"></span>}
+<span class="anchor" id="line-65"></span></pre><span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span><p class="line874">[MAP PATH] should be your map's path and filename relative to q4base/maps/. All our official MP maps are in q4base/maps/mp/ (i.e. mapDef mp/q4dm3), but you're welcome to use whatever path structure you feel like (maps/nickname/, etc.) so long as it is contained within the maps/ folder. <span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span><p class="line874">General file naming convention in custom levels for Quake games of the past has been to use an initial or initials plus the iteration of the franchise followed by the gametype and how many maps you've made for that gametype... So for example my third CTF level might be named kfs4ctf3. <span class="anchor" id="line-70"></span><span class="anchor" id="line-71"></span><p class="line874">[MAP NAME] is whatever the map will be called. If you're on an uncreative streak you can always just use your map's filename or resort to references to obscure movies and/or TV shows. <span class="anchor" id="line-72"></span><span class="anchor" id="line-73"></span><p class="line862">You'll notice we don't specify a loadscreen here; more on that in a moment. You'll also notice a few keys are missing when compared with our official multiplayer maps' mapDef entries (Gametype_*, mp_thumb). These keys were <strong>only</strong> used for the Xbox 360 version of Quake and are <strong>not</strong> required for your own levels for the PC version. (If you've release a map with these already, don't worry, it won't hurt anything) <span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span><p class="line867">
+<h2 id="head-6ff8d7a91ee8b054616900e9b632e2abfe74aac1">The .def File and Load Screen</h2>
+<span class="anchor" id="line-76"></span><span class="anchor" id="line-77"></span><p class="line862">To get your load screen working, you will need to create a new <a href="/quake4/DefinitionFile">DefinitionFile</a> with a 'duplicate' mapDef entry that points only to your loadscreen (but does not re-define any other element of the addon.conf mapDef): <span class="anchor" id="line-78"></span><span class="anchor" id="line-79"></span><p class="line867"><span class="anchor" id="line-80"></span><pre>// Example Quake4 mapDef with addonPak support
+<span class="anchor" id="line-81"></span>
+<span class="anchor" id="line-82"></span>mapDef [MAP PATH]       {
+<span class="anchor" id="line-83"></span>
+<span class="anchor" id="line-84"></span>        // Map name (Displayed on load screen.)
+<span class="anchor" id="line-85"></span>        "name"          "[MAP NAME]"
+<span class="anchor" id="line-86"></span>
+<span class="anchor" id="line-87"></span>        // Load Screen Image
+<span class="anchor" id="line-88"></span>        "loadimage"     "gfx/guis/loadscreens/[LOADSCREEN IMAGE]"
+<span class="anchor" id="line-89"></span>}
+<span class="anchor" id="line-90"></span></pre><span class="anchor" id="line-91"></span><span class="anchor" id="line-92"></span><p class="line874">Your loadscreen image should be a 512x512 TGA (and/or DDS) file - just like level textures, power of 2 images play nice with the game's renderer. <span class="anchor" id="line-93"></span><span class="anchor" id="line-94"></span><p class="line874">You'll also notice the map name is repeated here; this ensures that it displays correctly on the load screen instead of your map's path. <span class="anchor" id="line-95"></span><span class="anchor" id="line-96"></span><p class="line867">
+<h2 id="head-07d75f25533174a650af8f31c1e086512a1d7295">pk4 Dependencies</h2>
+<span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><p class="line874">In the event that your pk4 is dependent on other addonPaks to function (in most cases it will not be), you can modify your addonDef to specify other pk4 files for dependency: <span class="anchor" id="line-99"></span><span class="anchor" id="line-100"></span><p class="line867"><span class="anchor" id="line-101"></span><pre>addonDef        {
+<span class="anchor" id="line-102"></span>        // Checksums for pk4 dependency.
+<span class="anchor" id="line-103"></span>        "[CHECKSUM]"    //[YOUR_DEPENDENCY_FILE].pk4
+<span class="anchor" id="line-104"></span>}
+<span class="anchor" id="line-105"></span></pre><span class="anchor" id="line-106"></span><span class="anchor" id="line-107"></span><p class="line874">To find the checksum, set "developer 1" in the Quake 4 console and type "path" - this will give you a list of all pk4s and checksums (the crazy numbers/letters by the end) in the game directory, including all addonPaks: <span class="anchor" id="line-108"></span><span class="anchor" id="line-109"></span><p class="line862">:<img class="attachment" src="/quake4/LevelEditor_MPMapDefs?action=AttachFile&amp;do=get&amp;target=path.jpg" title="attachment:path.jpg" /> <span class="anchor" id="line-110"></span><span class="anchor" id="line-111"></span><p class="line874">In my example case, I have addon_test.pk4, and addon_test_assets.pk4 on which it depends. My addonDef in addon_test.pk4 would then look like this: <span class="anchor" id="line-112"></span><span class="anchor" id="line-113"></span><p class="line867"><span class="anchor" id="line-114"></span><pre>addonDef        {
+<span class="anchor" id="line-115"></span>        // Checksums for pk4 dependency.
+<span class="anchor" id="line-116"></span>        "0xb149cb12"    //addon_test_assets.pk4
+<span class="anchor" id="line-117"></span>}
+<span class="anchor" id="line-118"></span></pre><span class="anchor" id="line-119"></span><span class="anchor" id="line-120"></span><p class="line874">and my addon_test_assets.pk4, containing no maps, would look like this: <span class="anchor" id="line-121"></span><span class="anchor" id="line-122"></span><p class="line867"><span class="anchor" id="line-123"></span><pre>
+<span class="anchor" id="line-124"></span></pre><span class="anchor" id="line-125"></span><span class="anchor" id="line-126"></span><p class="line874">The comment naming the pk4 file(s) is optional, but may help keep track of filenames in the event you have multiple dependencies. <span class="anchor" id="line-127"></span><span class="anchor" id="line-128"></span><p class="line867">
+<h2 id="head-f48cc2b6bb80d9d49c0a3314fa368329eec919f2">pk4 Naming</h2>
+<span class="anchor" id="line-129"></span><span class="anchor" id="line-130"></span><p class="line862">Keep in mind that pk4s with official naming conventions (i.e. pak003.pk4) will <strong>not</strong> work with autodownload and may create conflicts with official game content if you happened to pick a number being used in a future patch. For simplicity, we recommend using a naming convention of map_mapname.pk4 (Using the above example: map_kfs4ctf3.pk4) to prevent confusion and allow easy sorting of map pak files. <span class="anchor" id="line-131"></span><span class="anchor" id="line-132"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-133"></span>Back to <a href="/quake4/LevelEditor">LevelEditor</a> <span class="anchor" id="line-134"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">LevelEditor MPMapDefs  (last edited 2006-04-23 02:47:53 by <span title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]"><a class="nonexistent" href="/quake4/AndrewWeldon" title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]">AndrewWeldon</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_MPMapDefs?action=info">Info</a></li><li><a href="/quake4/LevelEditor_MPMapDefs?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>FXEditor Tab - Sprite - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/FXEditor_Tab_-_Sprite?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/FXEditor_Tab_-_Sprite?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/FXEditor_Tab_-_Sprite?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/FXEditor_Tab_-_Sprite?action=fullsearch&amp;value=linkto%3A%22FXEditor+Tab+-+Sprite%22&amp;context=180">FXEditor Tab - Sprite</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/FXEditor_Tab_-_Sprite">FXEditor Tab - Sprite</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/FXEditor_Tab_-_Sprite?action=info">Info</a></li><li><a href="/quake4/FXEditor_Tab_-_Sprite?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line862">This tab controls the lifetime of the sprite, the material used by the sprite and whether it should play any effects upon it’s lifetime ending. This tab is named <strong>Line</strong> for a line segment. <span class="anchor" id="line-2"></span><hr /><p class="line874"> <span class="anchor" id="line-3"></span>
+<h3 id="head-1d2856d7ceafc8f04461635936d8100786e0bd3d">Live Forever</h3>
+<span class="anchor" id="line-4"></span><ul><li style="list-style-type:none"><p class="line862">Useable only if <a href="/quake4/FXEditor_Tab_-_Emitter#spawnsimultaneously">Spawning simultaneously</a>. The sprite will remain around constantly as long as the effect is visible. <span class="anchor" id="line-5"></span></li></ul><p class="line867"><span class="anchor" id="lifetime"></span> <span class="anchor" id="line-6"></span>
+<h3 id="head-c7deb6a4d7b7654c8468415032b96202073e961f">Lifetime</h3>
+<span class="anchor" id="line-7"></span><ul><li style="list-style-type:none">A min and max range possible for the lifetime of a sprite. Lifetime chosen randomly between min and max when the particle is spawned. Larger min/max ranges lead to more random particle lifetimes. <span class="anchor" id="line-8"></span></li></ul><p class="line867">
+<h3 id="head-057ec7fa3bc58a790f635877454de5d2503f81de">Material</h3>
+<span class="anchor" id="line-9"></span><ul><li style="list-style-type:none"><p class="line862">The path to the <a href="/quake4/ArtReference_Q4Shaders">material</a> to be applied to the sprite. Relative to your <a class="nonexistent" href="/quake4/Q4Base">Q4Base</a> folder. <span class="anchor" id="line-10"></span></li></ul><p class="line867"><span class="anchor" id="line-11"></span><pre>Example path: gfx/effects/energy_sparks/spark3
+<span class="anchor" id="line-12"></span></pre><span class="anchor" id="line-13"></span><p class="line867">
+<h3 id="head-9b22206fa44cb0bbdc5ba96403ede606fd0ce8da">Tile Material</h3>
+<span class="anchor" id="line-14"></span><ul><li style="list-style-type:none"><p class="line862">This is used on <a href="/quake4/FXEditor_Tab_-_Sprite">line</a> and <a href="/quake4/FXEditor_Tab_-_Electricity">electricity</a> effects to tile the selected material by the amount of map units you define. <span class="anchor" id="line-15"></span></li></ul><p class="line867">
+<h3 id="head-4d69b42cee161d4dc2be083aaa1686344cc9b4cb">Death Effects</h3>
+<span class="anchor" id="line-16"></span><ul><li style="list-style-type:none">Press the + plus button to add entire effects to play upon the death of the particle, use the – minus key to remove effects. <span class="anchor" id="line-17"></span></li></ul><p class="line867">
+<h3 id="head-5f4e2cef5692dd6334bbcf298a6fbf942c33117e">Orient towards direction of Motion</h3>
+<span class="anchor" id="line-18"></span><ul><li style="list-style-type:none"><p class="line862">Used only in <a href="/quake4/FXEditor_Tab_-_Sprite">line</a> effects, this will point the <a href="/quake4/FXEditor_Tab_-_Sprite">line</a> in the direction of motion over time. This is useful for <a href="/quake4/FXEditor_Tab_-_Sprite">lines</a> that have gravity, so as the <a href="/quake4/FXEditor_Tab_-_Sprite">lines</a> fall to the ground they rotate rather than fall in the same direction they spawned.  A good example to look at is <strong>effects/weapons/machinegun/impact_default.fx</strong>. The segment <strong>sparks_lines</strong> uses this setting. Uncheck the setting and play the effect to notice how without this setting the <a href="/quake4/FXEditor_Tab_-_Sprite">lines</a> fall. Make sure you hide all other segments by unchecking them to see this easier. <span class="anchor" id="line-19"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">FXEditor Tab - Sprite  (last edited 2005-11-04 17:21:51 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/FXEditor_Tab_-_Sprite?action=info">Info</a></li><li><a href="/quake4/FXEditor_Tab_-_Sprite?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

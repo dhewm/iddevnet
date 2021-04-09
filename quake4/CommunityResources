@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>CommunityResources - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/CommunityResources?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/CommunityResources?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/CommunityResources?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/CommunityResources?action=fullsearch&amp;value=linkto%3A%22CommunityResources%22&amp;context=180">CommunityResources</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/CommunityResources">CommunityResources</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/CommunityResources?action=info">Info</a></li><li><a href="/quake4/CommunityResources?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-28d66f4fb701ca7de890cac5a4c88c7e38d577bb">Quake 4 Community Resources</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">The following sites can be used as a general reference for various aspects of Quake 4. This list is in no way final or all-encompassing, so if you see something missing, would like to submit your own site under one of these categories, or if you feel something is incorrectly classified or described, please e-mail Andrew Weldon at <a class="mailto" href="mailto:aweldon@ravensoft.com">aweldon@ravensoft.com</a>. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867">
+<h2 id="head-ad945066473bafad4db9d61be5964b97deae65d3">General Editing</h2>
+<span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><ul><li><p class="line891"><strong><a class="http" href="http://www.doom3world.org/">Doom3World</a></strong> (Doom3 engine editing with dedicated Quake 4 sections) <span class="anchor" id="line-8"></span></li><li><p class="line891"><strong><a class="http" href="http://www.leveldesign.nl/">LevelDesign.nl</a></strong> (General id engine editing community) <span class="anchor" id="line-9"></span></li><li><p class="line891"><strong><a class="http" href="http://www.modwiki.net/wiki/Main_Page">ModWiki</a></strong> (Doom3 engine editing) <span class="anchor" id="line-10"></span></li><li><p class="line891"><strong><a class="http" href="http://www.quake3bits.com/">Quake3Bits</a></strong> (Tips, tools, and tutorials) <span class="anchor" id="line-11"></span></li><li><p class="line891"><strong><a class="http" href="http://www.quake3world.com/">Quake3World</a></strong> (Quake 3/4 discussion and level editing) <span class="anchor" id="line-12"></span></li><li><p class="line891"><strong><a class="http" href="http://www.quake4world.com/">Quake4World</a></strong> (Wiki-style site with tutorials, map and mod links, as well as general game information) <span class="anchor" id="line-13"></span></li><li><p class="line891"><strong><a class="http" href="http://www.gamedesign.net/">RUST</a></strong> (General editing community) <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span></li></ul><p class="line867">
+<h2 id="head-2f6ed456787e1b0a59dd67693fc04baa019a7c25">Artwork</h2>
+<span class="anchor" id="line-16"></span><ul><li><p class="line891"><strong><a class="http" href="http://www.pixelmorgue.com/">PixelMorgue</a></strong> (Texturing community) <span class="anchor" id="line-17"></span></li><li><p class="line891"><strong><a class="http" href="http://www.planetquake.com/polycount/">PolyCount</a></strong> (General and game-related artwork + community) <span class="anchor" id="line-18"></span><span class="anchor" id="line-19"></span></li></ul><p class="line867">
+<h2 id="head-71ae8b03aea5462cb72c5d8f396780d75b4ac71f">Level Design</h2>
+<span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line867">
+<h2 id="head-b8e8314251bba10b32270c516147dbbf7b4b6e71">Programming</h2>
+<span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line867">
+<h2 id="head-1b6acbcc1c8ea46c18102606b0d705536bec0b20">Server administration</h2>
+<span class="anchor" id="line-24"></span><ul><li><p class="line891"><strong><a class="http" href="http://zerowing.idsoftware.com/linux/doom#head-2ceddb8882796c87dc5981ee10be77d26e9f510c">auto download and addon paks configuration</a></strong> ( from Doom 3 docs. Applies to Quake 4 as well ) <span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span></li></ul><p class="line867">
+<h2 id="head-33bdd5076ad09aef7af62423546c92ce8effd4e3">User-created Tools</h2>
+<span class="anchor" id="line-27"></span><span class="anchor" id="line-28"></span><p class="line867">
+<h2 id="head-a2361760aa1854c5a3b327eec70ba269fe20c396">Linux</h2>
+<span class="anchor" id="line-29"></span><ul><li><p class="line891"><strong><a class="http" href="http://zerowing.idsoftware.com/linux/quake4/">Quake4 Linux FAQ</a></strong> <span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span></li></ul><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-33"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">CommunityResources  (last edited 2006-03-05 03:08:08 by <span title="TimotheeBesset @ h-68-165-10-205.dllatx37.covad.net[68.165.10.205]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ h-68-165-10-205.dllatx37.covad.net[68.165.10.205]">TimotheeBesset</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/CommunityResources?action=info">Info</a></li><li><a href="/quake4/CommunityResources?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

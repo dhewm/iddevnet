@@ -1,0 +1,409 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>MakeAMod-DMSP - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/MakeAMod-DMSP?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/MakeAMod-DMSP?action=print">
+<link rel="Appendix" title="dmsp_v1.pk4" href="/quake4/MakeAMod-DMSP?action=AttachFile&amp;do=view&amp;target=dmsp_v1.pk4">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/MakeAMod-DMSP?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/MakeAMod-DMSP?action=fullsearch&amp;value=linkto%3A%22MakeAMod-DMSP%22&amp;context=180">MakeAMod-DMSP</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/MakeAMod-DMSP">MakeAMod-DMSP</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/MakeAMod-DMSP?action=info">Info</a></li><li><a href="/quake4/MakeAMod-DMSP?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-1ce3b85a1f6494ceae946f575fed95dd4bcfd219">Deathmatch Singleplayer</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867"><em>Special thanks to Professor Wouter "Aardappel" van Oortmerssen for <a class="http" href="http://wouter.fov120.com/maps/dmsp/index.html">original DMSP mod/concept</a> and awesome sounding name.</em> <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867"><br />
+<br />
+ <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line874">Before we begin, if you haven't downloaded it already you'll need this file: <span class="anchor" id="line-8"></span><br />
+<br />
+ <span class="anchor" id="line-9"></span><a class="attachment" href="/quake4/MakeAMod-DMSP?action=AttachFile&amp;do=get&amp;target=dmsp_v1.pk4" title="attachment:dmsp_v1.pk4">dmsp_v1.pk4</a> <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867"><br />
+<br />
+ <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line874">DMSP for Q4 was originally an internal experiment to see if a new gametype was possible entirely within script.  The basic premise is to provide the player an arcade-style limitless supply of monsters and pickups.  A deathmatch map is the perfect place for it, because it has a closed connected layout the player can run around in as long as he can stay alive, henceforth the term "deathmatch single player." <span class="anchor" id="line-14"></span><br />
+<br />
+ <span class="anchor" id="line-15"></span><span class="anchor" id="line-16"></span><p class="line874">Q4DM4 was determined to be the best map for the job, because almost the entire layout is navigable without the use of jumppads or teleporters (which the AI doesn't pay attention to).  Maps like Q4DM5 had too many isolated platforms that would fill up with monsters that couldn't go anywhere. <span class="anchor" id="line-17"></span><br />
+<br />
+ <span class="anchor" id="line-18"></span>The experiment was a success aside from a few small issues.  The main one is that the player spawns in a multiplayer map with the default unstroggified marine stats and physics if the gametype isn't specifically set to multiplayer (and the game isn't a lot of fun if you're stuck moving slowly), but in multiplayer AI doesn't evaluate.  Thus, besides including .aas files for the deathmatch map, the "player" keyvalue had to be set on the worldspawn in the .map itself to "player_marine_mp". <span class="anchor" id="line-19"></span><br />
+<br />
+ <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line874">q4dm4.script is loaded by default when the map is loaded, because they share a name and a directory.  q4dm4.script points to dmsp_base.script, which starts the fun. <span class="anchor" id="line-22"></span><br />
+<br />
+ <span class="anchor" id="line-23"></span>The first thing we do is set up variables for the values we're going to have to keep track of persistently: <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><pre>float dmsp_skill = 0;
+<span class="anchor" id="line-26"></span>float dmsp_nextComboTime = -1;
+<span class="anchor" id="line-27"></span>float dmsp_combo = 1;
+<span class="anchor" id="line-28"></span>float dmsp_score = 0;
+<span class="anchor" id="line-29"></span></pre><span class="anchor" id="line-30"></span><p class="line874">We stash the value for the g_skill cvar in dmsp_skill, so we can use it in various functions later without having to run sys.getcvar() every time we want it.  dmsp_score is pretty self explanatory, and the two combo variables are used to keep track of how many kills the player has chained together in a short span of time. <span class="anchor" id="line-31"></span><br />
+<br />
+ <span class="anchor" id="line-32"></span>There's a lot of stuff following this in the script, but the thing that kicks it off is at the end in <strong>main()</strong>, which runs by default when a map loads.  Since the game runs about a dozen frames of any map before actually spawning the player and starting the show, anything we sneak into the beginning of main() will happen at the loading screen.  Since the map has no monsters in it, the game would pause to cache their models and sounds every time a new one was spawned if we didn't do this. <span class="anchor" id="line-33"></span><span class="anchor" id="line-34"></span><p class="line867"><span class="anchor" id="line-35"></span><pre>void main()
+<span class="anchor" id="line-36"></span>{
+<span class="anchor" id="line-37"></span>        dmsp_skill = sys.strToFloat( sys.getcvar("g_skill") );
+<span class="anchor" id="line-38"></span>
+<span class="anchor" id="line-39"></span>        // Spawn all possible monsters and items in main to force them to cache when the map loads
+<span class="anchor" id="line-40"></span>        // then remove them out of the way
+<span class="anchor" id="line-41"></span>        entity tempy, tempy2, tempy3;           // three at a time so it doesn't take 30 game frames
+<span class="anchor" id="line-42"></span>        
+<span class="anchor" id="line-43"></span>        tempy = sys.spawn( "monster_strogg_marine" );
+<span class="anchor" id="line-44"></span>        tempy2 = sys.spawn( "monster_strogg_marine_sgun" );
+<span class="anchor" id="line-45"></span>        tempy3 = sys.spawn( "monster_strogg_marine_mgun" );
+<span class="anchor" id="line-46"></span>        sys.waitFrame();
+<span class="anchor" id="line-47"></span>        tempy.remove(); tempy2.remove(); tempy3.remove();
+<span class="anchor" id="line-48"></span>
+<span class="anchor" id="line-49"></span>        ...
+<span class="anchor" id="line-50"></span>
+<span class="anchor" id="line-51"></span>        sys.println("Three ... ");
+<span class="anchor" id="line-52"></span>        sys.wait(1);
+<span class="anchor" id="line-53"></span>        sys.println("Two ... ");
+<span class="anchor" id="line-54"></span>        sys.wait(1);
+<span class="anchor" id="line-55"></span>        sys.println("One ... ");
+<span class="anchor" id="line-56"></span>        sys.wait(1);
+<span class="anchor" id="line-57"></span>        dmsp_createSpawner();
+<span class="anchor" id="line-58"></span>        sys.println("The invasion has begun!");
+<span class="anchor" id="line-59"></span>}
+<span class="anchor" id="line-60"></span></pre><span class="anchor" id="line-61"></span><span class="anchor" id="line-62"></span><p class="line862">After that there's a dorky countdown to give the player a couple seconds to run for some guns, and then <strong>dmsp_createSpawner()</strong> is called.  This function has to do things in a somewhat peculiar order because everything relies on spawnArguments.  The gameplay is driven by a func_spawner, which has to be spawned with its keyvalues already set.  If we spawn it and then set keys on it they won't have any effect. <span class="anchor" id="line-63"></span><span class="anchor" id="line-64"></span><pre>void dmsp_createSpawner()
+<span class="anchor" id="line-65"></span>{
+<span class="anchor" id="line-66"></span>        float j = dmsp_createSpawns();  // make nulls for spawn points
+<span class="anchor" id="line-67"></span>        ...
+<span class="anchor" id="line-68"></span></pre><span class="anchor" id="line-69"></span><p class="line862">The function starts by going out to <strong>dmsp_createSpawns()</strong>, which in turn searches the entity list for every entity whose name starts with "info_player_deathmatch_", and spawns a target_null (func_spawners can only be targetted at target_nulls for whatever reason).  We do this early so we can set spawnArgs on the nulls we create without interfering with the spawnArgs we set on the func_spawner.  This function returns the number of spawns it found/created, which gets put in <strong>j</strong>.   <span class="anchor" id="line-70"></span><br />
+<br />
+ <span class="anchor" id="line-71"></span>At this point we begin setting spawnArgs for the spawner itself.  def_spawns are listed to set up our monster loadout - we skip the tactical transfers because they don't move fast enough for the ravenous horde combat we're looking to achieve.  After those are done, we add extra keys for functionality: <span class="anchor" id="line-72"></span><span class="anchor" id="line-73"></span><p class="line867"><span class="anchor" id="line-74"></span><pre>        ...
+<span class="anchor" id="line-75"></span>        sys.setSpawnArg("max_active", j);                       // assume # of spawns in map is a good monster limit
+<span class="anchor" id="line-76"></span>        sys.setSpawnArg("delay", ( 5 - dmsp_skill ) );          // shorter delay on harder skill
+<span class="anchor" id="line-77"></span>        sys.setSpawnArg("auto_target", "1");
+<span class="anchor" id="line-78"></span>        sys.setSpawnArg("face_enemy", "1");
+<span class="anchor" id="line-79"></span>        sys.setSpawnArg("skipVisible", "0");
+<span class="anchor" id="line-80"></span>        sys.setSpawnArg("remove", "0");                         // don't disappear from the entity list if I break this
+<span class="anchor" id="line-81"></span>        // spawn_* keys are set on the spawned monster:
+<span class="anchor" id="line-82"></span>        sys.setSpawnArg("spawn_neverdormant", "1");
+<span class="anchor" id="line-83"></span>        sys.setSpawnArg("spawn_script_death", "dmsp_killMonster");      // for spawning loots
+<span class="anchor" id="line-84"></span>        sys.setSpawnArg("spawn_script_init", "dmsp_whoosh");            // for spawning zoots
+<span class="anchor" id="line-85"></span>        ...
+<span class="anchor" id="line-86"></span></pre><span class="anchor" id="line-87"></span><span class="anchor" id="line-88"></span><p class="line874">At the end of this function, the func_spawner is finally spawned and triggered, which commences the invasion. <span class="anchor" id="line-89"></span><br />
+<br />
+ <span class="anchor" id="line-90"></span>Assuming that the # of spawns is a good monster limit isn't entirely safe - while designers seem to commonly stick to an unspoken standard of deathmatch spawn count vs map size, there is the occasional aberration.  (q4dm6, for example, has 64 spawns!)  spawn_neverdormant ensures that if the player leaves the PVS of a group of monsters they won't suddenly stop and stand there blinking - this way the player is always beset on all sides by the horde. <span class="anchor" id="line-91"></span><br />
+<br />
+ <span class="anchor" id="line-92"></span>The rest of the gameplay functionality comes from the last two keys.  spawn_script_init will make the monster call <strong>dmsp_whoosh()</strong> when it spawns, which simply adds some effects to try and mask their sudden appearance.  spawn_script_death is the important one, which makes the monster call <strong>dmsp_killMonster()</strong> when it dies.  This is where all of the item drops and scoring is handled. <span class="anchor" id="line-93"></span><span class="anchor" id="line-94"></span><p class="line867"><span class="anchor" id="line-95"></span><pre>void dmsp_killMonster( entity victim )
+<span class="anchor" id="line-96"></span>{
+<span class="anchor" id="line-97"></span>        string vicType = victim.getKey( "classname" );  // what kind of monster is it?
+<span class="anchor" id="line-98"></span>        vector vicOrg, vicSize, vicDrop, vicPip;
+<span class="anchor" id="line-99"></span>
+<span class="anchor" id="line-100"></span>        float score = (dmsp_skill + 1) * 25 * dmsp_combo;       // score on general = 4x score on easy
+<span class="anchor" id="line-101"></span>        
+<span class="anchor" id="line-102"></span>        vicOrg = victim.getWorldOrigin();       // where was it killed?
+<span class="anchor" id="line-103"></span>        vicSize = victim.getSize();             // how big was it?  for deciding how high to toss items and print score
+<span class="anchor" id="line-104"></span>        vicDrop = vicOrg;
+<span class="anchor" id="line-105"></span>        vicDrop_z = vicDrop_z + vicSize_z * 0.5;        // drop items waist high
+<span class="anchor" id="line-106"></span>        vicPip = vicOrg;
+<span class="anchor" id="line-107"></span>        vicPip_z = vicPip_z + vicSize_z * 0.75;         // print score pip about head high
+<span class="anchor" id="line-108"></span>        ...
+<span class="anchor" id="line-109"></span></pre><span class="anchor" id="line-110"></span><span class="anchor" id="line-111"></span><p class="line862">What makes it all work is that when an entity calls any of its script_ functions, <strong>it passes itself in as the first parameter.</strong>  This means we can have one function that has different output based on what kind of monster calls it.  This works great for us, because now we can have puny monsters add appropriately puny amounts to the player's score and drop simple items like armor shards, but have much better rewards for the beefy opponents.  We set up a couple of variables early: <span class="anchor" id="line-112"></span><ul><li><p class="line891"><strong>vicType</strong> is the monster's classname.  We use this shortly to differ the drops and score based on monster size. <span class="anchor" id="line-113"></span></li><li><p class="line891"><strong>score</strong> starts out as our base score multiplier.  25 is the base, and another 25 is added for every level of skill above Easy we're playing at, and for our current combo level.  More on that later. <span class="anchor" id="line-114"></span></li><li><p class="line891"><strong>vicOrg</strong> is the origin of the monster at the time of death (when the function is called). <span class="anchor" id="line-115"></span></li><li><p class="line891"><strong>vicSize</strong> returns a vector for the extends of the monster's bounding box at the time of death.  We use this to set ... <span class="anchor" id="line-116"></span></li><li><p class="line891"><strong>vicDrop</strong> to a point halfway up the height of the monster, so items come out of the body, and ... <span class="anchor" id="line-117"></span></li><li><p class="line891"><strong>vicPip</strong>, so we can print the floating score number above the monster's head. <span class="anchor" id="line-118"></span></li></ul><p class="line867"><br />
+<br />
+ <span class="anchor" id="line-119"></span>After that comes a block like this for every monster type that was specified in the func_spawners args: <span class="anchor" id="line-120"></span><span class="anchor" id="line-121"></span><pre>        ... if ( vicType == "monster_iron_maiden" ) {
+<span class="anchor" id="line-122"></span>                if ( val &gt; 0.6 ) dmsp_throwLoots( vicDrop, "ammo_rocketlauncher_mp", 1, 0 );
+<span class="anchor" id="line-123"></span>                else if ( val &gt; 0.3 ) dmsp_throwLoots( vicDrop, "ammo_hyperblaster_mp", 1, 0 );
+<span class="anchor" id="line-124"></span>                else dmsp_throwLoots( vicDrop, "item_health_small_mp", 1, 0 );
+<span class="anchor" id="line-125"></span>
+<span class="anchor" id="line-126"></span>                score = score * 5;
+<span class="anchor" id="line-127"></span>                thread dmsp_scorePip( score, vicPip, 1.25 );
+<span class="anchor" id="line-128"></span>        
+<span class="anchor" id="line-129"></span>        } else ...
+<span class="anchor" id="line-130"></span></pre><span class="anchor" id="line-131"></span><span class="anchor" id="line-132"></span><p class="line862">We put a random number in <strong>val</strong>, and each monster gets its own custom bracket of what items it drops, and how frequently.  This is done by calling <strong>dmsp_throwLoots()</strong>.  Score is multiplied again by some other value based arbitrarily on the monster's strength, and scoring is then handled by calling <strong>dmsp_scorePip()</strong>.  We'll look at both of them to see how they work. <span class="anchor" id="line-133"></span><br />
+<br />
+ <span class="anchor" id="line-134"></span>dmsp_throwLoots is relatively simple - it takes parameters for where the drop occurs (taken from the monster's place of death), what to drop, how many of them to drop, and for fun an extra flag to allow an occasional bonus "double drop."  This, once again, is done through spawnArgs.  The <strong>setLinearVelocity()</strong> function is used to give all the items a random parabolic arc, so the items "pop" out of the monster instead of just appearing on the floor. <span class="anchor" id="line-135"></span><span class="anchor" id="line-136"></span><pre>void dmsp_throwLoots ( vector org, string lootClass, float cnt, float nodoubles )
+<span class="anchor" id="line-137"></span>{
+<span class="anchor" id="line-138"></span>        float i;
+<span class="anchor" id="line-139"></span>        entity loots;
+<span class="anchor" id="line-140"></span>        vector toss;
+<span class="anchor" id="line-141"></span>        float dist = 128;                               // radius distance to spawn goodies
+<span class="anchor" id="line-142"></span>        float doubChance = 1 - ( 0.1 * dmsp_skill );    // more double drops on harder skill to keep the player stocked
+<span class="anchor" id="line-143"></span>        if ( sys.random(1) &gt; doubChance &amp;&amp; nodoubles == 0 ) {
+<span class="anchor" id="line-144"></span>                cnt = cnt * 2;                          // twice the goodies
+<span class="anchor" id="line-145"></span>                dist = 192;
+<span class="anchor" id="line-146"></span>        }
+<span class="anchor" id="line-147"></span>
+<span class="anchor" id="line-148"></span>        for( i = 0; i &lt; cnt; i++ ) {
+<span class="anchor" id="line-149"></span>                toss_x = dist - sys.random(2 * dist);
+<span class="anchor" id="line-150"></span>                toss_y = dist - sys.random(2 * dist);
+<span class="anchor" id="line-151"></span>                toss_z = dist;
+<span class="anchor" id="line-152"></span>                sys.setSpawnArg( "origin", org );
+<span class="anchor" id="line-153"></span>                sys.setSpawnArg( "nodrop", 1 );
+<span class="anchor" id="line-154"></span>                loots = sys.spawn( lootClass );
+<span class="anchor" id="line-155"></span>                sys.waitFrame();                        // wait until entity exists to set toss velocity
+<span class="anchor" id="line-156"></span>                loots.setLinearVelocity( toss );
+<span class="anchor" id="line-157"></span>        }
+<span class="anchor" id="line-158"></span>}
+<span class="anchor" id="line-159"></span></pre><span class="anchor" id="line-160"></span><span class="anchor" id="line-161"></span><p class="line874">dmsp_scorePip() is what puts the floaty text on screen above the monster's head when it dies.  It sets up timing for the text shrinking and fading out, and the combo functionality was lumped in here as well. <span class="anchor" id="line-162"></span><span class="anchor" id="line-163"></span><pre>void dmsp_scorePip ( string text, vector origin, float pipTime ) {
+<span class="anchor" id="line-164"></span>        float frameTime = sys.getFrameTime();
+<span class="anchor" id="line-165"></span>        float startTime = sys.getTime();
+<span class="anchor" id="line-166"></span>        float i, d, score;
+<span class="anchor" id="line-167"></span>        vector org = origin, color;
+<span class="anchor" id="line-168"></span>        string comboType;
+<span class="anchor" id="line-169"></span>
+<span class="anchor" id="line-170"></span>        if (startTime &lt;= dmsp_nextComboTime) dmsp_combo = dmsp_combo + 1;
+<span class="anchor" id="line-171"></span>        else dmsp_combo = 1;
+<span class="anchor" id="line-172"></span>        dmsp_nextComboTime = startTime + 2 * pipTime;   // window until combo cutoff
+<span class="anchor" id="line-173"></span>
+<span class="anchor" id="line-174"></span>        score = sys.strToFloat( text ) * dmsp_combo;
+<span class="anchor" id="line-175"></span>        pipTime = pipTime + ( 0.25 * pipTime * ( dmsp_combo - 1 ) );
+<span class="anchor" id="line-176"></span>        ...
+<span class="anchor" id="line-177"></span></pre><span class="anchor" id="line-178"></span><span class="anchor" id="line-179"></span><p class="line874">We'll get to how the text works in a moment, but the function can only display static text in space.  The way this function works is to only display text for one frame, and slowly change the size and color of the text in a loop.  startTime is set to the time when the function is called (when the text first appears), and we then change our text's properties depending on how many frames we've waited since that time. <span class="anchor" id="line-180"></span><br />
+<br />
+ <span class="anchor" id="line-181"></span>The way the combo system works is that every time this is called, dmsp_nextComboTime is set to about 2 seconds into the future (a little more if it's a tougher monster).  Before doing that, if the current time is still earlier than the last time it was set to, then we're still within the combo delay, and we increase the modifier.  That gets multiplied to the score we were passed from dmsp_killMonster(), as well as the lifetime of the floating text. <span class="anchor" id="line-182"></span><br />
+<br />
+ <span class="anchor" id="line-183"></span>We start the loop, continually setting <strong>d</strong> to a value from 0 to 1, where 0 is the time we started, and 1 is the time the text is completely finished. <span class="anchor" id="line-184"></span><span class="anchor" id="line-185"></span><pre>        ...
+<span class="anchor" id="line-186"></span>        for ( i = startTime; i &lt; (startTime + pipTime); i = i + frameTime ) {
+<span class="anchor" id="line-187"></span>                d = (i - startTime) / pipTime;
+<span class="anchor" id="line-188"></span>        ...
+<span class="anchor" id="line-189"></span></pre><span class="anchor" id="line-190"></span><p class="line862">After that we pick a color based on what combo level we're at, using <strong>d</strong> in all of them to make them fade to black over the text's lifetime. <span class="anchor" id="line-191"></span><span class="anchor" id="line-192"></span><pre>        ...
+<span class="anchor" id="line-193"></span>        if (dmsp_combo == 1) { 
+<span class="anchor" id="line-194"></span>                color_x = 1 - d;                // red
+<span class="anchor" id="line-195"></span>        } else if (dmsp_combo == 2) { 
+<span class="anchor" id="line-196"></span>                color_x = 1 - d; 
+<span class="anchor" id="line-197"></span>                color_y = 0.5 * ( 1 - d );      // orange
+<span class="anchor" id="line-198"></span>                comboType = "Combo!";
+<span class="anchor" id="line-199"></span>        } else
+<span class="anchor" id="line-200"></span>        ...
+<span class="anchor" id="line-201"></span></pre><span class="anchor" id="line-202"></span><p class="line862">The meat of the function comes at the end.  The origin in space for the text is also changed using <strong>d</strong>, so that it floats upward over time. <span class="anchor" id="line-203"></span><span class="anchor" id="line-204"></span><pre>        ...
+<span class="anchor" id="line-205"></span>        org_z = origin_z + d * 96;
+<span class="anchor" id="line-206"></span>        sys.drawText( score, org, 0.5 * (1 - d), color, 1, 0 );
+<span class="anchor" id="line-207"></span>        if (dmsp_combo &gt; 1) {
+<span class="anchor" id="line-208"></span>                org_z = origin_z + d * 96 + 12;
+<span class="anchor" id="line-209"></span>                sys.drawText( comboType, org, 0.25 * ( 1 - d ), color, 1, 0 );
+<span class="anchor" id="line-210"></span>        }
+<span class="anchor" id="line-211"></span>        sys.waitFrame();
+<span class="anchor" id="line-212"></span>        ...
+<span class="anchor" id="line-213"></span></pre><span class="anchor" id="line-214"></span><p class="line867"><strong>sys.drawText()</strong> is the function that puts the text on screen.  It's usually just for placeholder stuff in development, to do something like put "Big cutscene here where the player gets his next mission" on the screen before the cutscene's been made, but it'll work well enough for our purposes.  We print twice, once for the score and then again slightly higher with the <strong>comboType</strong> string we've picked. <span class="anchor" id="line-215"></span><br />
+<br />
+ <span class="anchor" id="line-216"></span>After all that, we add the final value to the player's score and show him in the console. <span class="anchor" id="line-217"></span><span class="anchor" id="line-218"></span><pre>        ...
+<span class="anchor" id="line-219"></span>        dmsp_score = dmsp_score + score;        // The only way to show the player his score is to update it in the
+<span class="anchor" id="line-220"></span>        sys.println( dmsp_score );              // console since there's no way to display it on the player hud
+<span class="anchor" id="line-221"></span>}
+<span class="anchor" id="line-222"></span></pre><span class="anchor" id="line-223"></span><span class="anchor" id="line-224"></span><p class="line862">At this point our neverending train of functions is complete.  If you'd like to try it out for yourself, just put <strong>dmsp_v1.pk4</strong> in your q4base folder, set 'g_skill' to taste, and type 'map dmsp/q4dm4' at the console.  <span class="anchor" id="line-225"></span><span class="anchor" id="line-226"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-227"></span><span class="anchor" id="line-228"></span><p class="line874">It's not perfect, of course.  It's lacking the polish necessary to make it feel finished and professional, but the limitations of what we can and can't do in script eventually make themselves known.  It is, however, pretty remarkable that we're able to do as much as we can. <span class="anchor" id="line-229"></span><span class="anchor" id="line-230"></span><p class="line874">The following are the known issues (all of them easily fixable if this were implemented in code, including the player spawnclass fix that required a custom version of the map): <span class="anchor" id="line-231"></span><span class="anchor" id="line-232"></span><ul><li><p class="line862">Monster radius isn't taken into consideration when placing or choosing spawn points, so larger monsters can sometimes get stuck to walls if the spawnpoint is too close to a surface.  This <em>could</em> be fixed in script, albeit in a rather ugly fashion.  The cheap solution would be to just move all the nulls 32 units in the direction that the matching DM spawn point faces - it's a safe assumption that no DM spawns face walls. <span class="anchor" id="line-233"></span></li><li>The pre-placed items show up with their single player models, which in cases like the 5+ health means ugly temp artwork nobody was meant to see.  A brute force solution in script would be to manually find and replace all of these entities with their MP equivalents. <span class="anchor" id="line-234"></span></li><li>There's no HUD GUI interaction at all, so things like score and combos are either dumped into the console or popped on screen with the debug text, whcih can't be read very well at long distances.  A proper implementation would have to add new HUD events for updates and some place in a modified single player HUD gui for the new numbers. <span class="anchor" id="line-235"></span></li><li>This script cares nothing about system performance, and only stops spawning monsters at the coded limit.  In q4dm4 this is 24, which is isn't that friendly to slower machines.  <span class="anchor" id="line-236"></span><span class="anchor" id="line-237"></span></li></ul><p class="line867"><br />
+<br />
+ <span class="anchor" id="line-238"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">MakeAMod-DMSP  (last edited 2005-11-09 17:47:31 by <span title="MattBreit @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattBreit" title="MattBreit @ 67.129.250.254[67.129.250.254]">MattBreit</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/MakeAMod-DMSP?action=info">Info</a></li><li><a href="/quake4/MakeAMod-DMSP?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

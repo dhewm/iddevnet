@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Sounds ShaderCreation - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/Sounds_ShaderCreation?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/Sounds_ShaderCreation?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/Sounds_ShaderCreation?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Sounds_ShaderCreation?action=fullsearch&amp;value=linkto%3A%22Sounds+ShaderCreation%22&amp;context=180">Sounds ShaderCreation</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/Sounds_ShaderCreation">Sounds ShaderCreation</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Sounds_ShaderCreation?action=info">Info</a></li><li><a href="/quake4/Sounds_ShaderCreation?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-914e037b29014fe578d729556c825067c7e3c384">Sound Shader Creation</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line874">The concept of "channels", as used in Quake3, is completely gone.  There is no more SND_IDLE, SND_ACTION etc.  These have been replaced by sound shaders.  A sound shader defines the wavefiles, and the way they are played.  Both .wav files and .ogg files can be used with the new Quake4 engine. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line874">Sound shaders are just like the material shaders.  They are located in the base\sound directory and have the extension .sndshd, you can create any number of sound shader files, they are all collected and loaded together at run time. <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line874">The sound shader is the root of all things audio with the new Quake4 engine.  After you create a new sound, it is always a good idea to go ahead and create the shader immediately after.  This way, things stay organized and you know which sounds are available to be used in game and which are not.  It is also a good idea to regularly go through past shaders and clean them of unused or invalid sounds, this eliminates error messages and just keeps a tighter ship. <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line874">Here are a few examples of shaders: <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867"><pre>ambient_machinery11 
+<span class="anchor" id="line-12"></span>{
+<span class="anchor" id="line-13"></span>        minDistance     40
+<span class="anchor" id="line-14"></span>        maxDistance     600
+<span class="anchor" id="line-15"></span>        volume          0
+<span class="anchor" id="line-16"></span>
+<span class="anchor" id="line-17"></span>        looping
+<span class="anchor" id="line-18"></span>        
+<span class="anchor" id="line-19"></span>        sound/Ambience/industrial/machinery11.wav
+<span class="anchor" id="line-20"></span>}
+<span class="anchor" id="line-21"></span></pre><span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line874">This particular shader is an ambient sound, which is created as a continuous loop.  It begins the sound at full volume with a minimum distance of “40” and fades to silence over “600” units.  The volume is set to the default setting of “0”, so it will play at whatever volume you have designed the sound for.  Volume is measured in dB…so if you have a highly compressed sound, it probably isn’t a good idea to go over “0” in many instances, as you’ll get clipping/distortion.  The “looping” entry has been inputted, thus making the sound loop to the beginning once it completes its playback cycle. <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line874">Here are some other examples: <span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><p class="line867"><pre>gladiator_breathe 
+<span class="anchor" id="line-28"></span>{
+<span class="anchor" id="line-29"></span>        description     "gladiator huffin and puffin"
+<span class="anchor" id="line-30"></span>                
+<span class="anchor" id="line-31"></span>        minDistance     400
+<span class="anchor" id="line-32"></span>        maxDistance     1200
+<span class="anchor" id="line-33"></span>        volume          0
+<span class="anchor" id="line-34"></span>
+<span class="anchor" id="line-35"></span>        sound/Strogg/gladiator/breath01.wav
+<span class="anchor" id="line-36"></span>        sound/Strogg/gladiator/breath02.wav
+<span class="anchor" id="line-37"></span>        sound/Strogg/gladiator/breath03.wav
+<span class="anchor" id="line-38"></span>        sound/Strogg/gladiator/breath04.wav
+<span class="anchor" id="line-39"></span>}
+<span class="anchor" id="line-40"></span></pre><span class="anchor" id="line-41"></span><span class="anchor" id="line-42"></span><p class="line867"><pre>sound player_steps_solid_metal 
+<span class="anchor" id="line-43"></span>{
+<span class="anchor" id="line-44"></span>        description     "player footstep sound when walking on solid metal materials"
+<span class="anchor" id="line-45"></span>
+<span class="anchor" id="line-46"></span>        minDistance     400
+<span class="anchor" id="line-47"></span>        maxDistance     1200
+<span class="anchor" id="line-48"></span>        volumeDb        0
+<span class="anchor" id="line-49"></span>        frequentlyUsed
+<span class="anchor" id="line-50"></span>        no_dups
+<span class="anchor" id="line-51"></span>
+<span class="anchor" id="line-52"></span>        sound/marine/player/steps/concrete_01
+<span class="anchor" id="line-53"></span>        sound/marine/player/steps/concrete_02
+<span class="anchor" id="line-54"></span>}
+<span class="anchor" id="line-55"></span></pre><span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span><p class="line874">Notice that these have a selection of different sounds, the shader system will pull a random sound from this list whenever it fires one off.  You will also notice that the minimum and maximum distance on these particular sounds are somewhat larger, which allows the player to hear the sound more distinctly from further away from the origin of the sound. <span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span><p class="line867"><strong>Here are all of the options:</strong> <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span><p class="line867"><em>description [string]</em> - a string that decribes what the sound is used for and/or how it is used. For dialog, it is normally the phrase that is spoken. It is purely for development purposes and is not required by the sound engine. <span class="anchor" id="line-62"></span><span class="anchor" id="line-63"></span><p class="line867"><em>minDistance [float]</em> – sets the minimum distance from where the sound emanates in world units.  It’s a good idea to set this to about 40 – 120 when use on a world object or creature.   <span class="anchor" id="line-64"></span><span class="anchor" id="line-65"></span><p class="line867"><em>maxDistance [float]</em> – sets the maximum distance from where the sound emanates. Beyond this distance the sound cannot be heard. <span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span><p class="line867"><em>volumeDb [float]</em> – sets the volume for the sound within the world in decibels. 0 is the default volume, -60 is complete silence. <span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span><p class="line867"><em>leadinVolume [float]</em> - volume of the leadin sound on a 0 (silence) to 1 (full volume) scale. <span class="anchor" id="line-70"></span><span class="anchor" id="line-71"></span><p class="line867"><em>unclamped</em> - by default, each channel's volume is clamped to 1.0 after all the attenuation calculations. Setting this flag means this clamp is not applied. Unclamped can be applied to all channels by setting the cvar s_clipVolumes to 0. <span class="anchor" id="line-72"></span><span class="anchor" id="line-73"></span><p class="line867"><em>looping</em> – sets the shader to loop. <span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span><p class="line867"><em>playOnce</em> - don't restart the sound if it is already playing on this channel. <span class="anchor" id="line-76"></span><span class="anchor" id="line-77"></span><p class="line867"><em>global</em> – this forces the sound to ignore the min/maxDistance settings and play it globally.  Mainly used for music and Multiplayer announcements. <span class="anchor" id="line-78"></span><span class="anchor" id="line-79"></span><p class="line867"><em>private</em> - only hear the sound on the player that plays the sound. <span class="anchor" id="line-80"></span><span class="anchor" id="line-81"></span><p class="line867"><em>antiPrivate</em> - the player that plays this sound cannot hear it. <span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><p class="line867"><em>no_occlusion</em> – sets the shader to not occlude, meaning that you will hear them through walls and such.  Very useful for creepy kind of stuff, music beds, and doors opening and closing. <span class="anchor" id="line-84"></span><span class="anchor" id="line-85"></span><p class="line867"><em>omnidirectional</em> - by default, sounds navigate through the portal tree to work out their distance from the listener. Sounds with this flag do a simple distance check and play at the same volume in all speakers. <span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span><p class="line867"><em>no_dups</em> – this is a setting that doesn’t allow the shader system to repeat two random sounds back to back.  It creates a bit more of a realistic sonic experience. Footsteps are a good example of the use for this. <span class="anchor" id="line-88"></span><span class="anchor" id="line-89"></span><p class="line867"><em>no_flicker</em> - this allows a light to play a sound that does not affect its intensity. <span class="anchor" id="line-90"></span><span class="anchor" id="line-91"></span><p class="line867"><em>frequentlyused</em> – this is a performance setting that forces the sound to always be decompressed.  It uses more memory, but ups performance significantly.  Use this sparingly and only on sounds that are truly “frequently used”.  An example would be a player’s gun sounds or footsteps.  Something that is short in duration. <span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span><p class="line867"><em>noRandomStart</em> – this is for looping sounds.  By default, the game will choose a random point in a loopable sound to start from.  This shader parm forces the sound to play from the beginning of the sound.  This is useful for sequence sounds (accel, move, decel, stop sounds – like elevators) or music. <span class="anchor" id="line-94"></span><span class="anchor" id="line-95"></span><p class="line867"><em>voForPlayer</em> - this sound is dialog directed at the player, so make it artificially louder and everything else quieter. <span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span><p class="line867"><em>center</em> - artificially enhances the volume of this sound by biasing towards the center speaker. <span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span><p class="line867"><em>causeRumble</em> - a sound with this flag causes a rumble on force feedback devices. <span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><p class="line867"><em>soundClass [int 0 to 4]</em> – this groups certain sounds together for volume purposes.  For example, all the music files are on “soundClass 3”, so if someone needs to globally change the volume for everything music-wise within a script, they would simply fade anything on “soundClass 3”.  Nothing else would change.  <span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span><p class="line867"><em>Frequencyshift [float] [float]</em> - allows frequency attenuation of sounds. Normal ranges would be 0.75 to 1.25. <span class="anchor" id="line-104"></span><span class="anchor" id="line-105"></span><p class="line867"><em>shakes [float]</em> - this defines how much the screen shakes when this sound can be heard. <span class="anchor" id="line-106"></span><span class="anchor" id="line-107"></span><p class="line867"><em>no_shakes</em> - a flag for the tools to suppress generation of shake data. Generally speaking, this is for music. <span class="anchor" id="line-108"></span><span class="anchor" id="line-109"></span><p class="line867"><em>shakeData [int] [string]</em> - the intensity of the sound in ascii form. z is loud, a is complete silence. Each letter represents 1/30th second. <span class="anchor" id="line-110"></span><span class="anchor" id="line-111"></span><p class="line867"><em>altSound [sound]</em> - this is the 'broken' sound for a light. If a light with a sound is broken, it will stop the original sound and play this one if it exists. <span class="anchor" id="line-112"></span><span class="anchor" id="line-113"></span><p class="line867"><em>minSamples [int]</em> - this overrides the s_maxSoundsPerShader cvar. For example, the limit is set to one for low memory machines, but it is still desirable to have more than one footstep sound. <span class="anchor" id="line-114"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Sounds ShaderCreation  (last edited 2005-12-08 16:32:00 by <span title="JohnScott @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/JohnScott" title="JohnScott @ 67.129.250.254[67.129.250.254]">JohnScott</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Sounds_ShaderCreation?action=info">Info</a></li><li><a href="/quake4/Sounds_ShaderCreation?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,follow">
+
+<title>RecentChanges - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+<link rel="alternate" title="Quake 4 SDK Documentation Recent Changes" href="/quake4/RecentChanges?action=rss_rc&amp;ddiffs=1&amp;unique=1" type="application/rss+xml">
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/RecentChanges?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/RecentChanges?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/RecentChanges?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/RecentChanges?action=fullsearch&amp;value=linkto%3A%22RecentChanges%22&amp;context=180">RecentChanges</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink current"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/RecentChanges?action=info">Info</a></li><li><a href="/quake4/RecentChanges?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><div><table style="width: 100%;  background: #E6EAF0;  font-size: 0.85em;"><tbody><tr>  <td><p class="line862"> <div dir="ltr" id="RandomQuote_FortuneCookies" lang="en"><span class="anchor" id="top_RandomQuote_FortuneCookies"></span>
+<span class="anchor" id="line-1"></span><p class="line862">Hint: you can search for multiple words, just like Google. See also <a href="/quake4/HelpOnSearching">HelpOnSearching</a>. <span class="anchor" id="bottom_RandomQuote_FortuneCookies"></span></div></td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867"><div class="recentchanges" lang="en" dir="ltr">
+<div>
+<div class="rcrss"><a href="/quake4/RecentChanges?action=rss_rc&amp;ddiffs=1&amp;unique=1"><img alt="[RSS]" height="14" src="/wiki/modern/img/moin-rss.png" title="[RSS]" width="36" /></a></div><p></p>
+</div>
+<table>
+<tr class="rcdaybreak"><td colspan="6"><strong>2007-06-18</strong></td></tr>
+<tr>
+<td class="rcicon1"><a href="/quake4/Quake4SDK?action=diff"><img alt="[DIFF]" height="11" src="/wiki/modern/img/moin-diff.png" title="[DIFF]" width="15" /></a></td>
+<td class="rcpagelink"><a href="/quake4/Quake4SDK">Quake4SDK</a></td>
+<td class="rctime">21:33</td>
+<td class="rcicon2"><a href="/quake4/Quake4SDK?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span></td>
+<td class="rccomment"></td>
+</tr>
+<tr class="rcdaybreak"><td colspan="6"><strong>2006-12-03</strong></td></tr>
+<tr>
+<td class="rcicon1"><a href="/quake4/AutoDownload?action=diff"><img alt="[DIFF]" height="11" src="/wiki/modern/img/moin-diff.png" title="[DIFF]" width="15" /></a></td>
+<td class="rcpagelink"><a href="/quake4/AutoDownload">AutoDownload</a></td>
+<td class="rctime">19:08</td>
+<td class="rcicon2"><a href="/quake4/AutoDownload?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="TimotheeBesset @ pool-71-164-173-18.dllstx.fios.verizon.net[71.164.173.18]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ pool-71-164-173-18.dllstx.fios.verizon.net[71.164.173.18]">TimotheeBesset</a></span></td>
+<td class="rccomment"></td>
+</tr>
+<tr class="rcdaybreak"><td colspan="6"><strong>2006-07-17</strong></td></tr>
+<tr>
+<td class="rcicon1"><a href="/quake4/NetworkDemos?action=diff"><img alt="[DIFF]" height="11" src="/wiki/modern/img/moin-diff.png" title="[DIFF]" width="15" /></a></td>
+<td class="rcpagelink"><a href="/quake4/NetworkDemos">NetworkDemos</a></td>
+<td class="rctime">22:11</td>
+<td class="rcicon2"><a href="/quake4/NetworkDemos?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span>&nbsp;[1-3]</td>
+<td class="rccomment"></td>
+</tr>
+<tr>
+<td class="rcicon1"></td>
+<td class="rcpagelink"><a href="/quake4/Benchmarking">Benchmarking</a></td>
+<td class="rctime">22:08</td>
+<td class="rcicon2"><a href="/quake4/Benchmarking?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span></td>
+<td class="rccomment"></td>
+</tr>
+<tr class="rcdaybreak"><td colspan="6"><strong>2006-04-27</strong></td></tr>
+<tr>
+<td class="rcicon1"><a href="/quake4/Adding_Fonts_to_use_in_Quake_4_GUIs?action=diff"><img alt="[DIFF]" height="11" src="/wiki/modern/img/moin-diff.png" title="[DIFF]" width="15" /></a></td>
+<td class="rcpagelink"><a href="/quake4/Adding_Fonts_to_use_in_Quake_4_GUIs">Adding Fonts to use in Quake 4 GUIs</a></td>
+<td class="rctime">21:26</td>
+<td class="rcicon2"><a href="/quake4/Adding_Fonts_to_use_in_Quake_4_GUIs?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>&nbsp;[1-2]</td>
+<td class="rccomment"><tt>#01</tt>&nbsp;Upload of attachment 'marine_symbol.zip'.<br><tt>#02</tt>&nbsp;Attachment 'marine_symbol.zip' deleted.</td>
+</tr>
+<tr>
+<td class="rcicon1"><a href="/quake4/FontExamples?action=diff"><img alt="[DIFF]" height="11" src="/wiki/modern/img/moin-diff.png" title="[DIFF]" width="15" /></a></td>
+<td class="rcpagelink"><a href="/quake4/FontExamples">FontExamples</a></td>
+<td class="rctime">21:25</td>
+<td class="rcicon2"><a href="/quake4/FontExamples?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>&nbsp;[1-2]</td>
+<td class="rccomment"><tt>#01</tt>&nbsp;Upload of attachment 'marine_symbol.zip'.<br><tt>#02</tt>&nbsp;Attachment 'marine_symbol.zip' deleted.</td>
+</tr>
+<tr class="rcdaybreak"><td colspan="6"><strong>2006-04-23</strong></td></tr>
+<tr>
+<td class="rcicon1"><a href="/quake4/LevelEditor_MPMapDefs?action=diff"><img alt="[DIFF]" height="11" src="/wiki/modern/img/moin-diff.png" title="[DIFF]" width="15" /></a></td>
+<td class="rcpagelink"><a href="/quake4/LevelEditor_MPMapDefs">Level Editor MPMap Defs</a></td>
+<td class="rctime">02:47</td>
+<td class="rcicon2"><a href="/quake4/LevelEditor_MPMapDefs?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]"><a class="nonexistent" href="/quake4/AndrewWeldon" title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]">AndrewWeldon</a></span></td>
+<td class="rccomment"></td>
+</tr>
+<tr class="rcdaybreak"><td colspan="6"><strong>2006-03-31</strong></td></tr>
+<tr>
+<td class="rcicon1"><a href="/quake4/fs_game_base?action=diff"><img alt="[DIFF]" height="11" src="/wiki/modern/img/moin-diff.png" title="[DIFF]" width="15" /></a></td>
+<td class="rcpagelink"><a href="/quake4/fs_game_base">fs game base</a></td>
+<td class="rctime">14:13</td>
+<td class="rcicon2"><a href="/quake4/fs_game_base?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="TimotheeBesset @ h-68-165-10-205.dllatx37.covad.net[68.165.10.205]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ h-68-165-10-205.dllatx37.covad.net[68.165.10.205]">TimotheeBesset</a></span></td>
+<td class="rccomment"></td>
+</tr>
+<tr class="rcdaybreak"><td colspan="6"><strong>2006-03-27</strong></td></tr>
+<tr>
+<td class="rcicon1"><a href="/quake4/LinuxSDK?action=diff"><img alt="[DIFF]" height="11" src="/wiki/modern/img/moin-diff.png" title="[DIFF]" width="15" /></a></td>
+<td class="rcpagelink"><a href="/quake4/LinuxSDK">LinuxSDK</a></td>
+<td class="rctime">23:52</td>
+<td class="rcicon2"><a href="/quake4/LinuxSDK?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span></td>
+<td class="rccomment"></td>
+</tr>
+<tr>
+<td class="rcicon1"></td>
+<td class="rcpagelink"><a href="/quake4/ServerAdmin">ServerAdmin</a></td>
+<td class="rctime">22:36</td>
+<td class="rcicon2"><a href="/quake4/ServerAdmin?action=info"><img alt="Info" height="11" src="/wiki/modern/img/moin-info.png" title="Info" width="12" /></a></td>
+<td class="rceditor"><span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span></td>
+<td class="rccomment"></td>
+</tr>
+</table>
+</div>
+ <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line867"><span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><div><table><tbody><tr>  <td style="text-align: center"><p class="line862"> <img alt="[DIFF]" height="11" src="/wiki/modern/img/moin-diff.png" title="[DIFF]" width="15" /> </td>
+  <td><p class="line862"> marks older pages that have at least one backup version stored (click for an author diff)</td>
+</tr>
+<tr>  <td style="text-align: center"><span class="anchor" id="line-16"></span><p class="line862"> <img alt="[UPDATED]" height="12" src="/wiki/modern/img/moin-updated.png" title="[UPDATED]" width="60" /> </td>
+  <td><p class="line862"> marks pages edited since you set your bookmark (click for a bookmark diff)</td>
+</tr>
+<tr>  <td style="text-align: center"><span class="anchor" id="line-17"></span><p class="line862"> <img alt="[NEW]" height="12" src="/wiki/modern/img/moin-new.png" title="[NEW]" width="31" /> </td>
+  <td><p class="line862"> marks pages created since you set your bookmark, and were not edited after creation</td>
+</tr>
+<tr>  <td style="text-align: center"><span class="anchor" id="line-18"></span><p class="line862"> <img alt="[DELETED]" height="12" src="/wiki/modern/img/moin-deleted.png" title="[DELETED]" width="60" /> </td>
+  <td><p class="line862"> marks page deletions</td>
+</tr>
+<tr>  <td style="text-align: center"><span class="anchor" id="line-19"></span><p class="line862"> <img alt="/!\" height="15" src="/wiki/modern/img/alert.png" title="/!\" width="15" /> </td>
+  <td><p class="line862"> An editing conflict happened, please resolve it by merging both versions of the problematic paragraphs together. </td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-20"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-21"></span>This page contains a list of recent changes in this wiki. <span class="anchor" id="line-22"></span>More system information on <a href="/quake4/SystemInfo">SystemInfo</a>. <span class="anchor" id="line-23"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">RecentChanges  (last modified 2007-04-08 01:53:23)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/RecentChanges?action=info">Info</a></li><li><a href="/quake4/RecentChanges?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

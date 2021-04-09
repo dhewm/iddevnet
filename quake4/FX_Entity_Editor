@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>FX Entity Editor - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/FX_Entity_Editor?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/FX_Entity_Editor?action=print">
+<link rel="Appendix" title="fx_enteditor.jpg" href="/quake4/FX_Entity_Editor?action=AttachFile&amp;do=view&amp;target=fx_enteditor.jpg">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/FX_Entity_Editor?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/FX_Entity_Editor?action=fullsearch&amp;value=linkto%3A%22FX+Entity+Editor%22&amp;context=180">FX Entity Editor</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/FX_Entity_Editor">FX Entity Editor</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/FX_Entity_Editor?action=info">Info</a></li><li><a href="/quake4/FX_Entity_Editor?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line862">The FX Entity Editor allows placement and modification of <a href="/quake4/Entity_FuncFX">func_fx</a> <a href="/quake4/LevelEditor_EntityReference">entities</a> within maps created by the <a href="/quake4/LevelEditor">LevelEditor</a>. <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">This editor can be launched by going to <strong>View &gt; Entity Editor</strong> within the <a href="/quake4/FXEditor">FXEditor</a>. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line867"><img class="attachment" src="/quake4/FX_Entity_Editor?action=AttachFile&amp;do=get&amp;target=fx_enteditor.jpg" title="attachment:fx_enteditor.jpg" /> <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867">
+<h2 id="head-8304b979465fa08b06f9e296ea6ebfd01484c7da">Placing an effect</h2>
+<span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line862">To place an effect in a level, press the <strong>New</strong> button. This will generate a new <a href="/quake4/Entity_FuncFX">func_fx</a> <a href="/quake4/LevelEditor_EntityReference">entity</a> underneath your cursor. If you are close enough to a wall/surface, the editor will place the effect on the normal of the surface and aim the direction based off this normal. If you are farther from a wall/surface, the editor will place the effect file in front of your cursor and aim the normal of the effect in the direction you are pointing. This normal is represented by the yellow arrow, which always shows the direction of <strong>Forward</strong>. <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line862">Once you've placed a <a href="/quake4/Entity_FuncFX">func_fx</a> <a href="/quake4/LevelEditor_EntityReference">entity</a>, you need to link an effect file to it. You can either press the <strong>" ... "</strong> button to open the Find Effect browser, or press the <strong>" &lt; "</strong> to place the currently selected effect inside the <a href="/quake4/FXEditor">FXEditor</a> into the <a href="/quake4/Entity_FuncFX">func_fx</a> <a href="/quake4/LevelEditor_EntityReference">entity</a> <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><p class="line862">To select a new effect, place your cursor over it and click the attack button (mouse1 by default). When done editing effects files, press <strong>Save Map</strong> at the bottom to save your changes. <span class="anchor" id="line-18"></span><hr /><p class="line874"> <span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span><p class="line867">
+<h2 id="head-9cf7b55872bc4ab1c6a007ed9ebc0c905290b3a0">Moving an effect</h2>
+<span class="anchor" id="line-21"></span><span class="anchor" id="line-22"></span><p class="line862">The FX Entity Editor can move <a href="/quake4/Entity_FuncFX">func_fx</a> <a href="/quake4/LevelEditor_EntityReference">entities</a> by pressing the <strong>X+</strong>, <strong>X-</strong>, <strong>Y+</strong>, <strong>Y-</strong>, <strong>Z+</strong> and <strong>Z-</strong> keys.  <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span><p class="line862">The <strong>Forward</strong> normal can also be altered by changing the <strong>Pitch</strong>, <strong>Yaw</strong> and <strong>Roll</strong> values of the <a href="/quake4/Entity_FuncFX">func_fx</a>. <span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><p class="line867">
+<h2 id="head-5dd01124d2855cb31d6cedf957409df9d9aef15d">Color/Opacity/Brightness settings</h2>
+<span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line874">Effects can be tinted a color, have their alpha value adjusted and be darkened. This is valuable for tinting something like a white smoke effect and using only one file for several different colors of smoke effects. <span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><p class="line874">Near the bottom of the FX Entity Editor are two swatches for color. The larger, leftmost swatch is for the RGB value of an effect. The smaller, right swatch is for adjusting Alpha value. RGB colors are chosen through a standard Windows color picker, while Alpha can be adjusted via a slider or entered as a text value of 0.0 - 1.0. Set RGB color to 255/255/255 White and Alpha 1.0 for coloring only through the effect file. <span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><p class="line862">Brightness can be adjusted by changing the default value of 1.0. The range is 0.0 - 1.0. This differs from Opacity in that Brightness will add 0/0/0 Black to an effect as the Brightness reaches 0.0. This makes all segments within the effect grow darker without making the effect more transparent. Usefull for toning down steam effects in dark areas, simulating less light on specific effect <a href="/quake4/LevelEditor_EntityReference">entities</a>. <span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><p class="line867">
+<h2 id="head-f6fd4cfe8239cee39b8bb127b27b43d014442e4d">Other entity settings</h2>
+<span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><p class="line867">
+<h4 id="head-530417ad4c0b989eeeb93ba00177093c64982b0d">Looping</h4>
+<span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><ul><li style="list-style-type:none"><p class="line862">Checking this setting will force the effect to loop its <a href="/quake4/FXEditor_Tab_-_Emitter#duration">duration</a>. <span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span></li></ul><p class="line867">
+<h4 id="head-06156f7ef1ad532789d608fbe2dfdc877d034948">Start On</h4>
+<span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span><ul><li style="list-style-type:none">An effect will not start until triggered with this setting to Off. Set this On for an effect to start playing as soon as the level loads. <span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span></li></ul><p class="line867">
+<h4 id="head-84d8b7c671c845ed743467f093ea3c09c01b9fa5">Remove</h4>
+<span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span><ul><li style="list-style-type:none">-need definition- <span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span></li></ul><p class="line867">
+<h4 id="head-a0ff09505e210d81bf505260c6aad86879dd63c1">Entity Draw Distance</h4>
+<span class="anchor" id="line-54"></span><span class="anchor" id="line-55"></span><ul><li style="list-style-type:none"><p class="line862">Controls how far away to draw the <a href="/quake4/LevelEditor_EntityReference">entity</a> bounds boxes. Longer distances usefull for open maps, but performance suffers from too many debug <a href="/quake4/LevelEditor_EntityReference">entities</a> drawn on screen at once. <span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span></li></ul><p class="line867">
+<h4 id="head-d52baa0b297675b7bae0353281d2b52bdee2a0ed">Text Draw Distance</h4>
+<span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span><ul><li style="list-style-type:none"><p class="line862">Controls how far away to draw the <a href="/quake4/LevelEditor_EntityReference">entity</a> text description above <a href="/quake4/LevelEditor_EntityReference">entity</a> bounds boxes. <span class="anchor" id="line-60"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">FX Entity Editor  (last edited 2005-11-04 00:30:54 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/FX_Entity_Editor?action=info">Info</a></li><li><a href="/quake4/FX_Entity_Editor?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

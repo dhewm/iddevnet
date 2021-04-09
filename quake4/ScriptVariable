@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>ScriptVariable - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/ScriptVariable?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/ScriptVariable?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/ScriptVariable?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/ScriptVariable?action=fullsearch&amp;value=linkto%3A%22ScriptVariable%22&amp;context=180">ScriptVariable</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/ScriptVariable">ScriptVariable</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ScriptVariable?action=info">Info</a></li><li><a href="/quake4/ScriptVariable?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-d1a238cab8b237ce9d4480b8429746b2f4a84325">Variables in Scripting</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line874">In your scripts, you will often want to store and modify data. Changing enemy health, adjusting rotation and movement values for objects, and displaying new information to players all involves the use of data. To do this, we will use variables. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line874">A variable is a method of storing information. A little piece of memory you can fill with whatever you like. Here's an example: <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line867"><span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+function isnumbered(obj) {
+  return obj.childNodes.length && obj.firstChild.childNodes.length && obj.firstChild.firstChild.className == 'LineNumber';
+}
+function nformat(num,chrs,add) {
+  var nlen = Math.max(0,chrs-(''+num).length), res = '';
+  while (nlen>0) { res += ' '; nlen-- }
+  return res+num+add;
+}
+function addnumber(did, nstart, nstep) {
+  var c = document.getElementById(did), l = c.firstChild, n = 1;
+  if (!isnumbered(c))
+    if (typeof nstart == 'undefined') nstart = 1;
+    if (typeof nstep  == 'undefined') nstep = 1;
+    n = nstart;
+    while (l != null) {
+      if (l.tagName == 'SPAN') {
+        var s = document.createElement('SPAN');
+        s.className = 'LineNumber'
+        s.appendChild(document.createTextNode(nformat(n,4,' ')));
+        n += nstep;
+        if (l.childNodes.length)
+          l.insertBefore(s, l.firstChild)
+        else
+          l.appendChild(s)
+      }
+      l = l.nextSibling;
+    }
+  return false;
+}
+function remnumber(did) {
+  var c = document.getElementById(did), l = c.firstChild;
+  if (isnumbered(c))
+    while (l != null) {
+      if (l.tagName == 'SPAN' && l.firstChild.className == 'LineNumber') l.removeChild(l.firstChild);
+      l = l.nextSibling;
+    }
+  return false;
+}
+function togglenumber(did, nstart, nstep) {
+  var c = document.getElementById(did);
+  if (isnumbered(c)) {
+    remnumber(did);
+  } else {
+    addnumber(did,nstart,nstep);
+  }
+  return false;
+}
+</script>
+
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-d4b366088b9aa9d21c38c220d08f6bcd6b158e20_000\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-d4b366088b9aa9d21c38c220d08f6bcd6b158e20_000" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span> <span class="Comment">//we declare a variable here</span></span>
+<span class="line"><span class="LineNumber">   3 </span> <span class="Special">string</span> <span class="ID">messageForYou</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   4 </span></span>
+<span class="line"><span class="LineNumber">   5 </span> <span class="Comment">//put some information into it</span></span>
+<span class="line"><span class="LineNumber">   6 </span> <span class="ID">messageForYou</span> <span class="SPChar">=</span> <span class="String">"Hello my people!"</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   7 </span></span>
+<span class="line"><span class="LineNumber">   8 </span> <span class="Comment">//then do something with it.</span></span>
+<span class="line"><span class="LineNumber">   9 </span> <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">println</span><span class="SPChar">(</span> <span class="ID">messageForYou</span> <span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">  10 </span></span>
+</pre></div><span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span><p class="line862">To <em>declare</em> a variable, you have to first enter it's type, followed by it's name. <span class="anchor" id="line-21"></span><span class="anchor" id="line-22"></span><p class="line867"><tt class="backtick">float&nbsp;foo;</tt> <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span><p class="line867"><tt class="backtick">string&nbsp;cheese;</tt> <span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span><p class="line867"><tt class="backtick">vector&nbsp;stroggMissileDirection;</tt> <span class="anchor" id="line-27"></span><span class="anchor" id="line-28"></span><p class="line874">The name is unimportant, you can use whatever you like. This will allow you to keep a cohesive naming scheme in your scripts. <span class="anchor" id="line-29"></span><span class="anchor" id="line-30"></span><p class="line862">There are four different variable types in script, the <strong>String</strong>, <strong>Float</strong>, <strong>Vector</strong> and <strong>Entity</strong> types. Take a look at them below. <span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-33"></span><span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><p class="line867"><span class="anchor" id="string"></span> <span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><p class="line867">
+<h2 id="head-057847a0573594add87f14458e7382afdf774475">String</h2>
+<span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><p class="line867"><strong>Usage:</strong> Strings are used to hold lines of text. The word "string" comes from the concept of a string of single characters <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><pre> string dudeName;
+<span class="anchor" id="line-42"></span> dudeName = $monster_guy.getName();
+<span class="anchor" id="line-43"></span>
+<span class="anchor" id="line-44"></span> string newName;
+<span class="anchor" id="line-45"></span> newName = "Josef the Red";
+<span class="anchor" id="line-46"></span> $monster_guy.setName( newName );
+<span class="anchor" id="line-47"></span></pre><span class="anchor" id="line-48"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-49"></span><span class="anchor" id="float"></span> <span class="anchor" id="line-50"></span>
+<h2 id="head-2d19f808293bc8c98049d5308018a1966a8c8d61">Float</h2>
+<span class="anchor" id="line-51"></span><p class="line867"><strong>Usage:</strong> Floats are used to hold numbers. The word "float" is derived from the concept of the floating point number. Floats can hold decimal numbers as well as whole numbers. <span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span><pre>
+<span class="anchor" id="line-54"></span> float myNumber;
+<span class="anchor" id="line-55"></span> myNumber = $monster_guy.getHealth();
+<span class="anchor" id="line-56"></span> myNumber = myNumber * 10;
+<span class="anchor" id="line-57"></span> //power up
+<span class="anchor" id="line-58"></span> $monster_guy.setHealth( myNumber );
+<span class="anchor" id="line-59"></span>
+<span class="anchor" id="line-60"></span></pre><span class="anchor" id="line-61"></span><span class="anchor" id="line-62"></span><ul><li>In cases where you are creating a string, you can use a float in the concatenation and it is converted automatically. For example, <span class="anchor" id="line-63"></span><span class="anchor" id="line-64"></span></li></ul><p class="line867"><span class="anchor" id="line-65"></span><span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span><span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span><span class="anchor" id="line-70"></span><span class="anchor" id="line-71"></span><span class="anchor" id="line-72"></span><span class="anchor" id="line-73"></span><span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span><span class="anchor" id="line-76"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-6124f5c3cf4ede3f2b95a69f7b5daeb17ee49e82_001\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-6124f5c3cf4ede3f2b95a69f7b5daeb17ee49e82_001" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span> <span class="Special">string</span> <span class="ID">monsterName</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   3 </span> <span class="ResWord">float</span> <span class="ID">monsterNumber</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   4 </span> </span>
+<span class="line"><span class="LineNumber">   5 </span> <span class="ID">monsterNumber</span> <span class="SPChar">=</span> <span class="ID">getRandomMonster</span><span class="SPChar">(</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   6 </span> </span>
+<span class="line"><span class="LineNumber">   7 </span> <span class="Comment">// here the number is converted to a string for you automatically.</span></span>
+<span class="line"><span class="LineNumber">   8 </span> <span class="ID">monsterName</span> <span class="SPChar">=</span> <span class="String">"uncrushable_boss_"</span> <span class="SPChar">+</span> <span class="ID">monsterNumber</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   9 </span></span>
+<span class="line"><span class="LineNumber">  10 </span> <span class="Comment">// so, if the number was 67, monsterName would be "uncrushable_boss_67"</span></span>
+<span class="line"><span class="LineNumber">  11 </span></span>
+</pre></div><span class="anchor" id="line-77"></span><span class="anchor" id="line-78"></span><ul><li>However, conversions for comparison do not happen automatically. <span class="anchor" id="line-79"></span><span class="anchor" id="line-80"></span></li></ul><p class="line867"><span class="anchor" id="line-81"></span><span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><span class="anchor" id="line-84"></span><span class="anchor" id="line-85"></span><span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-bd0cae13945c62c56bbab52417a378c2216054db_002\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-bd0cae13945c62c56bbab52417a378c2216054db_002" lang="en"><span class="line"><span class="LineNumber">   1 </span> </span>
+<span class="line"><span class="LineNumber">   2 </span> <span class="Special">string</span> <span class="ID">numberOne</span> <span class="SPChar">=</span> <span class="String">"1"</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   3 </span></span>
+<span class="line"><span class="LineNumber">   4 </span> <span class="Comment">//no.</span></span>
+<span class="line"><span class="LineNumber">   5 </span> <span class="ResWord">if</span><span class="SPChar">(</span> <span class="ID">numberOne</span> <span class="SPChar">=</span><span class="SPChar">=</span> <span class="Number">1</span> <span class="SPChar">)</span> <span class="SPChar">{</span> <span class="SPChar">.</span><span class="SPChar">.</span><span class="SPChar">.</span> </span>
+<span class="line"><span class="LineNumber">   6 </span></span>
+</pre></div><span class="anchor" id="line-88"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-89"></span><span class="anchor" id="vector"></span> <span class="anchor" id="line-90"></span>
+<h2 id="head-d0025f3b6f344dc74ac2f947bb00414f9e47a5b6">Vector</h2>
+<span class="anchor" id="line-91"></span><p class="line867"><strong>Usage:</strong> A vector is a collection of three floats, organized into an x, y, and z format. They are primarily used for storing locations, or determining directions. <span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span><p class="line867"><img alt="/!\" height="15" src="/wiki/modern/img/alert.png" title="/!\" width="15" /> Access to a vector's three values is gained by using the _x, _y or _z operator. <strong>Not the . dot operator.</strong> <span class="anchor" id="line-94"></span><span class="anchor" id="line-95"></span><p class="line867"><span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span><span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-46c9642ea5d0d2a786e459fa77764f16a1eec7d3_003\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-46c9642ea5d0d2a786e459fa77764f16a1eec7d3_003" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span> <span class="Special">vector</span> <span class="ID">newMotion</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   3 </span></span>
+<span class="line"><span class="LineNumber">   4 </span> <span class="Comment">//set the z value to be positive so the unit moves up.</span></span>
+<span class="line"><span class="LineNumber">   5 </span> <span class="ID">newMotion_z</span> <span class="SPChar">=</span> <span class="Number">3</span><span class="Number">0</span><span class="Number">0</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   6 </span></span>
+<span class="line"><span class="LineNumber">   7 </span> $<span class="ID">mover_rocket</span><span class="SPChar">.</span><span class="ID">setLinearVelocity</span><span class="SPChar">(</span> <span class="ID">newMotion</span> <span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   8 </span></span>
+</pre></div><span class="anchor" id="line-105"></span><span class="anchor" id="line-106"></span><ul><li>Vectors can't be set to equal float values without specifying one of their members. <span class="anchor" id="line-107"></span></li><li>Vectors will not auto convert to strings when used in concatenations, you will receive an error. <span class="anchor" id="line-108"></span><span class="anchor" id="line-109"></span></li></ul><p class="line867"><span class="anchor" id="line-110"></span><span class="anchor" id="line-111"></span><span class="anchor" id="line-112"></span><span class="anchor" id="line-113"></span><span class="anchor" id="line-114"></span><span class="anchor" id="line-115"></span><span class="anchor" id="line-116"></span><span class="anchor" id="line-117"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-0a87ab9e3e5c23e6b671b8b6c706230cfcc5974f_004\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-0a87ab9e3e5c23e6b671b8b6c706230cfcc5974f_004" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span> <span class="Special">vector</span> <span class="ID">vFail</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   3 </span></span>
+<span class="line"><span class="LineNumber">   4 </span> <span class="Comment">//neither of these compile.</span></span>
+<span class="line"><span class="LineNumber">   5 </span> <span class="ID">vFail</span> <span class="SPChar">=</span> <span class="Number">1</span><span class="Number">0</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   6 </span> <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">println</span><span class="SPChar">(</span><span class="String">"I am at location "</span> <span class="SPChar">+</span> <span class="ID">vFail</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   7 </span></span>
+</pre></div><span class="anchor" id="line-118"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-119"></span><span class="anchor" id="entity"></span> <span class="anchor" id="line-120"></span>
+<h2 id="head-32bda8b087aef6b5d0fe685b1194ad11827b06b1">Entity</h2>
+<span class="anchor" id="line-121"></span><p class="line867"><strong>Usage:</strong> Entity variables are used to store handles to entities. When an entity is spawned via script, or referenced via entity name, you gain access to his handle. <span class="anchor" id="line-122"></span><span class="anchor" id="line-123"></span><p class="line867"><span class="anchor" id="line-124"></span><span class="anchor" id="line-125"></span><span class="anchor" id="line-126"></span><span class="anchor" id="line-127"></span><span class="anchor" id="line-128"></span><span class="anchor" id="line-129"></span><span class="anchor" id="line-130"></span><span class="anchor" id="line-131"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-fc72fad37aa46c87f413b4ba28475b8eefba4394_005\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-fc72fad37aa46c87f413b4ba28475b8eefba4394_005" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span> <span class="ID">entity</span> <span class="ID">monster1</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   3 </span> <span class="ID">entity</span> <span class="ID">monster2</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   4 </span></span>
+<span class="line"><span class="LineNumber">   5 </span> <span class="ID">monster1</span> <span class="SPChar">=</span> $<span class="ID">monster_grunt_1</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   6 </span> <span class="ID">monster2</span> <span class="SPChar">=</span> <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">spawn</span><span class="SPChar">(</span><span class="String">"monster_gunner"</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   7 </span></span>
+</pre></div><span class="anchor" id="line-132"></span><span class="anchor" id="line-133"></span><p class="line867"><img alt="/!\" height="15" src="/wiki/modern/img/alert.png" title="/!\" width="15" /> <strong><a href="/quake4/Tutorial_ScriptEntities">Check here for a more detailed example.</a></strong> <span class="anchor" id="line-134"></span><span class="anchor" id="line-135"></span><ul><li><p class="line862">Entities do not convert into strings. You can use <a href="/quake4/ScriptEvent_getName">getName</a> to get a string version of the entity name. <span class="anchor" id="line-136"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptVariable  (last edited 2005-11-02 23:23:04 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/JimShepard" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ScriptVariable?action=info">Info</a></li><li><a href="/quake4/ScriptVariable?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

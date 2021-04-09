@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>ArtReference Q4Shaders Textures - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/ArtReference_Q4Shaders_Textures?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/ArtReference_Q4Shaders_Textures?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/ArtReference_Q4Shaders_Textures?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/ArtReference_Q4Shaders_Textures?action=fullsearch&amp;value=linkto%3A%22ArtReference+Q4Shaders+Textures%22&amp;context=180">ArtReference Q4Shaders Textures</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/ArtReference_Q4Shaders_Textures">ArtReferenc...rs Textures</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_Q4Shaders_Textures?action=info">Info</a></li><li><a href="/quake4/ArtReference_Q4Shaders_Textures?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line874">In Quake 4, we use a shortcut version for writing textures called a guide. This section covers how to on writing texture shaders in a long hand form. This way is useful if you want the texture to do something else. (Alpha, modulations, glow passes, etc) <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867"><strong>Definition</strong>: Most of the lines have been defined in Section 1, except <strong>qer_editorimage</strong>.  Qer_editorimage is used mainly in textures. What this line does is add an image that is viewed only in the editor. Its useful if something has alpha or uses a flat color. (like glass) The Image is used so the designers can have a point of reference when they place a texture on a brush. It is used only in the editor. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><ul><li style="list-style-type:none"><p class="line891"><strong>2.1 Step 1: Remember the shader path</strong>: The shader path you wrote down or copied in the previous step will be used a lot for the generation of the shader. In the example the targas are in textures/terminal directories. The targas in the terminal directory are: <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><ul><li style="list-style-type:none">t1_wall1_local.tga <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span>t1_wall1_d.tga <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span>t1_wall1_h.tga <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span>t1_wall1_s.tga <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span></li></ul><p class="line891"><strong>2.2 Step 2</strong>: Write in the path in the appropriate places: Ok, at this point you should write in the paths: <span class="anchor" id="line-16"></span><ol type="i"><li>After qer_editorimage write: qer_editorimage textures/terminal/t1_wall1_d.tga this will view the diffuse targa in the editor <span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span></li><li class="gap">After diffusemap write textures/terminal/t1_wall1_d.tga this will render the diffuse targa in game <span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span></li><li class="gap">After bumpmap addnormals write ( textures/terminal/t1_wall1_local.tga, heightmap ( textures/terminal/t1_wall1_h.tga, 1 ) )  The first parentheses holds the local map and a comma,  (Plus the next line) the second parenthases after heightmap holds the _h file and the value it should use. This will combine the local and height targa and render them in game. <span class="anchor" id="line-21"></span><span class="anchor" id="line-22"></span></li><li class="gap">After specular write textures/terminal/t1_wall1_s.tga this will render the specular targa. <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span></li></ol><p class="line891"><strong>2.3 Remember to properly open and close out your shader entry.</strong> <span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span></li></ul><p class="line874">The easiest thing to do is find a shader that is working like you want, copy it and paste it into the .mtr you’d like to use.  <span class="anchor" id="line-27"></span><span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><span class="anchor" id="line-30"></span><p class="line874">Here’s an example of a complete long hand texture shader: <span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span><pre>textures/terminal/t1_wall1_d
+<span class="anchor" id="line-33"></span>{
+<span class="anchor" id="line-34"></span>        qer_editorimage textures/terminal/t1_wall1_d.tga
+<span class="anchor" id="line-35"></span>
+<span class="anchor" id="line-36"></span>        diffusemap              textures/terminal/t1_wall1_d.tga
+<span class="anchor" id="line-37"></span>        bumpmap addnormals      ( textures/terminal/t1_wall1_local.tga, heightmap ( textures/terminal/t1_wall1_h.tga, 1 ) )
+<span class="anchor" id="line-38"></span>        specularmap             textures/terminal/t1_wall1_s.tga       
+<span class="anchor" id="line-39"></span>}
+<span class="anchor" id="line-40"></span></pre><span class="anchor" id="line-41"></span><span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><p class="line874">Nine times out of ten you won’t be writing textures this way, but by doing this, you’ll be able to understand how texture guides work, (shortcuts) and be able to write them yourself. Otherwise, you’ve added a new texture entry in the textures/terminal/directory called t1_wall1_d, which will appear in the editor at textures/terminal/t1_wall1_d. <span class="anchor" id="line-44"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ArtReference Q4Shaders Textures  (last edited 2005-11-04 21:37:27 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_Q4Shaders_Textures?action=info">Info</a></li><li><a href="/quake4/ArtReference_Q4Shaders_Textures?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>LevelEditor Clipping - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/LevelEditor_Clipping?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/LevelEditor_Clipping?action=print">
+<link rel="Appendix" title="airdefense1_editor.jpg" href="/quake4/LevelEditor_Clipping?action=AttachFile&amp;do=view&amp;target=airdefense1_editor.jpg">
+<link rel="Appendix" title="airdefense1_editor_clipped.jpg" href="/quake4/LevelEditor_Clipping?action=AttachFile&amp;do=view&amp;target=airdefense1_editor_clipped.jpg">
+<link rel="Appendix" title="core_shaft.jpg" href="/quake4/LevelEditor_Clipping?action=AttachFile&amp;do=view&amp;target=core_shaft.jpg">
+<link rel="Appendix" title="mp_angleclip.jpg" href="/quake4/LevelEditor_Clipping?action=AttachFile&amp;do=view&amp;target=mp_angleclip.jpg">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/LevelEditor_Clipping?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/LevelEditor_Clipping?action=fullsearch&amp;value=linkto%3A%22LevelEditor+Clipping%22&amp;context=180">LevelEditor Clipping</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/LevelEditor_Clipping">LevelEditor Clipping</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_Clipping?action=info">Info</a></li><li><a href="/quake4/LevelEditor_Clipping?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-8dc51714ef4bcbf4265341b8bf36ec2c45d06e16">Clipping Your Level</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line874">Not to be confused with the CSG clip operation you can perform on brushes, clipping your level will help optimize player collision and help avoid stuck spots, both for players and AI. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867"><img class="attachment" src="/quake4/LevelEditor_Clipping?action=AttachFile&amp;do=get&amp;target=airdefense1_editor.jpg" title="attachment:airdefense1_editor.jpg" /> <img class="attachment" src="/quake4/LevelEditor_Clipping?action=AttachFile&amp;do=get&amp;target=airdefense1_editor_clipped.jpg" title="attachment:airdefense1_editor_clipped.jpg" /> <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line874">You can see in this comparison shot how drastically the collision landscape of your level might become after a clipping pass. We'll get into specifics on this later, but first, an overview of the clip texture types available to you: <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867">
+<h2 id="head-4df1644266e68f02adf7cd1c3ad0a0aa4198931f">Clip Textures</h2>
+<span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line874">Quake 4 makes use of a host of varying clip textures, including a couple additions over the Doom 3 set. These textures can all be found in textures/common/ and are listed by material name. Keep in mind that these textures are defined in materials just as with any others, so you can mix and match these keys in your own materials: <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line867"><strong>clip:</strong> Generates collision for players and monsters. Generates AAS information. <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line867"><strong>full_clip:</strong> Generates collision for all players and monsters, and blocks all weapons fire. Generates AAS information and tactical features. Blocks monster line of sight. <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><p class="line867"><strong>player_clip:</strong> Generates collision for players only. <span class="anchor" id="line-18"></span><span class="anchor" id="line-19"></span><p class="line867"><strong>monster_clip:</strong> Generates collision for monsters. Generates AAS information. <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line867"><strong>monster_full_clip:</strong> Generates collision for monsters. Generates AAS information and tactical features. Blocks monster line of sight. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line867"><strong>moveable_clip:</strong> Generates collision for physics objects and ragdolls. <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line867"><strong>shot_clip:</strong> Blocks all weapons fire. <span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><p class="line867"><strong>largeshot_clip:</strong> Blocks only weapons fire specified with "clipmask_largeshot" "1" set on the projectile/hitscan entityDef (see rocket launcher, grenade launcher, etc). <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><p class="line867"><strong>trigshotclip:</strong> Only used on teleporters to allow weapons fire to teleport in multiplayer. <span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line867"><strong>vehicle_clip:</strong> Generates collision for vehicles. <span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><p class="line867"><strong>fly_clip:</strong> Remnant clip type from previous version of Strogg Hornet AI. No longer used in favor of standard monster_clip variants. <span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><p class="line867">
+<h2 id="head-d5b5bd4345f03f1958227138119ada2d97457e44">AAS Textures</h2>
+<span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><p class="line874">In addition to standard clip textures, a pair of AAS-specific textures can be found in textures/editor/: <span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><p class="line867"><strong>aassolid:</strong> Generates no collision (despite 'solid' in the name) <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><p class="line867"><strong>aasobstacle:</strong> Used on <a class="nonexistent" href="/quake4/Entity_FuncAASObstacle">func_aas_obstacle</a> entities. <span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><p class="line867">
+<h2 id="head-691a61c09498772b4ec6e9a5c28466e01b509c87">Single Player Clipping and AAS Generation</h2>
+<span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span><p class="line874">An important phase of every single player level is a clipping pass for AAS generation. While AAS data is generated for the level on every standard compile, a careful pass will prevent navigation issues and help the AI take full advantage of your level's layout. <span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span><p class="line874">Notes on AAS Generation: <span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span><ul><li>AAS only generates on the tops of brushes. <span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span></li><li class="gap"><p class="line862">AAS floods from all monsters placed in the world as well as the spawn points on <a href="/quake4/Entity_FuncSpawner">func_spawners</a>. AAS flooding will spread across parallel surfaces, up ramps, and over small steps. In almost all cases, this covers all areas where AI of a given AAS size will be navigating. <span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span></li><li class="gap"><p class="line862">If AAS for some reason fails to flood in a zone, an <a class="nonexistent" href="/quake4/Entity_AASFlood">aas_flood</a> entity exists for each AAS size. Place one of these in the non-flooded area to force AAS data of that size to flood. <span class="anchor" id="line-54"></span><span class="anchor" id="line-55"></span></li><li class="gap">AAS flooding generates tactical features around solid geometry, monster_full_clip, and full_clip that can be used as cover points by tactical AI - the Strogg tactical transfers and the friendly marines. Cover points can either be full height or half height (half height is between 24-64 units and works best with the animations in the 40-48 unit range , full height cover is 64 units or taller). Cover points are best generated against right angles, so try to keep your monster_full_clip brushes as squared off as possible, and use additional monster_full_clip brushes to square off other appropriate cover points. <span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span></li><li class="gap">Models and patch meshes do not generate AAS and require clipping if AI will be navigating on or near them. <span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span></li><li class="gap">Terrain, as it is done as a model, poses some problems for AAS generation. Typically you will need to generate AAS under the terrain - AI will path over the terrain surface using the data generated below. For large elevation changes, you may need to create ramps of monsterclip under the terrain to link AAS areas. <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span></li></ul><p class="line874">Some additional notes on clipping you may find useful: <span class="anchor" id="line-62"></span><span class="anchor" id="line-63"></span><ul><li>If a player can stand on top of something, make sure that object's monsterclipping only goes as high as the player can go, and not to the ceiling - melee units will otherwise have trouble continuing their attacks, and any enemy will lose the player entirely if he becomes hidden in a monster_full_clip brush. <span class="anchor" id="line-64"></span><span class="anchor" id="line-65"></span></li><li class="gap">To generate cover points around complex shapes, start with a squared-off monster_full_clip, then layer a more precise monster_clip brush over it. Cover points will generate based off the monster_full_clip locations, but AAS will be generated around the monster_clip brush. (Take care that monsters can still fire their weapons accurately from the cover points.) <span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span></li><li class="gap"><p class="line862">When creating elevators, place an AASSolid brush (with an <a class="nonexistent" href="/quake4/Entity_AASFlood">aas_flood</a> entity, if needed) and a <a class="nonexistent" href="/quake4/Entity_FuncAASObstacle">func_aas_obstacle</a> at each floor. The AASSolid brush will allow AAS to generate, allowing AI to path on and off of the elevator when it is present, and <a href="/quake4/Entity_FuncElevator">func_elevators</a> automatically toggle <a class="nonexistent" href="/quake4/Entity_FuncAASObstacle">func_aas_obstacles</a> when their origin enters one, preventing AI from entering the elevator shaft if no elevator is present. <span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span></li><li class="gap"><p class="line862">In long elevator shafts such as the one in the Nexus Core level (game/core1.map), monsters may lose AAS much like described for terrain above. To allow monsters to path on the elevator as they do after jumping through the windows on the side of the shaft, place AASSolid brushes at regular intervals through the shaft, each with the appropriate <a class="nonexistent" href="/quake4/Entity_AASFlood">aas_flood</a> entity on top. By the time your monster would have lost AAS data, another layer is available: <span class="anchor" id="line-70"></span><span class="anchor" id="line-71"></span><p class="line891"><img class="attachment" src="/quake4/LevelEditor_Clipping?action=AttachFile&amp;do=get&amp;target=core_shaft.jpg" title="attachment:core_shaft.jpg" /> <span class="anchor" id="line-72"></span><span class="anchor" id="line-73"></span></li><li class="gap">Patch meshes will not generate AAS, but will generate collision on the 'visible' face. You can use clip textures on patch meshes to create one-way barriers, though it's best avoided for non-flying monsters. Patch mesh clips were used in a couple instances to allow Strogg Hornets to enter, but not leave, confined areas in the Construction Zone (game/walker.map) level. <span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span></li></ul><p class="line867">
+<h2 id="head-2f65d1b0aa250a334f21ed82175e19ae9437251c">Multiplayer Clipping</h2>
+<span class="anchor" id="line-76"></span><span class="anchor" id="line-77"></span><p class="line874">Clipping in multiplayer is generally a much less involved task. Most important is player mobility - players should not get stuck on anything they're not intended to. A good rule is if something isn't large enough to hide behind, you should clip it off. A common practice in clipping multiplayer levels is to place angled clip brushes on small protrusions from walls to allow players to bounce off with no loss in speed: <span class="anchor" id="line-78"></span><span class="anchor" id="line-79"></span><p class="line867"><img class="attachment" src="/quake4/LevelEditor_Clipping?action=AttachFile&amp;do=get&amp;target=mp_angleclip.jpg" title="attachment:mp_angleclip.jpg" /> <span class="anchor" id="line-80"></span><span class="anchor" id="line-81"></span><p class="line874">Stairs are known to interrupt strafe jumping, which we remedied by ramp-clipping stairways in the stock maps. This prevents hitches in movement in addition to opening more ramp-jumping opportunities, which of course we all love. <span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><p class="line874">Since AAS is not an issue, you can in some cases get away with clipping that would fail in a single player environment - one-way or curved patch mesh clipping, for example. <span class="anchor" id="line-84"></span><span class="anchor" id="line-85"></span><p class="line874">Community-made multiplayer bots may make use of AAS hulls for bot navigation. Consult individual bot documentation files for information on preferred clipping methods - they may differ slightly from what is described here. <span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-88"></span>Back to <a href="/quake4/LevelEditor">LevelEditor</a> <span class="anchor" id="line-89"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">LevelEditor Clipping  (last edited 2005-12-12 23:06:56 by <span title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]"><a class="nonexistent" href="/quake4/AndrewWeldon" title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]">AndrewWeldon</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_Clipping?action=info">Info</a></li><li><a href="/quake4/LevelEditor_Clipping?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

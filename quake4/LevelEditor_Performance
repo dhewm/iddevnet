@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>LevelEditor Performance - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/LevelEditor_Performance?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/LevelEditor_Performance?action=print">
+<link rel="Appendix" title="sdk_batchsize.jpg" href="/quake4/LevelEditor_Performance?action=AttachFile&amp;do=view&amp;target=sdk_batchsize.jpg">
+<link rel="Appendix" title="sdk_debughud.jpg" href="/quake4/LevelEditor_Performance?action=AttachFile&amp;do=view&amp;target=sdk_debughud.jpg">
+<link rel="Appendix" title="sdk_lightcount.jpg" href="/quake4/LevelEditor_Performance?action=AttachFile&amp;do=view&amp;target=sdk_lightcount.jpg">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/LevelEditor_Performance?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/LevelEditor_Performance?action=fullsearch&amp;value=linkto%3A%22LevelEditor+Performance%22&amp;context=180">LevelEditor Performance</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/LevelEditor_Performance">LevelEditor Performance</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_Performance?action=info">Info</a></li><li><a href="/quake4/LevelEditor_Performance?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-dad3e12dbb8156b8e5a94acbb69e09c9e9f17f80">Performance and Framerate</h1>
+<span class="anchor" id="line-2"></span><p class="line874">At this point you’ve got a giant map chock full of crazy designs and clever enemy setups, the whole thing peaks at 12fps, and you don’t know why.  Now what? <span class="anchor" id="line-3"></span><br />
+<br />
+ <span class="anchor" id="line-4"></span>In Quake 3, keeping map performance up was pretty simple: if r_speeds was too high, cut back on the detail or find out what’s wrong with vis, maybe a clever hint brush here or there, and that’s it.  The Doom engine is much more complicated, and with the myriad of new toys it gives developers comes a dazzling new array of ways to make the game run slow if you’re not careful.  The trick comes in identifying which of these new tools is causing the problem.  This page provides an overview of how framerate is impacted by lighting, shadows, draw calls, portalling, game frame time, and memory limits.  <span class="anchor" id="line-5"></span><span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><span class="anchor" id="line-8"></span><p class="line867">
+<h2 id="head-4d36cde269edc4ce39f36098416a4ee43a2c65ed">New Console Commands</h2>
+<span class="anchor" id="line-9"></span><span class="anchor" id="line-10"></span><p class="line874">For Quake4 we added a number of new debugging tools to help the wayward designer identify specific issues in low framerate areas. <span class="anchor" id="line-11"></span><br />
+<br />
+ <span class="anchor" id="line-12"></span><strong>com_limits</strong> – set to 1 to enable <span class="anchor" id="line-13"></span>This is a simple catch-all we put in as a way of quickly picking out trouble spots.  It’s hard-coded with the limits we used on Quake4 for triangle count, sound memory, texture memory, and active AI.  With com_limits on, as you run through the game a box will appear on the screen whenever a certain limit is exceeded, showing you how far over the limit you’ve gone in the spot you’re standing.   <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><ul><li>The triangle count warning will go off if world architecture trianlge count is greater than 100,000 or the scene total is greater than 150,000.  On the ARB2 renderer path, the limit are reduced to 71,000 and 107,000 respectively.  The ARB2 path does the same amount of work in less passes, so 107,000 triangles in the ARB2 path is equivalent to 150,000 triangles in the other paths.  This limit being exceeded can mean anything from too much geometry to too many lights shining on that geometry to shadow patterns that are too complex, all which are explained in more detail below.   <span class="anchor" id="line-16"></span></li><li>The sound memory warning appears when the entities in the current PVS require more than 32mb of sounds in memory at once.  This does not take compression into account, so custom sounds that haven’t been converted to ogg vorbis may trigger this limit. <span class="anchor" id="line-17"></span></li><li>The texture memory warning is based on com_machinespec.  It goes off when the current rendered scene requires more than 45mb of image data on machinespec 0 (a 64meg card), 80mb on machinespec 1 (for 128meg cards) and 200mb on machinespec 2 (for 256meg cards).  This means you’ll be close to exceeding the video card’s onboard memory if your quality level is appropriately set, which can cause a sudden framerate plummet if the card has to begin swapping. <span class="anchor" id="line-18"></span></li><li>The AI limit warning will go off at 5 (anywhere, not just in view), but for now the way it counts active AI is broken. <span class="anchor" id="line-19"></span></li></ul><p class="line867"><br />
+<br />
+ <span class="anchor" id="line-20"></span><strong>g_showdebughud</strong> – values range from 1 to 11 <span class="anchor" id="line-21"></span>This will replace the HUD with specific readouts about sound, networking, physics, and so on, depending on the value you set.  (Note: You will need to download the <a href="/quake4/DebugHud">DebugHud</a> available on this site, since the debug guis weren’t included with the shipped game.)  The value we’re concerned with is 5. <span class="anchor" id="line-22"></span><br />
+<br />
+ <span class="anchor" id="line-23"></span><img class="attachment" src="/quake4/LevelEditor_Performance?action=AttachFile&amp;do=get&amp;target=sdk_debughud.jpg" title="attachment:sdk_debughud.jpg" /> <span class="anchor" id="line-24"></span><br />
+<br />
+ <span class="anchor" id="line-25"></span>On the left is a readout of timing information in milliseconds.  <span class="anchor" id="line-26"></span><br />
+<br />
+ <span class="anchor" id="line-27"></span><ul><li><p class="line891"><strong>Game Frame</strong> displays how much time the <strong>game world</strong> spends thinking.  This value is impacted by non-graphical things like active AI, physics evaluation, and collision traces.   <span class="anchor" id="line-28"></span></li><li><p class="line891"><strong>Frontend</strong> time reflects how long the renderer spends <strong>setting up the render</strong> by deciding what to draw, generating light interactions, and building shadows. <span class="anchor" id="line-29"></span></li><li><p class="line891"><strong>Backend</strong> time is spent <strong>submitting draw data</strong> to the driver, and waiting for the driver to finish. <span class="anchor" id="line-30"></span></li><li><p class="line891"><strong>Waiting</strong> is time left over if the frame finishes in less than 1/60th of a second. <span class="anchor" id="line-31"></span></li></ul><p class="line867"><br />
+<br />
+ <span class="anchor" id="line-32"></span>These three meters are indispensable for determining what is causing low framerates, to help you avoid having to cut detail or lights if your problem is caused by something like the physics engine.<br />
+ <span class="anchor" id="line-33"></span><br />
+<br />
+ <span class="anchor" id="line-34"></span>On the right is a readout of render data being sent to the card. <span class="anchor" id="line-35"></span><ul><li><p class="line891"><strong>Views</strong> shows the number of world views being rendered.  This will usually be 2 (one for the player’s eyes and one for the HUD), but portalskies and mirrors add more. <span class="anchor" id="line-36"></span></li><li><p class="line891"><strong>Draws</strong> is one of the new important numbers to watch.  The engine sends triangles to the video card in batches, and depending on how you construct your scenes and set up your lighting, a scene can be sent as a few hundred calls, which is fast, or as many as two thousand, which is not.  There’s an entire section about keeping this one number in check below, but for now it should be kept under 1,000. <span class="anchor" id="line-37"></span></li><li><p class="line891"><strong>Verts</strong> is the number of vertices in the scene. <span class="anchor" id="line-38"></span></li><li><p class="line891"><strong>Tris</strong> shows total scene polycount, the number that used to be in r_speeds.  We went by the hard-coded numbers in com_limits. <span class="anchor" id="line-39"></span></li><li><p class="line891"><strong>Shadow Tris</strong> shows how much of the total scene geometry is created just for cast shadows.  This number can vary quite a lot before impacting performance, depending on a number of other factors, but making sure no more than one quarter of your tris go to shadows is a good baseline. <span class="anchor" id="line-40"></span></li><li><p class="line891"><strong>Textures</strong> is current texture memory use. <span class="anchor" id="line-41"></span><span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span></li></ul><p class="line867">
+<h2 id="head-c0dd8a145885a21e2a402dd4768736584491ef65">Lighting</h2>
+<span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span><p class="line874">Lighting is the major statistic to keep an eye on, which many are already familiar with from Doom3 mapping.  For the uninitiated, the Doom3 engine makes several separate render passes for each light source.  This means geometry is redrawn for every light volume touching it.  Therefore, an ideal way to maximize performance is to get the brightest light on a surface with as few overlapping volumes as possible. <span class="anchor" id="line-48"></span><br />
+<br />
+ <span class="anchor" id="line-49"></span>To see how many passes are being made and where, set <strong>r_showlightcount</strong> to 1. <span class="anchor" id="line-50"></span><br />
+<br />
+ <span class="anchor" id="line-51"></span><img class="attachment" src="/quake4/LevelEditor_Performance?action=AttachFile&amp;do=get&amp;target=sdk_lightcount.jpg" title="attachment:sdk_lightcount.jpg" /> <span class="anchor" id="line-52"></span><br />
+<br />
+ <span class="anchor" id="line-53"></span>Colored regions indicate the number of passes.  Red is 1, green is 2, blue is 3, cyan is 4, magenta is 5, and white is 6+.  If you’re seeing a lot of white, you need to relight that area. <span class="anchor" id="line-54"></span><br />
+<br />
+ <span class="anchor" id="line-55"></span>(You can, technically, use r_lightcount in Radiant by typing it into the editor console.  Don’t expect it to be accurate, because it’s only lighting against brushes and not compiled/portalled geometry, but it can give you a very rough sense of how you’re doing if you don’t want to wait for a compile.) <span class="anchor" id="line-56"></span><br />
+<br />
+ <span class="anchor" id="line-57"></span>There are a couple of ways to stay as close to red and green as possible.  The first, and the one that’ll be the most useful to you, is to simply <strong>be reserved with your lighting</strong>.  Always be aware of which of your light volumes overlap as you’re lighting a room.  Don’t be afraid to light until the room looks good and is as bright as you want it, but don’t go overboard, and check r_lightcount often.   <span class="anchor" id="line-58"></span><br />
+<br />
+ <span class="anchor" id="line-59"></span>As you move around your map with lightcount on, you’ll notice that sometimes the borders between colors will match your geometry, and sometimes you’ll get straight horizontal and vertical lines that slide around as you move.  This is caused by the way light volumes are scissored on screen.  <span class="anchor" id="line-60"></span><br />
+<br />
+ <span class="anchor" id="line-61"></span>A light will never create overdraw on a face it doesn’t intersect, but if a light volume touches a face that extends much farther than the volume itself, the overdraw is limited by simply cropping it to a box the size of the volume’s screen bounds (the same way visportal scissoring works – for more info on this see the <a class="http" href="http://iddevnet.com/doom3/visportals.php">related page</a> in the doom3 section of iddevnet).  A good way to see light volumes in game is to set <strong>r_showLights</strong> to 2 or 3, which will draw a translucent box around all light volumes.  It can sometimes make it difficult to see much of use through the “fog” of light boxes, but moving around for a better angle usually helps.  Shadowcasting lights show up as blue, and non-shadowcasting lights show up as red. <span class="anchor" id="line-62"></span><br />
+<br />
+ <span class="anchor" id="line-63"></span>Quickly load up one of the MP maps and find an area with a row of small lights.  With lightcount enabled, you should be able to look at the row of lights from an extreme angle and make their screen bounds overlap, thus producing a block of white even though the volumes don’t overlap in space, and the geometry isn’t touched by more than one of those little lights at a time.  This happens because the scissoring is done around the bounds of the volume, <strong>not the affected geometry</strong>.  This will happen as well with larger lights, and can be easily reproduced by standing far away from a light volume that extends very far into the floor.  The light’s scissor bounds will extend all the way down to where the bottom of the light volume would be, producing a block of overdraw on the entire surface of the floor coming towards you that isn’t actually being lit.  You can view these scissor outlines in game by setting <strong>r_showLightScissors</strong> to 1. <span class="anchor" id="line-64"></span><br />
+<br />
+ <span class="anchor" id="line-65"></span>To minimize overdraw in these cases, you can <strong>split your brushes along the edges of light volumes</strong>, to ensure that the faces those volumes touch are not much bigger than the light volume itself.  To keep the compiler from recombining these faces you can either separate them with architectural detail like thin strips of trim, shift the textures on alternating brushes by some unnoticeable amount (like 0.125 units), or force a split with visportals (not recommended.)  These will all of course add to your tri count, as well as the number of draws you’re pushing, so it’s up to you to look on a scene by scene basis to see which light volumes you can trim brushwork around and which ones you’re better off leaving alone.  <span class="anchor" id="line-66"></span><br />
+<br />
+ <span class="anchor" id="line-67"></span>The reverse is likewise true.  When placing lights to begin with it’s a good idea to stick to a larger grid size and <strong>make the edges of the light volume match your brushwork wherever possible</strong>.  <span class="anchor" id="line-68"></span><br />
+<br />
+ <span class="anchor" id="line-69"></span>Another way to keep lightcounts low is to only allow yourself an extra pass if you’re going to get a significant amount of illumination on the affected surfaces.  Almost all the light shaders in Doom3 and Q4 have a falloff produced by the images they use, meaning they’re at their brightest at the center of the volume and drop off to zero at or before the edge of the volume.  <span class="anchor" id="line-70"></span><br />
+<br />
+ <span class="anchor" id="line-71"></span>If you have a large light volume that’s only pushing 8 or 16 units deep into a wall, you’re probably getting little to no visible light on that surface.  In these cases you would be better off shrinking the volume just enough that it’s tangent to the wall without clipping through (so that the pink line is just visible z-fighting with the surface).   <span class="anchor" id="line-72"></span><br />
+<br />
+ <span class="anchor" id="line-73"></span>Pick the whitest light shaders you can visually get away with.  If you need a full volume of light, like for sunlight coming through a large ceiling opening, rav_square_bevel will give you a big bright volume that only darkens near the very edges.  Falloff works vertically as well, so if your floors and ceilings seem unusually dark try stretching the light volumes vertically to make them taller, or switch to a shader like rav_spot_long or rav_spot_nofall, which are intentionally “thick” on the vertical axis. <span class="anchor" id="line-74"></span><br />
+<br />
+ <span class="anchor" id="line-75"></span>Quake4 has a lot of the aforementioned small light volumes, which we nicknamed <strong>chiclets</strong>.  They’re a great way to add some color and highlights to a scene, they’re evocative of Quake2, and they don’t produce a lot of overdraw.  They do, however, add to the list of light volumes the game engine has to run through to calculate interactions, so lots of them do eventually take their toll regardless of size.  Higher end systems have no trouble here, but systems closer to the minimum spec will start to choke.  Since these lights are more for effect than illumination, we added the <strong>detailLevel keyvalue</strong> as a way of instructing the renderer to skip less “important” lights. <span class="anchor" id="line-76"></span><br />
+<br />
+ <span class="anchor" id="line-77"></span>A light’s detailLevel ranges from 0 to 10, and works with an accompanying cvar: <strong>r_lightDetailLevel</strong>.  The engine will render all lights with detailLevel keyvalues set greater than r_lightDetailLevel.  detailLevel defaults to 10, and r_lightDetailLevel defaults to 0 on all video architecture except NV20, where it defaults to 9.  To help performance on the NV20, all of our maps have the <strong>non-crucial chiclet lights set to detailLevel 5</strong> (which we picked arbitrarily because it’s between 0 and 9).  If a light has an attached model, that model will still draw with the same color value as the light regardless of detailLevel, so even if the small pool of light is lost you’ll still at least get the glowing fixture/flare for color. <span class="anchor" id="line-78"></span><br />
+<br />
+ <span class="anchor" id="line-79"></span>In theory this allows you to rank all your lights on a scale of 0 to 10, allowing the user to set the cvar according to taste/system performance, but we never utilized it to this degree.  Instead, once you’ve finished your map, just run through and set detailLevel 5 on any lights the player can still see well without.  This is especially crucial in multiplayer maps, where performance is key – you don’t want to give players with higher end systems an advantage by providing them with more illumination. <span class="anchor" id="line-80"></span><br />
+<br />
+ <span class="anchor" id="line-81"></span>One last console command that may prove useful is <strong>r_singleLight</strong>.  This will limit the render to only one light in the map, specified by the value set for this cvar.  Unfortunately there's no easy way to find out what light has what number, so the only way to cycle to the light you want is to try one number at a time.  (Some MP aficionados are under the impression that setting this cvar to a certain secret number depending on the map will enable vertex lighting in multiplayer, which is not the case.  All they've done is figured out what number corresponds to the ambient pass in each map that has one.) <span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><span class="anchor" id="line-84"></span><span class="anchor" id="line-85"></span><span class="anchor" id="line-86"></span><p class="line867">
+<h2 id="head-0c01709e90968de5f0204a15e3448b554f9f078d">Shadows</h2>
+<span class="anchor" id="line-87"></span><span class="anchor" id="line-88"></span><p class="line862">Part of the game frontend’s responsibility in setting up a render is computation of shadow volumes.  When geometry casts a shadow, that shadow is handled as <strong>new triangles</strong> added to the scene.   <span class="anchor" id="line-89"></span><br />
+<br />
+ <span class="anchor" id="line-90"></span><span class="anchor" id="line-91"></span><p class="line862">When assessing a performance trouble spot, after checking lightcount turn shadows off at the console by setting <strong>r_shadows</strong> to 0.  You’ll see framerate increase no matter what, but if you’re seeing an unusually significant gain in performance it’s a fair bet the shadows in that scene are contributing to the slowdown. <span class="anchor" id="line-92"></span><br />
+<br />
+ <span class="anchor" id="line-93"></span>To give you a better idea of what shadows are being cast where, enable <strong>r_showShadows</strong>.  <span class="anchor" id="line-94"></span><br />
+<br />
+ <span class="anchor" id="line-95"></span>There are a few simple ways to reduce shadowing in a scene.  The first is to find all the lights in the scene that you can get away with making non-shadowcasting, and disable shadows on them.  Chiclets are a very good place to start.  You’ll want to make sure characters still have at least one shadow wherever they can go, but if you’ve got several fill lights in one area, taking shadows off one or two won’t be visually apparent.  If you can’t easily reduce shadows by light, you can try doing it by object instead.  If your scene has several func_static models in it, set noshadows wherever they won’t be missed.  <span class="anchor" id="line-96"></span><br />
+<br />
+ <span class="anchor" id="line-97"></span>This will help slice off a lot of shadow computation and extra triangles right off the bat.  Another thing to watch out for in your scenery’s shadows is <strong>shadow complexity</strong>.  The nickname for this at Raven was "the jailbar effect."  If you have a setup where a lot of fine detail, like railings or ladders, is casting shadows across a long distance or onto a lot of complex geometry, even if you’re not adding a lot of tris to the scene the frontend has to do a lot more math intersecting these shadow volumes with geometry (characters included). <span class="anchor" id="line-98"></span><br />
+<br />
+ <span class="anchor" id="line-99"></span>This also applies to shadows being cast at oblique angles.  It’s a rare occurrence, but if you have a large light with the origin dragged far out to one side, any character in that volume will cast a shadow way down the long axis of the light.  When it comes to shadows, <strong>short and simple is best</strong>. <span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span><p class="line867">
+<h2 id="head-afae9753e4b90105003eedb3ea2aeb88b83f4dc6">Draws &amp; Batch Size</h2>
+<span class="anchor" id="line-105"></span><span class="anchor" id="line-106"></span><p class="line874">Every new generation of video cards that hits the market is able to render more and more triangles per second than the generation before.  The way cards are able to gain so much speed is by rendering them in parallel, taking batches of polygons and running through multiple batches at a time.  Each batch, or draw, has a slight penalty in overhead, meaning that the same number of polygons can be rendered much faster in fewer, larger batches than it can in many small ones.  It is similar to the difference between city and highway mileage -– you’ll get much more out of your fuel by going long distances in fifth gear than you will by driving stop and go. <span class="anchor" id="line-107"></span><br />
+<br />
+ <span class="anchor" id="line-108"></span>With the number of polygons Quake4 puts to the screen, each scene would ideally be rendered in at most <strong>300 batches of at least 500 triangles each</strong>.  Without proper precautions on the part of the designer, however, the Doom3 engine will stray very quickly towards many small batches. <span class="anchor" id="line-109"></span><br />
+<br />
+ <span class="anchor" id="line-110"></span>The engine will split the polygons it sends to the video driver <strong>per texture, per light, per entity, and per portal area</strong>.  That means that for every light volume in the scene, a batch is sent for every group of polygons sharing a texture affected by that light volume.  If the same texture appears on brushes in the world and on a func_static, even within one light volume the func_static will go to the renderer in separate batches.  If a func_static with the same model keyvalue is repeated sixteen times down a hallway, each one will batch separately from the other fifteen.  If you have a long, highly subdivided patch mesh with four or five chiclet lights spaced out along the curve, the curve will be split into small batches for each light. <span class="anchor" id="line-111"></span><br />
+<br />
+ <span class="anchor" id="line-112"></span>Furthermore, all effects batch separately from each other, even those with the same .fx, and every stage in the effect goes as its own batch.  GUIs also batch separately from each other and, obeying the same laws that apply to textures in the world, every windowDef in a GUI with its own image on it goes as its own batch of two polygons. <span class="anchor" id="line-113"></span><br />
+<br />
+ <span class="anchor" id="line-114"></span>As you can see, draws add up fast. <span class="anchor" id="line-115"></span><br />
+<br />
+ <span class="anchor" id="line-116"></span>The ideal 300 batches of 500 quickly becomes wishful thinking, and if you tool around in Quake4 with debugHud 5 you’ll notice we usually didn’t even come close.  Quake style level design usually means mid-sized rooms with interesting shapes and designs, built from a varying group of textures, lit by many small- and mid-sized lights.  What video cards want from Quake4 is spaces with only a few textures and a couple of big giant light volumes covering everything.  <span class="anchor" id="line-117"></span><br />
+<br />
+ <span class="anchor" id="line-118"></span>They can, however, handle much worse, and depending on video architecture you only need to really worry if you’re pushing into the quadruple digits.  Thus, if your draws hover around <strong>1000</strong> once the shooting starts, we’d say you were still doing well.  <span class="anchor" id="line-119"></span><br />
+<br />
+ <span class="anchor" id="line-120"></span>Spotting areas with too many draws is simple enough, but to identify where in that scene all the draws are coming from we added <strong>r_showBatchSize</strong>.  It works just like r_showtris, with the same effects for values of 1, 2, and 3, but the outlines will be colored based on the size of the smallest batch they’re in.  It scales from pink (batch size less than ten, meaning bad) through red, orange, yellow, and stops at green (batch size greater than 500, meaning good).  <span class="anchor" id="line-121"></span><br />
+<br />
+ <span class="anchor" id="line-122"></span><img class="attachment" src="/quake4/LevelEditor_Performance?action=AttachFile&amp;do=get&amp;target=sdk_batchsize.jpg" title="attachment:sdk_batchsize.jpg" /> <span class="anchor" id="line-123"></span><br />
+<br />
+ <span class="anchor" id="line-124"></span>This can be a hard display to read, the main problem being that lots of pink isn’t always bad and green isn’t always good.  You can have a scene with a lot of pink and red batching, but if your draws are only in the 400 range you won’t really suffer for it.  On the other hand, if your scene is full of decals they’ll batch individually (one for each blood splat, say), but if you crank up the subdivisions on each decal they’ll jump up to a few hundred triangles each and voila, they’re green, which doesn’t actually solve the problem. <span class="anchor" id="line-125"></span><br />
+<br />
+ <span class="anchor" id="line-126"></span>Another way to find small batches is to set <strong>r_limitBatchSize</strong>.  This will instruct the renderer to only draw batches of a size greater than whatever value you set this to.  Set it to 100 and see how much of your map disappears. <span class="anchor" id="line-127"></span><br />
+<br />
+ <span class="anchor" id="line-128"></span>There’s no simple answer to a scene that batches poorly, but once you become more familiar with how it works you’ll learn what steps to take to optimize a scene for it.  <span class="anchor" id="line-129"></span><br />
+<br />
+ <span class="anchor" id="line-130"></span>This is a list of many of the common draw-reducing solutions we used on Quake4.  Often, getting your draw count down will mean making some sacrifices and cutting certain things back, but with enough caution you can sometimes bring your numbers down without sacrificing the visuals you’ve created. <span class="anchor" id="line-131"></span><br />
+<br />
+ <span class="anchor" id="line-132"></span><span class="anchor" id="line-133"></span><ul><li><p class="line891"><strong>Use fewer, larger light volumes</strong> that encompass more geometry when possible.  Lighting a room with fewer lights will gather the various textures in the scene into fewer groups.  If the placement of various pools of light is important to the look of the scene, try creating a custom light shader in a paint program that you can use to match how the room would look with multiple lights. <span class="anchor" id="line-134"></span></li><li><p class="line862">Find similar looking textures and <strong>pick one texture to replace them all with</strong>.  There are a lot of groups of textures in Quake4 that are essentially siblings, just with different patterns of dirt/rust/little fiddly details on them, and while using a bunch of them makes for a lot of cool detail, it makes for a lot of draws as well.  At the end of the day, as the player is running past those walls with his guns ablaze, he probably won’t notice if all of those wall panels are the same.  (This can be a painless change, but depending on how severe your batching problems are and how wonky the texturing is, you may have to gut and rebuild some geometry.  Painful, but a fact of life.) <span class="anchor" id="line-135"></span></li><li><p class="line891"><strong>Portals split batches</strong>.  If you’ve got a room that’s cut up with portals all over the place, you’re probably doing more harm in splitting your draws up than you are good by culling some of them from the right angles.  Portal your doorways and try not to go crazy with them beyond that. <span class="anchor" id="line-136"></span></li><li><p class="line862">If you have a lot of identical func_statics, <strong>force them into one entity</strong>.  If you’ve got light fixtures with color keys on them, detach them from their lights where possible and make the whole group of fixtures into one func_static.   <span class="anchor" id="line-137"></span></li><li><p class="line862">If you have a func_static mapmodel that you’re using many of in one view (like pillars or crates), <strong>set their inline keys to 1</strong>.  This will turn them into bsp geometry and thus make them all part of the worldspawn, and they’ll batch together.  Keep a close eye on what mapmodels you do this to – they’ll increase your .proc and .cm sizes, and in some cases will start to show shadow z-fighting on their surfaces.  If that happens, try adjusting the lighting around them, but if it doesn’t go away you’ll just have to de-inline them and find somewhere else to save draws.  Also, don’t inline any func_statics that you’ve given keys like color or noshadow, as those keys will be thrown out when they’re converted to worldspawn. <span class="anchor" id="line-138"></span></li><li><p class="line862">If you only have stuff grouped into an entity for the sake of editing ease, remember to <strong>use func_groups</strong>, not func_statics. <span class="anchor" id="line-139"></span></li><li><p class="line862">When adding func_fx entities to the map, check the batching on the effects they spew.  <strong>Some of our effects batch well, and some don’t</strong>, so be smart about which ones you use where. <span class="anchor" id="line-140"></span><span class="anchor" id="line-141"></span><span class="anchor" id="line-142"></span><span class="anchor" id="line-143"></span><span class="anchor" id="line-144"></span></li></ul><p class="line867">
+<h2 id="head-4c0137afcd97f925eeebce9bcaede725d21de9d4">Visportals</h2>
+<span class="anchor" id="line-145"></span><span class="anchor" id="line-146"></span><p class="line874">A very good explanation of visportals is already available here: <span class="anchor" id="line-147"></span><a class="http" href="http://www.iddevnet.com/doom3/visportals.php">http://www.iddevnet.com/doom3/visportals.php</a> <span class="anchor" id="line-148"></span><br />
+<br />
+ <span class="anchor" id="line-149"></span><span class="anchor" id="line-150"></span><p class="line874">There's only a short list of things we would add to this: <span class="anchor" id="line-151"></span><ul><li><p class="line891"><strong>Space your portals out.</strong>  The farther apart in space two portals are, the narrower the angles at which they overlap become.  You'll get almost no gain from visportals that share edges, and in some cases doing so can even lead to errors where portals close when they aren't supposed to, which can make parts of the scene flicker black. <span class="anchor" id="line-152"></span></li><li><p class="line891"><strong>Don't extend portals any farther than you have to.</strong>  They aren't like hint brushes, where you were safer making <em>sure</em> they dug deep into surrounding geometry.  The actual face of the brush itself defines the entire size of the portal, so it doesn't need to extend any farther than the size of the opening it fills (and since you want portals to overlap as little as possible, smaller is always better in that regard.) <span class="anchor" id="line-153"></span></li><li><p class="line891"><strong>Don't cross the portals.</strong>  They don't split each other like other geometry does, and intersecting portals leads to Bad Things™. <span class="anchor" id="line-154"></span><span class="anchor" id="line-155"></span><span class="anchor" id="line-156"></span><span class="anchor" id="line-157"></span><span class="anchor" id="line-158"></span></li></ul><p class="line867">
+<h2 id="head-91e3ce39746de6c9e01e80f803bebd315609299d">Game Frame &amp; the CPU</h2>
+<span class="anchor" id="line-159"></span><span class="anchor" id="line-160"></span><p class="line874">All of the above covers renderer related slowdowns, but those aren't the only source of low framerates.  The Doom3 renderer is very CPU-driven, such that any significant delay in the game frame time will set the renderer back as well.  If debugHud5 reveals a high game frame time and a short render, it's time to pay attention to render-independent things in your scene. <span class="anchor" id="line-161"></span><br />
+<br />
+ <span class="anchor" id="line-162"></span>Things that can delay the game frame: <span class="anchor" id="line-163"></span><br />
+<br />
+ <span class="anchor" id="line-164"></span><span class="anchor" id="line-165"></span><ul><li><p class="line891"><strong>Messy Physics</strong>: Physics evaluation can sometimes get stuck thinking too hard about what might seem like a simple interaction.  Look around your scene and make sure you haven't got barrels or other movables getting stuck in some state that prevents them from coming to rest.  Ragdolls can often cause this, especially if dropped onto another moving entity.  On heavily CPU-limited systems, shooting a monster that falls onto a lift or a func_mover can kill framerates.  Ragdolls on top of ragdolls can be even worse.   <span class="anchor" id="line-166"></span></li><li><p class="line891"><strong>AI</strong>: Use <strong>ai_debugTactical</strong> to watch the movement of your monsters and NPC's during the slowdown, and see if any are having trouble pathing anywhere.  Tracing through the AAS table is expensive, and doing it too often per frame will steal your precious cycles.  Check that you haven't mistakenly placed a tether behind monsterclip, or that several entities aren't all trying to path around each other or through a narrow space (like a doorway). <span class="anchor" id="line-167"></span></li><li><p class="line891"><strong>Traces</strong>: The game performs a <em>lot</em> of traces per frame.  It constantly traces beneath the player to keep track of what he's standing on (if anything), in front of the player to check for NPC's to flip up their crosshair ID, in front of every projectile and moving object, and even on some effects (like sparks that bounce or drips that splash on the floor).  These work hand in hand with the physics listed above - sparks bouncing off of ragdolls can become costly.  Any trace against an MD5 is also inherently expensive, because if a trace is determined to hit an MD5's bounding box it will then have to evaluate against every poly in the MD5 to determine a hit with more precision.  In the singleplayer map "Putrefaction Center", several sources of terrible framerates were revealed to be traces through the MD5 intestines strung around the map.  Many of them were made as one huge MD5, meaning their bounds often encompassed whole hallways or rooms, which in turn meant that shooting in any direction in that room led to traces against every poly in the entire mess of intestines ... not good.  They were since split and given low-detail collision hulls (as were all of our creature MD5s).  Keep an eye out for any excessive or unnecessary traces by enabling <strong>r_showRenderTrace</strong>. <span class="anchor" id="line-168"></span></li><li><p class="line891"><strong>Sound Decompression</strong>: Some of Quake4's sounds are included as .ogg, and some are left as .wav.  The reason for this is that .ogg decompression uses a little CPU, and any sounds that were expected to be played often (like gunshots) were loaded decompressed for speed.  Sounds not expected to be used with any frequency (like scripted VO) are loaded compressed to reduce memory footprint and decompressed on the fly.  If you feel like you've wrung the towel dry in performance, check what sounds are playing in your scene, and see if you're repeatedly decompressing some of the same .oggs, and replace them with similarly appropriate .wavs instead. <span class="anchor" id="line-169"></span><span class="anchor" id="line-170"></span><span class="anchor" id="line-171"></span><span class="anchor" id="line-172"></span><span class="anchor" id="line-173"></span></li></ul><p class="line867">
+<h2 id="head-a459b2eec520594ddad20559e70991dcea5a13ac">Memory Limits</h2>
+<span class="anchor" id="line-174"></span><span class="anchor" id="line-175"></span><p class="line874">The last major performance point to keep in mind may not affect framerates, but have a definite impact on load times - the size your map takes up in memory. <span class="anchor" id="line-176"></span><br />
+<br />
+ <span class="anchor" id="line-177"></span>Hit the console and type <strong>printmeminfo</strong>.  This will give you a rundown on how much space in memory various bits of your map require.  These numbers were regularly compared against our own in-house limits, and in some cases designers went to a great deal of trouble to keep the maps' memory footprints in check. <span class="anchor" id="line-178"></span><br />
+<br />
+ <span class="anchor" id="line-179"></span><span class="anchor" id="line-180"></span><ul><li><p class="line891"><strong>Image Memory</strong>: The amount of memory taken by every image currently loaded in the game, from the numbers on the HUD to game textures to mapmodel and monster skins.  This is arguably the most important limit, because it's also the easiest to completely blow away if you don't keep an eye on it.  Our internal limit was no more than <strong>200 megs</strong>.  If you see yourself approaching or surpassing this, you'll have to assess what assets you're using in your map and find which ones you can do without.  Replace textures you've only used a couple of times with something similar.  If you've only used a certain monster once, and it's not that important, cut it or swap it for something similar.  You may even have to consider splitting your map into two separate maps if your design allows for it. <span class="anchor" id="line-181"></span></li><li><p class="line891"><strong>Model Memory</strong>: Total size of .MD5MESHes and .LWO/.ASE objects in the map, which shouldn't exceed <strong>45 megs</strong>.  If this is too high, either cut creatures or type <strong>listmodels</strong> at the console to get a massive printout of every model in the map.  Condump to a text file and see if you can get rid of any less frequently used mapmodels. <span class="anchor" id="line-182"></span></li><li><p class="line891"><strong>Sound Memory</strong>: Total size of sound assets in memory, which should stay below <strong>40 megs</strong> - fairly self explanatory. <span class="anchor" id="line-183"></span></li><li><p class="line891"><strong>Collision Memory</strong>: The total amount of .cm data for your map and its assets, which shouldn't exceed <strong>30 megs</strong>.  If this is too high, either the map is just too big and complex or, more likely, lots of detailed func_static mapmodels are contributing their oversized clipmodels to the total.  Run around the game with <strong>g_showCollisionModels</strong> or <strong>g_showCollisionWorld</strong> set to 1 (and be prepared for poor framerates).  This will reveal places where you can group complex brushwork into a func_static you can then mark as "nonsolid", and then clip off with more simple brushwork textured with common/fullclip.  Existing func_statics that don't have specialized collision models will create their own from the model itself at runtime, which often leads to a needlessly complex CM.  Mark these as "noclipmodel" and clip them off with a few brushes as well to save memory. <span class="anchor" id="line-184"></span></li><li><p class="line891"><strong>AAS Memory</strong>: How large the AI navigation files are for this map, which you should keep below <strong>10 megs</strong>.  This number will be different than the total filesize of all your .aas files, because some things (like reachabilities) are generated at runtime.  If this total is too high (and it can sometimes skyrocket), run around your map with <strong>aas_showAreas</strong> set to 2 or 3.  Look for big regions of AAS data where monsters could never go, and monsterclip them off.  Make sure existing monsterclip extends up to the ceiling, or else needless AAS will be generated on <em>top</em> of it.  Also be wary of use of monsterclip or monsterclip_full that's too complex: if you have a pillar with lots of little slanty bits, the clipping doesn't have to exactly match the model.  Just immerse the whole thing in one large brush and be done with it. <span class="anchor" id="line-185"></span></li><li><p class="line891"><strong>Anims Memory</strong>: Memory specifically for MD5 anims, which should be kept below <strong>20 megs</strong>.  If this is too high, check the .def files for the creatures and NPCs you're using.  The reason we have separate marine and sometimes monster defs for certain levels is because if all of the anims that the base marine ever needs in the game are specified in the base marine .def, they're <em>all</em> loaded for every map that has a marine in it.  Make sure you're not using any entities with more anims than you need.  If you're utilizing one anim on an entity that also comes with a lot of others you don't need, consider including a custom .def file with your map. <span class="anchor" id="line-186"></span></li><li><p class="line891"><strong>Total Asset Memory</strong>: Our max total for all of the above plus extra incidental stuff is <strong>300 megs</strong>.  The other limits, you may have noticed, add up to more than 300.  This is so they can be treated a little fluidly as long as you stick to the big one.  Furthermore, if you <em>really</em> don't want to cut a certain cool bunch of textures that puts you over the image limit, making up the difference with savings elsewhere is a perfectly valid option (within reason, of course). <span class="anchor" id="line-187"></span><span class="anchor" id="line-188"></span><span class="anchor" id="line-189"></span><span class="anchor" id="line-190"></span><span class="anchor" id="line-191"></span></li></ul><p class="line867">
+<h2 id="head-9f5ed76183149f328b53a0973e8f98e3d8de8065">Tradeoffs</h2>
+<span class="anchor" id="line-192"></span><span class="anchor" id="line-193"></span><p class="line862">This document is by no means meant to give you the impression that the only thing you can do without killing framerates in Quake4 is a single textured room with no lights.  The game does have to spend time doing <em>something</em>, and the purpose of all of the above is to make you familiar with the kinds of things to be wary of.  With enough expertise you'll learn to address all of these issues in a scene at once, so that if you want to try something like a cool jailbar effect, you'll know what tradeoffs you can make to make it work. <span class="anchor" id="line-194"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">LevelEditor Performance  (last edited 2005-11-16 23:02:45 by <span title="AndrewWeldon @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/AndrewWeldon" title="AndrewWeldon @ 67.129.250.254[67.129.250.254]">AndrewWeldon</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_Performance?action=info">Info</a></li><li><a href="/quake4/LevelEditor_Performance?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

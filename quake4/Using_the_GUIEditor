@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Using the GUIEditor - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/Using_the_GUIEditor?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/Using_the_GUIEditor?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/Using_the_GUIEditor?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Using_the_GUIEditor?action=fullsearch&amp;value=linkto%3A%22Using+the+GUIEditor%22&amp;context=180">Using the GUIEditor</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/Using_the_GUIEditor">Using the GUIEditor</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Using_the_GUIEditor?action=info">Info</a></li><li><a href="/quake4/Using_the_GUIEditor?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h2 id="head-50566923463dfeb160e18d9ddcef5876967e09ae">The Basics</h2>
+<span class="anchor" id="line-2"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-3"></span>The GUI editor can be started from the console with the <strong>editguis</strong> command. You can also start it via the command line by adding the <strong>+editguis</strong> parameter.  <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line862">The GUI editor contains four main areas: the <strong>GUI display</strong>, the <strong>Navigator</strong>, the <strong>Transformer</strong>, and the <strong>Properties window</strong>.  <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line862">The <strong>GUI display</strong> is the main working area of the editor. This area displays all of the *Def elements in the GUI including the Desktop. The basic display properties of this area can be modified under <strong>View&gt;Options</strong>. *Def elements appear on the display as blue frames with handle controls on the sides and corners.  <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line862">The properties of a windowDef (rect, visible, etc.) are displayed in the <strong>Properties window</strong>. A separate Properties dialog can be brought up by hitting <strong>alt + Enter</strong> or double-clicking on the element. The Properties dialog contains three tabs: <strong>General</strong>, <strong>Image</strong>, and <strong>Text</strong>. All of these contain basic properties of the element which will be discussed individually in subsequent sections. The properties of an element can also be changed in the Properties window by clicking in the desired space to change a value, or clicking in an empty space to add a new property.  <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line862">The <strong>Navigator</strong> displays the *Def element tree of the GUI. The elements are layered and nested such that elements that are further down the tree are in a higher order than previous elements, and elements that are nested inside others are indented under their parent elements. Parent elements can be collapsed and expanded by clicking the arrow that appears to the left of them in the Navigator. For an element to be visible in its entirety, its parent window must be as large or bigger in size than the child element. The order of elements and their parent-child relationships can be changed within the Navigator -- see the section below on <strong>Working with Elements</strong>.  <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line862">The scripts that are associated with a windowDef appear in a separate editing area that can be brought up by hitting <strong>ctrl + Enter</strong> or by right-clicking on an element in either the display area or the Navigator and selecting "Scripts". See <a href="/quake4/Scripting_Actions_and_Animations">Scripting Actions and Animations</a> for more information on scripts. <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line867">
+<h2 id="head-7a0dade1d4e8bb18cba3535c2b1bdc54a62e7182">Basic GUI Structure and the Desktop</h2>
+<span class="anchor" id="line-16"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-17"></span>In this document, <strong>windowDef</strong> is used to refer to any of the *Def elements since they share nearly all of the same properties. If something is different, it’ll be noted. <span class="anchor" id="line-18"></span><span class="anchor" id="line-19"></span><p class="line862">GUIs are made up of individual elements, most of which are <strong>windowDefs</strong>. There are also choiceDefs, editDefs, and other *Defs that are described below. All windowDefs are contained in the <strong>Desktop</strong>, which is the master GUI parent element. When a windowDef is created, it’s nested under the Desktop. <a class="nonexistent" href="/quake4/WindowDefs">WindowDefs</a> can be nested within other windowDefs, creating a parent-child relationship.  <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line862">A windowDef contains <strong><a href="/quake4/Def_Flags">flags</a></strong> and <strong><a href="/quake4/Scripting_Actions_and_Animations">scripts</a></strong>. The flags are values that determine basic properties of the windowDef such as size, visibility, color, etc. Scripts are nested inside the windowDef's braces and are executed depending on the circumstances. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line862">The Desktop also contains all the definitions for <strong>floats</strong>, <strong>vec4s</strong>, and <strong>namedEvents</strong> (see section 6).  <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line874">If you use the GUI editor, you generally won’t be manually writing a windowDef (although you could open a plain text file and hand-script a GUI this way). But it’s useful to know what the basic windowDef scripting looks like in case you have to go into the scripting text itself and manipulate things. The following example is what the scripting looks like for a couple of simple windowDefs in a GUI: <span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><p class="line867"><span class="anchor" id="line-28"></span><pre>        windowDef element1
+<span class="anchor" id="line-29"></span>        {
+<span class="anchor" id="line-30"></span>                rect            0,0,640,480
+<span class="anchor" id="line-31"></span>                visible         1
+<span class="anchor" id="line-32"></span>                backcolor       1,1,0,1
+<span class="anchor" id="line-33"></span>        }
+<span class="anchor" id="line-34"></span>        
+<span class="anchor" id="line-35"></span>        windowDef element2
+<span class="anchor" id="line-36"></span>        {
+<span class="anchor" id="line-37"></span>                rect            0,0,300,300
+<span class="anchor" id="line-38"></span>                visible         1
+<span class="anchor" id="line-39"></span>                backcolor       1,1,0,0.5
+<span class="anchor" id="line-40"></span>                text            “this is some text” 
+<span class="anchor" id="line-41"></span>                textscale       0.5
+<span class="anchor" id="line-42"></span>                forecolor       1,1,1,1
+<span class="anchor" id="line-43"></span>        }
+<span class="anchor" id="line-44"></span></pre><span class="anchor" id="line-45"></span><span class="anchor" id="line-46"></span><p class="line874">The following example would be a windowDef that also contains some scripting that performs actions: <span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span><p class="line867"><span class="anchor" id="line-49"></span><pre>        windowDef element1
+<span class="anchor" id="line-50"></span>        {
+<span class="anchor" id="line-51"></span>                rect            0,0,640,480
+<span class="anchor" id="line-52"></span>                visible         1
+<span class="anchor" id="line-53"></span>                backcolor       1,1,0,1
+<span class="anchor" id="line-54"></span>
+<span class="anchor" id="line-55"></span>                onMouseEnter
+<span class="anchor" id="line-56"></span>                {
+<span class="anchor" id="line-57"></span>                        set “backcolor” “1,1,1,1” ;
+<span class="anchor" id="line-58"></span>                }
+<span class="anchor" id="line-59"></span>
+<span class="anchor" id="line-60"></span>                onMouseExit
+<span class="anchor" id="line-61"></span>                {
+<span class="anchor" id="line-62"></span>                        set “backcolor” “1,1,1,0.5” ;
+<span class="anchor" id="line-63"></span>                }
+<span class="anchor" id="line-64"></span>        }
+<span class="anchor" id="line-65"></span></pre><span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span><p class="line862">See <a href="/quake4/Def_Flags">definitions on what each of the possible flags</a> of a windowDef are. <span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span><p class="line874">There are two kinds of GUIs that can be created in the Quake 4 GUI system: menu and HUD GUIs and world GUIs. Menu and HUD GUIs are used as the basic game UI, while world GUIs are screens that players can walk up to and use in-game to solve puzzles, get information, or move around in the world (i.e., an elevator GUI that lets the player select a floor to move to). <span class="anchor" id="line-70"></span><span class="anchor" id="line-71"></span><span class="anchor" id="line-72"></span><p class="line867">
+<h2 id="head-9f3d08b8878d2219e0b5f17c747c35101915997c">Working with Elements</h2>
+<span class="anchor" id="line-73"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-74"></span>To move *Def elements around the display area, simply click and drag the element and move. To resize, simple click and drag a *Def element's control handle. The position and size of an element can also be controlled by the Properties dialog.  <span class="anchor" id="line-75"></span><span class="anchor" id="line-76"></span><p class="line862">To make an element the child of another element, first select the desired parent element. Then holding <strong>CTRL</strong>, select the desired child element. Then either right-click and select <strong>Arrange&gt;Make Child</strong> or hit <strong>CTRL + \</strong>. To reverse this action, repeat the process using the Desktop as the desired parent element. When selecting elements, the first element selected will always be the parent element when the action is taken. Multiple children elements can be made by selecting more than one element after first selecting the parent element.  <span class="anchor" id="line-77"></span><span class="anchor" id="line-78"></span><p class="line862">The layer order of elements can be changed in the Navigator. To do so, select an element and then either right-click and choose <strong>Arrange</strong> and then an option to move to front, back, or bring forward or backward. This can also be accomplished via the keyboard shortcuts displayed in the right-click menu.  <span class="anchor" id="line-79"></span><span class="anchor" id="line-80"></span><p class="line862">The GUI editor also allows you to resize or move elements by using another element as a point of reference. To make two elements the same size, select the first element, which will be used as the point of reference, and then holding down <strong>CTRL</strong> select the second element, which will be resized. Right-click and select <strong>Align&gt;Make Same Size</strong>. Select width, height, or both to resize. Multiple elements can be selected; the first element selected will always be the point of reference and all other selected elements will be resized accordingly. The <strong>Align</strong> option also allows you to align multiple elements along a primary element's left side, right side, top, bottom, or center. As with other actions, the first element will always be used as the point of reference and subsequently selected elements will be aligned accordingly.  <span class="anchor" id="line-81"></span><span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><p class="line867">
+<h2 id="head-4fd42fb526907351d02639473c4b9065eb548af7">Working with Textures</h2>
+<span class="anchor" id="line-84"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-85"></span>Elements reference <a href="/quake4/ArtReference_Q4Shaders">materials</a> with the <strong>background</strong> property. All <a href="/quake4/ArtReference_Q4Shaders">materials</a> used in GUIs must be sized in powers of 2. <a href="/quake4/ArtReference_Q4Shaders">Materials</a> can be simple textures, or they can be <a href="/quake4/ArtReference_Q4Shaders">shaders</a> defined in the <a href="/quake4/ArtReference_Q4Shaders">.mtr</a> file. A default <a href="/quake4/ArtReference_Q4Shaders">shader</a> will be used if the path used is not a <a href="/quake4/ArtReference_Q4Shaders">shader</a> path, but a path directly to an image. This default <a href="/quake4/ArtReference_Q4Shaders">shader</a> will be a 32bit alpha blend image <a href="/quake4/ArtReference_Q4Shaders">shader</a>. Even when referencing a direct image, it is best to leave off the .tga at the end of the path. <span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span><span class="anchor" id="line-88"></span><p class="line867">
+<h2 id="head-06c7685751ee7872398b69256a4ed39a4ce3f324">Using the Viewer</h2>
+<span class="anchor" id="line-89"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-90"></span>Hitting <strong>CTRL + T</strong> will display the GUI Viewer. This window shows the loaded GUI exactly as it would appear in-game, allowing you to test your GUI's functionality.  <span class="anchor" id="line-91"></span><span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span><p class="line867">
+<h2 id="head-02abf7e8643e5e7b7babda7e07106ce67eec3e55">Editor Options</h2>
+<span class="anchor" id="line-94"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-95"></span>There are several display options under the <strong>View</strong> tab. Zooming in and out is self-explanatory. <strong>Hide/Show</strong> will hide or show selected elements, or will unhide all elements. <strong>Show Outlines</strong> will show outlines for all elements in the GUI. <strong>Show Grid</strong> will display the grid, which is customizable under <strong>View&gt;Options</strong>. <strong>Snap to Grid</strong> will snap an element's position to the grid. <strong>Show Safe Area</strong> is used only for GUIs developed for consoles and displays the region which elements must stay inside in order to not be potentially clipped off by a TV screen. <span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span><p class="line862">There are two options under the <strong>Tools</strong> menu option. <strong>Viewer</strong> has already been discussed. <strong>Reload <a href="/quake4/ArtReference_Q4Shaders">Materials</a></strong> (<strong>CTRL + M</strong>) will reload the textures used in your GUI. This is especially helpful if you've changed a texture and want to quickly refresh your GUI to see the change.  <span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span><p class="line862">The <strong>Localize Current GUI</strong> option takes all text strings in the GUI and saves them out as "#str_xxxxxx" values referenced in *.lang files. This is used to ensure easy GUI localization for other languages. <span class="anchor" id="line-100"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Using the GUIEditor  (last edited 2005-11-04 21:17:17 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Using_the_GUIEditor?action=info">Info</a></li><li><a href="/quake4/Using_the_GUIEditor?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

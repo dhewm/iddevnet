@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Basic FX file structure - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/Basic_FX_file_structure?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/Basic_FX_file_structure?action=print">
+<link rel="Appendix" title="fx_check.jpg" href="/quake4/Basic_FX_file_structure?action=AttachFile&amp;do=view&amp;target=fx_check.jpg">
+<link rel="Appendix" title="fx_sortorder.jpg" href="/quake4/Basic_FX_file_structure?action=AttachFile&amp;do=view&amp;target=fx_sortorder.jpg">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/Basic_FX_file_structure?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Basic_FX_file_structure?action=fullsearch&amp;value=linkto%3A%22Basic+FX+file+structure%22&amp;context=180">Basic FX file structure</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/Basic_FX_file_structure">Basic FX file structure</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Basic_FX_file_structure?action=info">Info</a></li><li><a href="/quake4/Basic_FX_file_structure?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line862">An effect file is made up of Segments. A segment can be one of the following: <a href="#sprite">Sprite</a>, <a href="#orientedsprite">Oriented Sprite</a>, <a href="#model">Model</a>, <a href="#line">Line</a>, <a href="#linkedline">Linked Line</a>, <a href="#decal">Decal</a>, <a href="#electricity">Electricity</a>, <a href="#sound">Sound</a>, <a href="#light">Light</a>, <a href="#debris">Debris</a>, <a href="#effect">Effect</a>, <a href="#visioneffect">Vision Effect</a> and <a href="#delay">Delay</a>. <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line874">Segments can be hidden by removing the check to the left of their name in the segment list. This does not remove the segment from an effect, but will hide it temporarily while you are working on the effect. This is useful while working on a specific segment of an effect. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867"><img class="attachment" src="/quake4/Basic_FX_file_structure?action=AttachFile&amp;do=get&amp;target=fx_check.jpg" title="attachment:fx_check.jpg" /> <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line867"><strong>Fx segment order is important:</strong> Fx segments at the top of the list will be last in the Z-Order. This means to have your sparks segments sort on top of your smoke, adjust your smoke segment layer to be above your sparks segment layer. This can be done by selecting segments and hitting CTRL + ] to move a segment forward, and CTRL + [ to move a segment backwards. <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867"><img class="attachment" src="/quake4/Basic_FX_file_structure?action=AttachFile&amp;do=get&amp;target=fx_sortorder.jpg" title="attachment:fx_sortorder.jpg" /> <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867">
+<h2 id="head-38024448cca6535ae41685c82148b5448f9e47e6">Segment Types</h2>
+<span class="anchor" id="line-12"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-13"></span><span class="anchor" id="sprite"></span> <span class="anchor" id="line-14"></span>
+<h3 id="head-44909e9e24f875884858f23456a11195ec9953b8">Sprite</h3>
+<span class="anchor" id="line-15"></span><ul><li style="list-style-type:none">A segment consisting of polygons that always face the player. <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span></li></ul><p class="line867"><span class="anchor" id="orientedsprite"></span> <span class="anchor" id="line-18"></span>
+<h3 id="head-aba1657f6ad1c054301771eab7a0d08101736673">Oriented Sprite</h3>
+<span class="anchor" id="line-19"></span><ul><li style="list-style-type:none">A segment made of polygons that face a direction specified in the segment properties. (Usually the normal of the effect.) <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span></li></ul><p class="line867"><span class="anchor" id="model"></span> <span class="anchor" id="line-22"></span>
+<h3 id="head-505f6cd3757497b1219903f11c842e734c064c19">Model</h3>
+<span class="anchor" id="line-23"></span><ul><li style="list-style-type:none">Models can be placed in segments and given motion/gravity effects. <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span></li></ul><p class="line867"><span class="anchor" id="line"></span> <span class="anchor" id="line-26"></span>
+<h3 id="head-718d2d69ba35ab53b96eb19a6fd19501864138ac">Line</h3>
+<span class="anchor" id="line-27"></span><ul><li style="list-style-type:none">A segment of lines. Lines differ from Sprites in that they have length and size (width), and can be made into very long rectangles. A sprite with a different height than width will be a diamond shape. <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span></li></ul><p class="line867"><span class="anchor" id="linkedline"></span> <span class="anchor" id="line-30"></span>
+<h3 id="head-facc1aca62e94d4e3754834bd04861cd835238f2">Linked Line</h3>
+<span class="anchor" id="line-31"></span><ul><li style="list-style-type:none">Linked lines are used to have a set of lines linked together at their ends. Mostly used for arcing and curved effects attached to models or as projectiles such as the Quake4 Nailgun. <span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span></li></ul><p class="line867"><span class="anchor" id="decal"></span> <span class="anchor" id="line-34"></span>
+<h3 id="head-f5413088f3453d003e3d0205721249df1fcd5a55">Decal</h3>
+<span class="anchor" id="line-35"></span><ul><li style="list-style-type:none">This segment places a decal on the surface the effect plays from. (note: some decal shaders have a specific lifetime in their material and as such are normally used only for weapon impact effects) <span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span></li></ul><p class="line867"><span class="anchor" id="electricity"></span> <span class="anchor" id="line-38"></span>
+<h3 id="head-d073b630da88f4e7ab113b630c1ef5c09fe6d80f">Electricity</h3>
+<span class="anchor" id="line-39"></span><ul><li style="list-style-type:none">Special case segment with Jitter and Forks settings allow easy simulation of electricity. <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span></li></ul><p class="line867"><span class="anchor" id="sound"></span> <span class="anchor" id="line-42"></span>
+<h3 id="head-7c8fc3625a61f7bc535c3b08018a463d0db36403">Sound</h3>
+<span class="anchor" id="line-43"></span><ul><li style="list-style-type:none">Effects can have sound segments that play sounds at specific times during the effect. <span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span></li></ul><p class="line867"><span class="anchor" id="light"></span> <span class="anchor" id="line-46"></span>
+<h3 id="head-f7c7a1aaa884d29771808d40a86141262dc9d35c">Light</h3>
+<span class="anchor" id="line-47"></span><ul><li style="list-style-type:none">A pointlight within the effect that has size/color/light shader/timing options <span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span></li></ul><p class="line867"><span class="anchor" id="debris"></span> <span class="anchor" id="line-50"></span>
+<h3 id="head-baaa2cb0acfcfaa10e39f693420711135261555d">Debris</h3>
+<span class="anchor" id="line-51"></span><ul><li style="list-style-type:none"><p class="line862">Debris defined in <a href="/quake4/DefinitionFile">.def files</a> can be used in place of models, in the event of more complex debris interactions. This segment allows the placement of Debris in an effect. <span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span></li></ul><p class="line867"><span class="anchor" id="effect"></span> <span class="anchor" id="line-54"></span>
+<h3 id="head-f1066880b8e433473c106e2dc8a3586384d6cf2c">Effect</h3>
+<span class="anchor" id="line-55"></span><ul><li style="list-style-type:none">Effects can be nested inside one another. By pressing the + plus button in the properties for this effect you can add complete effects to this segment, while the – minus button removes effects. <span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span></li></ul><p class="line867"><span class="anchor" id="visioneffect"></span> <span class="anchor" id="line-58"></span>
+<h3 id="head-f44a351a240b815cd9103c1255f5f81ce073cc31">Vision Effect</h3>
+<span class="anchor" id="line-59"></span><ul><li style="list-style-type:none">Camera Shake, Double Vision and Tunnel Vision can all be added to an effect. <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span></li></ul><p class="line867"><span class="anchor" id="delay"></span> <span class="anchor" id="line-62"></span>
+<h3 id="head-9651469caa6dbf4fd3bc8db12cdbcd8e0ed9c11e">Delay</h3>
+<span class="anchor" id="line-63"></span><ul><li style="list-style-type:none">By using a delay, an entire effect can have its looping state altered to include a delay. A delay segment affects every segment within an effect. <span class="anchor" id="line-64"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Basic FX file structure  (last edited 2005-11-04 00:31:34 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Basic_FX_file_structure?action=info">Info</a></li><li><a href="/quake4/Basic_FX_file_structure?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

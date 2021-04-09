@@ -1,0 +1,428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>ScriptSyntax - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/ScriptSyntax?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/ScriptSyntax?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/ScriptSyntax?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/ScriptSyntax?action=fullsearch&amp;value=linkto%3A%22ScriptSyntax%22&amp;context=180">ScriptSyntax</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/ScriptSyntax">ScriptSyntax</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ScriptSyntax?action=info">Info</a></li><li><a href="/quake4/ScriptSyntax?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-ecb082470f2306a4036992cb50df706ae82f819c">Syntax for Script Files</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">Script files are written in a very specific way. There are rules to follow for creating the various parts of the file, and for controlling the logic. This rule set is called a <em>syntax</em>. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line862">(i) If you are familiar with most programming languages, you won't find any big changes here. The script syntax is very similar to C / C++. You might want to check out the <a href="/quake4/ScriptVariable">section on variables</a> to see the changes there. <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line867">
+<h2 id="head-de566df430eb1c4f1f617046f4466b0c110af23b">Operators</h2>
+<span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867">
+<h3 id="head-082e5cf544a93808eedad461d36c8c0594b18a19">Basic Math Operations</h3>
+<span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867"><tt class="backtick">*</tt> <span class="anchor" id="line-12"></span><ul><li style="list-style-type:none">Multiply <span class="anchor" id="line-13"></span></li></ul><p class="line867"><tt class="backtick">/</tt> <span class="anchor" id="line-14"></span><ul><li style="list-style-type:none">Divide <span class="anchor" id="line-15"></span></li></ul><p class="line867"><tt class="backtick">+</tt> <span class="anchor" id="line-16"></span><ul><li style="list-style-type:none">Add <span class="anchor" id="line-17"></span></li></ul><p class="line867"><tt class="backtick">-</tt> <span class="anchor" id="line-18"></span><ul><li style="list-style-type:none">Subtract <span class="anchor" id="line-19"></span></li></ul><p class="line867"><tt class="backtick">++</tt> <span class="anchor" id="line-20"></span><ul><li style="list-style-type:none">Increment <span class="anchor" id="line-21"></span></li></ul><p class="line867"><tt class="backtick">--</tt> <span class="anchor" id="line-22"></span><ul><li style="list-style-type:none">Decrement <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span></li></ul><p class="line867"><span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span><span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span><span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span><span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span><span class="anchor" id="line-54"></span><span class="anchor" id="line-55"></span><span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span><span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span><span class="anchor" id="line-60"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+function isnumbered(obj) {
+  return obj.childNodes.length && obj.firstChild.childNodes.length && obj.firstChild.firstChild.className == 'LineNumber';
+}
+function nformat(num,chrs,add) {
+  var nlen = Math.max(0,chrs-(''+num).length), res = '';
+  while (nlen>0) { res += ' '; nlen-- }
+  return res+num+add;
+}
+function addnumber(did, nstart, nstep) {
+  var c = document.getElementById(did), l = c.firstChild, n = 1;
+  if (!isnumbered(c))
+    if (typeof nstart == 'undefined') nstart = 1;
+    if (typeof nstep  == 'undefined') nstep = 1;
+    n = nstart;
+    while (l != null) {
+      if (l.tagName == 'SPAN') {
+        var s = document.createElement('SPAN');
+        s.className = 'LineNumber'
+        s.appendChild(document.createTextNode(nformat(n,4,' ')));
+        n += nstep;
+        if (l.childNodes.length)
+          l.insertBefore(s, l.firstChild)
+        else
+          l.appendChild(s)
+      }
+      l = l.nextSibling;
+    }
+  return false;
+}
+function remnumber(did) {
+  var c = document.getElementById(did), l = c.firstChild;
+  if (isnumbered(c))
+    while (l != null) {
+      if (l.tagName == 'SPAN' && l.firstChild.className == 'LineNumber') l.removeChild(l.firstChild);
+      l = l.nextSibling;
+    }
+  return false;
+}
+function togglenumber(did, nstart, nstep) {
+  var c = document.getElementById(did);
+  if (isnumbered(c)) {
+    remnumber(did);
+  } else {
+    addnumber(did,nstart,nstep);
+  }
+  return false;
+}
+</script>
+
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-0e19b809b2d3978ea301924db299e62053282d4b_000\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-0e19b809b2d3978ea301924db299e62053282d4b_000" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span>  <span class="Comment">//float a;</span></span>
+<span class="line"><span class="LineNumber">   3 </span>  <span class="Comment">//float b;</span></span>
+<span class="line"><span class="LineNumber">   4 </span></span>
+<span class="line"><span class="LineNumber">   5 </span>  <span class="Comment">//assignment here. We place the values on the right into the variable on the left. </span></span>
+<span class="line"><span class="LineNumber">   6 </span>  <span class="ID">a</span> <span class="SPChar">=</span> <span class="Number">2</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   7 </span>  <span class="ID">b</span> <span class="SPChar">=</span> <span class="ID">a</span><span class="SPChar">;</span>        <span class="Comment">//now b is also equal to 2.</span></span>
+<span class="line"><span class="LineNumber">   8 </span></span>
+<span class="line"><span class="LineNumber">   9 </span>  <span class="Comment">//multiplication</span></span>
+<span class="line"><span class="LineNumber">  10 </span>  <span class="ID">a</span> <span class="SPChar">=</span> <span class="Number">1</span><span class="Number">0</span> <span class="SPChar">*</span> <span class="ID">b</span><span class="SPChar">;</span>   <span class="Comment">//a is now 20.</span></span>
+<span class="line"><span class="LineNumber">  11 </span></span>
+<span class="line"><span class="LineNumber">  12 </span>  <span class="Comment">//division</span></span>
+<span class="line"><span class="LineNumber">  13 </span>  <span class="ID">a</span> <span class="SPChar">=</span> <span class="ID">b</span> <span class="SPChar">/</span> <span class="Number">5</span><span class="SPChar">;</span>    <span class="Comment">//now a is 4-- following along?</span></span>
+<span class="line"><span class="LineNumber">  14 </span></span>
+<span class="line"><span class="LineNumber">  15 </span>  <span class="Comment">//addition </span></span>
+<span class="line"><span class="LineNumber">  16 </span>  <span class="ID">a</span> <span class="SPChar">=</span> <span class="ID">a</span> <span class="SPChar">+</span> <span class="Number">1</span><span class="Number">0</span><span class="SPChar">;</span>   <span class="Comment">//14</span></span>
+<span class="line"><span class="LineNumber">  17 </span></span>
+<span class="line"><span class="LineNumber">  18 </span>  <span class="Comment">//subtraction</span></span>
+<span class="line"><span class="LineNumber">  19 </span>  <span class="ID">a</span> <span class="SPChar">=</span> <span class="ID">a</span> <span class="SPChar">-</span> <span class="ID">b</span><span class="SPChar">;</span>    <span class="Comment">//12</span></span>
+<span class="line"><span class="LineNumber">  20 </span></span>
+<span class="line"><span class="LineNumber">  21 </span>  <span class="Comment">//increment</span></span>
+<span class="line"><span class="LineNumber">  22 </span>  <span class="ID">a</span><span class="SPChar">+</span><span class="SPChar">+</span><span class="SPChar">;</span>          <span class="Comment">//++ raises a number's value by 1.</span></span>
+<span class="line"><span class="LineNumber">  23 </span></span>
+<span class="line"><span class="LineNumber">  24 </span>  <span class="Comment">//decrement</span></span>
+<span class="line"><span class="LineNumber">  25 </span>  <span class="ID">a</span><span class="SPChar">-</span><span class="SPChar">-</span><span class="SPChar">;</span>          <span class="Comment">//and -- does the opposite.</span></span>
+<span class="line"><span class="LineNumber">  26 </span></span>
+<span class="line"><span class="LineNumber">  27 </span>  <span class="Comment">//look further in the page for the example of 'if'.</span></span>
+<span class="line"><span class="LineNumber">  28 </span>  <span class="Comment">//but know here we're comparing a and b. We are not saying that a equals b, that would be =.</span></span>
+<span class="line"><span class="LineNumber">  29 </span>  <span class="ResWord">if</span><span class="SPChar">(</span> <span class="ID">a</span> <span class="SPChar">=</span><span class="SPChar">=</span> <span class="ID">b</span> <span class="SPChar">)</span>  <span class="SPChar">{</span></span>
+<span class="line"><span class="LineNumber">  30 </span>   <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">println</span><span class="SPChar">(</span><span class="String">"a and b are the same"</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">  31 </span>  <span class="SPChar">}</span> <span class="ResWord">else</span> <span class="SPChar">{</span></span>
+<span class="line"><span class="LineNumber">  32 </span>   <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">println</span><span class="SPChar">(</span><span class="String">"a and b are different"</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">  33 </span>  <span class="SPChar">}</span></span>
+<span class="line"><span class="LineNumber">  34 </span></span>
+<span class="line"><span class="LineNumber">  35 </span></span>
+</pre></div><span class="anchor" id="line-61"></span><span class="anchor" id="line-62"></span><p class="line867">
+<h2 id="head-57f5859d83480419dab6b19df314e07921b5d1e2">Functions</h2>
+<span class="anchor" id="line-63"></span><span class="anchor" id="line-64"></span><p class="line874">A function is collection of script commands designed around a specific purpose. Usually they're built to do one thing that takes a bunch of smaller steps. You might write a function to activate all the monsters in a room, start up some machinery, or perform any small task. <span class="anchor" id="line-65"></span><span class="anchor" id="line-66"></span><p class="line867"><strong><tt class="backtick">[return&nbsp;type]&nbsp;[function&nbsp;name]&nbsp;(&nbsp;[parameter&nbsp;list&nbsp;])&nbsp;{</tt></strong> <span class="anchor" id="line-67"></span><span class="anchor" id="line-68"></span><p class="line867"><strong>  <tt class="backtick">\\function&nbsp;stuff&nbsp;goes&nbsp;here</tt> <span class="anchor" id="line-69"></span><span class="anchor" id="line-70"></span><p class="line867"></strong><tt class="backtick">}</tt><strong> <span class="anchor" id="line-71"></span><span class="anchor" id="line-72"></span><p class="line862">The <tt class="backtick">[return&nbsp;type]</tt> is one of the <a href="/quake4/ScriptVariable">variable types</a> the script system uses. <span class="anchor" id="line-73"></span><span class="anchor" id="line-74"></span><p class="line862">The <tt class="backtick">[function&nbsp;name]</tt> can be any name you like, however it cannot contain any spaces. <span class="anchor" id="line-75"></span><span class="anchor" id="line-76"></span><p class="line862">The <tt class="backtick">[parameter&nbsp;list]</tt> is a collection of <a href="/quake4/ScriptVariable">variables</a> you want to send into the function. If there are none, leave that section blank.  <span class="anchor" id="line-77"></span><span class="anchor" id="line-78"></span><p class="line867"></strong>Example:<strong> <span class="anchor" id="line-79"></span><span class="anchor" id="line-80"></span><p class="line867"><span class="anchor" id="line-81"></span><span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><span class="anchor" id="line-84"></span><span class="anchor" id="line-85"></span><span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span><span class="anchor" id="line-88"></span><span class="anchor" id="line-89"></span><span class="anchor" id="line-90"></span><span class="anchor" id="line-91"></span><span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span><span class="anchor" id="line-94"></span><span class="anchor" id="line-95"></span><span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span><span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-e21732e8cbae9594333cad19f70ee3f1f7b56315_001\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-e21732e8cbae9594333cad19f70ee3f1f7b56315_001" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span> <span class="ResWord">void</span> <span class="ID">simpleFunction</span><span class="SPChar">(</span> <span class="ResWord">float</span> <span class="ID">f</span> <span class="SPChar">)</span> <span class="SPChar">{</span></span>
+<span class="line"><span class="LineNumber">   3 </span> </span>
+<span class="line"><span class="LineNumber">   4 </span>  <span class="Comment">//double the number that was sent in and print it</span></span>
+<span class="line"><span class="LineNumber">   5 </span>  <span class="ID">f</span> <span class="SPChar">=</span> <span class="ID">f</span> <span class="SPChar">*</span> <span class="Number">2</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   6 </span>  <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">println</span><span class="SPChar">(</span><span class="String">"You sent in "</span> <span class="SPChar">+</span> <span class="ID">f</span> <span class="SPChar">+</span> <span class="String">", which when doubled is "</span> <span class="SPChar">+</span> <span class="ID">f</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   7 </span></span>
+<span class="line"><span class="LineNumber">   8 </span> <span class="SPChar">}</span></span>
+<span class="line"><span class="LineNumber">   9 </span></span>
+<span class="line"><span class="LineNumber">  10 </span> <span class="ResWord">void</span> <span class="ID">powerUpAmbush</span><span class="SPChar">(</span><span class="SPChar">)</span> <span class="SPChar">{</span></span>
+<span class="line"><span class="LineNumber">  11 </span></span>
+<span class="line"><span class="LineNumber">  12 </span>  <span class="Comment">//open the doors</span></span>
+<span class="line"><span class="LineNumber">  13 </span>  $<span class="ID">door_ambush_1</span><span class="SPChar">.</span><span class="ID">open</span><span class="SPChar">(</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">  14 </span>  $<span class="ID">door_ambush_2</span><span class="SPChar">.</span><span class="ID">open</span><span class="SPChar">(</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">  15 </span> </span>
+<span class="line"><span class="LineNumber">  16 </span>  <span class="Comment">//hit the lights</span></span>
+<span class="line"><span class="LineNumber">  17 </span>  <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">trigger</span><span class="SPChar">(</span> $<span class="ID">light_ambush</span> <span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">  18 </span></span>
+<span class="line"><span class="LineNumber">  19 </span>  <span class="Comment">//monsters!</span></span>
+<span class="line"><span class="LineNumber">  20 </span>  $<span class="ID">monster_osnap</span><span class="SPChar">.</span><span class="ID">show</span><span class="SPChar">(</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">  21 </span>  <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">trigger</span><span class="SPChar">(</span> $<span class="ID">ambush_spawner</span> <span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">  22 </span></span>
+<span class="line"><span class="LineNumber">  23 </span> <span class="SPChar">}</span></span>
+</strong></pre></div><span class="anchor" id="line-105"></span><span class="anchor" id="line-106"></span><p class="line867">
+<h3 id="head-33fa1f88fad201ff641244b2175ead899dca27f5">Calling functions</h3>
+<span class="anchor" id="line-107"></span><span class="anchor" id="line-108"></span><p class="line862">Functions can be executed, or called, from the map or from within the script. To call functions from a map, use an entity that supports the call keypair and assign it a function. Typically, triggers are what support the call function, though there are other cases. To call the <tt class="backtick">simpleFunction</tt> example above, you could enable a <a href="/quake4/Entity_TriggerOnce">trigger_once</a> with the following keypair: <span class="anchor" id="line-109"></span><span class="anchor" id="line-110"></span><p class="line867"><tt class="backtick">call&nbsp;&nbsp;&nbsp;simpleFunction</tt> <span class="anchor" id="line-111"></span><span class="anchor" id="line-112"></span><p class="line874">Triggers that fire more than once will call their functions each time they fire. Be wary of this when you set up your triggers. <span class="anchor" id="line-113"></span><span class="anchor" id="line-114"></span><p class="line862">To have a function called from within script, see the <a href="/quake4/AdvancedScriptTutorial">AdvancedScriptTutorial</a>. <span class="anchor" id="line-115"></span><span class="anchor" id="line-116"></span><p class="line867">
+<h2 id="head-8a48f412a6def8c56d93280168e023f9939b9664">Command Words</h2>
+<span class="anchor" id="line-117"></span><span class="anchor" id="line-118"></span><p class="line874">There are some command words in the script syntax that are used to perform various logic functions. Looping, decision making, running different function threads, and so on. <span class="anchor" id="line-119"></span><span class="anchor" id="line-120"></span><p class="line867">
+<h3 id="head-d8298efa86f64f03042018da4abd40a87831afdc">for</h3>
+<span class="anchor" id="line-121"></span><span class="anchor" id="line-122"></span><p class="line874">A for command, or for loop, creates a loop that executes a set number of times based on a condition <span class="anchor" id="line-123"></span><span class="anchor" id="line-124"></span><p class="line867"></strong><tt class="backtick">for&nbsp;(&nbsp;[starting&nbsp;condition];&nbsp;[condition];&nbsp;[iterator]&nbsp;)&nbsp;{</tt><strong> <span class="anchor" id="line-125"></span><span class="anchor" id="line-126"></span><p class="line867"></strong><tt class="backtick">}</tt><strong> <span class="anchor" id="line-127"></span><span class="anchor" id="line-128"></span><p class="line874">The starting condition is what happens when the for loop is first reached, it only happens once. The condition is what must be true for the loop to continue. the iterator is what happens at the end of each loop. Check out the example below: <span class="anchor" id="line-129"></span><span class="anchor" id="line-130"></span><p class="line867"><span class="anchor" id="line-131"></span><span class="anchor" id="line-132"></span><span class="anchor" id="line-133"></span><span class="anchor" id="line-134"></span><span class="anchor" id="line-135"></span><span class="anchor" id="line-136"></span><span class="anchor" id="line-137"></span><span class="anchor" id="line-138"></span><span class="anchor" id="line-139"></span><span class="anchor" id="line-140"></span><span class="anchor" id="line-141"></span><span class="anchor" id="line-142"></span><span class="anchor" id="line-143"></span><span class="anchor" id="line-144"></span><span class="anchor" id="line-145"></span><span class="anchor" id="line-146"></span><span class="anchor" id="line-147"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-1dac6d1e268a83c2a8aaf05c5e8b69f24f579056_002\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-1dac6d1e268a83c2a8aaf05c5e8b69f24f579056_002" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span> <span class="ResWord">float</span> <span class="ID">doorCounter</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   3 </span> <span class="ID">entity</span> <span class="ID">tempDoor</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   4 </span></span>
+<span class="line"><span class="LineNumber">   5 </span> <span class="ResWord">for</span><span class="SPChar">(</span> <span class="ID">doorCounter</span> <span class="SPChar">=</span> <span class="Number">1</span><span class="Number">0</span><span class="Number">0</span><span class="SPChar">;</span> <span class="ID">doorCounter</span> <span class="SPChar">&lt;</span> <span class="Number">1</span><span class="Number">0</span><span class="Number">6</span><span class="SPChar">;</span> <span class="ID">doorCounter</span><span class="SPChar">+</span><span class="SPChar">+</span> <span class="SPChar">)</span><span class="SPChar">{</span></span>
+<span class="line"><span class="LineNumber">   6 </span> </span>
+<span class="line"><span class="LineNumber">   7 </span>  <span class="ID">tempDoor</span> <span class="SPChar">=</span> <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">getEntity</span><span class="SPChar">(</span> <span class="String">"intense_door_"</span> <span class="SPChar">+</span> <span class="ID">doorCounter</span> <span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   8 </span>  <span class="ID">tempDoor</span><span class="SPChar">.</span><span class="ID">open</span><span class="SPChar">(</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   9 </span></span>
+<span class="line"><span class="LineNumber">  10 </span>  <span class="Comment">//mandatory waitFrame</span></span>
+<span class="line"><span class="LineNumber">  11 </span>  <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">waitFrame</span><span class="SPChar">(</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">  12 </span>   </span>
+<span class="line"><span class="LineNumber">  13 </span>  <span class="Comment">//the loop ends here, so the iterator will execute now. In our case,</span></span>
+<span class="line"><span class="LineNumber">  14 </span>  <span class="Comment">//doorCounter will be incremented by 1.</span></span>
+<span class="line"><span class="LineNumber">  15 </span> <span class="SPChar">}</span></span>
+<span class="line"><span class="LineNumber">  16 </span></span>
+</strong></pre></div><span class="anchor" id="line-148"></span><span class="anchor" id="line-149"></span><p class="line862">In that example, doors 100 through 105 will open. When <tt class="backtick">doorCounter</tt> becomes 106, the loop will end because the condition has turned false. <span class="anchor" id="line-150"></span><span class="anchor" id="line-151"></span><p class="line867">
+<h3 id="head-60dd3621c2f1eb8f455f7ddcff1aea19d25025d7">if</h3>
+<span class="anchor" id="line-152"></span><span class="anchor" id="line-153"></span><p class="line862">The <em>if</em> statement creates the opportunity for decision making. <span class="anchor" id="line-154"></span><span class="anchor" id="line-155"></span><p class="line867"><tt class="backtick">if&nbsp;(&nbsp;[condition]&nbsp;)&nbsp;{</tt> <span class="anchor" id="line-156"></span><ul><li style="list-style-type:none"><p class="line891"><tt class="backtick">[executed&nbsp;if&nbsp;condition&nbsp;is&nbsp;true]</tt> <span class="anchor" id="line-157"></span></li></ul><p class="line867"><tt class="backtick">}&nbsp;else&nbsp;{</tt> <span class="anchor" id="line-158"></span><ul><li style="list-style-type:none"><p class="line891"><tt class="backtick">[executed&nbsp;if&nbsp;condition&nbsp;is&nbsp;false]</tt> <span class="anchor" id="line-159"></span></li></ul><p class="line867"><tt class="backtick">}</tt> <span class="anchor" id="line-160"></span><span class="anchor" id="line-161"></span><p class="line874">Here is an example. <span class="anchor" id="line-162"></span><span class="anchor" id="line-163"></span><p class="line867"><span class="anchor" id="line-164"></span><span class="anchor" id="line-165"></span><span class="anchor" id="line-166"></span><span class="anchor" id="line-167"></span><span class="anchor" id="line-168"></span><span class="anchor" id="line-169"></span><span class="anchor" id="line-170"></span><span class="anchor" id="line-171"></span><span class="anchor" id="line-172"></span><span class="anchor" id="line-173"></span><span class="anchor" id="line-174"></span><span class="anchor" id="line-175"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-1c35f5fa6f8505215071d3951f5c7d2e1a3e9d35_003\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-1c35f5fa6f8505215071d3951f5c7d2e1a3e9d35_003" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span> <span class="ResWord">if</span><span class="SPChar">(</span> <span class="ID">numberOfSwitchesHit</span> <span class="SPChar">=</span><span class="SPChar">=</span> <span class="Number">2</span> <span class="SPChar">)</span> <span class="SPChar">{</span></span>
+<span class="line"><span class="LineNumber">   3 </span></span>
+<span class="line"><span class="LineNumber">   4 </span>   $<span class="ID">door_treasure</span><span class="SPChar">.</span><span class="ID">open</span><span class="SPChar">(</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   5 </span></span>
+<span class="line"><span class="LineNumber">   6 </span> <span class="SPChar">}</span> <span class="ResWord">else</span> <span class="SPChar">{</span></span>
+<span class="line"><span class="LineNumber">   7 </span></span>
+<span class="line"><span class="LineNumber">   8 </span>   <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">trigger</span><span class="SPChar">(</span> $<span class="ID">speaker_fail</span> <span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   9 </span></span>
+<span class="line"><span class="LineNumber">  10 </span> <span class="SPChar">}</span></span>
+<span class="line"><span class="LineNumber">  11 </span></span>
+</pre></div><span class="anchor" id="line-176"></span><span class="anchor" id="line-177"></span><p class="line862">Note that we use the <tt class="backtick">==</tt> comparison operator here, and not the <tt class="backtick">=</tt> assignment operator. <span class="anchor" id="line-178"></span><span class="anchor" id="line-179"></span><p class="line867">
+<h3 id="head-f8782e4117621b97fe087cf86e92a3b87d63bffb">while</h3>
+<span class="anchor" id="line-180"></span><span class="anchor" id="line-181"></span><p class="line862">The <em>while</em> is another loop, similar to the <em>for</em> loop but a bit simpler. <span class="anchor" id="line-182"></span><span class="anchor" id="line-183"></span><p class="line867"></strong><tt class="backtick">while(&nbsp;[condition]&nbsp;)&nbsp;{</tt><strong> <span class="anchor" id="line-184"></span><br />
+ <span class="anchor" id="line-185"></span><br />
+ <span class="anchor" id="line-186"></span></strong><tt class="backtick">}</tt><strong> <span class="anchor" id="line-187"></span><span class="anchor" id="line-188"></span><p class="line862">While the <tt class="backtick">[condition]</tt> is true, the loop will continue. <span class="anchor" id="line-189"></span><span class="anchor" id="line-190"></span><p class="line867"><span class="anchor" id="line-191"></span><span class="anchor" id="line-192"></span><span class="anchor" id="line-193"></span><span class="anchor" id="line-194"></span><span class="anchor" id="line-195"></span><span class="anchor" id="line-196"></span><span class="anchor" id="line-197"></span><span class="anchor" id="line-198"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-7ee3057d244b6296dd8cf74d31bc17f6803b73ef_004\', 1, 1);" \
+                class="codenumbers">Toggle line numbers<\/a>');
+</script>
+<pre dir="ltr" id="CA-7ee3057d244b6296dd8cf74d31bc17f6803b73ef_004" lang="en"><span class="line"><span class="LineNumber">   1 </span></span>
+<span class="line"><span class="LineNumber">   2 </span><span class="ResWord">while</span><span class="SPChar">(</span> $<span class="ID">monster_boss</span><span class="SPChar">.</span><span class="ID">getHealth</span><span class="SPChar">(</span><span class="SPChar">)</span> <span class="SPChar">&lt;</span> <span class="Number">5</span><span class="Number">0</span> <span class="SPChar">)</span> <span class="SPChar">{</span></span>
+<span class="line"><span class="LineNumber">   3 </span></span>
+<span class="line"><span class="LineNumber">   4 </span>   <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">trigger</span><span class="SPChar">(</span> $<span class="ID">explosion_backround_fx</span> <span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   5 </span>   <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">wait</span><span class="SPChar">(</span><span class="Number">8</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
+<span class="line"><span class="LineNumber">   6 </span></span>
+<span class="line"><span class="LineNumber">   7 </span><span class="SPChar">}</span></span>
+</strong></pre></div><span class="anchor" id="line-199"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptSyntax  (last edited 2005-11-04 21:21:27 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/JimShepard" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ScriptSyntax?action=info">Info</a></li><li><a href="/quake4/ScriptSyntax?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

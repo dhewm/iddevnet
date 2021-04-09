@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>ArtReference Q4Shaders SkinFiles - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/ArtReference_Q4Shaders_SkinFiles?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/ArtReference_Q4Shaders_SkinFiles?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/ArtReference_Q4Shaders_SkinFiles?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/ArtReference_Q4Shaders_SkinFiles?action=fullsearch&amp;value=linkto%3A%22ArtReference+Q4Shaders+SkinFiles%22&amp;context=180">ArtReference Q4Shaders SkinFiles</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/ArtReference_Q4Shaders_SkinFiles">ArtReferenc...s SkinFiles</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_Q4Shaders_SkinFiles?action=info">Info</a></li><li><a href="/quake4/ArtReference_Q4Shaders_SkinFiles?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line874">The .skin files are used to place multiple skins on the same geometry. The purpose of the .skin file, in the loosest terms, is to tell the game to switch a shader over to a new one if the user asks for it. You’ll need to write two shaders and then go to another file type to link it in a way the game can read it to switch out the shader. The benefit of using .skin files is that you can get a lot of mileage out of the same geometry. <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><ul><li style="list-style-type:none"><p class="line891"><strong>5.1 Write all of the shaders you need for the .skin file.</strong> Generally you’ll start out with a base shader file the geometry uses. Ignore the render line, since it’s only used for render stage. First example shader: <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span></li></ul><p class="line867"><span class="anchor" id="line-6"></span><pre>models/mapobjects/strogg/console/arcade_machine/a_machine
+<span class="anchor" id="line-7"></span>{
+<span class="anchor" id="line-8"></span>        noselfShadow
+<span class="anchor" id="line-9"></span>        unsmoothedtangents
+<span class="anchor" id="line-10"></span>
+<span class="anchor" id="line-11"></span>        renderbump  -size 512 512 -aa 2 -trace .05 -MergeHigh models/mapobjects/strogg/arcade_machine/arcade_local.tga models/mapobjects/strogg/arcade_machine/arcade_main_hi.lwo
+<span class="anchor" id="line-12"></span>
+<span class="anchor" id="line-13"></span>        bumpmap         addnormals (models/mapobjects/strogg/console/arcade_machine/a_machine_local.tga, heightmap (models/mapobjects/strogg/console/arcade_machine/a_machine_h.tga, 2))
+<span class="anchor" id="line-14"></span>        diffusemap              models/mapobjects/strogg/console/arcade_machine/a_machine_d.tga
+<span class="anchor" id="line-15"></span>        specularmap             models/mapobjects/strogg/console/arcade_machine/a_machine_s.tga
+<span class="anchor" id="line-16"></span>}
+<span class="anchor" id="line-17"></span></pre><span class="anchor" id="line-18"></span><p class="line874">Next you’ll need to write a variant shader for the same geometry. This new file will have something different about it, like the disuse pass is different, or you’re replacing all of the support files except the _local map. Second example shader: <span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span><pre>//yellow .skin for the arcade machine--------------------------------------------
+<span class="anchor" id="line-21"></span>
+<span class="anchor" id="line-22"></span>models/mapobjects/strogg/console/arcade_machine/a_machine_yellow
+<span class="anchor" id="line-23"></span>{
+<span class="anchor" id="line-24"></span>        noselfShadow
+<span class="anchor" id="line-25"></span>        unsmoothedtangents
+<span class="anchor" id="line-26"></span>
+<span class="anchor" id="line-27"></span>        bumpmap addnormals (models/mapobjects/strogg/console/arcade_machine/a_machine_local.tga, heightmap (models/mapobjects/strogg/console/arcade_machine/a_machine_yellow_h.tga, 2))
+<span class="anchor" id="line-28"></span>        diffusemap      models/mapobjects/strogg/console/arcade_machine/a_machine_yellow_d.tga
+<span class="anchor" id="line-29"></span>        specularmap     models/mapobjects/strogg/console/arcade_machine/a_machine_yellow_s.tga
+<span class="anchor" id="line-30"></span>
+<span class="anchor" id="line-31"></span>}
+<span class="anchor" id="line-32"></span></pre><span class="anchor" id="line-33"></span><p class="line874">In this case, we’ve kept most of the name the same, but added a _yellow to the end of the shader title name and the targas. Note: we’ve only replaced the _d, _h, and _s targa since we’d probably use the same _local map for the geometry. Don’t forget to save. <span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><ul><li style="list-style-type:none"><p class="line891"><strong>5.2 Now that you have two shaders, what do you do with them?</strong> First, make sure you have temp targa files in the correct directories with the diffuse targa a different color than the main skin page (Disregard if you’ve already painted the new skin). You’ll need to make a .skin file to allow for the game to switch between the two shader entries.  <span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><p class="line891"><strong>5.3 You’ll need to create a .skin file folder in the same area as your material folder</strong>: Under the pk4 files and beneath your materials folder, you’ll need to create another folder and name it skins. You’ll need to create your skin files locally. Meaning you’ll have to create them on your computer and then save them out in the appropriate directory inside the Quake4 game. <span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><ol type="i"><li>Through your computer’s Explorer, go into the Quake4 directories. (C:\Program Files\id Software\Quake 4) <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span></li><li class="gap">Open the q4base folder and find the pk4 files. <span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span></li><li class="gap">Underneath the pk4 files and beneath the materials folder, you’ll need to create a skins folder. Name it skins in all lower case letters. You’ll also want to create sub-folders inside the skins folder for models , mapobjects, etc.  <span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span></li><li class="gap">Open notepad on your computer and write out your model’s .skin file.  <span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span></li><li class="gap">After writing your .skin file, name it and save it as an .skin file in your newly created skins folder. Don’t save as a .txt file, but as an .skin file. You can easily rewrite the suffix to .skin. <span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span></li></ol></li></ul><p class="line874">The skin directory should mirror the material directory. The difference is that all of the path names are in the folders. In the above case, you would use skins/mapobjects/strogg/console/arcade_machine.skin. Example: <span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span><pre>skin skins/mapobjects/strogg/console/arcade_machine/a_machine_yellow
+<span class="anchor" id="line-52"></span>{
+<span class="anchor" id="line-53"></span>        "models/mapobjects/strogg/console/arcade_machine/a_machine" "models/mapobjects/strogg/console/arcade_machine/a_machine_yellow"
+<span class="anchor" id="line-54"></span>}
+<span class="anchor" id="line-55"></span></pre><span class="anchor" id="line-56"></span><p class="line874">This is a skin entry. It breaks down pretty simple: <span class="anchor" id="line-57"></span><span class="anchor" id="line-58"></span><p class="line867"><tt>skin</tt> – A keyword telling the game that this is an active skin <span class="anchor" id="line-59"></span><span class="anchor" id="line-60"></span><p class="line867"><tt>skins/mapobjects/strogg/console/arcade_machine/a_machine_yellow</tt> – This is the name of the skin entry. This is the name the game looks for when you call out a .skin file in radiant. <span class="anchor" id="line-61"></span><span class="anchor" id="line-62"></span><p class="line867"><tt>{&nbsp;-&nbsp;open&nbsp;bracket</tt> – Exactly like the open bracket for material files. All .skin files MUST have an open and close bracket. <span class="anchor" id="line-63"></span><span class="anchor" id="line-64"></span><p class="line867"><tt>"models/mapobjects/strogg/console/arcade_machine/a_machine"</tt> – The first set of quotes is the original skin the model has on it. It’s usually the main version of the shader. <span class="anchor" id="line-65"></span><span class="anchor" id="line-66"></span><p class="line867"><tt>"models/mapobjects/strogg/console/arcade_machine/a_machine_yellow”</tt> – The second set of quotes is the shader that will replace the original skin.  <span class="anchor" id="line-67"></span><span class="anchor" id="line-68"></span><p class="line867"><tt>}&nbsp;–&nbsp;close&nbsp;bracket</tt> – This closes the .skin entry.  <span class="anchor" id="line-69"></span><span class="anchor" id="line-70"></span><p class="line867"><strong>Save file.</strong>  <span class="anchor" id="line-71"></span><span class="anchor" id="line-72"></span><ul><li style="list-style-type:none"><p class="line891"><strong>5.4 So, I have this all set up…now what?</strong> Ok, now you need to check if the .skin will work. You’ll need to load the model’s geometry in radiant and check your work. <span class="anchor" id="line-73"></span><ol type="i"><li>Run q4local.exe <span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span></li><li class="gap">Drop down the console (hit ~) and type in editor. <span class="anchor" id="line-76"></span><span class="anchor" id="line-77"></span></li><li class="gap">Let the editor load up and right click in the XY top window <span class="anchor" id="line-78"></span><span class="anchor" id="line-79"></span></li><li class="gap">In the pop down menu select “new model…” <span class="anchor" id="line-80"></span><span class="anchor" id="line-81"></span></li><li class="gap">A dialog box will appear with a “base” folder.  <span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><ol type="a"><li>Find your low poly model  <span class="anchor" id="line-84"></span><span class="anchor" id="line-85"></span></li><li class="gap">Highlight it and click OK  <span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span></li><li class="gap">Allow the model to load <span class="anchor" id="line-88"></span><span class="anchor" id="line-89"></span></li></ol></li><li class="gap">With the model highlighted go to the Inspectors window <span class="anchor" id="line-90"></span><span class="anchor" id="line-91"></span><ol type="a"><li>DO NOT HIT THE SKIN BUTTON (it is currently broken, or at least it was) <span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span></li><li class="gap">Go the Key window and type in skin <span class="anchor" id="line-94"></span><span class="anchor" id="line-95"></span></li><li class="gap"><p class="line862">Underneath it is the Value window type in the skin name: In the above example: <tt>skins/mapobjects/strogg/console/arcade_machine/a_machine_yellow</tt> <span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span></li><li class="gap">Hit enter <span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span></li></ol></li><li class="gap">Place a light in the level. <span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><ol type="a"><li>Deselect the model by hitting “esc”. <span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span></li><li class="gap">Right click in the XY top window.  <span class="anchor" id="line-104"></span><span class="anchor" id="line-105"></span></li><li class="gap">In the pop down menu select light. <span class="anchor" id="line-106"></span><span class="anchor" id="line-107"></span></li><li class="gap">A light entity should appear. <span class="anchor" id="line-108"></span><span class="anchor" id="line-109"></span></li></ol></li><li class="gap">View the model with dynamic light by pressing F3 and F4 and look in their Render window.  <span class="anchor" id="line-110"></span><span class="anchor" id="line-111"></span></li><li class="gap">You should be seeing new skin on the old geometry.  <span class="anchor" id="line-112"></span><span class="anchor" id="line-113"></span>5.5 If everything works correctly, you're good to go! <span class="anchor" id="line-114"></span></li></ol></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ArtReference Q4Shaders SkinFiles  (last edited 2005-11-04 21:40:37 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_Q4Shaders_SkinFiles?action=info">Info</a></li><li><a href="/quake4/ArtReference_Q4Shaders_SkinFiles?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Entity FuncSpawner - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/Entity_FuncSpawner?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/Entity_FuncSpawner?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/Entity_FuncSpawner?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Entity_FuncSpawner?action=fullsearch&amp;value=linkto%3A%22Entity+FuncSpawner%22&amp;context=180">Entity FuncSpawner</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/Entity_FuncSpawner">Entity FuncSpawner</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Entity_FuncSpawner?action=info">Info</a></li><li><a href="/quake4/Entity_FuncSpawner?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-5bb7237bba555232ba730c3c31c64312010e595a">func_spawner</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867"><strong><a href="/quake4/LevelEditor">LevelEditor</a> Info:</strong> <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><ul><li><p class="line891"><strong>Usage:</strong> Spawns specified entities.  Target any number of <a href="/quake4/Entity_TargetNull">target_nulls</a> as possible spawn locations. <span class="anchor" id="line-6"></span></li><li><p class="line891"><strong>def_spawn:</strong> Set to the classname of the entity to be spawned (for example, 'def_spawn_1' '<a href="/quake4/Entity_MonsterBerserker">monster_berserker</a>'). Increment in the form def_spawn_X to spawn multiple types of entities from a single spawner. <span class="anchor" id="line-7"></span></li><li><p class="line891"><strong>count:</strong> Number of entities to spawn before being used up. Defaults to -1 (spawn infinitely). <span class="anchor" id="line-8"></span></li><li><p class="line891"><strong>max_active:</strong> If there are more than this number of entities from this spawner active, spawning will pause. Defaults to 4. <span class="anchor" id="line-9"></span></li><li><p class="line891"><strong>delay:</strong> Time between spawning. Defaults to 2. <span class="anchor" id="line-10"></span></li><li><p class="line891"><strong>auto_target:</strong> If set to 1, spawned enemies will automatically target their nearest foe. Defaults to 1. <span class="anchor" id="line-11"></span></li><li><p class="line891"><strong>face_enemy:</strong> If set to 1, spawned enemies will be facing their enemy when they spawn. Defaults to 0. <span class="anchor" id="line-12"></span></li><li><p class="line891"><strong>call:</strong> Script function to be called at the time of spawn. The entity parameter will be the spawner itself. <span class="anchor" id="line-13"></span></li><li><p class="line891"><strong>call_spawned:</strong> Script function to be called at the time of spawn. The entity parameter will be the spawned entity. <span class="anchor" id="line-14"></span></li><li><p class="line891"><strong>script_used_up:</strong> Script function to be called when the spawner has exhausted its available enemies. <span class="anchor" id="line-15"></span></li><li><p class="line891"><strong>skipVisible:</strong> If set to 1, spawn targets will be skipped if the player can see them (in PVS). Defaults to 1. <span class="anchor" id="line-16"></span></li><li><p class="line891"><strong>trigger_only</strong> If set to 1 the spawner will only spawn when triggered.  Each trigger will spawn 1 enemy. <span class="anchor" id="line-17"></span></li><li><p class="line891"><strong>waves:</strong> Number of enemies to spawn simultaneously. Defaults to 1. <span class="anchor" id="line-18"></span></li><li><p class="line891"><strong>remove:</strong> If set to 1 the spawner will be removed when triggered off.  Defaults to 1. <span class="anchor" id="line-19"></span></li><li><p class="line891"><strong>target def_spawn:</strong> Set this on the spawn target to override the spawn type of the spawner for the spawn target. Ex: Targets set to "def_spawn" "<a class="nonexistent" href="/quake4/Entity_MonsterGrunt">monster_grunt</a>" will only spawn <a class="nonexistent" href="/quake4/Entity_MonsterGrunt">Grunts</a>. <span class="anchor" id="line-20"></span></li><li><p class="line891"><strong>target remove:</strong> If set on a spawn target, target will be removed after it has been used. Defaults to 0. <span class="anchor" id="line-21"></span><span class="anchor" id="line-22"></span></li></ul><p class="line867"><strong>Additional Information:</strong> <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span><ul><li>All keys prefixed with 'spawn_' will be copied over directly without the spawn_ to newly created enemies. spawn_target, for example, will set the spawned entity's target. <span class="anchor" id="line-25"></span></li><li>Any fields on the target_nulls prefixed with 'spawn_' will also be copied over. <span class="anchor" id="line-26"></span></li><li><p class="line862">Entering an entity more than once in def_spawn fields will 'weight' spawning in favor of that entity. For example if <a href="/quake4/Entity_MonsterBerserker">monster_berserker</a> is listed as def_spawn_1 and def_spawn_2, and <a class="nonexistent" href="/quake4/Entity_MonsterStroggMarine">monster_strogg_marine</a> is listed as def_spawn_3, the <a href="/quake4/Entity_MonsterBerserker">monster_berserker</a> has a 66% chance of spawning, while the <a class="nonexistent" href="/quake4/Entity_MonsterStroggMarine">monster_strogg_marine</a> only has a 33% chance to spawn. <span class="anchor" id="line-27"></span></li><li>When skipVisible is set to 1, target_nulls whose origins lie flat on the floor may register as out of the PVS even when right in front of the player, resulting in monsters spawning in view. Consider nudging these spawns 1-2 units off the floor.  <span class="anchor" id="line-28"></span></li><li><p class="line862">Manually placed monster <a href="/quake4/LevelEditor_EntityReference">Entities</a> can be targeted from a func_spawner to be included in the max_active count. Ex: Targetting a <a class="nonexistent" href="/quake4/Entity_MonsterGunner">monster_gunner</a> from a spawner with 'max_active' '3' will only spawn up to 2 enemies until the <a class="nonexistent" href="/quake4/Entity_MonsterGunner">Gunner</a> is dead. <span class="anchor" id="line-29"></span></li></ul><p class="line862">Back to <a href="/quake4/LevelEditor_EntityReference">Entities</a>. <span class="anchor" id="line-30"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Entity FuncSpawner  (last edited 2005-12-08 20:11:15 by <span title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]"><a class="nonexistent" href="/quake4/AndrewWeldon" title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]">AndrewWeldon</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Entity_FuncSpawner?action=info">Info</a></li><li><a href="/quake4/Entity_FuncSpawner?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

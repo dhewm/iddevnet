@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Animations - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/Animations?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/Animations?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/Animations?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Animations?action=fullsearch&amp;value=linkto%3A%22Animations%22&amp;context=180">Animations</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink current"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Animations?action=info">Info</a></li><li><a href="/quake4/Animations?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-dc22a1e6ded03727147b64252dd747bc4c0aa105">Quake 4 Animation Guide</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867">
+<h2 id="head-72d0748c7878196226e271994b56ecd27cbc75a2">Animation - Creating .md5anims and .md5meshes</h2>
+<span class="anchor" id="line-4"></span><p class="line874">There are four steps to getting animated characters into the game: <span class="anchor" id="line-5"></span><span class="anchor" id="line-6"></span><ol type="1"><li>Character creation.  This step includes modeling a lo-poly version of the mesh, rigging the mesh, skinning the mesh and applying materials to it. <span class="anchor" id="line-7"></span></li><li>Animating the character. <span class="anchor" id="line-8"></span></li><li>Adding animations to the character’s .def file.  <span class="anchor" id="line-9"></span></li><li>Exporting the meshes and animations to the game. <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><span class="anchor" id="line-12"></span></li></ol><p class="line867">
+<h2 id="head-510c9c21da7189985872101de85475be373ac45f">1. Character Creation</h2>
+<span class="anchor" id="line-13"></span><p class="line874">The Quake 4 engine uses Maya to convert meshes and animations into usable .md5’s.  Guidelines for creating a character: <span class="anchor" id="line-14"></span><ul><li>The lo-poly mesh needs to be valid and clean with triangulated polygons and planar surfaces.  <span class="anchor" id="line-15"></span></li><li>The mesh must have UVs. <span class="anchor" id="line-16"></span></li><li>Freeze transformations and delete history on the mesh before binding it to the rig. <span class="anchor" id="line-17"></span></li><li>No more than four joints may influence any one vertex. <span class="anchor" id="line-18"></span></li><li>The mesh must be bound to the rig using the Smooth Bind option. <span class="anchor" id="line-19"></span></li><li>Joints should not have scale offsets on them before being bound to the mesh. <span class="anchor" id="line-20"></span></li><li>The character must have an origin.  The engine uses the origin information to place and move the character in the game.  For AI purposes, the origin should be constrained to the Z translation of the root joint or center of gravity.  For multiplayer, the origin should remain stationary.  The origin’s translation in Y should be zero.  (Y is up in Maya.) <span class="anchor" id="line-21"></span></li><li>The engine uses hardware skinning to create the mesh.  The file that creates the mesh should therefore have the character in as neutral a pose as possible. <span class="anchor" id="line-22"></span></li><li>Create and use reference files. Any changes to the master rig or mesh should be made in that file only.  When creating animation files in Maya, reference the reference file using a prefix that uniquely identifies the character.  <span class="anchor" id="line-23"></span></li><li>Shaders are applied using the Hypershade tool in Maya.  Create a material, click on the box next to the color channel and choose ‘File.’  Enter the shader name as it appears in the .mtr file into the ‘Image name’ box.  Apply the shader to the mesh. <span class="anchor" id="line-24"></span></li><li>It’s a good idea to save the files as ascii (.ma) rather than binary (.mb).  That way, the file can be edited through a text editor if needed. <span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span></li></ul><p class="line867">
+<h2 id="head-9972992d9e46ac214f7bae422bfd9a31c51e096d">2. Animating the Character</h2>
+<span class="anchor" id="line-27"></span><p class="line862">Animate the character as normal in Maya.  For those who are new to animation, <span class="u">The Animator’s Survival Kit</span> by Richard Williams is a good place to start.  There are also scores of tutorials on the Internet for Maya-specific animation techniques (<a class="http" href="http://www.highend3d.com">http://www.highend3d.com</a>).  <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><p class="line874">The animations used by AI and NPCs can move in space as long as the origin is properly constrained to the character.  Multiplayer animations are split between the torso and legs and should therefore be animated in place.  When saving the animation, be sure that the Time Slider includes the range of frames intended.  The animation will be exported using that range.  Otherwise, a range can be specified in the export block of the .def file (see below). <span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span><p class="line867">
+<h2 id="head-e654fd57899861ce331484f635dabe726f08906f">3. Adding Animations to the Character’s .def File</h2>
+<span class="anchor" id="line-33"></span><p class="line874">The character’s .def file contains the variables that define the character’s behavior.  Animations available to the character are listed in the .def file and Maya files are exported to the game as .md5’s based upon that information.  Animation files are added to the export block and then further defined in the model definition block.  The game Editor’s list of available animation is updated with information from the model definitions. <span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><span class="anchor" id="line-36"></span><p class="line867">
+<h2 id="head-7e8b6b1b5aefea7cf1f595cff343795173387092">3.1 The Export Block</h2>
+<span class="anchor" id="line-37"></span><p class="line874">The export block consists of: 1.) the options line, 2.) the Maya file being used to create the mesh, 3.) one or more Maya animation files.  For the character .def file, the export block should contain run, walk, and idle animations.  <span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><pre>export new_character
+<span class="anchor" id="line-40"></span>{
+<span class="anchor" id="line-41"></span>options -prefix nc_ -scale .3937 -align ALL -keep muzzle_flash
+<span class="anchor" id="line-42"></span>
+<span class="anchor" id="line-43"></span>mesh    characters/anims/mesh.ma        -dest characters/anims/mesh
+<span class="anchor" id="line-44"></span>anim    characters/anims/idle.ma        -dest characters/anims/idle
+<span class="anchor" id="line-45"></span>anim    characters/anims/walk.ma        -dest characters/anims/walk
+<span class="anchor" id="line-46"></span>anim    characters/anims/run.ma -dest characters/anims/run
+<span class="anchor" id="line-47"></span>}
+<span class="anchor" id="line-48"></span></pre><span class="anchor" id="line-49"></span><p class="line867">
+<h2 id="head-2d0d58d07218ecb67b3ef6d331c82215ef22b3f8">3.2 The Options Line</h2>
+<span class="anchor" id="line-50"></span><p class="line874">The above example contains options most frequently used when exporting .md5’s: <span class="anchor" id="line-51"></span><ul><li><p class="line891"><em>Prefix</em>: when referencing the master file, Maya will ask for a prefix that will be added to the joint names.  Specify that prefix here. <span class="anchor" id="line-52"></span></li><li><p class="line891"><em>Scale</em>: you can tweak the scale of the character on export. <span class="anchor" id="line-53"></span></li><li><p class="line891"><em>Align</em>: this will align the specified Maya node and all of its children to face the proper direction. <span class="anchor" id="line-54"></span></li><li><p class="line891"><em>Keep</em>: the engine will prune joints that have little or no skin weights attached to them.  If such joints are necessary to keep in the .md5, they must be specified here. <span class="anchor" id="line-55"></span><span class="anchor" id="line-56"></span></li></ul><p class="line874">Some additional commands that may be useful: <span class="anchor" id="line-57"></span><span class="anchor" id="line-58"></span><pre>"-rename"               Usage: -rename [joint name] [new name]"
+<span class="anchor" id="line-59"></span>"-parent"               Usage: -parent [joint name] [new parent]"
+<span class="anchor" id="line-60"></span>"-dest"                 Usage: -dest [filename]"
+<span class="anchor" id="line-61"></span>"-range"                Usage: -range [start frame] [end frame]"
+<span class="anchor" id="line-62"></span>"-cycleStart"           Usage: -cycleStart [first frame of cycle]"
+<span class="anchor" id="line-63"></span>"-rotate"               Usage: -rotate [yaw]"
+<span class="anchor" id="line-64"></span>"-nomesh"
+<span class="anchor" id="line-65"></span>"-clearorigin"
+<span class="anchor" id="line-66"></span>"-clearoriginaxis"
+<span class="anchor" id="line-67"></span>"-ignorescale"
+<span class="anchor" id="line-68"></span>"-xyzprecision"         Usage: -xyzprecision [precision]"
+<span class="anchor" id="line-69"></span>"-quatprecision"        Usage: -quatprecision [precision]"
+<span class="anchor" id="line-70"></span>"-jointthreshold"       Usage: -jointthreshold [minimum joint weight]"
+<span class="anchor" id="line-71"></span>"-skipmesh"             Usage: -skipmesh [name of mesh to skip]"
+<span class="anchor" id="line-72"></span>"-keepmesh"             Usage: -keepmesh [name of mesh to keep]"
+<span class="anchor" id="line-73"></span>"-keepmeshprefix"       Usage: -keepmeshprefix [prefix of mesh(s) to keep]"
+<span class="anchor" id="line-74"></span>"-jointgroup"           Usage: -jointgroup [group name] [joint1] [joint2]...[joint n]"
+<span class="anchor" id="line-75"></span></pre><span class="anchor" id="line-76"></span><p class="line867">
+<h2 id="head-6db736b79eb46e006275dc1c56044203ef7a0503">3.3 The Models Definition Block</h2>
+<span class="anchor" id="line-77"></span><p class="line874">The models definition block: 1.) defines the name of the model as it will appear in the game Editor, 2.) defines the names of the .md5 animations as they will appear in the game Editor and Modview, 3.) defines the channels of the character, 4.) allows sounds and effects to be played on specific frames of the animations.   <span class="anchor" id="line-78"></span><span class="anchor" id="line-79"></span><pre>model model_new_character
+<span class="anchor" id="line-80"></span>{
+<span class="anchor" id="line-81"></span>        mesh                  -dest characters/anims/mesh.md5mesh
+<span class="anchor" id="line-82"></span>        
+<span class="anchor" id="line-83"></span>        channel torso         (*waist)
+<span class="anchor" id="line-84"></span>        channel legs          (*hips origin -*waist)
+<span class="anchor" id="line-85"></span>
+<span class="anchor" id="line-86"></span>        anim idle               -dest characters/anims/idle.md5anim
+<span class="anchor" id="line-87"></span>        anim walk               -dest characters/anims/walk.md5anim
+<span class="anchor" id="line-88"></span>        {
+<span class="anchor" id="line-89"></span>                frame 7         footstep
+<span class="anchor" id="line-90"></span>                frame 14        footstep
+<span class="anchor" id="line-91"></span>        }
+<span class="anchor" id="line-92"></span>        anim run                -dest characters/anims/run.md5anim
+<span class="anchor" id="line-93"></span>}
+<span class="anchor" id="line-94"></span></pre><span class="anchor" id="line-95"></span><p class="line874">Consult the existing .def files that have been provided with the SDK for additional examples.  The multiplayer models and animations are defined and exported through player.def and player_meshes.def.  The marine AI models and animations are exported through ai/char_marine.def.   <span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span><p class="line867">
+<h2 id="head-7956248faa839d32021494d3829b8a1f5811adca">4. Exporting Meshes and Animations to the Game</h2>
+<span class="anchor" id="line-98"></span><p class="line874">Exporting the meshes and animations converts the Maya files to the md5’s that the game uses -- as defined and listed in the .def files.  It is first necessary to define where your version of Maya is located so that the engine can find it.  Follow these steps: <span class="anchor" id="line-99"></span><span class="anchor" id="line-100"></span><pre>Press the windows key and the pause/break key simultaneously.
+<span class="anchor" id="line-101"></span>Click the Advanced tab.
+<span class="anchor" id="line-102"></span>Click ‘Environmental Variables’.
+<span class="anchor" id="line-103"></span>Click ‘New’ and create a new variable name:
+<span class="anchor" id="line-104"></span>MAYA_LOCATION
+<span class="anchor" id="line-105"></span>The variable value should be the path to the Maya directory, i.e. 
+<span class="anchor" id="line-106"></span>C:\Program Files\Alias\Maya6.0\
+<span class="anchor" id="line-107"></span></pre><span class="anchor" id="line-108"></span><p class="line874">When ready to export, access the console and type: <span class="anchor" id="line-109"></span><span class="anchor" id="line-110"></span><pre>exportmodels ai/new_character.def
+<span class="anchor" id="line-111"></span></pre><span class="anchor" id="line-112"></span><p class="line874">Be sure to include any subdirectories below the ‘def’ directory.  This command will export any animation or mesh in the export block that has been updated since the last time the models from that .def file were exported.  Animations and meshes that haven’t been updated will be ignored.  Using the command ‘reexportmodels’ will export every animation and mesh within the def file, whether or not they have been updated. <span class="anchor" id="line-113"></span><span class="anchor" id="line-114"></span><p class="line874">Unless specifically defined in the export block, the frame range of the md5anim is pulled from the Time Slider of the source file.  However, the engine assumes that every animation begins with frame 1 regardless of where the Time Slider range happens to lie.  If the Time Slider starts on frame 10 and ends on frame 20, the .md5anim will start with frame 1 and end with frame 11.  Therefore, it’s a good idea to have every source animation begin at frame 1.   <span class="anchor" id="line-115"></span><span class="anchor" id="line-116"></span><p class="line874">To define the range in the export block: <span class="anchor" id="line-117"></span><span class="anchor" id="line-118"></span><pre>anim    walk.ma -range 10 20 -dest walk
+<span class="anchor" id="line-119"></span></pre><span class="anchor" id="line-120"></span><p class="line874">If there are any errors with the mesh or animations, etc., the engine will list the errors and the export will fail.  A common mistake is to make a syntax error in the .def file which will either cause an error on export, or cause a successful export where the character won’t actually appear in the game (a simple box shows up in its place).  If this occurs, scour the .def file for any misspellings, invalid paths, open braces, etc.  Otherwise, if the export is successful, the new .md5’s will be available to use in both the game Editor and Modview.  <span class="anchor" id="line-121"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Animations  (last edited 2005-11-04 17:29:52 by <span title="EricBiessman @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/EricBiessman" title="EricBiessman @ 67.129.250.254[67.129.250.254]">EricBiessman</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Animations?action=info">Info</a></li><li><a href="/quake4/Animations?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

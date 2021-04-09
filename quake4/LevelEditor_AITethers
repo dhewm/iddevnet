@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>LevelEditor AITethers - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/LevelEditor_AITethers?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/LevelEditor_AITethers?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/LevelEditor_AITethers?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/LevelEditor_AITethers?action=fullsearch&amp;value=linkto%3A%22LevelEditor+AITethers%22&amp;context=180">LevelEditor AITethers</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/LevelEditor_AITethers">LevelEditor AITethers</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_AITethers?action=info">Info</a></li><li><a href="/quake4/LevelEditor_AITethers?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-689bcce24f99c18e6a63b83d452b89caea658525">Quake 4 AI Tether Control System</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867">
+<h2 id="head-a2f0e6007c6f8b0dddb490c93b04f2c7101f6e27">AI Tethers</h2>
+<span class="anchor" id="line-4"></span><p class="line874">Tether entities are designed to limit the movement of the AI.  The limitation of movement will depend on the type of tether used.  When activated a tether entity will cause all targeted ai entities to be tethered using the properties defined by the tether entity itself.  For example, a ai_tether_radius entity which targeted two ai entities when activated would move both ai entities within the given radius of that tether entity.   Tethers can be used in many ways to control the flow of combat and to the movement of ai entities.  The orientation, indicated by the “angle” parameter, controls the direction AI should face when stopping within a tether when they have no enemy to look at. <span class="anchor" id="line-5"></span><span class="anchor" id="line-6"></span><p class="line874">Any entity with a range or radius should have the origin of the entity flush with the ground.  Since radiuses are actually spherical this maximizes the radius that the ai can actually use to navigate in. <span class="anchor" id="line-7"></span><span class="anchor" id="line-8"></span><p class="line867">
+<h3 id="head-9276b4026c915266c17d28679596ccad3a567b13">ai_tether_location</h3>
+<span class="anchor" id="line-9"></span><p class="line874">Location tethers limit the ai’s movement to the location that the tether is placed within.  Locations are defined by info_location entities or if none exist in current pvs area one will be automatically defined by the tether itself.   <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867">
+<h3 id="head-c91256847ba44920eba2fe0ad9b8bac9de661b41">ai_tether_radius</h3>
+<span class="anchor" id="line-12"></span><p class="line874">Radius tethers limit the ai’s movement to a given radius around the tether entity itself. Keep in mind that the radius is spherical and if it is placed off of the ground less of the sphere will be in contact with the ground. <span class="anchor" id="line-13"></span><span class="anchor" id="line-14"></span><p class="line867">
+<h3 id="head-721ccfd3a336429b32f5aca707e4ce7ee57802f7">ai_tether_behind</h3>
+<span class="anchor" id="line-15"></span><p class="line874">This entity will limit the ai’s movement to the behind the plane created by the tethers “angle” and its origin.  Imagine a line perpendicular to the “angle” extending infinitely to both the left and the right.  All area behind that would be valid for that tether. Set range to get the ai to move up to the tether itself. <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><p class="line867">
+<h3 id="head-980eb25be100eb9df9fdb9e73487d29188ff951e">ai_tether_none</h3>
+<span class="anchor" id="line-18"></span><p class="line874">This entity will clear any tether that is currently set on all targeted ai entities. <span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span><p class="line867">
+<h3 id="head-4575469b598f1f9160abf0271a7b63778f601862">ai_triggeronce</h3>
+<span class="anchor" id="line-21"></span><p class="line874">This can be used to check the state of it’s targeted ai as well as to trigger off events based on this status.  There are three possible states (you can use these separately or combined): <span class="anchor" id="line-22"></span><ul><li style="list-style-type:none"><p class="line891"><strong>condition_dead</strong> – set to 1 to test whether the attached ai entities are all dead<br />
+ <span class="anchor" id="line-23"></span><strong>condition_tether</strong> – set to 1 to test if the attached ai entities are within their tether range<br />
+ <span class="anchor" id="line-24"></span><strong>condition_stop</strong> – set to 1 to test whether the ai entities are all stopped.<br />
+ <span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span></li></ul><p class="line874">Keep in mind that ai_triggeronce/ai_trigger_multiple are always thinking once they’ve been turned on.  So it’s best to only trigger these when they’re needed.  The other thing to keep in mind is that you can use these to target both ai and func_spawners.  So if you wanted an event to occur after a func_spawner was finished, you would target it with the ai_trigger. <span class="anchor" id="line-27"></span><span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><p class="line867">
+<h2 id="head-2262203e053ece844045f31257ab91fcc37edacd">Misc</h2>
+<span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line867">
+<h3 id="head-0539acbabb6c79c00caa6826ce7ec7ad513b9f4e">ai_avoid</h3>
+<span class="anchor" id="line-32"></span><p class="line874">This entity will instruct the ai to avoid pathing to any location within the radius specified by the “radius” key.   All door’s in the game automatically generate avoidance areas to prevent ai from stopping in doorways.  You can also specify which “team” will utilize the avoid, both, marine, or strogg.  ai_avoid cannot be toggled as it is “thrown away” when the map loads. <span class="anchor" id="line-33"></span><span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><p class="line867">
+<h3 id="head-a92f9e28aee72a557b66974dbd620a885c310f5b">ai_become_passive</h3>
+<span class="anchor" id="line-36"></span><p class="line874">This entity will switch all targeted AI to passive mode when activated.  AI in passive mode will use relaxed animations rather than combat animations, this includes custom idle animations set with "anim_idle".  AI in passive mode is also able to respond to the player when clicked on with animations or just lipsync.  The "ignoreEnemies" key (which defaults to 1) can also be set to prevent the AI from scanning for a new enemy, which would automatically switch them back in to aggressive mode if they found one.  This entity performs that same action as the script function "becomePassive". <span class="anchor" id="line-37"></span><span class="anchor" id="line-38"></span><p class="line867">
+<h3 id="head-41d9e643f9900f43930ba34e8f60cb51fed523ef">ai_become_aggressive</h3>
+<span class="anchor" id="line-39"></span><p class="line874">This entity will switch all targeted AI to aggressive mode when activated.  Aggressive mode is essentially combat ready mode.  The AI will move and act as if it were in combat, regardless of whether they currently have an enemy.  AI will also actively scan for new targets when in aggressive mode as well as take cover if any is near by while they wait for a target.  This entity performs the same action as the script function "becomeAggressive". <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><span class="anchor" id="line-42"></span><p class="line867">
+<h2 id="head-ea5cf3c6fea9a42945c9cae7bda2e2865ee21787">Debugging</h2>
+<span class="anchor" id="line-43"></span><span class="anchor" id="line-44"></span><p class="line867">
+<h3 id="head-2ad446af82bffe39a0e043bb047ce779d022b086">ai_debugTactical</h3>
+<span class="anchor" id="line-45"></span><p class="line874">Set to 1 to display tactical debugging information.  This includes tethers, enemies, movement, etc. <span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span><p class="line867">
+<h3 id="head-0414f9e072dbec78fee7cfbe98778a8665d6f38a">ai_debugHelpers</h3>
+<span class="anchor" id="line-48"></span><p class="line874">This command will show cover points near your position as well as any ai_avoid entities. <span class="anchor" id="line-49"></span><span class="anchor" id="line-50"></span><p class="line867">
+<h3 id="head-501c576e3db6433a9af9395e68c84e8eccf50067">ai_debugFilter</h3>
+<span class="anchor" id="line-51"></span><p class="line874">This command when issued will limit information output by ai_debugTactical to just the ai entity that is under your crosshair.  To reset it back to snow all ai entities you would issue the command with no ai entities under your crosshair. <span class="anchor" id="line-52"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">LevelEditor AITethers  (last edited 2006-02-09 02:29:09 by <span title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]"><a class="nonexistent" href="/quake4/AndrewWeldon" title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]">AndrewWeldon</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_AITethers?action=info">Info</a></li><li><a href="/quake4/LevelEditor_AITethers?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

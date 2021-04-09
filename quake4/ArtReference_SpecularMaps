@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>ArtReference SpecularMaps - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/ArtReference_SpecularMaps?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/ArtReference_SpecularMaps?action=print">
+<link rel="Appendix" title="image_01.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_01.jpg">
+<link rel="Appendix" title="image_02.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_02.jpg">
+<link rel="Appendix" title="image_03.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_03.jpg">
+<link rel="Appendix" title="image_04.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_04.jpg">
+<link rel="Appendix" title="image_05.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_05.jpg">
+<link rel="Appendix" title="image_06.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_06.jpg">
+<link rel="Appendix" title="image_07.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_07.jpg">
+<link rel="Appendix" title="image_08.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_08.jpg">
+<link rel="Appendix" title="image_09.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_09.jpg">
+<link rel="Appendix" title="image_10.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_10.jpg">
+<link rel="Appendix" title="image_11.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_11.jpg">
+<link rel="Appendix" title="image_12.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_12.jpg">
+<link rel="Appendix" title="image_13.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_13.jpg">
+<link rel="Appendix" title="image_14.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_14.jpg">
+<link rel="Appendix" title="image_15.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_15.jpg">
+<link rel="Appendix" title="image_16.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_16.jpg">
+<link rel="Appendix" title="image_17.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_17.jpg">
+<link rel="Appendix" title="image_18.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_18.jpg">
+<link rel="Appendix" title="image_19.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_19.jpg">
+<link rel="Appendix" title="image_20.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_20.jpg">
+<link rel="Appendix" title="image_21.jpg" href="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=view&amp;target=image_21.jpg">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/ArtReference_SpecularMaps?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/ArtReference_SpecularMaps?action=fullsearch&amp;value=linkto%3A%22ArtReference+SpecularMaps%22&amp;context=180">ArtReference SpecularMaps</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/ArtReference_SpecularMaps">ArtReference SpecularMaps</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_SpecularMaps?action=info">Info</a></li><li><a href="/quake4/ArtReference_SpecularMaps?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-eaa945ad446e8a902bcea4e2f343b720f78bafa3">Creating a Specular Map for Quake 4</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line874">This document will attempt to explain how to do a specular map for Quake4. This how-to can be used for both textures and skins. I took a section of both the local and diffuse maps of one of our Terminal textures and did a quickie specular map for it. I took screenshots and have included them with a short explanation. This demonstration was done after assuming the diffuse map has already been done. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867"><strong><span class="u">Step 1</span>:</strong> <span class="anchor" id="line-6"></span>Open Photoshop and then open your texture’s local and diffuse maps. Make a copy of your Local map, <strong>Grayscale</strong> it, <strong>Invert</strong> it, and then switch it back to <strong>RGB Color</strong>. Slide or copy over your grayscaled/inverted local map copy onto a new layer over your texture’s diffuse map. <span class="anchor" id="line-7"></span><span class="anchor" id="line-8"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_01.jpg" title="attachment:image_01.jpg" /> <span class="anchor" id="line-9"></span><span class="anchor" id="line-10"></span><p class="line867"><strong><span class="u">Step 2</span></strong>: <span class="anchor" id="line-11"></span>Hide your local map layer and select the diffuse map layer and desaturate it as shown. You can also grayscale it and then return it back to an RGB image. Either way will work.  <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_02.jpg" title="attachment:image_02.jpg" />  <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line867"><strong><span class="u">Step 3</span></strong>: <span class="anchor" id="line-16"></span>Using <strong>Color Balance</strong>, adjust the color of your diffuse map to the color range you’d like the specular map. Inject the specular map with blue tones for areas that will be lit with cool colored lighting, or make it red toned for warm lit areas.  Keep the color <strong>very</strong> desaturated since too intense a specular map color will change the overall color scheme of the original diffuse map too dramatically. Please be aware that you may also be going back into your specular map later on in the process to adjust the color tone. <span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_03.jpg" title="attachment:image_03.jpg" />  <span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span><p class="line867"><strong><span class="u">Step 4</span></strong>: <span class="anchor" id="line-21"></span>Go to the grayscaled/inverted local map layer and turn it back on to view it. Using the grayscaled/inverted local map as a <strong>template</strong> (which will be deleted later on) and on a new layer, use your selection tools to trace out the shapes that will edged, etc. Think of a car and how the seams in the sheet metal have a highlight from the sun, etc running along their edges. It’s the same idea here... you’ll be placing a highlight along the edges of bevels and seams to help roll the edges and highlight them when light hits them. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_04.jpg" title="attachment:image_04.jpg" />  <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line867"><strong><span class="u">Step 5</span></strong>: <span class="anchor" id="line-26"></span>In order to slice out the areas that are circular in your selection, use the <strong>guidelines</strong> and line them up to where you wish the selection to follow. Using the <strong>Elliptical Marquee Tool</strong> and holding down <strong>Alt</strong>, place the cursor onto the crosshair of the guidelines on one of the corners and pull out to follow the contour of the curve to delete the shape from the original box selection.   <span class="anchor" id="line-27"></span><span class="anchor" id="line-28"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_05.jpg" title="attachment:image_05.jpg" />  <span class="anchor" id="line-29"></span><span class="anchor" id="line-30"></span><p class="line867"><strong><span class="u">Step 6</span></strong>: <span class="anchor" id="line-31"></span>With your selection completed, turn off the grayscaled/inverted layer so it can’t be seen and then return to your top layer… <span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><ul><li><p class="line862">Click on <strong>Edit</strong> and select <strong>Stroke</strong>. <span class="anchor" id="line-34"></span></li><li><p class="line862">In the <strong>Stroke</strong> window, set the stroke width to <strong>1</strong> (or whatever width is needed). <strong>1</strong> seems to work best for edging. <span class="anchor" id="line-35"></span></li><li><p class="line862">Set the <strong>Location</strong> to <strong>Center.</strong> <span class="anchor" id="line-36"></span></li><li><p class="line862">Leave <strong>Opacity</strong> to 100%. <span class="anchor" id="line-37"></span></li><li><p class="line862">Hit <strong>OK</strong>. <span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span></li></ul><p class="line874">Click on the layer to turn off the selection and your stroked edging is left behind on your layer. Now it needs to be slightly blurred. <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><ul><li><p class="line862">Click on <strong>Filter</strong>. <span class="anchor" id="line-42"></span></li><li><p class="line862">Click on <strong>Blur</strong>. <span class="anchor" id="line-43"></span></li><li><p class="line862">Click on <strong>Gaussian Blur</strong>. <span class="anchor" id="line-44"></span></li><li><p class="line862">Set the blur to <strong>0.03</strong> or <strong>0.04</strong>. No more than that! <span class="anchor" id="line-45"></span><span class="anchor" id="line-46"></span></li></ul><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_06.jpg" title="attachment:image_06.jpg" />  <span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span><p class="line867"><strong><span class="u">Step 7</span></strong>: <span class="anchor" id="line-49"></span>After blurring the edging, decrease the opacity of the layer by 30 to 40%. <span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_07.jpg" title="attachment:image_07.jpg" />  <span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span><p class="line867"><strong><span class="u">Step 8</span></strong>: <span class="anchor" id="line-54"></span>Set your brush to its smallest setting and turn on your eraser. Using the smallest brush, erase back and forth over the edging line to break it up so it has more realism and isn’t so clean. <span class="anchor" id="line-55"></span><span class="anchor" id="line-56"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_08.jpg" title="attachment:image_08.jpg" />  <span class="anchor" id="line-57"></span><span class="anchor" id="line-58"></span><p class="line867"><strong><span class="u">Step 9</span></strong>: <span class="anchor" id="line-59"></span>Adjust the opacity of the layer yet again and selecting a larger brush size using the <strong>Dodge Tool</strong> to highlight corners, etc on the edging. <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_09.jpg" title="attachment:image_09.jpg" />  <span class="anchor" id="line-62"></span><span class="anchor" id="line-63"></span><p class="line867"><strong><span class="u">Step 10</span></strong>: <span class="anchor" id="line-64"></span>Do the same with the rest of the edging on your texture and follow the steps above... <span class="anchor" id="line-65"></span><span class="anchor" id="line-66"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_10.jpg" title="attachment:image_10.jpg" />  <span class="anchor" id="line-67"></span><span class="anchor" id="line-68"></span><p class="line867"><strong><span class="u">Step 11</span></strong>: <span class="anchor" id="line-69"></span>Find a suitable metal source fil to use as a specular surface. <span class="anchor" id="line-70"></span><span class="anchor" id="line-71"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_11.jpg" title="attachment:image_11.jpg" />  <span class="anchor" id="line-72"></span><span class="anchor" id="line-73"></span><p class="line867"><strong><span class="u">Step 12</span></strong>: <span class="anchor" id="line-74"></span>Cut out a section of your selected metal and size to fit somewhat to your selected area on the texture. <span class="anchor" id="line-75"></span><span class="anchor" id="line-76"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_12.jpg" title="attachment:image_12.jpg" />  <span class="anchor" id="line-77"></span><span class="anchor" id="line-78"></span><p class="line867"><strong><span class="u">Step 13</span></strong>: <span class="anchor" id="line-79"></span>Using the selection tool follow the contour of the shape you want the metal on and slide it over onto the resized metal image. Cut and copy the selected shape… <span class="anchor" id="line-80"></span><span class="anchor" id="line-81"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_13.jpg" title="attachment:image_13.jpg" />  <span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><p class="line867"><strong><span class="u">Step 14</span></strong>: <span class="anchor" id="line-84"></span>Copy and paste the selected piece into a new layer on your texture. <span class="anchor" id="line-85"></span><span class="anchor" id="line-86"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_14.jpg" title="attachment:image_14.jpg" />  <span class="anchor" id="line-87"></span><span class="anchor" id="line-88"></span><p class="line867"><strong><span class="u">Step 15</span></strong>: <span class="anchor" id="line-89"></span>Adjust the brightness and contrast of the layer <span class="anchor" id="line-90"></span><span class="anchor" id="line-91"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_15.jpg" title="attachment:image_15.jpg" />  <span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span><p class="line867"><strong><span class="u">Step 16</span></strong>: <span class="anchor" id="line-94"></span>Adjust the opacity of the layer <span class="anchor" id="line-95"></span><span class="anchor" id="line-96"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_16.jpg" title="attachment:image_16.jpg" />  <span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><p class="line867"><strong><span class="u">Step 17</span></strong>: <span class="anchor" id="line-99"></span>Using the <strong>Dodge Tool</strong> add a slight highlight to the metal. Then on a separate layer and setting your airbrush to <strong>Dissolve</strong>, spray a small amount of stipples on the layer above the metal layer. <span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_17.jpg" title="attachment:image_17.jpg" />  <span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span><p class="line867"><strong><span class="u">Step 18</span></strong>: <span class="anchor" id="line-104"></span>Using <strong>Gaussian Blur</strong>, blur the stipples 0.03 to 0.04%… <span class="anchor" id="line-105"></span><span class="anchor" id="line-106"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_18.jpg" title="attachment:image_18.jpg" />  <span class="anchor" id="line-107"></span><span class="anchor" id="line-108"></span><p class="line867"><strong><span class="u">Step 19</span></strong>: <span class="anchor" id="line-109"></span>I add highlights to the screws, etc… <span class="anchor" id="line-110"></span><span class="anchor" id="line-111"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_19.jpg" title="attachment:image_19.jpg" />  <span class="anchor" id="line-112"></span><span class="anchor" id="line-113"></span><p class="line867"><strong><span class="u">Step 20</span></strong>: <span class="anchor" id="line-114"></span>Delete the grayscaled/inverted local map layer, dodge edging layers to desired amounts, flatten remaining layers, and then using the <strong>Dodge Tool</strong> add little burn highlights on corners, etc. <span class="anchor" id="line-115"></span><span class="anchor" id="line-116"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_20.jpg" title="attachment:image_20.jpg" />  <span class="anchor" id="line-117"></span><span class="anchor" id="line-118"></span><p class="line867"><strong><span class="u">Step 21</span></strong>: <span class="anchor" id="line-119"></span>Adjust overall color and saturation of the specular map and save. Remember that too saturated a specular map will overpower the diffuse map colors. Make sure you delete your normal map template and remember that an inverted normal map is not to be used as a specular map… <span class="anchor" id="line-120"></span><span class="anchor" id="line-121"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_SpecularMaps?action=AttachFile&amp;do=get&amp;target=image_21.jpg" title="attachment:image_21.jpg" />  <span class="anchor" id="line-122"></span><span class="anchor" id="line-123"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ArtReference SpecularMaps  (last edited 2005-11-04 21:48:47 by <span title="EricBiessman @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/EricBiessman" title="EricBiessman @ 67.129.250.254[67.129.250.254]">EricBiessman</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_SpecularMaps?action=info">Info</a></li><li><a href="/quake4/ArtReference_SpecularMaps?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

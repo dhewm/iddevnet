@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Effect Creation Walkthrough - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/Effect_Creation_Walkthrough?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/Effect_Creation_Walkthrough?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/Effect_Creation_Walkthrough?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Effect_Creation_Walkthrough?action=fullsearch&amp;value=linkto%3A%22Effect+Creation+Walkthrough%22&amp;context=180">Effect Creation Walkthrough</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/Effect_Creation_Walkthrough">Effect Crea...Walkthrough</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Effect_Creation_Walkthrough?action=info">Info</a></li><li><a href="/quake4/Effect_Creation_Walkthrough?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line874">This is a step by step guide to creating a simple fire effect. <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">Remember that once you have added a segment to an effect you can use binds with <strong>editfx_play</strong> and <strong>editfx_playlooping</strong> to test the effect. This document assumes that after adding one segment you start playing the effect looping on a ground surface in a test map. As the effect is changed in the editor, the looping effect in the world will update. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><ol type="1"><li><p class="line862">Open the <a href="/quake4/FXEditor">FXEditor</a> with the <strong>+editfx</strong> console command. <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span></li><li class="gap"><p class="line862">Click <strong>File&gt;New</strong> or hit <strong>CTRL + N</strong>. <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span></li><li class="gap"><p class="line862">Right click inside the Segment window and click <strong>Insert&gt;Sprite</strong>. <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span></li><li class="gap"><p class="line862">Click the <a href="/quake4/FXEditor_Tab_-_Sprite">Sprite Tab</a> and in the <a href="/quake4/ArtReference_Q4Shaders">material field</a> (where it says '_material') enter a path to your fire image shader. In our case, it will be: <strong>gfx/effects/fire/fire4a</strong> <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span></li><li class="gap"><p class="line862">Go to the <a href="/quake4/FXEditor_Tab_-_Motion">Motion Tab</a> and clear out the existing Forward/Left/Up values. Replace them with a Forward range of 10 min, 50 max. Left of -5 min, 5 max, Up -5 min, 5 max. Make sure to give the Sprites a negative gravity value of -0.05 so they rise realistically. <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span></li><li class="gap"><p class="line862">Click the <a href="/quake4/FXEditor_Tab_-_Size">Size Tab</a> and give your sprite particles a size range of 15 min, 30 max for both height and width. Make sure to check <a href="/quake4/FXEditor_Tab_-_Size#lineardistribution">Linear Distribution</a> <span class="anchor" id="line-18"></span><span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span></li><li class="gap"><p class="line862">Go to the <a href="/quake4/FXEditor_Tab_-_Rotate">Rotate Tab</a> and give the segment a 0 min, 360 max value for start rotation. On the dropdown box for <a href="/quake4/Notes_about_Envelopes/Tables">Envelope</a>, select a Linear <a href="/quake4/ArtReference_Q4Shaders_Tables">table</a>. Hint: Hit the L key with the dropdown box selected to hop to the first <a href="/quake4/ArtReference_Q4Shaders_Tables">Table</a> that starts with the letter L. For the end rotation values, set -90 min and 90 max. Make sure to select <a href="/quake4/FXEditor_Tab_-_Rotate#endrelativetostart">End Relative to Start</a>. <span class="anchor" id="line-21"></span><span class="anchor" id="line-22"></span></li><li class="gap"><p class="line862">Click the <a href="/quake4/FXEditor_Tab_-_Alpha">Alpha Tab</a> and select an envelope for alpha fading. I recommend <strong>fastinslowout</strong>. This <a href="/quake4/ArtReference_Q4Shaders_Tables">table</a> is similar to cosine except the alpha ramps up quickly and fades slowly. Set a start value of 0, and an end value of 1. Make sure you check <a href="/quake4/FXEditor_Tab_-_Alpha#blendalphaandcolor">Blend Alpha and Color</a> As the fire <a href="/quake4/ArtReference_Q4Shaders">shader</a> we are using is an additive blend. <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span></li><li class="gap"><p class="line862">The fire is starting to take shape. Go to the <a href="/quake4/FXEditor_Tab_-_Emitter">Emitter Tab</a> and increase the count to 10 from 5. <span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span></li><li class="gap"><p class="line862">Go to the <a href="/quake4/FXEditor_Tab_-_Origin">Origin Tab</a>. Add Left and Up min/max values of -15, 15 so that the sprites will not spawn in the exact same location. You can leave Forward at 0 so that all fire particles spawn on the same surface. Make sure the distribution is <a href="/quake4/FXEditor_Tab_-_Origin#sphere">Sphere</a> or <a href="/quake4/FXEditor_Tab_-_Origin#cylinder">Cylinder</a> for even and realistic coverage. <span class="anchor" id="line-27"></span><span class="anchor" id="line-28"></span></li><li class="gap"><p class="line862">Lets add some embers to our fire. Create a new <a href="/quake4/FXEditor_Tab_-_Sprite">Sprite</a> segment and add this <a href="/quake4/ArtReference_Q4Shaders">material</a> to the <a href="/quake4/FXEditor_Tab_-_Sprite">Sprite Tab</a>: <strong>gfx/effects/energy_sparks/spark3</strong> Remember that you can <strong>right-click</strong> on a selected segment and click <strong>Rename</strong> so each segment you create has a more memorable name. Try renaming the fire segment to <strong>fire1</strong> and this new embers segment to <strong>embers</strong>. <span class="anchor" id="line-29"></span><span class="anchor" id="line-30"></span></li><li class="gap"><p class="line862">Go to the <a href="/quake4/FXEditor_Tab_-_Motion">Motion Tab</a> on the embers segment and set the <a href="/quake4/FXEditor_Tab_-_Motion">Motion</a> to 10 min 20 max for Forward. Set left/up values to be 0. This is in preparation for using <a href="/quake4/FXEditor_Tab_-_Orbit">Orbit</a> and <a href="/quake4/FXEditor_Tab_-_Offset">Offset</a>. Give the embers segment the same gravity as the fire, -0.05. <span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span></li><li class="gap"><p class="line862">Lets spawn the embers in a <a href="/quake4/FXEditor_Tab_-_Origin#cylinder">Cylinder</a> origin all around the fire. Do this by setting values of -25 min, 25 max for Forward, Left and Up. Also select <a href="/quake4/FXEditor_Tab_-_Origin#cylinder">Cylinder</a> distribution. <span class="anchor" id="line-33"></span><span class="anchor" id="line-34"></span></li><li class="gap"><p class="line862">Setup the <a href="/quake4/FXEditor_Tab_-_Alpha">Alpha</a> to use a Cosine <a href="/quake4/ArtReference_Q4Shaders_Tables">table</a> with a start value of 0 and an end value of 1. <span class="anchor" id="line-35"></span><span class="anchor" id="line-36"></span></li><li class="gap"><p class="line862">Move to the <a href="/quake4/FXEditor_Tab_-_Size">Size Tab</a> and set a min size of 0.5 and a max size of 2. <a class="nonexistent" href="/quake4/">Linear Distribution</a> checked again, these values apply to both Height and Width. <span class="anchor" id="line-37"></span><span class="anchor" id="line-38"></span></li><li class="gap"><p class="line862">Now lets adjust the <a href="/quake4/FXEditor_Tab_-_Offset">Offset</a> so that spawning embers will have random wiggly <a href="/quake4/FXEditor_Tab_-_Orbit">Orbits</a> simulating real fire embers. On the <a href="/quake4/FXEditor_Tab_-_Offset">Offset</a> tab, set a min of -10 and a max of 10 for Forward, Left and Up. <span class="anchor" id="line-39"></span><span class="anchor" id="line-40"></span></li><li class="gap"><p class="line862">Click the <a href="/quake4/FXEditor_Tab_-_Orbit">Orbit</a> tab and enter 0 min 360 max for the <strong>Start</strong> values for Roll, Yaw and Pitch. Select a Linear <a href="/quake4/Notes_about_Envelopes/Tables">Table Envelope</a> and set the <strong>End</strong> values to -120 min, 120 max. Different <a href="/quake4/FXEditor_Tab_-_Orbit">Orbit</a> values will lead to different results. Try setting values of -360 min, 360 max to see how the embers orbit faster and more randomly. You can also increase the <a href="/quake4/FXEditor_Tab_-_Offset">Offset</a> values for a similar effect. Remember that <a href="/quake4/FXEditor_Tab_-_Offset">Offset</a> determines the distance between the sprite and the rotate point while <a href="/quake4/FXEditor_Tab_-_Orbit">Orbit</a> determines how many degrees to rotate the sprite around the rotate point.  <span class="anchor" id="line-41"></span><span class="anchor" id="line-42"></span></li><li class="gap"><p class="line862">Now that we have added some embers, lets add some smoke to our fire. We want our smoke to use roughly the same dynamic as the fire, so lets select the <strong>fire1</strong> segment, copy and then paste it into our segment list. Then rename this segment to <strong>smoke1</strong>.  <span class="anchor" id="line-43"></span><span class="anchor" id="line-44"></span></li><li class="gap"><p class="line862">Now add this <a href="/quake4/ArtReference_Q4Shaders">material</a> to the <a href="/quake4/FXEditor_Tab_-_Sprite">Sprite Tab</a>: <strong>gfx/effects/smoke/cloud_alpha2</strong>  <span class="anchor" id="line-45"></span><span class="anchor" id="line-46"></span></li><li class="gap"><p class="line862">Move to the <a href="/quake4/FXEditor_Tab_-_Alpha">Alpha Tab</a> and uncheck <a href="/quake4/FXEditor_Tab_-_Alpha#blendalphaandcolor">Blend Alpha and Color</a> since the smoke <a href="/quake4/ArtReference_Q4Shaders">material</a> is blend, not additive. <span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span></li><li class="gap"><p class="line862">From the <a href="/quake4/FXEditor_Tab_-_Origin">Origin Tab</a>, we want to start the smoke a bit higher so that the particles start more towards the top of the flame, rather than at the base mixed with the fire. Set 25 min, 40 max for the Forward origin on the smoke segment. <span class="anchor" id="line-49"></span><span class="anchor" id="line-50"></span></li><li class="gap"><p class="line862">The smoke looks a bit too white and opaque, so lets fix that now. Move to the <a href="/quake4/FXEditor_Tab_-_Color">Color Tab</a> and set a medium greyish/brown color for the start value. Change the <a href="/quake4/Notes_about_Envelopes/Tables">Envelope</a> to Linear and set an end color of black. This will transition the smoke particles from grey to black. <span class="anchor" id="line-51"></span><span class="anchor" id="line-52"></span></li><li class="gap"><p class="line862">Now move to the <a href="/quake4/FXEditor_Tab_-_Alpha">Alpha Tab</a> and change the table from <strong>fastinslowout</strong> to <strong>cosine</strong>. This will make the smoke transitions smoother rather than start fast and fade slow. Change the end value to 0.6 while you are here as well to make the smoke less opaque. <span class="anchor" id="line-53"></span><span class="anchor" id="line-54"></span></li><li class="gap"><p class="line862">With the smoke segment in place, we can turn our attention to some last minute details with the fire. In order to make more realistic looking fire you need to use more than one fire source image in your effect. Lets copy our <strong>fire1</strong> segment and paste it again. This time, select the segment and hit <strong>CTRL + [</strong> twice to move it down in the Z order with the other fire segment. <span class="anchor" id="line-55"></span><span class="anchor" id="line-56"></span></li><li class="gap"><p class="line862">We can change the <a href="/quake4/ArtReference_Q4Shaders">material</a> to: <strong>gfx/effects/fire/fire2a</strong> on the <a href="/quake4/FXEditor_Tab_-_Sprite">Sprite Tab</a> to see how adding a second fire image makes our fire look more realistic. The interplay between various additive <a href="/quake4/ArtReference_Q4Shaders">materials</a> is important to many effects.  <span class="anchor" id="line-57"></span><span class="anchor" id="line-58"></span></li><li class="gap">At this point, our basic fire effect is complete. You can adjust size, lifetimes and origins to make larger and smaller versions of this effect. <span class="anchor" id="line-59"></span><span class="anchor" id="line-60"></span></li></ol><p class="line862">To see some a more advanced fire effect, load <strong>effects/fire/column_128</strong>. This effect uses multiple fire images, embers and smoke to build up a more complex fire effect. It utilizes heathaze shaders to warp the image around the fire as well as an <a href="/quake4/ArtReference_Q4Shaders_AnimatedStrips">animated strip</a> of fire. An <a href="/quake4/ArtReference_Q4Shaders_AnimatedStrips">animated strip</a> is an advanced <a href="/quake4/ArtReference_Q4Shaders">material</a> that is one image consisting of different frames of images. <span class="anchor" id="line-61"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Effect Creation Walkthrough  (last edited 2005-11-09 20:28:55 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Effect_Creation_Walkthrough?action=info">Info</a></li><li><a href="/quake4/Effect_Creation_Walkthrough?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

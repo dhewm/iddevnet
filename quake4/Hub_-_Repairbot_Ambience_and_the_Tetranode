@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Hub - Repairbot Ambience and the Tetranode - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=print">
+<link rel="Appendix" title="repairbot1.jpg" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=view&amp;target=repairbot1.jpg">
+<link rel="Appendix" title="repairbot2.jpg" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=view&amp;target=repairbot2.jpg">
+<link rel="Appendix" title="repairbot3.jpg" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=view&amp;target=repairbot3.jpg">
+<link rel="Appendix" title="repairbot4.jpg" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=view&amp;target=repairbot4.jpg">
+<link rel="Appendix" title="repairbot5.jpg" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=view&amp;target=repairbot5.jpg">
+<link rel="Appendix" title="repairbot6.jpg" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=view&amp;target=repairbot6.jpg">
+<link rel="Appendix" title="repairbot7.jpg" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=view&amp;target=repairbot7.jpg">
+<link rel="Appendix" title="repairbot8.jpg" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=view&amp;target=repairbot8.jpg">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=fullsearch&amp;value=linkto%3A%22Hub+-+Repairbot+Ambience+and+the+Tetranode%22&amp;context=180">Hub - Repairbot Ambience and the Tetranode</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode">Hub - Repai...e Tetranode</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=info">Info</a></li><li><a href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-163f4a7a25e679849da30510f160855458275765">Entity-Based Scripting: The Repair Bots</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867"><img class="attachment" src="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=get&amp;target=repairbot1.jpg" title="attachment:repairbot1.jpg" /> <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867"><br />
+<strong>Introduction</strong> <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line867"><br />
+<a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bots</a> opened up some fun options for scripted behavior in Quake 4. They serve more as an ambient set piece than an actual enemy and can add a lot of life to a scene. Rather than scripting this ambience for each scene, we created a common entity-based script function that we can call on any <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a>, allowing it to randomly move from one point to the next, ‘repairing’ all the way. <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867"><br />
+In this guide we won’t cover the use of the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> script (though you can find implementation info in the .script file comments and some game levels and probably will still know how to use it by the time we’re done), but rather use it as a detailed example of how we used a common script to create a flexible system that can be added to a map with no (additional) scripting required. <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867"><br />
+This guide assumes you are familiar with the basics of the <a href="/quake4/ScriptFile">Scripting</a> system and the <a href="/quake4/LevelEditor">level editor</a>. <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line867"><br />
+<strong>The Function</strong> <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line867"><br />
+Before we cover anything, let’s touch on the order of events within the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> function: <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><ul><li><p class="line862">Spawn <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a>. <span class="anchor" id="line-18"></span></li><li>Select a random target from an available list. <span class="anchor" id="line-19"></span></li><li><p class="line862">Check if another <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> is using that position. <span class="anchor" id="line-20"></span></li><li>If the position is occupied, select a new random target until finding one that is unoccupied. <span class="anchor" id="line-21"></span></li><li><p class="line862">Flag the target as occupied so no other <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bots</a> can select it. <span class="anchor" id="line-22"></span></li><li>Move to the target. <span class="anchor" id="line-23"></span></li><li>Look at a specific point of interest <span class="anchor" id="line-24"></span></li><li>Perform the ‘repair’ action <span class="anchor" id="line-25"></span></li><li>Mark the current target as unoccupied <span class="anchor" id="line-26"></span></li><li>Select a new target and repeat <span class="anchor" id="line-27"></span></li><li><p class="line862">If at any point the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> dies, set the current target as unoccupied and break the function <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span></li></ul><p class="line874">This ends up looking more complicated than it really is, so even if you’re not that familiar with the script system, don’t worry – if it makes you feel any better, this was my first script for the game! <span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line867"><br />
+Through the next two sections (Entities and Script), we’ll look at how we achieve each of these events and how the function was designed with a drop-anywhere mentality. <span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><p class="line867"><br />
+<strong>The Entities</strong> <span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><p class="line867"><br />
+Let’s start by examining the Entities used in one use of this system: the Tetranode in the Nexus Hub. I’ve moved some points around to get some clearer lines, but otherwise this is an accurate top-down view of all the available points in that scene. We can actually use this as a great outline of what will occur in our function. <span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><p class="line867"><br />
+<img class="attachment" src="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=get&amp;target=repairbot2.jpg" title="attachment:repairbot2.jpg" /> <span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><p class="line867"><br />
+All of these points are <a href="/quake4/Entity_TargetNull">target_nulls</a> used to control the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> positions during the sequence. If you recall, <a href="/quake4/Entity_TargetNull">target_nulls</a> don’t technically do anything. But in scripting systems such as this, they’ll be your best friend. <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><p class="line867"><br />
+You’ll notice I highlighted a specific target null that targets about half of the remaining points. This serves as a “list” from which the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bots</a> will select their points. Let’s take a look at the entity info box: <span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><p class="line867"><br />
+<img class="attachment" src="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=get&amp;target=repairbot3.jpg" title="attachment:repairbot3.jpg" /> <span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span><p class="line867"><br />
+Each target shown here is a valid target the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> may choose. We’ll examine how to pull values from this list in the Script section. <span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span><p class="line867"><br />
+Now, our available positions: <span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span><p class="line867"><br />
+<img class="attachment" src="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=get&amp;target=repairbot4.jpg" title="attachment:repairbot4.jpg" /> <span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span><p class="line867"><br />
+Each highlighted entity is another <a href="/quake4/Entity_TargetNull">target_null</a>, this time representing one of the points that the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> may select during the function. We’ll refer to these as ‘repairTargets.’ In looking at the entity info, we find a few differences. <span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span><p class="line867"><br />
+<img class="attachment" src="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=get&amp;target=repairbot5.jpg" title="attachment:repairbot5.jpg" /> <span class="anchor" id="line-54"></span><span class="anchor" id="line-55"></span><p class="line867"><br />
+You’ll notice we’ve added some keys. “action” and “duration” are used by special scriptedAction behavior that supports the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a>. We’ve also added a completely made up key, “occupied.” <span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span><p class="line867"><br />
+Even though the <a href="/quake4/Entity_TargetNull">target_null</a> doesn’t officially support keyvalues, we’re able to use them to store information. By using this, we know that when the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> spawns, this point will be available (as it starts unoccupied) and that if selected, the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> will move here and perform the “repair” action for 3 seconds. <span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span><p class="line867"><br />
+The target key then tells us where this <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> is going to look when it arrives (remember, that’s a key step we want it to perform). <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span><p class="line867"><br />
+Now to our targets: <span class="anchor" id="line-62"></span><span class="anchor" id="line-63"></span><p class="line867"><br />
+<img class="attachment" src="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=get&amp;target=repairbot6.jpg" title="attachment:repairbot6.jpg" /> <span class="anchor" id="line-64"></span><span class="anchor" id="line-65"></span><p class="line867"><br />
+These will be our ‘repairAction’ entities. You’ll notice not all the repairTargets have repairActions – we’ll cover this when we step through the script. <span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span><p class="line867"><br />
+As you can see, these entities have no special settings on them – we just need their positions. <span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span><p class="line867"><br />
+<img class="attachment" src="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=get&amp;target=repairbot7.jpg" title="attachment:repairbot7.jpg" /> <span class="anchor" id="line-70"></span><span class="anchor" id="line-71"></span><p class="line867"><br />
+This entity layout ends up giving us a nice visual representation of how our function will flow. We see our list targeting each repairTarget, which in turn targets the repairAction point at which the Repair Bot will look during the operation. <span class="anchor" id="line-72"></span><span class="anchor" id="line-73"></span><p class="line867"><br />
+There’s one final entity in the mix, a <a href="/quake4/Entity_FuncSpawner">func_spawner</a> to feed <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bots</a> for an endless supply: <span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span><p class="line867"><br />
+<img class="attachment" src="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile&amp;do=get&amp;target=repairbot8.jpg" title="attachment:repairbot8.jpg" /> <span class="anchor" id="line-76"></span><span class="anchor" id="line-77"></span><p class="line867"><br />
+The two important keys to note are: <span class="anchor" id="line-78"></span><span class="anchor" id="line-79"></span><ul><li><p class="line862">call_spawned: Whenever a <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> spawns, this function will be called, passing in the Repair Bot into the script. <span class="anchor" id="line-80"></span></li><li><p class="line862">spawn_list: This sets the “list” key on any <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> spawned from this spawner to “tetraList,” which in this case is the list of available positions we examined above. <span class="anchor" id="line-81"></span><span class="anchor" id="line-82"></span></li></ul><p class="line867"><br />
+These transition us nicely into the fun part: the script! <span class="anchor" id="line-83"></span><span class="anchor" id="line-84"></span><p class="line867"><br />
+<strong>The Script</strong> <span class="anchor" id="line-85"></span><span class="anchor" id="line-86"></span><p class="line867"><br />
+Now let’s break down the script and see how our entities fit into the mix. We’ve seen how to store the information, but how do we access and modify it from the script? <span class="anchor" id="line-87"></span><span class="anchor" id="line-88"></span><p class="line867"><br />
+The script file can be found in scripts/common/repair_bot.script for your own reference, but we’ll cover the entire function here (with comments on why each section is important, or why you can ignore some chunks). <span class="anchor" id="line-89"></span><span class="anchor" id="line-90"></span><p class="line867"><span class="anchor" id="line-91"></span><pre>void randomBots( entity repairBot )     {
+<span class="anchor" id="line-92"></span>        thread botActions( repairBot );
+<span class="anchor" id="line-93"></span>}
+<span class="anchor" id="line-94"></span></pre><span class="anchor" id="line-95"></span><span class="anchor" id="line-96"></span><p class="line862">You’ll recognize this as the script function set on the <a href="/quake4/Entity_FuncSpawner">func_spawner</a>. It might seem redundant to just thread another function, but this is actually extremely important – by threading the second function, we ensure that all the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bots</a> running this function simultaneously can run parallel with no issues. <span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><p class="line867"><span class="anchor" id="line-99"></span><pre>void botActions( entity botName )       {
+<span class="anchor" id="line-100"></span></pre><span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span><p class="line862">When the function starts, the only entity it knows is our <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a>, threaded from randomBots. <span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span><p class="line867"><span class="anchor" id="line-105"></span><pre>// Define the entities that will be used for random target selection
+<span class="anchor" id="line-106"></span>        entity repairTarget = $null_entity;
+<span class="anchor" id="line-107"></span>        entity oldTarget = $null_entity;
+<span class="anchor" id="line-108"></span></pre><span class="anchor" id="line-109"></span><span class="anchor" id="line-110"></span><p class="line874">Our next two lines declare a pair of local variables. We’ll set their values later in the function. <span class="anchor" id="line-111"></span><span class="anchor" id="line-112"></span><p class="line867"><span class="anchor" id="line-113"></span><pre>// Pull the name of the correct list passed to this Repair Bot from the spawner.
+<span class="anchor" id="line-114"></span>        entity botList = botName.getEntityKey("list");
+<span class="anchor" id="line-115"></span></pre><span class="anchor" id="line-116"></span><span class="anchor" id="line-117"></span><p class="line862">This is the single most important line in this script. With this one line, we’ve already made the difference between a static script and one that can be used anywhere. By pulling a keyvalue from an entity that is already a local variable, we know that any <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> can gain access to any list of entities we choose. <span class="anchor" id="line-118"></span><span class="anchor" id="line-119"></span><p class="line862">We’ve also opened our script wide open for gaining information from other entities. Now that the list <a href="/quake4/Entity_TargetNull">target_null</a> is stored, we have access to every entity that may be specified on the list as well as any keys or targets those entities may store. By keeping our entities as local variables to the function rather than relying on scripting them by name, we’ve already ensured that this function can be used anywhere with any entity list provided it follows the structure we established originally. <span class="anchor" id="line-120"></span><span class="anchor" id="line-121"></span><p class="line874">Let’s keep looking at ways we can access and fiddle with this information. <span class="anchor" id="line-122"></span><span class="anchor" id="line-123"></span><p class="line867"><span class="anchor" id="line-124"></span><pre>// Perform these actions as long as the Repair Bot lives.
+<span class="anchor" id="line-125"></span>        while ( isValidEntity ( botName ) ) {
+<span class="anchor" id="line-126"></span></pre><span class="anchor" id="line-127"></span><span class="anchor" id="line-128"></span><p class="line862">We’ll drop this in a while loop – <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bots</a> are somewhat flimsy, so this will help us break out if one should come across an untimely end, and also end the function if the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> is removed from the map by other means. Quick Aside: If you’re using entities that don’t explode (particularly any that don’t burn out such as the marines), you’ll want to use isLivingEntity instead – that one includes an extra check for health, as dead/ragdoll creatures may still count as ‘valid’ and cause problems. <span class="anchor" id="line-129"></span><span class="anchor" id="line-130"></span><p class="line867"><span class="anchor" id="line-131"></span><pre>// Select a new move target at random from the list of target_nulls
+<span class="anchor" id="line-132"></span>        repairTarget = qListRandom( botList );
+<span class="anchor" id="line-133"></span></pre><span class="anchor" id="line-134"></span><span class="anchor" id="line-135"></span><p class="line874">Now we’re ready to set our repairTarget keyvalue. Remember that previously we referred to our available move points as repairTargets – same applies here. Using the qListRandom function, we’re able to select an entity at random from our list of available entities. <span class="anchor" id="line-136"></span><span class="anchor" id="line-137"></span><p class="line862">We could also get away with repairTarget.randomTarget(), but qListRandom (a handy <a class="nonexistent" href="/quake4/ScriptUtility">ScriptUtility</a>) does some extra checks for us and adds handling in the event that one of our list entities is removed. <span class="anchor" id="line-138"></span><span class="anchor" id="line-139"></span><p class="line867"><span class="anchor" id="line-140"></span><pre>// Check against the previous target, and select a new one if the old target repeats itself.
+<span class="anchor" id="line-141"></span>        while ( repairTarget.getKey( "occupied" ) == "1" )      {
+<span class="anchor" id="line-142"></span>                repairTarget = qListRandom( botList );
+<span class="anchor" id="line-143"></span>                sys.waitFrame();
+<span class="anchor" id="line-144"></span>        }
+<span class="anchor" id="line-145"></span></pre><span class="anchor" id="line-146"></span><span class="anchor" id="line-147"></span><p class="line862">Now it’s time to bring the “occupied” key into the mix. We know that we don’t want two <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bots</a> to overlap at the same point, so before we do anything we check that key. As long as the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> finds repairTargets that are occupied, it will select a new target until it finds one with the “occupied” key set to 0. <span class="anchor" id="line-148"></span><span class="anchor" id="line-149"></span><p class="line867"><span class="anchor" id="line-150"></span><pre>// We found a valid target! Pull the action target from the move target.
+<span class="anchor" id="line-151"></span>        entity repairAction = repairTarget.getTarget(0);
+<span class="anchor" id="line-152"></span></pre><span class="anchor" id="line-153"></span><span class="anchor" id="line-154"></span><p class="line874">Once we have a target, we can use the getTarget function to pull the associated entity into the script. Using targets instead of keys can be quicker in setting up your entities (thanks to a handy Editor Shortcut), but remember that getTarget takes a float parameter to specify which target to select. getTarget(0) will select the “target” entity, but getTarget(4) will select the “target4” entity. Be very careful with this if storing more than one target per entity or if you’ve changed targets when it might be easy to accidentally get a “target1” key. <span class="anchor" id="line-155"></span><span class="anchor" id="line-156"></span><p class="line867"><span class="anchor" id="line-157"></span><pre>// Set target as occupied to prevent other repair bots from using it
+<span class="anchor" id="line-158"></span>        thread setOccupied( repairTarget );
+<span class="anchor" id="line-159"></span></pre><span class="anchor" id="line-160"></span><span class="anchor" id="line-161"></span><p class="line862">In the case of the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> function, I used a threaded function to toggle occupied status – this was a result of some debugging for an alternate setup and it worked, so it was never changed. In most cases, though, a simple entity.setKey should be appropriate. <span class="anchor" id="line-162"></span><span class="anchor" id="line-163"></span><p class="line874">Now that we have all our entities set up properly, let’s see how it all comes together for the meat of the function: <span class="anchor" id="line-164"></span><span class="anchor" id="line-165"></span><p class="line867"><span class="anchor" id="line-166"></span><pre>// Identify action type (repair target or kill target).
+<span class="anchor" id="line-167"></span>        if( isValidEntity ( repairAction ) )    {
+<span class="anchor" id="line-168"></span>                // Move to the target.
+<span class="anchor" id="line-169"></span>                aiScriptedMoveWait( botName, repairTarget , 32 , 0 );
+<span class="anchor" id="line-170"></span>                sys.waitFrame();
+<span class="anchor" id="line-171"></span>                
+<span class="anchor" id="line-172"></span>                // Run check to ensure bot is still valid.
+<span class="anchor" id="line-173"></span>                if( isValidEntity ( botName ) ) {
+<span class="anchor" id="line-174"></span>                        // Look at the target.
+<span class="anchor" id="line-175"></span>                        aiScriptedFaceWait( botName, repairAction, 0 );
+<span class="anchor" id="line-176"></span>                        sys.waitFrame();
+<span class="anchor" id="line-177"></span>        
+<span class="anchor" id="line-178"></span>                        // Run another check to ensure bot is still valid.
+<span class="anchor" id="line-179"></span>                        if( isValidEntity ( botName ) ) {
+<span class="anchor" id="line-180"></span>                                // Perform the scripted action.
+<span class="anchor" id="line-181"></span>                                aiScriptedActionWait( botName, repairTarget , 0 );
+<span class="anchor" id="line-182"></span>                                sys.waitFrame();
+<span class="anchor" id="line-183"></span>                                }
+<span class="anchor" id="line-184"></span>                        }
+<span class="anchor" id="line-185"></span>                        
+<span class="anchor" id="line-186"></span>                // Set target as unoccupied once action is completed.
+<span class="anchor" id="line-187"></span>                thread setOccupied( repairTarget );
+<span class="anchor" id="line-188"></span>        }
+<span class="anchor" id="line-189"></span></pre><span class="anchor" id="line-190"></span><span class="anchor" id="line-191"></span><p class="line874">You’ll notice first off that this entire chunk of script is an if conditional checking to see if repairAction is a valid entity. By not including targets for two of the repairTargets, I was able to include two very different behaviors at certain points. <span class="anchor" id="line-192"></span><span class="anchor" id="line-193"></span><p class="line867"><br />
+Also note the abundance of isValidEntity checks. These are very important when using any version of a ‘wait’ function on entities that can be killed, and at the very least spare you a lot of console warnings getting dumped (which also would prevent the  <span class="anchor" id="line-194"></span><span class="anchor" id="line-195"></span><p class="line867"><br />
+Otherwise the behavior is exactly as we outlined. The <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> moves to the repairTarget point, looks at the repairAction entity, performs the action specified on repairTarget, and then sets its repairTarget position back to unoccupied status. By some careful entity and script setup, we can get away with writing this chunk of script once. Imagine, in contrast, writing this for each <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> and each repairTarget in sequence. <span class="anchor" id="line-196"></span><span class="anchor" id="line-197"></span><p class="line867"><span class="anchor" id="line-198"></span><pre>// Move targets with no target are kill zones which should remove the repair bot. Handle those here.
+<span class="anchor" id="line-199"></span>        else    { 
+<span class="anchor" id="line-200"></span>                // Move to the target.
+<span class="anchor" id="line-201"></span>                aiScriptedMoveWait( botName, repairTarget , 64 , 0 ); 
+<span class="anchor" id="line-202"></span>                sys.waitFrame();
+<span class="anchor" id="line-203"></span>                        
+<span class="anchor" id="line-204"></span>                // Run check to ensure bot is still valid.
+<span class="anchor" id="line-205"></span>                if( isValidEntity ( botName ) ) {
+<span class="anchor" id="line-206"></span>                        // Set target as unoccupied once action is completed.
+<span class="anchor" id="line-207"></span>                        thread setOccupied( repairTarget );
+<span class="anchor" id="line-208"></span>                                
+<span class="anchor" id="line-209"></span>                        //Kill repair bot. FIX LATER IF THIS MAKES THINGS EXPLODE.
+<span class="anchor" id="line-210"></span>                        botName.removeUpdateSpawner();
+<span class="anchor" id="line-211"></span>                        break;
+<span class="anchor" id="line-212"></span>                }
+<span class="anchor" id="line-213"></span>        }
+<span class="anchor" id="line-214"></span></pre><span class="anchor" id="line-215"></span><span class="anchor" id="line-216"></span><p class="line862">Now we see the alternate behavior I specified for the two repairTarget positions that did not include repairAction targets. These points were hidden out of view and designed to keep fresh <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bots</a> cycling into the scene – also allowing the spawner to be turned off and eventually leave the zone empty. <span class="anchor" id="line-217"></span><span class="anchor" id="line-218"></span><p class="line867"><br />
+It’s another straightforward function here, but instead of performing an action, the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> moves to the repairTarget, sets the repairTarget as unoccupied, and removes itself. The removeUpdateSpawner function in this case was very important, as simply removing an entity caused the <a href="/quake4/Entity_FuncSpawner">func_spawner</a> to ‘forget’ to spawn more and killing them resulted in (as I’m sure you can imagine by my humorous commentary) an awkward explosion. <span class="anchor" id="line-219"></span><span class="anchor" id="line-220"></span><p class="line867"><span class="anchor" id="line-221"></span><pre>// Define the old target for comparison against the new target.
+<span class="anchor" id="line-222"></span>        oldTarget = repairTarget;
+<span class="anchor" id="line-223"></span>        }
+<span class="anchor" id="line-224"></span>}       
+<span class="anchor" id="line-225"></span></pre><span class="anchor" id="line-226"></span><span class="anchor" id="line-227"></span><p class="line862">This last line was from a previous version that also checked to make sure the <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> selected a new target and did not repeat the same target twice. In practice, it ended up not being a large concern, but you could run similar checks and comparisons by storing your variables in a similar fashion. <span class="anchor" id="line-228"></span><span class="anchor" id="line-229"></span><p class="line867"><br />
+That concludes our examination of the common <a class="nonexistent" href="/quake4/Entity_MonsterRepairBot">Repair Bot</a> script! Hopefully you’ve seen not only how to pull information into the script for flexible use, but also why much of this function was set up as it was. While this is more of a commentary on an existing example rather than a tutorial, hopefully you can take the information demonstrated here and put it to good use in your own sequences. Good luck! <span class="anchor" id="line-230"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Hub - Repairbot Ambience and the Tetranode  (last edited 2005-11-09 14:17:41 by <span title="AndrewWeldon @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/AndrewWeldon" title="AndrewWeldon @ 67.129.250.254[67.129.250.254]">AndrewWeldon</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=info">Info</a></li><li><a href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

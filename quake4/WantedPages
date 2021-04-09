@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>WantedPages - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/WantedPages?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/WantedPages?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/WantedPages?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/WantedPages?action=fullsearch&amp;value=linkto%3A%22WantedPages%22&amp;context=180">WantedPages</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/WantedPages">WantedPages</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/WantedPages?action=info">Info</a></li><li><a href="/quake4/WantedPages?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-8"></span><p class="line874">A list of non-existing pages including a list of the pages where they are referred to: <span class="anchor" id="line-9"></span><div class="controlbar">
+<a href="WantedPages?allpages=1">Include system pages</a>
+</div><ol><li><a class="nonexistent" href="/quake4/AFDeclaration">AFDeclaration</a>: <a href="/quake4/Declaration?highlight=AFDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/AFEditor">AFEditor</a>: <a href="/quake4/Declaration?highlight=AFEditor">Declaration</a></li><li><a class="nonexistent" href="/quake4/AddingScriptEvents">AddingScriptEvents</a>: <a href="/quake4/ScriptFile_Events?highlight=AddingScriptEvents">ScriptFile Events</a></li><li><a class="nonexistent" href="/quake4/AdvancedTutorial">AdvancedTutorial</a>: <a href="/quake4/ScriptFiles?highlight=AdvancedTutorial">ScriptFiles</a></li><li><a class="nonexistent" href="/quake4/AjudaAosIniciantes">AjudaAosIniciantes</a>: <a href="/quake4/P%C3%A1ginaPrincipal?highlight=AjudaAosIniciantes">PáginaPrincipal</a></li><li><a class="nonexistent" href="/quake4/AjudaConte%C3%BAdo">AjudaConteúdo</a>: <a href="/quake4/P%C3%A1ginaPrincipal?highlight=AjudaConte%C3%BAdo">PáginaPrincipal</a></li><li><a class="nonexistent" href="/quake4/AlphaTest">AlphaTest</a>: <a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?highlight=AlphaTest">ArtReference Q4Shaders Extra Passes</a></li><li><a class="nonexistent" href="/quake4/AlphaZeroClamp">AlphaZeroClamp</a>: <a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?highlight=AlphaZeroClamp">ArtReference Q4Shaders Extra Passes</a></li><li><a class="nonexistent" href="/quake4/AudioDeclaration">AudioDeclaration</a>: <a href="/quake4/Declaration?highlight=AudioDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/AyudaDeContenidos">AyudaDeContenidos</a>: <a href="/quake4/P%C3%A1ginaDeInicio?highlight=AyudaDeContenidos">PáginaDeInicio</a></li><li><a class="nonexistent" href="/quake4/AyudaParaPrincipiantes">AyudaParaPrincipiantes</a>: <a href="/quake4/P%C3%A1ginaDeInicio?highlight=AyudaParaPrincipiantes">PáginaDeInicio</a></li><li><a class="nonexistent" href="/quake4/BasicTutorial">BasicTutorial</a>: <a href="/quake4/ScriptFiles?highlight=BasicTutorial">ScriptFiles</a></li><li><a class="nonexistent" href="/quake4/BuscarP%C3%A1gina">BuscarPágina</a>: <a href="/quake4/P%C3%A1ginaDeInicio?highlight=BuscarP%C3%A1gina">PáginaDeInicio</a></li><li><a class="nonexistent" href="/quake4/CameraDefinition">CameraDefinition</a>: <a href="/quake4/Declaration?highlight=CameraDefinition">Declaration</a></li><li><a class="nonexistent" href="/quake4/ClampTable">ClampTable</a>: <a href="/quake4/ArtReference_Q4Shaders_Tables?highlight=ClampTable">ArtReference Q4Shaders Tables</a></li><li><a class="nonexistent" href="/quake4/ClampTables">ClampTables</a>: <a href="/quake4/ArtReference_Q4Shaders_Tables?highlight=ClampTables">ArtReference Q4Shaders Tables</a></li><li><a class="nonexistent" href="/quake4/DeveloperMode">DeveloperMode</a>: <a href="/quake4/ScriptEvent_println?highlight=DeveloperMode">ScriptEvent println</a></li><li><a class="nonexistent" href="/quake4/Doom3World">Doom3World</a>: <a href="/quake4/Quake4SDK?highlight=Doom3World">Quake4SDK</a></li><li><a class="nonexistent" href="/quake4/EMailDeclaration">EMailDeclaration</a>: <a href="/quake4/Declaration?highlight=EMailDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/EffectDeclaration">EffectDeclaration</a>: <a href="/quake4/Declaration?highlight=EffectDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/Entity_AASFlood">Entity AASFlood</a>: <a href="/quake4/LevelEditor_Clipping?highlight=Entity+AASFlood">LevelEditor Clipping</a></li><li><a class="nonexistent" href="/quake4/Entity_FuncAASObstacle">Entity FuncAASObstacle</a>: <a href="/quake4/LevelEditor_Clipping?highlight=Entity+FuncAASObstacle">LevelEditor Clipping</a></li><li><a class="nonexistent" href="/quake4/EntityEvents">EntityEvents</a>: <a href="/quake4/ScriptFile_Events?highlight=EntityEvents">ScriptFile Events</a></li><li><a class="nonexistent" href="/quake4/GlowParm">GlowParm</a>: <a href="/quake4/ArtReference_Q4Shaders_Guides?highlight=GlowParm">ArtReference Q4Shaders Guides</a></li><li><a class="nonexistent" href="/quake4/HelpOnInstalling/ApacheOnUnix">HelpOnInstalling/ApacheOnUnix</a>: <a href="/quake4/SystemPagesInChineseGroup?highlight=HelpOnInstalling/ApacheOnUnix">SystemPagesInChineseGroup</a></li><li><a class="nonexistent" href="/quake4/HelpOnInstalling/StandaloneOnUnix">HelpOnInstalling/StandaloneOnUnix</a>: <a href="/quake4/SystemPagesInChineseGroup?highlight=HelpOnInstalling/StandaloneOnUnix">SystemPagesInChineseGroup</a></li><li><a class="nonexistent" href="/quake4/IgnoreAlphatest">IgnoreAlphatest</a>: <a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?highlight=IgnoreAlphatest">ArtReference Q4Shaders Extra Passes</a></li><li><a class="nonexistent" href="/quake4/InfoPlayerStart">InfoPlayerStart</a>: <a href="/quake4/BasicScriptTutorial?highlight=InfoPlayerStart">BasicScriptTutorial</a></li><li><a class="nonexistent" href="/quake4/InverseAlpha">InverseAlpha</a>: <a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?highlight=InverseAlpha">ArtReference Q4Shaders Extra Passes</a></li><li><a class="nonexistent" href="/quake4/KeyValue">KeyValue</a>: <a href="/quake4/MakeAMod-InstaGib?highlight=KeyValue">MakeAMod-InstaGib</a></li><li><a class="nonexistent" href="/quake4/LevelEditor_SPMapDefs">LevelEditor SPMapDefs</a>: <a href="/quake4/LevelEditor?highlight=LevelEditor+SPMapDefs">LevelEditor</a></li><li><a href="/quake4/LevelEditor_MPMapDefs">LevelEditor_MPMapDefs</a>: <a href="/quake4/ServerAdmin?highlight=LevelEditor_MPMapDefs">ServerAdmin</a></li><li><a class="nonexistent" href="/quake4/LipsyncDeclaration">LipsyncDeclaration</a>: <a href="/quake4/Declaration?highlight=LipsyncDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/LocalParm">LocalParm</a>: <a href="/quake4/ArtReference_Q4Shaders_Guides?highlight=LocalParm">ArtReference Q4Shaders Guides</a></li><li><a class="nonexistent" href="/quake4/MapFile">MapFile</a>: <a href="/quake4/MakeAMod-InstaGib?highlight=MapFile">MakeAMod-InstaGib</a></li><li><a class="nonexistent" href="/quake4/MaskAlpha">MaskAlpha</a>: <a href="/quake4/ArtReference_Q4Shaders_Extra_Passes?highlight=MaskAlpha">ArtReference Q4Shaders Extra Passes</a></li><li><a class="nonexistent" href="/quake4/MaterialDeclaration">MaterialDeclaration</a>: <a href="/quake4/Declaration?highlight=MaterialDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/MaterialImage">MaterialImage</a>: <a href="/quake4/ArtReference_Q4Shaders_Definitions?highlight=MaterialImage">ArtReference Q4Shaders Definitions</a></li><li><a class="nonexistent" href="/quake4/MaterialType">MaterialType</a>: <a href="/quake4/ArtReference_Q4Shaders_Definitions?highlight=MaterialType">ArtReference Q4Shaders Definitions</a></li><li><a class="nonexistent" href="/quake4/MaterialTypeDeclaration">MaterialTypeDeclaration</a>: <a href="/quake4/Declaration?highlight=MaterialTypeDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/ModelExportDeclaration">ModelExportDeclaration</a>: <a href="/quake4/Declaration?highlight=ModelExportDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/Navegaci%C3%B3nDelSitio">NavegaciónDelSitio</a>: <a href="/quake4/P%C3%A1ginaDeInicio?highlight=Navegaci%C3%B3nDelSitio">PáginaDeInicio</a></li><li><a class="nonexistent" href="/quake4/PDADeclaration">PDADeclaration</a>: <a href="/quake4/Declaration?highlight=PDADeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/PgDn">PgDn</a>: <a href="/quake4/LevelEditor_KeyboardShortcuts?highlight=PgDn">LevelEditor KeyboardShortcuts</a></li><li><a class="nonexistent" href="/quake4/PgUp">PgUp</a>: <a href="/quake4/LevelEditor_KeyboardShortcuts?highlight=PgUp">LevelEditor KeyboardShortcuts</a></li><li><a class="nonexistent" href="/quake4/PlaybackDeclaration">PlaybackDeclaration</a>: <a href="/quake4/Declaration?highlight=PlaybackDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/Q4Base">Q4Base</a>: <a href="/quake4/FXEditor_Tab_-_Sprite?highlight=Q4Base">FXEditor Tab - Sprite</a></li><li><a class="nonexistent" href="/quake4/ReferenciaDeSintaxis">ReferenciaDeSintaxis</a>: <a href="/quake4/P%C3%A1ginaDeInicio?highlight=ReferenciaDeSintaxis">PáginaDeInicio</a></li><li><a class="nonexistent" href="/quake4/ScriptEvents">ScriptEvents</a>: <a href="/quake4/ScriptFiles?highlight=ScriptEvents">ScriptFiles</a></li><li><a class="nonexistent" href="/quake4/ScriptUtility">ScriptUtility</a>: <a href="/quake4/Hub_-_Repairbot_Ambience_and_the_Tetranode?highlight=ScriptUtility">Hub - Repairbot Ambience and the Tetranode</a>, <a href="/quake4/Scripting_ScriptsAndEntities?highlight=ScriptUtility">Scripting ScriptsAndEntities</a></li><li><a class="nonexistent" href="/quake4/ScriptUtilityFunctions">ScriptUtilityFunctions</a>: <a href="/quake4/ScriptFile_Events?highlight=ScriptUtilityFunctions">ScriptFile Events</a></li><li><a class="nonexistent" href="/quake4/SkinDeclaration">SkinDeclaration</a>: <a href="/quake4/Declaration?highlight=SkinDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/SnapClampTable">SnapClampTable</a>: <a href="/quake4/ArtReference_Q4Shaders_Tables?highlight=SnapClampTable">ArtReference Q4Shaders Tables</a></li><li><a class="nonexistent" href="/quake4/SnapClampTables">SnapClampTables</a>: <a href="/quake4/ArtReference_Q4Shaders_Tables?highlight=SnapClampTables">ArtReference Q4Shaders Tables</a></li><li><a class="nonexistent" href="/quake4/SoundDeclaration">SoundDeclaration</a>: <a href="/quake4/Declaration?highlight=SoundDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/SoundTable">SoundTable</a>: <a href="/quake4/ArtReference_Q4Shaders_Tables?highlight=SoundTable">ArtReference Q4Shaders Tables</a></li><li><a class="nonexistent" href="/quake4/SysObject">SysObject</a>: <a href="/quake4/ScriptFiles?highlight=SysObject">ScriptFiles</a></li><li><a class="nonexistent" href="/quake4/SystemPagesInBulgarianGroup">SystemPagesInBulgarianGroup</a>: <a href="/quake4/SystemPagesGroup?highlight=SystemPagesInBulgarianGroup">SystemPagesGroup</a></li><li><a class="nonexistent" href="/quake4/SystemPagesInCroatianGroup">SystemPagesInCroatianGroup</a>: <a href="/quake4/SystemPagesGroup?highlight=SystemPagesInCroatianGroup">SystemPagesGroup</a></li><li><a class="nonexistent" href="/quake4/SystemPagesInIndonesianGroup">SystemPagesInIndonesianGroup</a>: <a href="/quake4/SystemPagesGroup?highlight=SystemPagesInIndonesianGroup">SystemPagesGroup</a></li><li><a class="nonexistent" href="/quake4/SystemPagesInKoreanGroup">SystemPagesInKoreanGroup</a>: <a href="/quake4/SystemPagesGroup?highlight=SystemPagesInKoreanGroup">SystemPagesGroup</a></li><li><a class="nonexistent" href="/quake4/SystemPagesInLatvianGroup">SystemPagesInLatvianGroup</a>: <a href="/quake4/SystemPagesGroup?highlight=SystemPagesInLatvianGroup">SystemPagesGroup</a></li><li><a class="nonexistent" href="/quake4/SystemPagesInRomanianGroup">SystemPagesInRomanianGroup</a>: <a href="/quake4/SystemPagesGroup?highlight=SystemPagesInRomanianGroup">SystemPagesGroup</a></li><li><a class="nonexistent" href="/quake4/SystemPagesInTurkishGroup">SystemPagesInTurkishGroup</a>: <a href="/quake4/SystemPagesGroup?highlight=SystemPagesInTurkishGroup">SystemPagesGroup</a></li><li><a class="nonexistent" href="/quake4/TableDeclaration">TableDeclaration</a>: <a href="/quake4/Declaration?highlight=TableDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/TextureParm">TextureParm</a>: <a href="/quake4/ArtReference_Q4Shaders_Guides?highlight=TextureParm">ArtReference Q4Shaders Guides</a></li><li><a class="nonexistent" href="/quake4/TypeParm">TypeParm</a>: <a href="/quake4/ArtReference_Q4Shaders_Guides?highlight=TypeParm">ArtReference Q4Shaders Guides</a></li><li><a class="nonexistent" href="/quake4/VariantParm">VariantParm</a>: <a href="/quake4/ArtReference_Q4Shaders_Guides?highlight=VariantParm">ArtReference Q4Shaders Guides</a></li><li><a class="nonexistent" href="/quake4/VideoDeclaration">VideoDeclaration</a>: <a href="/quake4/Declaration?highlight=VideoDeclaration">Declaration</a></li><li><a class="nonexistent" href="/quake4/WindowDefs">WindowDefs</a>: <a href="/quake4/Using_the_GUIEditor?highlight=WindowDefs">Using the GUIEditor</a></li><li><a class="nonexistent" href="/quake4/WritingNewScriptEvents">WritingNewScriptEvents</a>: <a href="/quake4/ScriptFile?highlight=WritingNewScriptEvents">ScriptFile</a></li><li><a href="/quake4/fs_game_base">fs_game_base</a>: <a href="/quake4/ServerAdmin?highlight=fs_game_base">ServerAdmin</a></li><li><a class="nonexistent" href="/quake4/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D0%9D%D0%BE%D0%B2%D0%B8%D1%87%D0%BA%D0%B0%D0%BC">ПомощьНовичкам</a>: <a href="/quake4/%D0%9D%D0%B0%D1%87%D0%B0%D0%BB%D0%BE?highlight=%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D0%9D%D0%BE%D0%B2%D0%B8%D1%87%D0%BA%D0%B0%D0%BC">Начало</a></li><li><a class="nonexistent" href="/quake4/%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%9F%D0%BE%D0%A1%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81%D1%83">СправочникПоСинтаксису</a>: <a href="/quake4/%D0%9D%D0%B0%D1%87%D0%B0%D0%BB%D0%BE?highlight=%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%9F%D0%BE%D0%A1%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81%D1%83">Начало</a></li><li><a class="nonexistent" href="/quake4/%E4%B8%AD%E6%96%87%E7%9A%84MoinMoin/%E5%AD%97%E5%9E%8B%E6%A8%A3%E5%BC%8F">中文的MoinMoin/字型樣式</a>: <a href="/quake4/SystemPagesInChineseGroup?highlight=%E4%B8%AD%E6%96%87%E7%9A%84MoinMoin/%E5%AD%97%E5%9E%8B%E6%A8%A3%E5%BC%8F">SystemPagesInChineseGroup</a></li></ol> <span class="anchor" id="line-10"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">WantedPages  (last modified 2007-04-08 01:53:23)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/WantedPages?action=info">Info</a></li><li><a href="/quake4/WantedPages?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

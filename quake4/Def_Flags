@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Def Flags - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/Def_Flags?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/Def_Flags?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/Def_Flags?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Def_Flags?action=fullsearch&amp;value=linkto%3A%22Def+Flags%22&amp;context=180">Def Flags</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/Def_Flags">Def Flags</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Def_Flags?action=info">Info</a></li><li><a href="/quake4/Def_Flags?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line862">Most flags can be used by all <a href="/quake4/Def_Types">*Def Types</a>, but some are used only by certain <a href="/quake4/Def_Types">*Def elements</a>. The following is an example of a <a href="/quake4/Def_Types#choicedef">choiceDef</a> and some of its flags to show the general set up: <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867"><span class="anchor" id="line-4"></span><pre>        choiceDef gametype_selection
+<span class="anchor" id="line-5"></span>        {
+<span class="anchor" id="line-6"></span>                rect            118,4,170,22
+<span class="anchor" id="line-7"></span>                visible         1
+<span class="anchor" id="line-8"></span>                cvar            si_gametype
+<span class="anchor" id="line-9"></span>                font            "fonts/lowpixel"
+<span class="anchor" id="line-10"></span>                forecolor       1,1,1,0.8
+<span class="anchor" id="line-11"></span>                textscale       0.26
+<span class="anchor" id="line-12"></span>                values          "DM;Tourney;Team DM;CTF;Arena CTF"
+<span class="anchor" id="line-13"></span>                choicetype      1
+<span class="anchor" id="line-14"></span>                choices         "Deathmatch;Tourney;Team Deathmatch;Capture the Flag;Arena CTF"
+<span class="anchor" id="line-15"></span>        }
+<span class="anchor" id="line-16"></span></pre><span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span><p class="line867">
+<h3 id="head-ec0f4e4c06f926b03bcba8158719bab22e5b9873">backcolor</h3>
+<span class="anchor" id="line-19"></span><ul><li style="list-style-type:none"><p class="line862">Defines the background color of the <a href="/quake4/Def_Types">windowDef</a>. Colors are normalized RGB and alpha values. A backcolor set to 1,1,0,1 would be yellow with no transparency. This flag can also reference the individual R,G,B and alpha values in the following way: backcolor_x, backcolor_y, backcolor_z, backcolor_w. <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span></li></ul><p class="line867">
+<h3 id="head-3be910c1fa0062918544db4fffa24637cd0d37d0">background</h3>
+<span class="anchor" id="line-22"></span><ul><li style="list-style-type:none"><p class="line862">The path to the image to be displayed in the <a href="/quake4/Def_Types">windowDef</a>. Paths are referenced from q4base, so a typical path would be gfx/guis/mapname/imagename . <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span></li></ul><p class="line867">
+<h3 id="head-ef85c63cb3086bcb21256f9ea54a0a684b5b4003">bind</h3>
+<span class="anchor" id="line-25"></span><ul><li style="list-style-type:none"><p class="line862">Used in <a href="/quake4/Def_Types#binddef">bindDefs</a>. Sets the bind that will be changed when the player edits their key bindings. <span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span></li></ul><p class="line867">
+<h3 id="head-24e7571b74f5453740b145b42c823b3ba496875c">bordercolor</h3>
+<span class="anchor" id="line-28"></span><ul><li style="list-style-type:none"><p class="line862">Defines the color of the border on a <a href="/quake4/Def_Types">windowDef</a>. Colors are normalized RGB and alpha values. A bordercolor set to 1,1,0,1 would be yellow with no transparency. The bordersize flag must be set for a bordercolor to show. This flag can also reference the individual R,G,B and alpha values in the following way: bordercolor_x, bordercolor_y, bordercolor_z, bordercolor_w. <span class="anchor" id="line-29"></span><span class="anchor" id="line-30"></span></li></ul><p class="line867">
+<h3 id="head-b3c20397900e320b25bb92a5f172a0ac812512eb">bordersize</h3>
+<span class="anchor" id="line-31"></span><ul><li style="list-style-type:none"><p class="line862">Defines the size in pixels of the <a href="/quake4/Def_Types">windowDef's</a> border. <span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span></li></ul><p class="line867">
+<h3 id="head-fa0511eeeeadd02021b3e4cd696570577b4bd510">choices</h3>
+<span class="anchor" id="line-34"></span><ul><li style="list-style-type:none"><p class="line862">Defines the choices to be shown in a <a href="/quake4/Def_Types#choicedef">choiceDef</a>. Each choice is separated by a semicolon. <span class="anchor" id="line-35"></span><span class="anchor" id="line-36"></span></li></ul><p class="line867">
+<h3 id="head-93e8937f0d74ac003bf1c7235d9605132b6aa27b">choicetype</h3>
+<span class="anchor" id="line-37"></span><ul><li style="list-style-type:none">Takes values of 0 and 1. Choicetype 0 is a boolean value. Choicetype 1 is a multiple choice value. <span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span></li></ul><p class="line867">
+<h3 id="head-a2cb6e8711cb6d59585126dfc4f2778e45ece566">comment</h3>
+<span class="anchor" id="line-40"></span><ul><li style="list-style-type:none">Used to mark a comment. This is often used in the Desktop to refer to gui parms that may be used by the GUI to operate on scripts. <span class="anchor" id="line-41"></span><span class="anchor" id="line-42"></span></li></ul><p class="line867">
+<h3 id="head-46b3e106a6161dbed98366f506fd0ddeaaf65bce">cvar</h3>
+<span class="anchor" id="line-43"></span><ul><li style="list-style-type:none"><p class="line862">Defines the cvar that the <a href="/quake4/Def_Types">windowDef</a> is bound to. This can be used for <a href="/quake4/Def_Types#editdef">editDef</a>, <a href="/quake4/Def_Types#choicedef">choiceDef</a>, and <a href="/quake4/Def_Types#sliderdef">sliderDef</a>. <span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span></li></ul><p class="line867">
+<h3 id="head-c883d951e8d7288abe1d94d023468e0e9f231c37">descriptions</h3>
+<span class="anchor" id="line-46"></span><ul><li style="list-style-type:none"><p class="line862">Sets the text to be displayed alongside each choice in a <a href="/quake4/Def_Types#popupdef">popupDef</a>. Descriptions are separated by semicolons. <span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span></li></ul><p class="line867">
+<h3 id="head-2262fd66b5ea43b5f20bb5d6a4c10549078c12d5">dpadgui</h3>
+<span class="anchor" id="line-49"></span><ul><li style="list-style-type:none">When set to 1 on a world GUI, this marks it as having navigable elements via the D-pad. <span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span></li></ul><p class="line867">
+<h3 id="head-fc415dd77c38c5e3598047ef6b22f5ecf07782da">font</h3>
+<span class="anchor" id="line-52"></span><ul><li style="list-style-type:none"><p class="line862">Sets the font to be used for the text in that <a href="/quake4/Def_Types">windowDef</a>. <span class="anchor" id="line-53"></span><span class="anchor" id="line-54"></span></li></ul><p class="line867">
+<h3 id="head-01b8e5c0839c67e0270afdd20d0944d4b288cb2d">forecolor</h3>
+<span class="anchor" id="line-55"></span><ul><li style="list-style-type:none"><p class="line862">Defines the color of the text in a <a href="/quake4/Def_Types">windowDef</a>. Colors are normalized RGB and alpha values. A forecolor set to 1,1,0,1 would be yellow with no transparency. This flag can also reference the individual R,G,B and alpha values in the following way: forecolor_x, forecolor_y, forecolor_z, forecolor_w. <span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span></li></ul><p class="line867">
+<h3 id="head-5069314559d9e1a74253b2e5d99160eb942f72d0">high</h3>
+<span class="anchor" id="line-58"></span><ul><li style="list-style-type:none"><p class="line862">Used in <a href="/quake4/Def_Types#sliderdef">sliderDefs</a> as the upper boundary for a slider cvar value. <span class="anchor" id="line-59"></span><span class="anchor" id="line-60"></span></li></ul><p class="line867">
+<h3 id="head-419d3ad5e4e22a3b381b1826b8b77692a83e5568">listname</h3>
+<span class="anchor" id="line-61"></span><ul><li style="list-style-type:none"><p class="line862">Used in <a href="/quake4/Def_Types#listdef">listDefs</a> only. Sets the name of the list to be displayed in the <a href="/quake4/Def_Types#listdef">listDef</a>. This listname value is referenced by the code and may or may not be different from the <a href="/quake4/Def_Types#listdef">listDef's</a> actual name.  <span class="anchor" id="line-62"></span><span class="anchor" id="line-63"></span></li></ul><p class="line867">
+<h3 id="head-14a4930dfd2a41c5daf1c9a9fe45a90fb2a6cfb1">low</h3>
+<span class="anchor" id="line-64"></span><ul><li style="list-style-type:none"><p class="line862">Used in <a href="/quake4/Def_Types#sliderdef">sliderDefs</a> as the lower boundary for a slider cvar value. <span class="anchor" id="line-65"></span><span class="anchor" id="line-66"></span></li></ul><p class="line867">
+<h3 id="head-7b0925ce9ac3eac9dd3f2f41b77d92a296b11b06">matcolor</h3>
+<span class="anchor" id="line-67"></span><ul><li style="list-style-type:none"><p class="line862">Defines the color of the image displayed in the “background” flag for a <a href="/quake4/Def_Types">windowDef</a>. This flag can also reference only the R, G, B, and alpha values of a <a href="/quake4/Def_Types">windowDef</a> accordingly: matcolor_x, matcolor_y, matcolor_z, matcolor_w. <span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span></li></ul><p class="line867">
+<h3 id="head-edfd248b4ac6393350d427d294e36ae26f8145cf">menugui</h3>
+<span class="anchor" id="line-70"></span><ul><li style="list-style-type:none">Used in the Desktop. A value of 1 marks the gui as a menu gui. This adjusts the cursor pointer size. Without this flag, menus will have giant cursors similar to world guis. <span class="anchor" id="line-71"></span><span class="anchor" id="line-72"></span></li></ul><p class="line867">
+<h3 id="head-85e2dc97e0ca21663ac1b91989e4c14eeffd8744">name</h3>
+<span class="anchor" id="line-73"></span><ul><li style="list-style-type:none"><p class="line862">Defines the name of the <a href="/quake4/Def_Types">windowDef</a>. Each <a href="/quake4/Def_Types">windowDef</a> in a GUI must have a unique name. <span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span></li></ul><p class="line867">
+<h3 id="head-c5e3f388eaa5b8ab2cf4d6d0e4d2fe7480301d20">nocursor</h3>
+<span class="anchor" id="line-76"></span><ul><li style="list-style-type:none">Used in the Desktop. A value of 1 will display no cursor over the gui. This can be used for noninteractive GUIs such as monitors. <span class="anchor" id="line-77"></span><span class="anchor" id="line-78"></span></li></ul><p class="line867">
+<h3 id="head-48f2ef6a2c321190508f707105088a68c94bbb9e">noevents</h3>
+<span class="anchor" id="line-79"></span><ul><li style="list-style-type:none"><p class="line862">A value of 1 disables any <a href="/quake4/Scripting_Actions_and_Animations#onaction">onAction</a> scripts in the <a href="/quake4/Def_Types">windowDef</a>. <span class="anchor" id="line-80"></span><span class="anchor" id="line-81"></span></li></ul><p class="line867">
+<h3 id="head-07b829561a09977a8cb985bf3066120aa19cf7ef">notime</h3>
+<span class="anchor" id="line-82"></span><ul><li style="list-style-type:none"><p class="line862">Used for <a href="/quake4/Def_Types">windowDefs</a> holding <a href="/quake4/Scripting_Actions_and_Animations#animations">animation</a> scripts. A value of 1 stops the <a href="/quake4/Def_Types">windowDefs</a> onTime scripts from running. <span class="anchor" id="line-83"></span><span class="anchor" id="line-84"></span></li></ul><p class="line867">
+<h3 id="head-9636a3713557506d82884fe520efd4aa5867c07b">rect</h3>
+<span class="anchor" id="line-85"></span><ul><li style="list-style-type:none"><p class="line862">Defines the location, width and height of a <a href="/quake4/Def_Types">windowDef</a> as x1,y1,width,height. 0,0,640,480 would be a <a class="nonexistent" href="/quake4/Def_types">windowDef</a> of 640 by 480 pixels whose top left corner is at coordinate 0,0. The first two values always represent the upper left corner of a <a href="/quake4/Def_Types">windowDef</a>. <span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span></li></ul><p class="line867">
+<h3 id="head-b34c46f0e75d6d1f5addeab89ddf67b8f9b165f7">rotate</h3>
+<span class="anchor" id="line-88"></span><ul><li style="list-style-type:none"><p class="line862">Defines the angle that the image refenced by the <a href="/quake4/Def_Types">windowDef</a> will be rotated. This property can also be used in a <a href="/quake4/Scripting_Actions_and_Animations#animations">transition</a> statement to rotate an image in a <a href="/quake4/Def_Types">windowDef</a> over time. <span class="anchor" id="line-89"></span><span class="anchor" id="line-90"></span></li></ul><p class="line867">
+<h3 id="head-9969909670dc74bfa42db7b92a3c383d7de21845">scrollbar</h3>
+<span class="anchor" id="line-91"></span><ul><li style="list-style-type:none"><p class="line862">A value of 1 enables scrollbars in a <a href="/quake4/Def_Types#listdef">listDef</a>. <span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span></li></ul><p class="line867">
+<h3 id="head-b3e1a8558ecff894fc6ad6cb49ba57c9d02962eb">step</h3>
+<span class="anchor" id="line-94"></span><ul><li style="list-style-type:none"><p class="line862">Used in <a href="/quake4/Def_Types#sliderdef">sliderDefs</a> to define the interval that a slider will move. <span class="anchor" id="line-95"></span><span class="anchor" id="line-96"></span></li></ul><p class="line867">
+<h3 id="head-8db7c754c5c5f425f249806a4ab218f2300186f3">text</h3>
+<span class="anchor" id="line-97"></span><ul><li style="list-style-type:none"><p class="line862">The text to be displayed in the <a href="/quake4/Def_Types">windowDef</a>. The character limit is 1024. <span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span></li></ul><p class="line867">
+<h3 id="head-5612003b2b62b20954aeffbe5e6f3e2e91dd0775">textalign</h3>
+<span class="anchor" id="line-100"></span><ul><li style="list-style-type:none"><p class="line862">Defines the alignment within the <a href="/quake4/Def_Types">windowDef</a> of the text. A value of 0 left-aligns the text. A value of 1 center-aligns the text. A value of 2 right-aligns the text. When this flag is not set, the text defaults to left-aligned. <span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span></li></ul><p class="line867"><span class="anchor" id="textscale"></span> <span class="anchor" id="line-103"></span>
+<h3 id="head-774af106537b73de103a4d31f6d578d5f6e0e372">textscale</h3>
+<span class="anchor" id="line-104"></span><ul><li style="list-style-type:none"><p class="line862">Defines the font size of the text in the <a href="/quake4/Def_Types">windowDef</a>. The range is general from 0.0 to 1.0 but can exceed 1.0. <span class="anchor" id="line-105"></span><span class="anchor" id="line-106"></span></li></ul><p class="line867">
+<h3 id="head-21f9ea441255c6c471d6af4d5a9fa8f5fcf7ec45">thumbShader</h3>
+<span class="anchor" id="line-107"></span><ul><li style="list-style-type:none"><p class="line862">Used only for <a href="/quake4/Def_Types#sliderdef">sliderDefs</a>. This references an image to be used as the slider element.  <span class="anchor" id="line-108"></span><span class="anchor" id="line-109"></span></li></ul><p class="line867">
+<h3 id="head-8244539c3e69d20481d9c04fc0c88e700a576790">visible</h3>
+<span class="anchor" id="line-110"></span><ul><li style="list-style-type:none"><p class="line862">Takes values of 0 or 1. Defines whether or not the <a href="/quake4/Def_Types">windowDef</a> is visible. <a href="/quake4/Def_Types">windowDefs</a> have a visible set to 1 by default. <span class="anchor" id="line-111"></span><span class="anchor" id="line-112"></span></li></ul><p class="line867">
+<h3 id="head-ead78180d1f31f4441334013d550c282a0d46fd3">matscalex</h3>
+<span class="anchor" id="line-113"></span><ul><li style="list-style-type:none"><p class="line862">When set to -1, this will flip the texture in the <a href="/quake4/Def_Types">windowDef</a> along the horizontal axis. <span class="anchor" id="line-114"></span><span class="anchor" id="line-115"></span></li></ul><p class="line867">
+<h3 id="head-65417469bd01b8dbbc931752d3ebd01650dbdad5">matscaley</h3>
+<span class="anchor" id="line-116"></span><ul><li style="list-style-type:none"><p class="line862">When set to -1, this will flip the texture in the <a href="/quake4/Def_Types">windowDef</a> along the vertical axis. <span class="anchor" id="line-117"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Def Flags  (last edited 2005-11-07 19:41:06 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Def_Flags?action=info">Info</a></li><li><a href="/quake4/Def_Flags?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

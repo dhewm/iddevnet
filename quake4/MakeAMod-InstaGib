@@ -1,0 +1,452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>MakeAMod-InstaGib - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/MakeAMod-InstaGib?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/MakeAMod-InstaGib?action=print">
+<link rel="Appendix" title="q4-instagib.zip" href="/quake4/MakeAMod-InstaGib?action=AttachFile&amp;do=view&amp;target=q4-instagib.zip">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/MakeAMod-InstaGib?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/MakeAMod-InstaGib?action=fullsearch&amp;value=linkto%3A%22MakeAMod-InstaGib%22&amp;context=180">MakeAMod-InstaGib</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/MakeAMod-InstaGib">MakeAMod-InstaGib</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/MakeAMod-InstaGib?action=info">Info</a></li><li><a href="/quake4/MakeAMod-InstaGib?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867">
+<h1 id="head-f6912df1b6cb2c105c12506d34cd17790e9027b1">1. Quake 4 InstaGib</h1>
+<span class="anchor" id="line-4"></span><p class="line874">In this mod we will replace all weapons with the railgun, and additionally have the railgun do 1000 damage. <span class="anchor" id="line-5"></span><span class="anchor" id="line-6"></span><p class="line867"><strong>Areas Modified:</strong> <a href="/quake4/DefinitionFiles">DefinitionFiles</a> <span class="anchor" id="line-7"></span><br />
+ <span class="anchor" id="line-8"></span><strong>Difficulty:</strong> Beginner <span class="anchor" id="line-9"></span><br />
+ <span class="anchor" id="line-10"></span><a class="attachment" href="/quake4/MakeAMod-InstaGib?action=AttachFile&amp;do=get&amp;target=q4-instagib.zip" title="attachment:q4-instagib.zip">Download the mod</a> <span class="anchor" id="line-11"></span><span class="anchor" id="line-12"></span><p class="line867">
+<h2 id="head-7a9869038f17cfa2ff7a605551de86eb16f59c7d">1.1. Overview</h2>
+<span class="anchor" id="line-13"></span><p class="line862">To implement something like Insta<tt class="backtick"></tt>Gib, modifying <a href="/quake4/DefinitionFile">def files</a> is the easiest approach.  <a href="/quake4/DefinitionFile">Def files</a> specify the properties of almost every gameplay element in the game.  Specifically, by editing the appropriate <a href="/quake4/DefinitionFile">def file</a> we'll be able to change the railgun damage, etc. <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line867">
+<h2 id="head-79e66621e02742f410d106aaf25be9272778719e">1.2. Getting Started</h2>
+<span class="anchor" id="line-16"></span><p class="line862">First, we'll setup our <a href="/quake4/ModDirectory">ModDirectory</a>.  A good way to start is to copy over the files we'll be editing.  This gives us a good base to work off. <span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span><ol type="1"><li><p class="line862">Create a Quake 4\instagib directory.  <strong>Create this is a sub-directory of your Quake 4 installation.</strong> This will be our <a href="/quake4/ModDirectory">ModDirectory</a>. <span class="anchor" id="line-19"></span></li><li><p class="line862">Create sub-directories that will hold our mod's <a href="/quake4/DefinitionFile">def files</a> <span class="anchor" id="line-20"></span><ol type="a"><li>Quake4\instagib\def <span class="anchor" id="line-21"></span></li><li>Quake4\instagib\def\weapons <span class="anchor" id="line-22"></span></li></ol></li><li><p class="line862">Open Quake4\baseq4\pak001.pk4 (see the article on <a href="/quake4/PK4File">pk4 files</a> for information on how to open them) <span class="anchor" id="line-23"></span></li><li>Extract the following files from pak001.pk4 and copy them to the mod directory <span class="anchor" id="line-24"></span><ul><li style="list-style-type:none"><span class="anchor" id="line-25"></span><pre>Quake4\instagib\def
+<span class="anchor" id="line-26"></span>
+<span class="anchor" id="line-27"></span>pak001.pk4\def\player.def -&gt; Quake4\instagib\def
+<span class="anchor" id="line-28"></span>pak001.pk4\def\ammo.def -&gt; Quake4\instagib\def
+<span class="anchor" id="line-29"></span>
+<span class="anchor" id="line-30"></span>Quake4\instagib\def\weapons
+<span class="anchor" id="line-31"></span>
+<span class="anchor" id="line-32"></span>pak001.pk4\def\weapons\gauntlet.def -&gt; Quake4\instagib\def\weapons
+<span class="anchor" id="line-33"></span>pak001.pk4\def\weapons\dmg.def -&gt; Quake4\instagib\def\weapons
+<span class="anchor" id="line-34"></span>pak001.pk4\def\weapons\grenadelauncher.def -&gt; Quake4\instagib\def\weapons
+<span class="anchor" id="line-35"></span>
+<span class="anchor" id="line-36"></span>pak001.pk4\def\weapons\hyperblaster.def -&gt; Quake4\instagib\def\weapons
+<span class="anchor" id="line-37"></span>pak001.pk4\def\weapons\lightninggun.def -&gt; Quake4\instagib\def\weapons
+<span class="anchor" id="line-38"></span>
+<span class="anchor" id="line-39"></span>pak001.pk4\def\weapons\machinegun.def -&gt; Quake4\instagib\def\weapons
+<span class="anchor" id="line-40"></span>pak001.pk4\def\weapons\nailgun.def -&gt; Quake4\instagib\def\weapons
+<span class="anchor" id="line-41"></span>
+<span class="anchor" id="line-42"></span>pak001.pk4\def\weapons\rocketlauncher.def -&gt; Quake4\instagib\def\weapons
+<span class="anchor" id="line-43"></span>pak001.pk4\def\weapons\shotgun.def -&gt; Quake4\instagib\def\weapons
+<span class="anchor" id="line-44"></span></pre><span class="anchor" id="line-45"></span><span class="anchor" id="line-46"></span></li></ul></li></ol><p class="line867">
+<h2 id="head-bf5912639e24dfdf4fab68a4244a7ef4931d25e5">1.3. Time to mod!</h2>
+<span class="anchor" id="line-47"></span><p class="line862">Now that we've got our mod directory setup we can get crackin'.  We'll create Quake 4 Insta<tt class="backtick"></tt>Gib in five steps.   <span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span><ol type="1"><li><p class="line891"><strong>Replace each weapon pickup with railgun weapon pickup</strong> This will turn all weapon pickup <a class="nonexistent" href="/quake4/Entity">entities</a> into the railgun pickup.  That way, no matter what map we play our mod on, the only weapon you'll be able to pickup is the railgun.  <span class="anchor" id="line-50"></span></li><li><p class="line891"><strong>Replace all ammo pickups with railgun ammo</strong> Since we've made the railgun the only weapon you can pickup, we'll want to change any ammo pickups to give you railgun ammo. <span class="anchor" id="line-51"></span></li><li><p class="line891"><strong>Make the railgun the player's starting weapon</strong> Otherwise, players will still spawn in with machine guns on our rail-only maps <span class="anchor" id="line-52"></span></li><li><p class="line891"><strong>Make the railgun do 1000 damage</strong> Ahh the coup-de-grace, gibs-ahoy. <span class="anchor" id="line-53"></span></li><li><p class="line891"><strong>Make the gauntlet do 1000 damage</strong> We'll add some close-quarters instagibbing as well. <span class="anchor" id="line-54"></span><span class="anchor" id="line-55"></span></li></ol><p class="line867">
+<h3 id="head-578a2b79417aaff14339d4f41e49a301fcf5a650">1.3.1. Replace each weapon pickup with railgun weapon pickup</h3>
+<span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span><p class="line862">Since we want to replace all weapons with the railgun, we need to make sure that players won't be able to pickup any other weapons.  One way to do this would be to edit each <a class="nonexistent" href="/quake4/MapFile">MapFile</a> and replace all weapons with the railgun weapon pickup.  This isn't the best way of going about this - we would have to edit a ton of maps, and our mod wouldn't work on any new maps people might make. <span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span><p class="line874">What we'll do instead is replace all weapon pickups with the railgun weapon pickup.  That is, we'll change the behavior of the shotgun pickup, rocket launcher pickup, etc to give you the railgun instead of whatever weapon these pickups were giving before. <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span><p class="line874">This means that any map we run with our mod will only have railguns. <span class="anchor" id="line-62"></span><span class="anchor" id="line-63"></span><p class="line862">We'll be modifying each weapon pickup's <a href="/quake4/EntityDefinition">EntityDefinition</a> to have it give the player a railgun regardless of the type of pickup. <span class="anchor" id="line-64"></span><span class="anchor" id="line-65"></span><p class="line867"><em>The <a href="/quake4/EntityDefinition">entity def</a> for weapon pickups placed in maps are called weapon_weaponname, and are located in the <a href="/quake4/DefinitionFile">def files</a> in def\weapons</em> <span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span><p class="line862">Use a text editor (such as Notepad) to open up <strong>Quake4\instagib\def\weapons\dmg.def</strong>.  Scroll down to the <a href="/quake4/EntityDefinition">EntityDefinition</a> named weapon_dmg_mp.  (See the note on <a href="/quake4/MultiplayerEntityDefinitions">MultiplayerEntityDefinitions</a>) <span class="anchor" id="line-68"></span><ul><li style="list-style-type:none"><span class="anchor" id="line-69"></span><pre>entityDef weapon_dmg_mp
+<span class="anchor" id="line-70"></span>{
+<span class="anchor" id="line-71"></span>        "inherit"                               "weapon_dmg"
+<span class="anchor" id="line-72"></span>        "def_mod1"                              ""
+<span class="anchor" id="line-73"></span>        "editor_ignore"                         "1"
+<span class="anchor" id="line-74"></span>
+<span class="anchor" id="line-75"></span>        "def_projectile"                        "projectile_dmg_mp"
+<span class="anchor" id="line-76"></span>        "inv_icon"                              "gfx/guis/hud/icons/item_darkmatter_colored"
+<span class="anchor" id="line-77"></span>        "inv_start_ammo_dmg"                    "3"
+<span class="anchor" id="line-78"></span>        "triggerSize"                           "32"
+<span class="anchor" id="line-79"></span>        
+<span class="anchor" id="line-80"></span>        "muzzle_kick_time"                      "0"
+<span class="anchor" id="line-81"></span>        "muzzle_kick_maxtime"                   "0"
+<span class="anchor" id="line-82"></span>        "muzzle_kick_angles"                    "0 0 0"
+<span class="anchor" id="line-83"></span>        "muzzle_kick_offset"                    "0 0 0"
+<span class="anchor" id="line-84"></span>        "recoilTime"                            "0"
+<span class="anchor" id="line-85"></span>        "recoilAngles"                          "0 0 0"
+<span class="anchor" id="line-86"></span>        
+<span class="anchor" id="line-87"></span>        "respawn_Team DM"                       "30"
+<span class="anchor" id="line-88"></span>        "respawn_Tourney"                       "15"
+<span class="anchor" id="line-89"></span>}
+<span class="anchor" id="line-90"></span></pre><span class="anchor" id="line-91"></span><p class="line862">This <a href="/quake4/EntityDefinition">EntityDefinition</a> describes the multiplayer version of the Dark Matter Gun weapon pickup.  When you run over a weapon_dmg entity placed in a map (see the note on <a href="/quake4/MultiplayerEntityDefinitions">MultiplayerEntityDefinitions</a>), the <a href="/quake4/GameCode">GameCode</a> gives you a weapon based on the information in this <a href="/quake4/EntityDefinition">EntityDefinition</a>. <span class="anchor" id="line-92"></span></li></ul><p class="line867"><br />
+ <span class="anchor" id="line-93"></span><ul><li style="list-style-type:none"><p class="line862">You'll notice the use of the <em>inherit</em> keyword.  This copies over the single-player Dark Matter Gun values which saves us from having to redefine parts of the <a href="/quake4/EntityDefinition">EntityDefinition</a> that are the same in single player and multiplayer.  Instead, we <em>inherit</em> the single-player as a base, then override whichever values we want to change for multiplayer. <span class="anchor" id="line-94"></span></li></ul><p class="line867"><br />
+ <span class="anchor" id="line-95"></span><ul><li style="list-style-type:none"><p class="line862">The part of the <a href="/quake4/EntityDefinition">EntityDefinition</a> that the <a href="/quake4/GameCode">GameCode</a> uses to give you a weapon is the "weaponclass" key found in weapon_dmg.  We could change this from rvWeaponDarkMatterGun to rvWeaponRailgun, but this wouldn't immediately work.  In addition to the "weaponclass" the <a href="/quake4/EntityDefinition">EntityDefinition</a> specifes a ton of other information needed to make the weapon work (i.e. muzzle kickback, starting ammo, reload time, etc).  If we just replaced the "weaponclass" you would get a Railgun with the handling characteristics of the DMG. <span class="anchor" id="line-96"></span></li></ul><p class="line867"><br />
+ <span class="anchor" id="line-97"></span><ul><li style="list-style-type:none"><p class="line862">Another way we could turn the DMG into the railgun is by copy and pasting all the weapon_railgun fields into the weapon_dmg <a href="/quake4/EntityDefinition">EntityDefinition</a>.  This would work, but doing this for all the weapons is a large amount of work.  Furthermore, if we ever want to change something about the railgun, we'd have to make sure to change it in each weapon. <span class="anchor" id="line-98"></span></li></ul><p class="line867"><br />
+ <span class="anchor" id="line-99"></span><ul><li style="list-style-type:none"><p class="line862">By now you probably see where I'm going with this.  Remember the <em>inherit</em> functionality?  The easiest way to turn the DMG into a railgun is just to have the weapon_dmg <a href="/quake4/EntityDefinition">EntityDefinition</a> inherit from the weapon_railgun <a href="/quake4/EntityDefinition">EntityDefinition</a>.  So go ahead and change the weapon_dmg_mp to <span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><pre>entityDef weapon_dmg_mp
+<span class="anchor" id="line-102"></span>{
+<span class="anchor" id="line-103"></span>        "inherit"                               "weapon_railgun_mp"
+<span class="anchor" id="line-104"></span>} 
+<span class="anchor" id="line-105"></span></pre><span class="anchor" id="line-106"></span>This will change any weapon_dmg entities that have been placed on any map to give you the railgun when you pick it up.  We'll repeat the same step for the other weapons. <span class="anchor" id="line-107"></span></li></ul><p class="line867"><br />
+ <span class="anchor" id="line-108"></span><ul><li style="list-style-type:none"><p class="line891"><strong>Quake4\instagib\def\weapons\grenadelauncher.def</strong> <span class="anchor" id="line-109"></span><span class="anchor" id="line-110"></span><pre>entityDef weapon_grenadelauncher_mp
+<span class="anchor" id="line-111"></span>{
+<span class="anchor" id="line-112"></span>        "inherit"                               "weapon_railgun_mp"
+<span class="anchor" id="line-113"></span>}
+<span class="anchor" id="line-114"></span></pre><span class="anchor" id="line-115"></span><p class="line891"><strong>Quake4\instagib\def\weapons\hyperblaster.def</strong> <span class="anchor" id="line-116"></span><span class="anchor" id="line-117"></span><pre>entityDef weapon_hyperblaster_mp
+<span class="anchor" id="line-118"></span>{
+<span class="anchor" id="line-119"></span>        "inherit"                               "weapon_railgun_mp"
+<span class="anchor" id="line-120"></span>}
+<span class="anchor" id="line-121"></span></pre><span class="anchor" id="line-122"></span><p class="line891"><strong>Quake4\instagib\def\weapons\lightninggun.def</strong> <span class="anchor" id="line-123"></span><span class="anchor" id="line-124"></span><pre>entityDef weapon_lightninggun_mp
+<span class="anchor" id="line-125"></span>{
+<span class="anchor" id="line-126"></span>        "inherit"                               "weapon_railgun_mp"
+<span class="anchor" id="line-127"></span>}
+<span class="anchor" id="line-128"></span></pre><span class="anchor" id="line-129"></span><p class="line891"><strong>Quake4\instagib\def\weapons\nailgun.def</strong> <span class="anchor" id="line-130"></span><span class="anchor" id="line-131"></span><pre>entityDef weapon_nailgun_mp
+<span class="anchor" id="line-132"></span>{
+<span class="anchor" id="line-133"></span>        "inherit"                               "weapon_railgun_mp"
+<span class="anchor" id="line-134"></span>}
+<span class="anchor" id="line-135"></span></pre><span class="anchor" id="line-136"></span><p class="line891"><strong>Quake4\instagib\def\weapons\rocketlauncher.def</strong>  <span class="anchor" id="line-137"></span><span class="anchor" id="line-138"></span><pre>entityDef weapon_rocketlauncher_mp
+<span class="anchor" id="line-139"></span>{
+<span class="anchor" id="line-140"></span>        "inherit"                               "weapon_railgun_mp"
+<span class="anchor" id="line-141"></span>}
+<span class="anchor" id="line-142"></span></pre><span class="anchor" id="line-143"></span><p class="line891"><strong>Quake4\instagib\def\weapons\shotgun.def</strong>  <span class="anchor" id="line-144"></span><span class="anchor" id="line-145"></span><pre>entityDef weapon_shotgun_mp
+<span class="anchor" id="line-146"></span>{
+<span class="anchor" id="line-147"></span>        "inherit"                               "weapon_railgun_mp"
+<span class="anchor" id="line-148"></span>}
+<span class="anchor" id="line-149"></span></pre><span class="anchor" id="line-150"></span><span class="anchor" id="line-151"></span></li></ul><p class="line867">
+<h3 id="head-b5473aa17ee477c71fcaffdd1aac3b1aba2f0147">1.3.2. Replace all ammo pickups with railgun ammo</h3>
+<span class="anchor" id="line-152"></span><span class="anchor" id="line-153"></span><p class="line874">Now that we've got all the weapon pickups acting like railguns, we'll do the same thing for ammo pickups. <span class="anchor" id="line-154"></span><span class="anchor" id="line-155"></span><p class="line867"><strong>Quake4\instagib\def\ammo.def</strong> <span class="anchor" id="line-156"></span><span class="anchor" id="line-157"></span><pre>entityDef ammo_machinegun_mp
+<span class="anchor" id="line-158"></span>{
+<span class="anchor" id="line-159"></span>        "inherit"                               "ammo_railgun_mp"
+<span class="anchor" id="line-160"></span>}
+<span class="anchor" id="line-161"></span></pre><span class="anchor" id="line-162"></span><span class="anchor" id="line-163"></span><p class="line867"><span class="anchor" id="line-164"></span><pre>entityDef ammo_nailgun_mp
+<span class="anchor" id="line-165"></span>{
+<span class="anchor" id="line-166"></span>        "inherit"                               "ammo_railgun_mp"
+<span class="anchor" id="line-167"></span>}
+<span class="anchor" id="line-168"></span></pre><span class="anchor" id="line-169"></span><span class="anchor" id="line-170"></span><p class="line867"><span class="anchor" id="line-171"></span><pre>entityDef ammo_shotgun_mp
+<span class="anchor" id="line-172"></span>{
+<span class="anchor" id="line-173"></span>        "inherit"                               "ammo_railgun_mp"
+<span class="anchor" id="line-174"></span>}
+<span class="anchor" id="line-175"></span></pre><span class="anchor" id="line-176"></span><span class="anchor" id="line-177"></span><p class="line867"><span class="anchor" id="line-178"></span><pre>entityDef ammo_hyperblaster_mp
+<span class="anchor" id="line-179"></span>{
+<span class="anchor" id="line-180"></span>        "inherit"                               "ammo_railgun_mp"
+<span class="anchor" id="line-181"></span>}
+<span class="anchor" id="line-182"></span></pre><span class="anchor" id="line-183"></span><span class="anchor" id="line-184"></span><p class="line867"><span class="anchor" id="line-185"></span><pre>entityDef ammo_rocketlauncher_mp
+<span class="anchor" id="line-186"></span>{
+<span class="anchor" id="line-187"></span>        "inherit"                               "ammo_railgun_mp"
+<span class="anchor" id="line-188"></span>}
+<span class="anchor" id="line-189"></span></pre><span class="anchor" id="line-190"></span><span class="anchor" id="line-191"></span><p class="line867"><span class="anchor" id="line-192"></span><pre>entityDef ammo_grenadelauncher_mp
+<span class="anchor" id="line-193"></span>{
+<span class="anchor" id="line-194"></span>        "inherit"                               "ammo_railgun_mp"
+<span class="anchor" id="line-195"></span>}
+<span class="anchor" id="line-196"></span></pre><span class="anchor" id="line-197"></span><span class="anchor" id="line-198"></span><p class="line867"><span class="anchor" id="line-199"></span><pre>entityDef ammo_lightninggun_mp
+<span class="anchor" id="line-200"></span>{       
+<span class="anchor" id="line-201"></span>        "inherit"                               "ammo_railgun_mp"
+<span class="anchor" id="line-202"></span>}
+<span class="anchor" id="line-203"></span></pre><span class="anchor" id="line-204"></span><span class="anchor" id="line-205"></span><p class="line867"><span class="anchor" id="line-206"></span><pre>entityDef ammo_dmg_mp
+<span class="anchor" id="line-207"></span>{
+<span class="anchor" id="line-208"></span>        "inherit"                               "ammo_railgun_mp"
+<span class="anchor" id="line-209"></span>}
+<span class="anchor" id="line-210"></span></pre><span class="anchor" id="line-211"></span><span class="anchor" id="line-212"></span><p class="line867">
+<h3 id="head-af14555ebdd125e77bb291affb6dc4994bf35615">1.3.3. Make the railgun the player's starting weapon</h3>
+<span class="anchor" id="line-213"></span><span class="anchor" id="line-214"></span><p class="line874">Now that we've got the map weapon and ammo pickups converted to railguns, we need to make sure the player spawns in with a rail.  Otherwise new players will find themselves with a dinky machinegun going up against 1000 damage rails. <span class="anchor" id="line-215"></span><span class="anchor" id="line-216"></span><p class="line862">Let's take a look at the multiplayer player <a href="/quake4/EntityDefinition">EntityDefinition</a>, player_marine_mp.  It's a big definition, so we'll only show the relevant parts. <span class="anchor" id="line-217"></span><span class="anchor" id="line-218"></span><p class="line867"><strong>Quake4\instagib\def\player.def</strong> <span class="anchor" id="line-219"></span><span class="anchor" id="line-220"></span><pre>entityDef player_marine_mp  
+<span class="anchor" id="line-221"></span>{
+<span class="anchor" id="line-222"></span>        "inherit"                       "player_marine"
+<span class="anchor" id="line-223"></span>
+<span class="anchor" id="line-224"></span>        "weapon"                        "weapon_machinegun,weapon_gauntlet"
+<span class="anchor" id="line-225"></span>        "current_weapon"                "1"
+<span class="anchor" id="line-226"></span>...
+<span class="anchor" id="line-227"></span>        "ammo_none"                     "-1"
+<span class="anchor" id="line-228"></span>        "ammo_railgun"                  "0"
+<span class="anchor" id="line-229"></span>        "ammo_machinegun"               "100"
+<span class="anchor" id="line-230"></span>        "ammo_nailgun"                  "0"
+<span class="anchor" id="line-231"></span>        "ammo_blaster"                  "-1"
+<span class="anchor" id="line-232"></span>        "ammo_shotgun"                  "0"
+<span class="anchor" id="line-233"></span>        "ammo_hyperblaster"             "0"
+<span class="anchor" id="line-234"></span>        "ammo_rocketlauncher"           "0"
+<span class="anchor" id="line-235"></span>        "ammo_grenadelauncher"          "0"
+<span class="anchor" id="line-236"></span>...
+<span class="anchor" id="line-237"></span>}
+<span class="anchor" id="line-238"></span></pre><span class="anchor" id="line-239"></span><p class="line862">The "weapon" <a class="nonexistent" href="/quake4/KeyValue">KeyValue</a> determines the starting weapon(s) for the player.  The "current_weapon" key determines the initial selected weapon.  Go ahead and replace the "weapon" and "current_weapon" lines with <span class="anchor" id="line-240"></span><span class="anchor" id="line-241"></span><p class="line867"><strong>Quake4\instagib\def\player.def</strong> <span class="anchor" id="line-242"></span><span class="anchor" id="line-243"></span><pre>entityDef player_marine_mp  
+<span class="anchor" id="line-244"></span>{
+<span class="anchor" id="line-245"></span>...
+<span class="anchor" id="line-246"></span>        "weapon"                        "weapon_railgun,weapon_gauntlet"
+<span class="anchor" id="line-247"></span>        "current_weapon"                "7"
+<span class="anchor" id="line-248"></span>...
+<span class="anchor" id="line-249"></span>}
+<span class="anchor" id="line-250"></span></pre><span class="anchor" id="line-251"></span><p class="line874">Make sure you leave the rest of the lines alone - we'll need them to keep everything working with the player. <span class="anchor" id="line-252"></span><span class="anchor" id="line-253"></span><p class="line874">Now we'll need to tweak the starting ammo values in the player.def.  Remove the starting machine gun ammunition, and give the player 10 rail rounds to start with. <span class="anchor" id="line-254"></span><span class="anchor" id="line-255"></span><p class="line867"><strong>Quake4\instagib\def\player.def</strong> <span class="anchor" id="line-256"></span><span class="anchor" id="line-257"></span><pre>entityDef player_marine_mp  
+<span class="anchor" id="line-258"></span>{
+<span class="anchor" id="line-259"></span>...
+<span class="anchor" id="line-260"></span>        "ammo_none"                     "-1"
+<span class="anchor" id="line-261"></span>        "ammo_railgun"                  "10"
+<span class="anchor" id="line-262"></span>        "ammo_machinegun"               "0"
+<span class="anchor" id="line-263"></span>        "ammo_nailgun"                  "0"
+<span class="anchor" id="line-264"></span>        "ammo_blaster"                  "-1"
+<span class="anchor" id="line-265"></span>        "ammo_shotgun"                  "0"
+<span class="anchor" id="line-266"></span>        "ammo_hyperblaster"             "0"
+<span class="anchor" id="line-267"></span>        "ammo_rocketlauncher"           "0"
+<span class="anchor" id="line-268"></span>        "ammo_grenadelauncher"          "0"
+<span class="anchor" id="line-269"></span>...
+<span class="anchor" id="line-270"></span>}
+<span class="anchor" id="line-271"></span></pre><span class="anchor" id="line-272"></span><span class="anchor" id="line-273"></span><p class="line874">That's it for the player.def. <span class="anchor" id="line-274"></span><span class="anchor" id="line-275"></span><p class="line867">
+<h3 id="head-005ca5f74d8bce890d581ce2a56eb3577e6514d8">1.3.4. Make the railgun do 1000 damage</h3>
+<span class="anchor" id="line-276"></span><span class="anchor" id="line-277"></span><p class="line862">So now we have railguns all-around.  But it won't quite be Insta<tt class="backtick"></tt>Gib unless it's one-hit-one-gib.  To accomplish this, let's give the railgun a large amount of damage - 1000 should suffice. <span class="anchor" id="line-278"></span><span class="anchor" id="line-279"></span><p class="line867"><a href="/quake4/HitscanWeapons">HitscanWeapons</a> define their damage in their <a href="/quake4/HitscanDefinition">HitscanDefinition</a>.  In this case, the railgun's <a href="/quake4/HitscanDefinition">HitscanDefinition</a>, hitscan_railgun_mp, uses the <a href="/quake4/DamageDefinition">DamageDefinition</a> damage_railgun.  Keeping in mind the rules of <a href="/quake4/MultiplayerEntityDefinitions">MultiplayerEntityDefinitions</a>, we'll want to look at damage_railgun_mp. <span class="anchor" id="line-280"></span><span class="anchor" id="line-281"></span><p class="line867"><strong>Quake4\instagib\def\weapons\railgun.def</strong> <span class="anchor" id="line-282"></span><span class="anchor" id="line-283"></span><pre>entityDef damage_railgun_mp 
+<span class="anchor" id="line-284"></span>{
+<span class="anchor" id="line-285"></span>        "inherit"                                       "damage_railgun"
+<span class="anchor" id="line-286"></span>        "damage"                                        "100"
+<span class="anchor" id="line-287"></span>}
+<span class="anchor" id="line-288"></span></pre><span class="anchor" id="line-289"></span><span class="anchor" id="line-290"></span><p class="line867"><em><strong>Let's bump that number up!</em></strong> <span class="anchor" id="line-291"></span><span class="anchor" id="line-292"></span><p class="line867"><strong>Quake4\instagib\def\weapons\railgun.def</strong> <span class="anchor" id="line-293"></span><span class="anchor" id="line-294"></span><pre>entityDef damage_railgun_mp 
+<span class="anchor" id="line-295"></span>{
+<span class="anchor" id="line-296"></span>        "inherit"                                       "damage_railgun"
+<span class="anchor" id="line-297"></span>        "damage"                                        "1000"
+<span class="anchor" id="line-298"></span>}
+<span class="anchor" id="line-299"></span></pre><span class="anchor" id="line-300"></span><span class="anchor" id="line-301"></span><p class="line867">
+<h3 id="head-4fd91fdec9d96490faa8e759833d2452f933607d">1.3.5. Make the gauntlet do 1000 damage</h3>
+<span class="anchor" id="line-302"></span><span class="anchor" id="line-303"></span><p class="line862">As a final touch, let's add the gauntlet as a viable close-quarters option in our Insta<tt class="backtick"></tt>Gib fragfest.  We'll modify the gauntlet's <a href="/quake4/DamageDefinition">DamageDefinition</a> to also do 1000 damage. <span class="anchor" id="line-304"></span><span class="anchor" id="line-305"></span><p class="line867"><strong>Quake4\instagib\def\weapons\gauntlet.def</strong> <span class="anchor" id="line-306"></span><span class="anchor" id="line-307"></span><pre>entityDef damage_gauntlet
+<span class="anchor" id="line-308"></span>{
+<span class="anchor" id="line-309"></span>        "damage"                                        "50"
+<span class="anchor" id="line-310"></span>        "gib"                                           "1"
+<span class="anchor" id="line-311"></span>
+<span class="anchor" id="line-312"></span>        "dv_time"                                       "100"
+<span class="anchor" id="line-313"></span>        "dv_scale"                                      ".05"
+<span class="anchor" id="line-314"></span>
+<span class="anchor" id="line-315"></span>        "deathPush"                                     "200"
+<span class="anchor" id="line-316"></span>        "deathPushMin"                                  "2000 400"
+<span class="anchor" id="line-317"></span>        "deathPushMax"                                  "4000 500"
+<span class="anchor" id="line-318"></span>        "knockback"                                     "50"
+<span class="anchor" id="line-319"></span>        
+<span class="anchor" id="line-320"></span>        "bleed"                                         "1"
+<span class="anchor" id="line-321"></span>}
+<span class="anchor" id="line-322"></span></pre><span class="anchor" id="line-323"></span><span class="anchor" id="line-324"></span><p class="line874">Change that sucker to <span class="anchor" id="line-325"></span><span class="anchor" id="line-326"></span><p class="line867"><strong>Quake4\instagib\def\weapons\gauntlet.def</strong> <span class="anchor" id="line-327"></span><span class="anchor" id="line-328"></span><pre>entityDef damage_gauntlet
+<span class="anchor" id="line-329"></span>{
+<span class="anchor" id="line-330"></span>        "damage"                                        "1000"
+<span class="anchor" id="line-331"></span>        "gib"                                           "1"
+<span class="anchor" id="line-332"></span>
+<span class="anchor" id="line-333"></span>        "dv_time"                                       "100"
+<span class="anchor" id="line-334"></span>        "dv_scale"                                      ".05"
+<span class="anchor" id="line-335"></span>
+<span class="anchor" id="line-336"></span>        "deathPush"                                     "200"
+<span class="anchor" id="line-337"></span>        "deathPushMin"                                  "2000 400"
+<span class="anchor" id="line-338"></span>        "deathPushMax"                                  "4000 500"
+<span class="anchor" id="line-339"></span>        "knockback"                                     "50"
+<span class="anchor" id="line-340"></span>        
+<span class="anchor" id="line-341"></span>        "bleed"                                         "1"
+<span class="anchor" id="line-342"></span>}
+<span class="anchor" id="line-343"></span></pre><span class="anchor" id="line-344"></span><span class="anchor" id="line-345"></span><p class="line874">That completes the mod. <span class="anchor" id="line-346"></span><span class="anchor" id="line-347"></span><p class="line867">
+<h2 id="head-0dedc833a04517fdd8df6079b0f9063d90f85957">1.4. Testing</h2>
+<span class="anchor" id="line-348"></span><span class="anchor" id="line-349"></span><p class="line862">To test your mod, make sure your <em>instagib</em> directory is a subdirectory of your Quake 4 install. <span class="anchor" id="line-350"></span><span class="anchor" id="line-351"></span><p class="line867"><span class="anchor" id="line-352"></span><pre>Default install: C:\Program Files\id Software\Quake 4
+<span class="anchor" id="line-353"></span>
+<span class="anchor" id="line-354"></span>Instagib should be in: C:\Program Files\id Software\Quake 4\instagib
+<span class="anchor" id="line-355"></span></pre><span class="anchor" id="line-356"></span><span class="anchor" id="line-357"></span><p class="line862">Navigate to C:\Program Files\id Software\Quake 4 and make a shortcut to Quake4.exe and re-name it <em>Insta<tt class="backtick"></tt>Gib</em>.  Edit the properties of the shortcut and add the following command line arguments to the shortcut. <span class="anchor" id="line-358"></span><span class="anchor" id="line-359"></span><p class="line867"><span class="anchor" id="line-360"></span><pre>+set fs_game instagib +set developer 1
+<span class="anchor" id="line-361"></span></pre><span class="anchor" id="line-362"></span><span class="anchor" id="line-363"></span><p class="line862">You're done!  Double click the shortcut to play your mod.  See <a href="/quake4/PackagingMods">PackagingMods</a> for how to distribute instagib to your friends. <span class="anchor" id="line-364"></span><span class="anchor" id="line-365"></span><p class="line867"><a class="attachment" href="/quake4/MakeAMod-InstaGib?action=AttachFile&amp;do=get&amp;target=q4-instagib.zip" title="attachment:q4-instagib.zip">Download the mod (Unzip to Quake 4\ directory)</a> <span class="anchor" id="line-366"></span><hr class="hr1" /><p class="line874"> <span class="anchor" id="line-367"></span>Questions?  E-mail David <a class="mailto" href="mailto:ddynerman@ravensoft.com">ddynerman@ravensoft.com</a> <span class="anchor" id="line-368"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">MakeAMod-InstaGib  (last edited 2005-11-09 17:26:33 by <span title="DavidDynerman @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/DavidDynerman" title="DavidDynerman @ 67.129.250.254[67.129.250.254]">DavidDynerman</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/MakeAMod-InstaGib?action=info">Info</a></li><li><a href="/quake4/MakeAMod-InstaGib?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

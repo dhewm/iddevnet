@@ -1,0 +1,383 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>HelpOnFormatting - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/HelpOnFormatting?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/HelpOnFormatting?action=print">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/HelpOnFormatting?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/HelpOnFormatting?action=fullsearch&amp;value=linkto%3A%22HelpOnFormatting%22&amp;context=180">HelpOnFormatting</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/HelpOnFormatting">HelpOnFormatting</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/HelpOnFormatting?action=info">Info</a></li><li><a href="/quake4/HelpOnFormatting?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867">
+<h2 id="head-ccb8d3fb63240af53aa6bd2c7e80af679640ffb8">General</h2>
+<span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><ul><li>Use one or more blank lines to separate paragraphs. <span class="anchor" id="line-12"></span></li><li><p class="line862">Use <tt class="backtick">[[BR]]</tt> to insert linebreaks into paragraphs. <span class="anchor" id="line-13"></span><span class="anchor" id="line-14"></span></li></ul><p class="line867">
+<h2 id="head-eab8955f092ab890a148e41ebb8eb29f1704f910">Typeface</h2>
+<span class="anchor" id="line-15"></span><span class="anchor" id="line-16"></span><p class="line867"><span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span><div><table><tbody><tr>  <td><p class="line891"><strong> Name/Sample</strong> </td>
+  <td><p class="line862"> <strong> Markup </strong>   </td>
+  <td><p class="line862"> <strong> Notes </strong>          </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-19"></span><p class="line862">  <em>italic</em>     </td>
+  <td><p class="line862"> <tt class="backtick">''italic''</tt>       </td>
+  <td><p class="line862"> Double single quotes.  </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-20"></span><p class="line862">  <strong>bold</strong>     </td>
+  <td><p class="line862"> <tt class="backtick">'''bold'''</tt>       </td>
+  <td><p class="line862"> Triple single quotes.  </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-21"></span><p class="line862">  <tt class="backtick">monospace</tt>    </td>
+  <td><p class="line862"> <tt>`monospace`</tt>  </td>
+  <td><p class="line862"> Single backticks.  Wiki markup is ignored.   </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-22"></span><p class="line862">  <tt>code</tt>     </td>
+  <td><p class="line862"> <tt class="backtick">{{{code}}}</tt>       </td>
+  <td><p class="line862"> <a href="#code_example">Example.</a>  Wiki markup is ignored. </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-23"></span><p class="line862">  <span class="u">underline</span>  </td>
+  <td><p class="line862"> <tt class="backtick">__underline__</tt>    </td>
+  <td><p class="line862">                         </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-24"></span><p class="line862">  <sup>super</sup>script  </td>
+  <td><p class="line862"> <tt class="backtick">^superscript^</tt>    </td>
+  <td><p class="line862">                         </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-25"></span><p class="line862">  <sub>sub</sub>script  </td>
+  <td><p class="line862"> <tt class="backtick">,,subscript,,</tt>    </td>
+  <td><p class="line862">                         </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-26"></span><p class="line862">  <small>smaller</small>    </td>
+  <td><p class="line862"> <tt class="backtick">~-smaller-~</tt>      </td>
+  <td><p class="line862">                         </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-27"></span><p class="line862">  <big>larger</big>     </td>
+  <td><p class="line862"> <tt class="backtick">~+larger+~</tt>       </td>
+  <td><p class="line862">                         </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-28"></span><p class="line862"> <span class="strike">stroke</span>    </td>
+  <td><p class="line862"> <tt class="backtick">--(stroke)--</tt>     </td>
+  <td><p class="line862"> <a href="/quake4/MoinMoin">MoinMoin</a> Version 1.5+   </td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-29"></span><span class="anchor" id="line-30"></span><p class="line867">
+<h2 id="head-8a18bd5d05facec60b95a7cf928829de90bf9d9f">Colorized Code</h2>
+<span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span><p class="line874">There are several ways to display colorized code formatting: <span class="anchor" id="line-33"></span><ol type="1"><li><p class="line862">Start a special code block containing the parser's name: <tt class="backtick">{{{#!parsername</tt> <span class="anchor" id="line-34"></span></li><li><p class="line862">Embed a file attachment bearing a supported extension (such as <tt class="backtick">".py"</tt>) with <tt class="backtick">inline:</tt> <span class="anchor" id="line-35"></span></li><li><p class="line862">Begin a page with the format processing instruction: <tt class="backtick">#format&nbsp;parsername</tt> <span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span></li></ol><p class="line867"><a href="#color_code_example">Example.</a> <span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><p class="line862">To see the list of supported languages see <a href="/quake4/HelpOnParsers">HelpOnParsers</a>. <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><p class="line867">
+<h1 id="head-3e7d7fdfa96aec660c230c0b345b2e68a68b1b25">Examples</h1>
+<span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span><p class="line867">
+<h2 id="head-ef56de3c9b8c3777393817406b60c4baf6e9c44b">Mixing ''italic'' and '''bold'''</h2>
+<span class="anchor" id="line-46"></span><p class="line867"><span class="anchor" id="italic_bold_example"></span> <span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span><p class="line867"><span class="anchor" id="line-49"></span><span class="anchor" id="line-50"></span><div><table><tbody><tr>  <td><p class="line891"><strong>Markup</strong>                       </td>
+  <td><p class="line862"> <strong>Result</strong>                     </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-51"></span><p class="line862"> <tt class="backtick">'''''Mix'''&nbsp;at&nbsp;the&nbsp;beginning''</tt>  </td>
+  <td><p class="line862">  <em><strong>Mix</strong> at the beginning</em>  </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-52"></span><p class="line862"> <tt class="backtick">'''''Mix''&nbsp;at&nbsp;the&nbsp;beginning'''</tt>  </td>
+  <td><p class="line862">  <strong><em>Mix</em> at the beginning</strong>  </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-53"></span><p class="line862"> <tt class="backtick">'''Mix&nbsp;at&nbsp;the&nbsp;''end'''''</tt>        </td>
+  <td><p class="line862">  <strong>Mix at the <em>end</em></strong>        </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-54"></span><p class="line862"> <tt class="backtick">''Mix&nbsp;at&nbsp;the&nbsp;'''end'''''</tt>        </td>
+  <td><p class="line862">  <em>Mix at the <strong>end</strong></em>        </td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-55"></span><span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span><p class="line867">
+<h2 id="head-b57a8f23b0aba83f6e88fdb8f55ad0971ae1df8f">Code</h2>
+<span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span><p class="line867"><span class="anchor" id="code_example"></span> <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span><span class="anchor" id="line-62"></span><p class="line867"><tt class="backtick">{{{</tt> <br />
+ <span class="anchor" id="line-63"></span><tt class="backtick">10&nbsp;PRINT&nbsp;"Hello,&nbsp;world!"</tt> <br />
+ <span class="anchor" id="line-64"></span><tt class="backtick">20&nbsp;GOTO&nbsp;10</tt> <br />
+ <span class="anchor" id="line-65"></span><tt class="backtick">}}}</tt> <br />
+ <span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span><p class="line874">Result: <span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span><p class="line867"><span class="anchor" id="line-70"></span><pre>10 PRINT "Hello, world!"
+<span class="anchor" id="line-71"></span>20 GOTO 10
+<span class="anchor" id="line-72"></span></pre><span class="anchor" id="line-73"></span><span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span><p class="line867">
+<h2 id="head-c6075347ae1a7ee160e201f6c6ed536ecfa47372">Superscript &amp; Subscript</h2>
+<span class="anchor" id="line-76"></span><span class="anchor" id="line-77"></span><p class="line867"><tt class="backtick">You&nbsp;might&nbsp;recall&nbsp;''a''^2^&nbsp;</tt>+<tt class="backtick">&nbsp;''b''^2^&nbsp;</tt>=<tt class="backtick">&nbsp;''c''^2^&nbsp;from&nbsp;your&nbsp;math&nbsp;lessons,&nbsp;unless&nbsp;your&nbsp;head&nbsp;is&nbsp;filled&nbsp;with&nbsp;H,,2,,O.</tt> <span class="anchor" id="line-78"></span><span class="anchor" id="line-79"></span><p class="line874">Result: <span class="anchor" id="line-80"></span><span class="anchor" id="line-81"></span><p class="line862">You might recall <em>a</em><sup>2</sup> <tt class="backtick">+</tt> <em>b</em><sup>2</sup> <tt class="backtick">=</tt> <em>c</em><sup>2</sup> from your math lessons, unless your head is filled with H<sub>2</sub>O. <span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><span class="anchor" id="line-84"></span><p class="line867">
+<h2 id="head-17e1deca2fcba5b15d64dd3843841f1d9ad1821e">Colorized Code, Method #1</h2>
+<span class="anchor" id="line-85"></span><p class="line867"><span class="anchor" id="color_code_example"></span> <span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span><p class="line867"><span class="anchor" id="line-88"></span><span class="anchor" id="line-89"></span><p class="line867"><tt class="backtick">{{{#!python</tt> <br />
+ <span class="anchor" id="line-90"></span><tt class="backtick">from&nbsp;colors&nbsp;import&nbsp;palette</tt> <br />
+ <span class="anchor" id="line-91"></span><tt class="backtick">palette.colorize('python')</tt> <br />
+ <span class="anchor" id="line-92"></span><tt class="backtick">}}}</tt> <br />
+ <span class="anchor" id="line-93"></span><span class="anchor" id="line-94"></span><p class="line874">Result: <span class="anchor" id="line-95"></span><span class="anchor" id="line-96"></span><p class="line867"><span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span><div class="codearea" dir="ltr" lang="en">
+<script type="text/javascript">
+function isnumbered(obj) {
+  return obj.childNodes.length && obj.firstChild.childNodes.length && obj.firstChild.firstChild.className == 'LineNumber';
+}
+function nformat(num,chrs,add) {
+  var nlen = Math.max(0,chrs-(''+num).length), res = '';
+  while (nlen>0) { res += ' '; nlen-- }
+  return res+num+add;
+}
+function addnumber(did, nstart, nstep) {
+  var c = document.getElementById(did), l = c.firstChild, n = 1;
+  if (!isnumbered(c))
+    if (typeof nstart == 'undefined') nstart = 1;
+    if (typeof nstep  == 'undefined') nstep = 1;
+    n = nstart;
+    while (l != null) {
+      if (l.tagName == 'SPAN') {
+        var s = document.createElement('SPAN');
+        s.className = 'LineNumber'
+        s.appendChild(document.createTextNode(nformat(n,4,' ')));
+        n += nstep;
+        if (l.childNodes.length)
+          l.insertBefore(s, l.firstChild)
+        else
+          l.appendChild(s)
+      }
+      l = l.nextSibling;
+    }
+  return false;
+}
+function remnumber(did) {
+  var c = document.getElementById(did), l = c.firstChild;
+  if (isnumbered(c))
+    while (l != null) {
+      if (l.tagName == 'SPAN' && l.firstChild.className == 'LineNumber') l.removeChild(l.firstChild);
+      l = l.nextSibling;
+    }
+  return false;
+}
+function togglenumber(did, nstart, nstep) {
+  var c = document.getElementById(did);
+  if (isnumbered(c)) {
+    remnumber(did);
+  } else {
+    addnumber(did,nstart,nstep);
+  }
+  return false;
+}
+</script>
+
+<script type="text/javascript">
+document.write('<a href="#" onclick="return togglenumber(\'CA-81034c0bf625acfaeadb1746b28f9bb3f866cf20_000\', 1, 1);" \
+                class="codenumbers">行番号表示/非表示切替<\/a>');
+</script>
+<pre dir="ltr" id="CA-81034c0bf625acfaeadb1746b28f9bb3f866cf20_000" lang="en"><span class="line"><span class="LineNumber">   1 </span><span class="ResWord">from</span> <span class="ID">colors</span> <span class="ResWord">import</span> <span class="ID">palette</span></span>
+<span class="line"><span class="LineNumber">   2 </span><span class="ID">palette</span><span class="Operator">.</span><span class="ID">colorize</span><span class="Operator">(</span><span class="String">'python'</span><span class="Operator">)</span><span class="Text"></span></span>
+</pre></div><span class="anchor" id="line-100"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">HelpOnFormatting  (last modified 2007-04-08 01:53:22)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/HelpOnFormatting?action=info">Info</a></li><li><a href="/quake4/HelpOnFormatting?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

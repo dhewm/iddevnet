@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>ArtReference CreatingTextures - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="/quake4/Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="/quake4/ArtReference_CreatingTextures?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/quake4/ArtReference_CreatingTextures?action=print">
+<link rel="Appendix" title="tex_01.jpg" href="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=view&amp;target=tex_01.jpg">
+<link rel="Appendix" title="tex_02.jpg" href="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=view&amp;target=tex_02.jpg">
+<link rel="Appendix" title="tex_03.jpg" href="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=view&amp;target=tex_03.jpg">
+<link rel="Appendix" title="tex_04.jpg" href="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=view&amp;target=tex_04.jpg">
+<link rel="Appendix" title="tex_05.jpg" href="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=view&amp;target=tex_05.jpg">
+<link rel="Appendix" title="tex_06.jpg" href="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=view&amp;target=tex_06.jpg">
+<link rel="Appendix" title="tex_07.jpg" href="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=view&amp;target=tex_07.jpg">
+<link rel="Appendix" title="tex_08.jpg" href="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=view&amp;target=tex_08.jpg">
+<link rel="Appendix" title="tex_09.jpg" href="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=view&amp;target=tex_09.jpg">
+<link rel="Search" href="/quake4/FindPage">
+<link rel="Index" href="/quake4/TitleIndex">
+<link rel="Glossary" href="/quake4/WordIndex">
+<link rel="Help" href="/quake4/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/quake4/ArtReference_CreatingTextures?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/ArtReference_CreatingTextures?action=fullsearch&amp;value=linkto%3A%22ArtReference+CreatingTextures%22&amp;context=180">ArtReference CreatingTextures</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/ArtReference_CreatingTextures">ArtReferenc...ingTextures</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_CreatingTextures?action=info">Info</a></li><li><a href="/quake4/ArtReference_CreatingTextures?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+<h1 id="head-4385fbd8ac068b90401c2fd8f4bf623656c308dd">Creating A Texture For Quake4</h1>
+<span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line874">This document will attempt to explain the process which the artists and modelers of Raven Software used to create textures for the Quake4 game. It begins at the concept stage, on through to creating the high poly models used to render out the normal, setting up the texture’s shaders, and then painting the diffuse, specular, and height maps to create a finished skin. We have tried to simplify some of the directions and descriptions for those inspired individuals that don’t have a lot of experience creating assets for a game. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867"><strong>Creating Your Texture Model</strong>: After concepting up a nice texture design, you’ll need to model your texture using one of the many 3D modeling packages available. Our hi-poly modelers used Maya and Lightwave to do all of their high poly modeling for Quake4. You can use most any modeling software, but in the end, we used Maya and Lightwave because we wanted to follow the same tool path that our friends down at Id Software used for Doom3.  <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line874">The image below is of an actual texture model used to create a normal for Quake4. The texture was created in Lightwave and has a tripled poly count of 95284. <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=get&amp;target=tex_01.jpg" title="attachment:tex_01.jpg" /> <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867"><strong>Modeling Textures for Quake:</strong> <span class="anchor" id="line-12"></span>Modeling textures is slightly different than what is done for a creature or world model, there is no need for a low poly model, only the high poly one. The model never goes into the game, it is only used to render out your normal map. But don’t discard or delete your texture model, save it out on your C: drive because you can always use it to copy parts off of for other textures, etc. <span class="anchor" id="line-13"></span><span class="anchor" id="line-14"></span><p class="line862">Because your texture model is rendered out with the command <strong>renderbumpflat</strong> and the trace traces out at a straight-on 90 degree angle (like a scanner), you’ll need to model your texture with bevels and rounded surfaces in order for them to show up on the normal map render. Modeling your texture without bevels or rounded pieces will make your texture render out flat with no raised parts or pieces. As an example, see the texture in the image below. This is the same texture as the one in the image above, but has been turned slightly to show the bevels, rounded sections, and the fact that it is not flattened out, but with “floating” parts and pieces, like an exploded view.  <span class="anchor" id="line-15"></span><span class="anchor" id="line-16"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=get&amp;target=tex_02.jpg" title="attachment:tex_02.jpg" /> <span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span><p class="line874">In order to render this texture out, its parts don’t need to be flattened out, butted up against each other, or even pushed the other parts. The renderer will read it as being flattened even when it’s not. Here are a couple more examples images. Notice in the top left and bottom right windows of the bottom most image that the model parts are intentionally placed in front of each other.   <span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=get&amp;target=tex_03.jpg" title="attachment:tex_03.jpg" /> <span class="anchor" id="line-21"></span><span class="anchor" id="line-22"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=get&amp;target=tex_04.jpg" title="attachment:tex_04.jpg" /> <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span><p class="line867"><strong>Texture Modeling Tips:</strong> <span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span><ol type="1"><li><p class="line891"><strong>Beveling and Rounding</strong>: Make sure all parts are beveled or rounded to give the texture depth and mass when it is rendered. <span class="anchor" id="line-27"></span><span class="anchor" id="line-28"></span></li><li class="gap"><p class="line891"><strong>Float Parts and Pieces</strong>: Be sure to “float” model parts and pieces. It’ll lessen the poly count on your texture and make it easier to model. <span class="anchor" id="line-29"></span><span class="anchor" id="line-30"></span></li><li class="gap"><p class="line891"><strong>Tripling and Merging Points</strong>: Make sure you triple the model and merge your points before attempting to render out your normal map. Delete any 1, 2, or 4 poly or non-planer polys on your model. If you do not triple and remove the offending 1, 2, or 4 poly or non-planer polys, your model will not load when you try to render it out. <span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span></li><li class="gap"><p class="line891"><strong>Save Your Texture Model</strong>: Save your texture on your C: drive so that you might copy and paste parts from it for other textures or models. <span class="anchor" id="line-33"></span><span class="anchor" id="line-34"></span></li><li class="gap"><p class="line891"><strong>Copy and Paste Parts From Other Models</strong>: Steal and copy parts from other models to lessen your modeling time. Taking bolts, screws, pipes, hoses, lights, small housings, etc from another model, copying them, and using them on your model will make the job that much easier. We created model parts directories of reusable pieces and parts that we could copy and place onto our models. We have included some of those model part directories for you to access. <span class="anchor" id="line-35"></span><span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span></li></ol><p class="line867"><strong><span class="u">Once you have completed your model, you’ll need to render it out</span></strong>: Once your high poly texture model is completed, you’ll need to set up your material and render out your texture’s normal map. <span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><p class="line867"><strong>Setting Up Your Texture’s Material Shader</strong>: See Section 4 of the <a href="/quake4/ArtReference_Q4Shaders">Quake 4 Shaders</a> document for an explanation on how to write out your shader for rendering. <span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><p class="line867"><strong>Rendering Your Texture’s Normal Map</strong>: Below is an exclamation on how to render out your normal after you have set up your shaders.  <span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><ul><li><p class="line862">With Quake4 installed on your computer, open the <strong>Command Prompt</strong> on your computer (Go to <strong>Start</strong>, then <strong>All Programs</strong>, <strong>Accessories</strong>, <strong>Command Prompt</strong>). <span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span></li><li class="gap"><p class="line862">Type in <strong>C:</strong> and hit <strong>Enter</strong>. <span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span></li><li class="gap"><p class="line862">Type in <strong>cd &lt;your installation directory&gt;</strong> to change directories. This should point to where you have Quake4 installed <strong>(C:\Program Files\id Software\Quake 4)</strong> <span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span></li><li class="gap"><p class="line891"><strong>For Textures</strong>: Type in <strong>Quake4 +renderbumpflat [ -size &lt;x&gt; &lt;y&gt; ] &lt; path to model &gt;</strong>  to allow the engine to find your texture model to render from. <span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span><ol type="1"><li><p class="line862">In the “<strong>-size</strong>” section, type in the size you want your texture’s normal to be rendered out at in a power of 8. It might be a 32 X 32, 64 X 64, 128 X 128, 512 X 512, or even a 1024 X 1024. To create a texture that has an odd aspect-ratio, such as 512 X 256, just type that into the size section.  <span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span></li><li class="gap"><p class="line862">In the “<strong>path to model</strong>” section, type in the path where your texture can be found on your computer. <span class="anchor" id="line-54"></span><span class="anchor" id="line-55"></span></li></ol></li><li class="gap"><p class="line862">Hit <strong>Enter</strong> for the normal map to be run in the engine and be generated. The normal map will be rendered out to your <strong>C: Drive</strong>. Type in <strong>Quit</strong> at the console to quit out of the game. <span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span></li></ul><p class="line867"><strong>Other Tips for Rendering:</strong> <span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span><ol type="1"><li><p class="line891"><strong>Load the game and make sure you are in windows mode</strong>: If the game is full screen renderbump WILL NOT WORK. <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span></li><li class="gap"><p class="line891"><strong>Let the renderbump render</strong>: At this point Doom 3 (quake 4) will start and a grey window will appear. The window will draw a normal map in that window. After it is finished rendering the normal map the window will change to an in game window and will seem to freeze. Do not interrupt the game at this time, it’s writing the targa down to your C drive and will sometimes take quite awhile. If it looks like nothing is happening in the rendering window, don’t panic…it’s rendering out parts that you can’t see in the window. Just let it render out fully... <span class="anchor" id="line-62"></span><span class="anchor" id="line-63"></span></li><li class="gap"><p class="line891"><strong>Rendering can take a long time</strong>: Rendering sometimes takes only seconds or nearly an hour or more to complete depending on the complexity of your model, size you are rendering out your normal, and the anti-aliasing setting you selected. Just let it render out… <span class="anchor" id="line-64"></span><span class="anchor" id="line-65"></span></li><li class="gap"><p class="line891"><strong>Don’t open any other windows on top of the rendering window</strong>: Opening any other windows or sliding them over the top of the rendering window while your normal is rendering may cause issues. Let the engine render out the normal fully and quit out of the game before opening any other programs over the top of it.  <span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span></li><li class="gap"><p class="line891"><strong>Set up the shaders to see the texture in game</strong>: At this point, you’ll need to take a look at your work. Set up temporary targas for the _d, _h, _s and put them on base with the _local in the correct directory. The renderline is not loaded into the game unless it’s called out, so leaving it there is ok. Load into <a href="/quake4/ModView">ModView</a> and see the magic. See example below: <span class="anchor" id="line-68"></span><span class="anchor" id="line-69"></span></li></ol><p class="line867"><img class="attachment" src="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=get&amp;target=tex_05.jpg" title="attachment:tex_05.jpg" />  <span class="anchor" id="line-70"></span><span class="anchor" id="line-71"></span><p class="line867"><strong><span class="u">Painting Your Diffuse, Specular, and Height Maps</span></strong>:  After you have rendered out the normal map, you can then start painting the diffuse, specular, and height maps for your texture. Any painting program can be used to create your texture, but we at Raven use Photoshop, as do most computer and console game studios. <span class="anchor" id="line-72"></span><span class="anchor" id="line-73"></span><p class="line867"><strong>Diffuse Map</strong>: The diffuse map is the color portion of your texture. It determines the colors of the texture. Since your texture is somewhat realistic looking in the game, we recommend using photo reference for your diffuse. Photo reference are digital photos of rusty metal, different types of metals, chipped paint, rust, dirt, etc that are used to create realistic looking textures. You can use a digital camera and go out and shoot lots of real asset photos to use for your diffuse map. There is still plenty of “real” painting to do on the texture, even with using photo reference. Here’s an example: <span class="anchor" id="line-74"></span><span class="anchor" id="line-75"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=get&amp;target=tex_06.jpg" title="attachment:tex_06.jpg" />  <span class="anchor" id="line-76"></span><span class="anchor" id="line-77"></span><p class="line867"><strong>Specular Map</strong>: The specular map is used to add sheen to areas of your texture, highlights to edges, and can help determine different types of metals and define chipped paint, rust, etc. I believe the specular map is the hardest part of the texture to paint and the most time-consuming of the three maps. Do a really nice job on the specular and it’ll really make your texture really sing. <span class="anchor" id="line-78"></span><span class="anchor" id="line-79"></span><p class="line862">I have included a sample specular map. This will give you an idea on how to do your specular. Also, look at some of the other Q4 texture speculars to gain a better understanding and read the <a href="/quake4/ArtReference_SpecularMaps">MAKING A SPECULAR MAP FOR QUAKE4</a> document. It’s very basic, but informative as to how we created specular maps for Quake4. <span class="anchor" id="line-80"></span><span class="anchor" id="line-81"></span><p class="line867"><img class="attachment" src="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=get&amp;target=tex_07.jpg" title="attachment:tex_07.jpg" />  <span class="anchor" id="line-82"></span><span class="anchor" id="line-83"></span><p class="line867"><strong>Tips to painting nice specular maps:</strong> <span class="anchor" id="line-84"></span><span class="anchor" id="line-85"></span><ol type="1"><li>When doing rust, rubber, and other not too reflective surfaces make those areas on your specular map the darkest areas in relation to the other more reflective parts. Rust and rubber don’t usually reflect a lot of light and therefore would be darker on your specular than some shiny metal, etc. <span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span></li><li class="gap">You can define chrome, stainless steel, and other very reflective metals by upping the highlights or brightness on those areas of the specular. <span class="anchor" id="line-88"></span><span class="anchor" id="line-89"></span></li><li class="gap">Adding little “hotspots” of light to highlighted edges can really help sell the realism of your texture. <span class="anchor" id="line-90"></span><span class="anchor" id="line-91"></span></li><li class="gap">Make painted areas slightly less reflective than the metal underneath. If the metal showing though the chipped areas is a tad brighter than the painted parts, the texture will look more realistic. <span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span></li><li class="gap">On cylinders and other rounded areas on your texture, adding a highlighted section or horizon line will make that area read much more realistically as the light rolls across/over it. <span class="anchor" id="line-94"></span><span class="anchor" id="line-95"></span></li><li class="gap">You can add percentages of color to your specular map to intensify particular colors on your texture, etc. <span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span></li><li class="gap"><p class="line862">If you are creating textures with blood or oil on them, you can make those look more realistic by adding an inverted color onto your specular. On your diffuse, paint your blood or oil the normal color on a layer, and then for your <strong>specular map</strong> slide a copy of the painted fluid over and invert it. In Photoshop, hit <strong>Image</strong>, then <strong>Adjustments</strong>, then <strong>Invert</strong>. That will invert the color information of your blood or oil. After being inverted, the blood will be blue green in color. You can adjust the brightness and intensity and flatten it onto your specular map. Once that is in place and saved out, the blood or oil will look so much more realistic and wet. <span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span></li></ol><p class="line867"><strong>Height Map</strong>: The height map compliments the normal map. It is used to add dings, dents, scratches, indented wounds to flesh, etc. It is just a grey-scaled image. The way the height map works is that white equates to height and black equals depth. By varying the intensities of white and black, it creates differing height and depth information to the height map. The brighter or more intense the white, the greater the height indicated on your height map. The darker or more intense the black, the deeper the depth on your height map. The height map can only indicate height and depth on a 90 degree up and down angle. It can’t indicate angled information like the normal map can. <span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><p class="line867"><strong>Tips to doing height maps correctly:</strong> <span class="anchor" id="line-102"></span><ol type="1"><li><p class="line891"><strong>DO NOT</strong> just grayscale the normal map and invert it to create your height map! Doing so will only cause the height map to fight the light vectoring information of the normal and nullify its effectiveness. <span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span></li><li class="gap">Start out your height map out with a 50% gray as its base background color. Consider 50% gray as being totally flat and anything lighter in value as being raised above it and anything darker than 50% as being lower or beneath it.  <span class="anchor" id="line-105"></span><span class="anchor" id="line-106"></span></li><li class="gap">Avoid adding tons of noise to create height. Too much noise will only muddy your height and normal maps and destroy the effectiveness of both. <span class="anchor" id="line-107"></span><span class="anchor" id="line-108"></span></li><li class="gap">The height map doesn’t need to be overly detailed or very busy looking to do its job. It is meant to compliment the normal, not override it. If you look at the Makron’s height map, you’ll notice that it’s pretty simple. All that are on it are indications of scratches in the paint job of the Makron’s metal body parts and the flesh areas with the wounds. Notice that the veins and wrinkles on the flesh are raised with pretty intense white and that the wounds are pushed in with some very dark grays. The scratches in the metal parts of the Makron’s body are a very light gray color since paint is usually only microns thick and the scratches wouldn’t be very deep when the paint is on top of metal. <span class="anchor" id="line-109"></span><span class="anchor" id="line-110"></span></li></ol><p class="line867"><img class="attachment" src="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=get&amp;target=tex_08.jpg" title="attachment:tex_08.jpg" />   <span class="anchor" id="line-111"></span><span class="anchor" id="line-112"></span><p class="line867"><strong>Glow Maps</strong>: You can also add glow maps to your texture. For it to work, though, you’ll need to set it up in the shader. The glow map indicates areas on the skin that glow or look like lights. The glow map usually has a 100% black as its base background and snippets of color that indicate the lights, etc. Through the shader, you can also have the glow map flicker, blink on and off, etc.  <span class="anchor" id="line-113"></span><span class="anchor" id="line-114"></span><span class="anchor" id="line-115"></span><p class="line867"><strong>Viewing Your Texture in the <a href="/quake4/LevelEditor">LevelEditor</a></strong>: Once you have completed your texture, you can look at it in the game’s Editor, move lights across it, etc. This section is very basic in its description for using the <a href="/quake4/LevelEditor">LevelEditor</a>.  <span class="anchor" id="line-116"></span><span class="anchor" id="line-117"></span><p class="line862">To use the <a href="/quake4/LevelEditor">LevelEditor</a> to view textures, follow these tips and guidelines: <span class="anchor" id="line-118"></span><span class="anchor" id="line-119"></span><ol type="1"><li><p class="line862">To access the <a href="/quake4/LevelEditor">LevelEditor</a>, open the game, bring down the console by hitting tilda (~), type the word editor, and hit enter. The <a href="/quake4/LevelEditor">LevelEditor</a> will then open. To view your texture in the Editor it will have to have been saved out in the q4base directory.  <span class="anchor" id="line-120"></span><span class="anchor" id="line-121"></span></li><li class="gap"><p class="line862">Once the <a href="/quake4/LevelEditor">LevelEditor</a> is open, set it up like the image below: <span class="anchor" id="line-122"></span><span class="anchor" id="line-123"></span></li></ol><p class="line867"><img class="attachment" src="/quake4/ArtReference_CreatingTextures?action=AttachFile&amp;do=get&amp;target=tex_09.jpg" title="attachment:tex_09.jpg" /> <span class="anchor" id="line-124"></span><span class="anchor" id="line-125"></span><ol type="1"><li><p class="line862">In the <strong>XY Top</strong> window create a box (A brush). <span class="anchor" id="line-126"></span><span class="anchor" id="line-127"></span></li><li class="gap"><p class="line862">Hit <strong>Media</strong>. <span class="anchor" id="line-128"></span><span class="anchor" id="line-129"></span></li><li class="gap"><p class="line862">Pick your texture to place on your brush (Make sure you click it open by clicking on the <strong>+</strong> only! Clicking on the word Texture will cause it to load the entire directory of textures). <span class="anchor" id="line-130"></span><span class="anchor" id="line-131"></span></li><li class="gap"><p class="line862">Deselect the brush by hitting <strong>Shift/Left Click</strong> or <strong>Escape</strong>. <span class="anchor" id="line-132"></span><span class="anchor" id="line-133"></span></li><li class="gap"><p class="line862">Right click in <strong>XY Top</strong> window for the <strong>Light Menu</strong>. <span class="anchor" id="line-134"></span><span class="anchor" id="line-135"></span></li><li class="gap"><p class="line862">Create a Light (Use the <strong>Z</strong> window to move your light up and down). <span class="anchor" id="line-136"></span><span class="anchor" id="line-137"></span></li><li class="gap"><p class="line891"><strong>Shift/Left Click</strong> to select your brush and to pull it outside. <span class="anchor" id="line-138"></span><span class="anchor" id="line-139"></span></li></ol><p class="line867"><strong><span class="u">Tools and Hot Keys for <a href="/quake4/LevelEditor">Q4Radiant</a></span></strong> <span class="anchor" id="line-140"></span><span class="anchor" id="line-141"></span><ul><li>The arrow keys move the texture around in the CAM window: <span class="anchor" id="line-142"></span><span class="anchor" id="line-143"></span><ul><li><p class="line891"><strong>Up/Down Arrows</strong> move the texture up and down. <span class="anchor" id="line-144"></span><span class="anchor" id="line-145"></span></li><li class="gap"><p class="line891"><strong>Right/Left Arrows</strong> rotate the texture right and left. <span class="anchor" id="line-146"></span><span class="anchor" id="line-147"></span></li></ul></li><li class="gap"><p class="line891"><strong>Shift/Left Click</strong> selects items in the windows. They turn red in color when selected. <span class="anchor" id="line-148"></span><span class="anchor" id="line-149"></span></li><li class="gap"><p class="line891"><strong>Escape</strong> or <strong>Shift/Left Click</strong> deselects items in the windows. <span class="anchor" id="line-150"></span><span class="anchor" id="line-151"></span></li><li class="gap"><p class="line891"><strong>Spacebar</strong> = Copy <span class="anchor" id="line-152"></span><span class="anchor" id="line-153"></span></li><li class="gap"><p class="line891"><strong>Backspace</strong> = Delete <span class="anchor" id="line-154"></span><span class="anchor" id="line-155"></span></li><li class="gap"><p class="line891"><strong>R</strong> turns on the rotate function to rotate an object in the XY window. Shift/Left Click on the object and pull your mouse up and down to rotate in opposing directions. <span class="anchor" id="line-156"></span><span class="anchor" id="line-157"></span></li><li class="gap"><p class="line891"><strong>S</strong> calls up rotate and move texture texture coordinates inside the brush. <span class="anchor" id="line-158"></span><span class="anchor" id="line-159"></span></li><li class="gap"><p class="line891"><strong>K</strong> calls up the color selector for lights. <span class="anchor" id="line-160"></span><span class="anchor" id="line-161"></span></li><li class="gap"><p class="line891"><strong>Shift/5</strong> orients the texture inside the brush. <span class="anchor" id="line-162"></span><span class="anchor" id="line-163"></span></li><li class="gap"><p class="line891"><strong>A</strong> and <strong>Z</strong> orient the brush up and down in the windows. <span class="anchor" id="line-164"></span><span class="anchor" id="line-165"></span></li><li class="gap"><p class="line891"><strong>D</strong> and <strong>C</strong> orient the brush from side to side. <span class="anchor" id="line-166"></span><span class="anchor" id="line-167"></span></li><li class="gap"><p class="line891"><strong>F2</strong> brings up the game in a window. <span class="anchor" id="line-168"></span><span class="anchor" id="line-169"></span></li><li class="gap"><p class="line891"><strong>F3</strong> to render. <span class="anchor" id="line-170"></span><span class="anchor" id="line-171"></span></li><li class="gap"><p class="line891"><strong>F4</strong> to render in realtime. <span class="anchor" id="line-172"></span><span class="anchor" id="line-173"></span></li><li class="gap"><p class="line891"><strong>F5</strong> to orient texture. <span class="anchor" id="line-174"></span><span class="anchor" id="line-175"></span></li><li class="gap"><p class="line891"><strong>F6</strong> for anims. <span class="anchor" id="line-176"></span><span class="anchor" id="line-177"></span></li><li class="gap"><p class="line891"><strong>F7</strong> to refresh lights (if needed). <span class="anchor" id="line-178"></span><span class="anchor" id="line-179"></span></li><li class="gap"><p class="line891"><strong>Ctrl/Tab</strong> allows you to jump to different views in the XY window (top, side, front). <span class="anchor" id="line-180"></span><span class="anchor" id="line-181"></span></li><li class="gap"><p class="line891"><strong>Insert</strong> and <strong>Delete</strong> allows you to scroll in and out in the XY window. <span class="anchor" id="line-182"></span><span class="anchor" id="line-183"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ArtReference CreatingTextures  (last edited 2005-11-07 19:36:19 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/ArtReference_CreatingTextures?action=info">Info</a></li><li><a href="/quake4/ArtReference_CreatingTextures?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+
