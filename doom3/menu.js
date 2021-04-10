@@ -17,6 +17,7 @@ var a = {
 
 "__models__":"-",
 "modelexport":"Exporting Models",
+"modelexport_3dsmax":"Exporting Models with 3ds Max",
 "models":"Model Decls",
 "skins":"Skins",
 
@@ -50,6 +51,7 @@ var a = {
 "editor_light":"Light Editor",
 "entitydefs":"EntityDefs",
 "mapdefs":"MapDefs",
+"visportals":"Vis Portals",
 
 "__pdas__":"-",
 "pdas":"PDAs",
