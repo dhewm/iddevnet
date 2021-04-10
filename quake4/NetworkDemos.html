@@ -88,19 +88,19 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="/quake4/Quake4SDK">
-<link rel="Alternate" title="Wiki Markup" href="/quake4/NetworkDemos?action=raw">
-<link rel="Alternate" media="print" title="Print View" href="/quake4/NetworkDemos?action=print">
-<link rel="Search" href="/quake4/FindPage">
-<link rel="Index" href="/quake4/TitleIndex">
-<link rel="Glossary" href="/quake4/WordIndex">
-<link rel="Help" href="/quake4/HelpOnFormatting">
+<link rel="Start" href="./Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="./NetworkDemos?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="./NetworkDemos?action=print">
+<link rel="Search" href="./FindPage">
+<link rel="Index" href="./TitleIndex">
+<link rel="Glossary" href="./WordIndex">
+<link rel="Help" href="./HelpOnFormatting">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="/quake4/Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -126,24 +126,24 @@ searchBlur(e);
 //-->
 </script>
 
-<ul id="username"><li><a href="/quake4/NetworkDemos?action=login" id="login">Login</a></li></ul>
+<ul id="username"><li><a href="./NetworkDemos?action=login" id="login">Login</a></li></ul>
 <div id="locationline">
 
 
 <ul id="pagelocation">
-<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/NetworkDemos?action=fullsearch&amp;value=linkto%3A%22NetworkDemos%22&amp;context=180">NetworkDemos</a></li>
+<li><a class="backlink" title="Click to do a full-text search for this title" href="./NetworkDemos?action=fullsearch&amp;value=linkto%3A%22NetworkDemos%22&amp;context=180">NetworkDemos</a></li>
 </ul>
 
 </div>
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/NetworkDemos">NetworkDemos</a></li>
+<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li><li class="current"><a href="./NetworkDemos">NetworkDemos</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
 
-<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/NetworkDemos?action=info">Info</a></li><li><a href="/quake4/NetworkDemos?action=AttachFile">Attachments</a></li><li>
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="./NetworkDemos?action=info">Info</a></li><li><a href="./NetworkDemos?action=AttachFile">Attachments</a></li><li>
 <form class="actionsmenu" method="get" action="">
 <div>
     <label>More Actions:</label>
@@ -191,18 +191,18 @@ actionsMenuInit('More Actions:');
 <h3 id="head-3c2f250012c2bdc988a671fd4d9fb5d0cecf8059">Network demo cvars:</h3>
 <span class="anchor" id="line-13"></span><span class="anchor" id="line-14"></span><ul><li><p class="line891"><strong>demo_snapshotDelay</strong>: How often to record game snapshots to the demo stream <strong>( server netdemo only )</strong> <span class="anchor" id="line-15"></span></li><li><p class="line891"><strong>demo_debug</strong>: verbose various information about the network demo subsystem when using demo commands <span class="anchor" id="line-16"></span></li><li><p class="line891"><strong>demo_enforceFS</strong>: enforce pure filesystem checks when playing back a demo. See below for details <span class="anchor" id="line-17"></span></li><li><p class="line891"><strong>demo_scale</strong>: slows or speeds up the replay ( mostly for debugging purposes ) <span class="anchor" id="line-18"></span><span class="anchor" id="line-19"></span></li></ul><p class="line867">
 <h3 id="head-4a0e43dcd660432f0509931d4daa00dd70c0cf34">Why you should use network timedemos for benchmarking</h3>
-<span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line862">Render demos were written as a driver compatibility testing tool, and never intended as a benchmark tool for the game. A render demo stores render commands and feeds them to the graphics drivers. So all you're benchmarking is the performance of your GPU and it's drivers. Network demos however, will run the game code on the CPU, produce render commands and render frames to the GPU, so they are much closer to a real gameplay situation. That's why you should always use <strong>playNetTimeDemo</strong> for benchmarking rather than render demos. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line862">See <strong><a href="/quake4/Benchmarking">Benchmarking</a></strong> for complete information on good benchmarking procedures with Quake 4. <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line867">
+<span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line862">Render demos were written as a driver compatibility testing tool, and never intended as a benchmark tool for the game. A render demo stores render commands and feeds them to the graphics drivers. So all you're benchmarking is the performance of your GPU and it's drivers. Network demos however, will run the game code on the CPU, produce render commands and render frames to the GPU, so they are much closer to a real gameplay situation. That's why you should always use <strong>playNetTimeDemo</strong> for benchmarking rather than render demos. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line862">See <strong><a href="./Benchmarking">Benchmarking</a></strong> for complete information on good benchmarking procedures with Quake 4. <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line867">
 <h3 id="head-a04eb9f2b37bdfd68612f43489d51e4be18eed0c">The demo_enforceFS cvar</h3>
 <span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><p class="line874">When playing back a network demo, it is essential that the game code and assets are exactly the same as they were at the time of recording. If you are using a lot of custom pak files, it's very likely the filesystem needs a reconfiguration before it can play a demo under good conditions. Enable demo_enforceFS ( which is off by default ), so the filesystem will restart with the correct pak files whenever it needs to play a network demo. It will abort if that's not possible. Note that this only works for network demos that have been recorded on a pure server. <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><p class="line867">
 <h3 id="head-9b7fbe55a670c3bf0b3b3d5871eef281be8feae2">Feedback</h3>
-<span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line862">Please send feedback and bug reports about the network demo functionality to <em>ttimo AT idsoftware DOT com</em> <span class="anchor" id="line-32"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">NetworkDemos  (last edited 2006-07-17 22:11:36 by <span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="/quake4/TimotheeBesset" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span>)</p>
+<span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line862">Please send feedback and bug reports about the network demo functionality to <em>ttimo AT idsoftware DOT com</em> <span class="anchor" id="line-32"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">NetworkDemos  (last edited 2006-07-17 22:11:36 by <span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="./TimotheeBesset" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>
 
 
 <div id="footer">
-<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/NetworkDemos?action=info">Info</a></li><li><a href="/quake4/NetworkDemos?action=AttachFile">Attachments</a></li><li>
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="./NetworkDemos?action=info">Info</a></li><li><a href="./NetworkDemos?action=AttachFile">Attachments</a></li><li>
 <form class="actionsmenu" method="get" action="">
 <div>
     <label>More Actions:</label>

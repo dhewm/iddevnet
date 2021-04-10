@@ -88,19 +88,19 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="/quake4/Quake4SDK">
-<link rel="Alternate" title="Wiki Markup" href="/quake4/LevelEditor_Q4Conversion?action=raw">
-<link rel="Alternate" media="print" title="Print View" href="/quake4/LevelEditor_Q4Conversion?action=print">
-<link rel="Search" href="/quake4/FindPage">
-<link rel="Index" href="/quake4/TitleIndex">
-<link rel="Glossary" href="/quake4/WordIndex">
-<link rel="Help" href="/quake4/HelpOnFormatting">
+<link rel="Start" href="./Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="./LevelEditor_Q4Conversion?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="./LevelEditor_Q4Conversion?action=print">
+<link rel="Search" href="./FindPage">
+<link rel="Index" href="./TitleIndex">
+<link rel="Glossary" href="./WordIndex">
+<link rel="Help" href="./HelpOnFormatting">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="/quake4/Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -126,24 +126,24 @@ searchBlur(e);
 //-->
 </script>
 
-<ul id="username"><li><a href="/quake4/LevelEditor_Q4Conversion?action=login" id="login">Login</a></li></ul>
+<ul id="username"><li><a href="./LevelEditor_Q4Conversion?action=login" id="login">Login</a></li></ul>
 <div id="locationline">
 
 
 <ul id="pagelocation">
-<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/LevelEditor_Q4Conversion?action=fullsearch&amp;value=linkto%3A%22LevelEditor+Q4Conversion%22&amp;context=180">LevelEditor Q4Conversion</a></li>
+<li><a class="backlink" title="Click to do a full-text search for this title" href="./LevelEditor_Q4Conversion?action=fullsearch&amp;value=linkto%3A%22LevelEditor+Q4Conversion%22&amp;context=180">LevelEditor Q4Conversion</a></li>
 </ul>
 
 </div>
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li><li class="current"><a href="/quake4/LevelEditor_Q4Conversion">LevelEditor Q4Conversion</a></li>
+<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li><li class="current"><a href="./LevelEditor_Q4Conversion">LevelEditor Q4Conversion</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
 
-<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_Q4Conversion?action=info">Info</a></li><li><a href="/quake4/LevelEditor_Q4Conversion?action=AttachFile">Attachments</a></li><li>
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="./LevelEditor_Q4Conversion?action=info">Info</a></li><li><a href="./LevelEditor_Q4Conversion?action=AttachFile">Attachments</a></li><li>
 <form class="actionsmenu" method="get" action="">
 <div>
     <label>More Actions:</label>
@@ -191,14 +191,14 @@ actionsMenuInit('More Actions:');
 <h2 id="head-14f9ce5a95e2142e34ef5451f79a2177e5ce6f16">Preparing the Old Map</h2>
 <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line874">Quake 4 can load .map files for any previous Quake title. To make the process as smooth as possible, we recommend the following steps: <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><ul><li>You should delete entities from your old map before loading it into Quake 4. Entities with invalid classnames will load into Quake 4 as small green boxes that do not register as entities (you cannot just change their classname to something useful, unfortunately) and can be a pain to remove. <span class="anchor" id="line-10"></span></li><li>Grouped patch caps in Quake 3 map files may crash the Quake 4 editor. You should ungroup these before proceeding with a conversion. <span class="anchor" id="line-11"></span></li><li>You can leave lights in their current state and load them into Quake 4, but they will not have any bounds or center information, and are only useful as positional reference and not to automatically light the new level. (Old iterations of the 'light' entity had no volume defined as seen in Doom 3/ Quake 4). <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span></li></ul><p class="line867">
 <h2 id="head-fb07a73b8c14ed77fac25d1d7b5de45c493f0677">Finishing the Conversion</h2>
-<span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line874">Once the map is loaded, there's just a handful more things to keep in mind: <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><ul><li><p class="line862">There is no world scale difference; all maps will come in 1:1. The player's bounding box is still 32 units wide, so any 33+ unit wide gap still remains equally accessible. However, the player is slightly taller compared to previous Quakes (a continuing trend, it seems), as is the player view height (this results in an illusion that things are slightly slower in comparison to Quake 3, a result of the parallax difference between eye and floor). With this in mind, you <em>may</em> have to raise very low doorways and obstacles. Most Quake 3 levels will likely accomodate the new player with no adjustment needed. Quake 2's player height was 56 units and may require additional height increases, while Quake levels were based upon an even smaller player model (56 units tall), so these levels may pose the greatest challenge vertically. <span class="anchor" id="line-18"></span></li><li>Your level will load with no textures. You can halfway fix the problem by making a new mtr file mirroring all the files used in the old version, but world UVs are also not retained, which will result in needing to re-scale/re-align most faces anyway. <span class="anchor" id="line-19"></span></li><li><p class="line862">Performance will not be the same, for better or for worse (and, given the technological jump and extra stuff in Q4, I think it's safe to assume it'll err toward worse). Please keep our <a href="/quake4/LevelEditor_Performance">performance considerations</a> close during the conversion process, as nearly all aspects of performance tweaking are new to Quake 4 from the previous Quake titles. <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span></li></ul><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-22"></span>Back to <a href="/quake4/LevelEditor">LevelEditor</a> <span class="anchor" id="line-23"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">LevelEditor Q4Conversion  (last edited 2006-02-15 05:05:40 by <span title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]"><a class="nonexistent" href="/quake4/AndrewWeldon" title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]">AndrewWeldon</a></span>)</p>
+<span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line874">Once the map is loaded, there's just a handful more things to keep in mind: <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><ul><li><p class="line862">There is no world scale difference; all maps will come in 1:1. The player's bounding box is still 32 units wide, so any 33+ unit wide gap still remains equally accessible. However, the player is slightly taller compared to previous Quakes (a continuing trend, it seems), as is the player view height (this results in an illusion that things are slightly slower in comparison to Quake 3, a result of the parallax difference between eye and floor). With this in mind, you <em>may</em> have to raise very low doorways and obstacles. Most Quake 3 levels will likely accomodate the new player with no adjustment needed. Quake 2's player height was 56 units and may require additional height increases, while Quake levels were based upon an even smaller player model (56 units tall), so these levels may pose the greatest challenge vertically. <span class="anchor" id="line-18"></span></li><li>Your level will load with no textures. You can halfway fix the problem by making a new mtr file mirroring all the files used in the old version, but world UVs are also not retained, which will result in needing to re-scale/re-align most faces anyway. <span class="anchor" id="line-19"></span></li><li><p class="line862">Performance will not be the same, for better or for worse (and, given the technological jump and extra stuff in Q4, I think it's safe to assume it'll err toward worse). Please keep our <a href="./LevelEditor_Performance">performance considerations</a> close during the conversion process, as nearly all aspects of performance tweaking are new to Quake 4 from the previous Quake titles. <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span></li></ul><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-22"></span>Back to <a href="./LevelEditor">LevelEditor</a> <span class="anchor" id="line-23"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">LevelEditor Q4Conversion  (last edited 2006-02-15 05:05:40 by <span title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]"><a class="nonexistent" href="./AndrewWeldon" title="AndrewWeldon @ 24-240-36-51.dhcp.mdsn.wi.charter.com[24.240.36.51]">AndrewWeldon</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>
 
 
 <div id="footer">
-<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/LevelEditor_Q4Conversion?action=info">Info</a></li><li><a href="/quake4/LevelEditor_Q4Conversion?action=AttachFile">Attachments</a></li><li>
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="./LevelEditor_Q4Conversion?action=info">Info</a></li><li><a href="./LevelEditor_Q4Conversion?action=AttachFile">Attachments</a></li><li>
 <form class="actionsmenu" method="get" action="">
 <div>
     <label>More Actions:</label>

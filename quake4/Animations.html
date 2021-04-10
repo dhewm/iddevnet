@@ -88,19 +88,19 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="/quake4/Quake4SDK">
-<link rel="Alternate" title="Wiki Markup" href="/quake4/Animations?action=raw">
-<link rel="Alternate" media="print" title="Print View" href="/quake4/Animations?action=print">
-<link rel="Search" href="/quake4/FindPage">
-<link rel="Index" href="/quake4/TitleIndex">
-<link rel="Glossary" href="/quake4/WordIndex">
-<link rel="Help" href="/quake4/HelpOnFormatting">
+<link rel="Start" href="./Quake4SDK">
+<link rel="Alternate" title="Wiki Markup" href="./Animations?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="./Animations?action=print">
+<link rel="Search" href="./FindPage">
+<link rel="Index" href="./TitleIndex">
+<link rel="Glossary" href="./WordIndex">
+<link rel="Help" href="./HelpOnFormatting">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="/quake4/Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -126,24 +126,24 @@ searchBlur(e);
 //-->
 </script>
 
-<ul id="username"><li><a href="/quake4/Animations?action=login" id="login">Login</a></li></ul>
+<ul id="username"><li><a href="./Animations?action=login" id="login">Login</a></li></ul>
 <div id="locationline">
 
 
 <ul id="pagelocation">
-<li><a class="backlink" title="Click to do a full-text search for this title" href="/quake4/Animations?action=fullsearch&amp;value=linkto%3A%22Animations%22&amp;context=180">Animations</a></li>
+<li><a class="backlink" title="Click to do a full-text search for this title" href="./Animations?action=fullsearch&amp;value=linkto%3A%22Animations%22&amp;context=180">Animations</a></li>
 </ul>
 
 </div>
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="/quake4/GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="/quake4/ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="/quake4/MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="/quake4/LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="/quake4/FXEditor">FXEditor</a></li><li class="wikilink"><a href="/quake4/GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="/quake4/Sounds">Sounds</a></li><li class="wikilink current"><a href="/quake4/Animations">Animations</a></li><li class="wikilink"><a href="/quake4/ArtReference">ArtReference</a></li><li class="wikilink"><a href="/quake4/DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="/quake4/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/quake4/FindPage">FindPage</a></li><li class="wikilink"><a href="/quake4/HelpContents">HelpContents</a></li>
+<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink current"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
 
-<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Animations?action=info">Info</a></li><li><a href="/quake4/Animations?action=AttachFile">Attachments</a></li><li>
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="./Animations?action=info">Info</a></li><li><a href="./Animations?action=AttachFile">Attachments</a></li><li>
 <form class="actionsmenu" method="get" action="">
 <div>
     <label>More Actions:</label>
@@ -253,14 +253,14 @@ actionsMenuInit('More Actions:');
 <span class="anchor" id="line-106"></span>C:\Program Files\Alias\Maya6.0\
 <span class="anchor" id="line-107"></span></pre><span class="anchor" id="line-108"></span><p class="line874">When ready to export, access the console and type: <span class="anchor" id="line-109"></span><span class="anchor" id="line-110"></span><pre>exportmodels ai/new_character.def
 <span class="anchor" id="line-111"></span></pre><span class="anchor" id="line-112"></span><p class="line874">Be sure to include any subdirectories below the ‘def’ directory.  This command will export any animation or mesh in the export block that has been updated since the last time the models from that .def file were exported.  Animations and meshes that haven’t been updated will be ignored.  Using the command ‘reexportmodels’ will export every animation and mesh within the def file, whether or not they have been updated. <span class="anchor" id="line-113"></span><span class="anchor" id="line-114"></span><p class="line874">Unless specifically defined in the export block, the frame range of the md5anim is pulled from the Time Slider of the source file.  However, the engine assumes that every animation begins with frame 1 regardless of where the Time Slider range happens to lie.  If the Time Slider starts on frame 10 and ends on frame 20, the .md5anim will start with frame 1 and end with frame 11.  Therefore, it’s a good idea to have every source animation begin at frame 1.   <span class="anchor" id="line-115"></span><span class="anchor" id="line-116"></span><p class="line874">To define the range in the export block: <span class="anchor" id="line-117"></span><span class="anchor" id="line-118"></span><pre>anim    walk.ma -range 10 20 -dest walk
-<span class="anchor" id="line-119"></span></pre><span class="anchor" id="line-120"></span><p class="line874">If there are any errors with the mesh or animations, etc., the engine will list the errors and the export will fail.  A common mistake is to make a syntax error in the .def file which will either cause an error on export, or cause a successful export where the character won’t actually appear in the game (a simple box shows up in its place).  If this occurs, scour the .def file for any misspellings, invalid paths, open braces, etc.  Otherwise, if the export is successful, the new .md5’s will be available to use in both the game Editor and Modview.  <span class="anchor" id="line-121"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Animations  (last edited 2005-11-04 17:29:52 by <span title="EricBiessman @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/EricBiessman" title="EricBiessman @ 67.129.250.254[67.129.250.254]">EricBiessman</a></span>)</p>
+<span class="anchor" id="line-119"></span></pre><span class="anchor" id="line-120"></span><p class="line874">If there are any errors with the mesh or animations, etc., the engine will list the errors and the export will fail.  A common mistake is to make a syntax error in the .def file which will either cause an error on export, or cause a successful export where the character won’t actually appear in the game (a simple box shows up in its place).  If this occurs, scour the .def file for any misspellings, invalid paths, open braces, etc.  Otherwise, if the export is successful, the new .md5’s will be available to use in both the game Editor and Modview.  <span class="anchor" id="line-121"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Animations  (last edited 2005-11-04 17:29:52 by <span title="EricBiessman @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./EricBiessman" title="EricBiessman @ 67.129.250.254[67.129.250.254]">EricBiessman</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>
 
 
 <div id="footer">
-<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="/quake4/Animations?action=info">Info</a></li><li><a href="/quake4/Animations?action=AttachFile">Attachments</a></li><li>
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="./Animations?action=info">Info</a></li><li><a href="./Animations?action=AttachFile">Attachments</a></li><li>
 <form class="actionsmenu" method="get" action="">
 <div>
     <label>More Actions:</label>
