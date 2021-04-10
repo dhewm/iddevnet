@@ -1,6 +1,7 @@
 
 var a = {
-"index":"Home",
+"../index":"Home",
+"index":"Introduction",
 "downloads":"Downloads",
 "contact":"Contact",
 
