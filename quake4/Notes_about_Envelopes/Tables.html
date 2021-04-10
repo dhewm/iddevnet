@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>Notes about Envelopes/Tables - Quake 4 SDK Documentation</title>
+<script type="text/javascript" src="../wiki/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.className = '';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.className = 'disabled';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initialize action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="../wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="../wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="../wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="../wiki/modern/css/projection.css">
+
+<!-- css only for MSIE browsers -->
+<!--[if IE]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="../wiki/modern/css/msie.css">
+<![endif]-->
+
+
+
+<link rel="Start" href="../Quake4SDK.html">
+<link rel="Alternate" title="Wiki Markup" href="../Notes_about_Envelopes/Tables?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="../Notes_about_Envelopes/Tables?action=print">
+<link rel="Search" href="../FindPage.html">
+<link rel="Index" href="../TitleIndex.html">
+<link rel="Glossary" href="../WordIndex.html">
+<link rel="Help" href="../HelpOnFormatting.html">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="../Quake4SDK.html"><img src="../wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+
+<form id="searchform" method="get" action="">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="../Notes_about_Envelopes/Tables?action=login" id="login">Login</a></li></ul>
+<div id="locationline">
+
+
+<ul id="pagelocation">
+<li><a class="nonexistent" href="../Notes_about_Envelopes.html">Notes about Envelopes</a></li><li><a class="backlink" title="Click to do a full-text search for this title" href="../Notes_about_Envelopes/Tables?action=fullsearch&amp;value=linkto%3A%22Notes+about+Envelopes/Tables%22&amp;context=180">Tables</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="../GettingStarted.html">GettingStarted</a></li><li class="wikilink"><a href="../ScriptFile.html">ScriptFile</a></li><li class="wikilink"><a href="../MakeAMod.html">MakeAMod</a></li><li class="wikilink"><a href="../LevelEditor.html">LevelEditor</a></li><li class="wikilink"><a href="../FXEditor.html">FXEditor</a></li><li class="wikilink"><a href="../GUIEditor.html">GUIEditor</a></li><li class="wikilink"><a href="../Sounds.html">Sounds</a></li><li class="wikilink"><a href="../Animations.html">Animations</a></li><li class="wikilink"><a href="../ArtReference.html">ArtReference</a></li><li class="wikilink"><a href="../DownloadableContent.html">DownloadableContent</a></li><li class="wikilink"><a href="../RecentChanges.html">RecentChanges</a></li><li class="wikilink"><a href="../FindPage.html">FindPage</a></li><li class="wikilink"><a href="../HelpContents.html">HelpContents</a></li><li class="current"><a href="../Notes_about_Envelopes/Tables.html">Tables</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="../Notes_about_Envelopes/Tables?action=info">Info</a></li><li><a href="../Notes_about_Envelopes/Tables?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line862">Envelopes modulate many elements of effects using <a href="../ArtReference_Q4Shaders_Tables.html">tables</a>. <a href="../ArtReference_Q4Shaders_Tables.html">Tables</a> are defined in a <a href="../ArtReference_Q4Shaders.html">material</a> file such as <strong>tables.mtr</strong>, and are sets of numbers used to modify/ramp data. The dropdown box lists all <a href="../ArtReference_Q4Shaders_Tables.html">tables</a> found in your <a href="../ArtReference_Q4Shaders.html">material</a> files when the <a href="../FXEditor.html">FXEditor</a> loads. <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">The <strong>Graph</strong> shows you a visual representation of how your currently selected table will affect your data. Common tables include <strong>linear</strong> and <strong>cosine</strong> <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-6"></span>A <strong>linear</strong> table will move evenly from Start to End values. <span class="anchor" id="line-7"></span><span class="anchor" id="line-8"></span><pre>Example: The size of a sprite starts at 10 and ends at 100. Over the lifetime of the particle, the sprite will move evenly from 10 to 100.
+<span class="anchor" id="line-9"></span></pre><span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line867"><img class="attachment" src="fx_graph_linear.jpg" title="attachment:fx_graph_linear.jpg" /> <span class="anchor" id="line-12"></span><hr /><p class="line874"> <span class="anchor" id="line-13"></span><strong>Cosine</strong> is a table moving from 0 to 1, then back to 0. <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><pre>Example: The start size of a sprite is 10 and end size is 100. Over the lifetime of the particle, the sprite will start at 10 and move towards 100. At the middle of the sprites lifetime, the sprite will be 100. The sprite will then change size from 100 back to 10 at the end of the sprites lifetime.
+<span class="anchor" id="line-16"></span></pre><span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span><p class="line867"><img class="attachment" src="fx_graph_cosine.jpg" title="attachment:fx_graph_cosine.jpg" /> <span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span><p class="line862">These <a href="../ArtReference_Q4Shaders_Tables.html">tables</a> can be used on: <a href="../FXEditor_Tab_-_Size.html">Size</a>, <a href="../FXEditor_Tab_-_Color.html">Color</a>, <a href="../FXEditor_Tab_-_Alpha.html">Alpha</a>, <a href="../FXEditor_Tab_-_Orbit.html">Orbit</a>, <a href="../FXEditor_Tab_-_Rotate.html">Rotate</a> and <a href="../FXEditor_Tab_-_Offset.html">Offset</a>. Selecting a <a href="../ArtReference_Q4Shaders_Tables.html">table</a> of <strong>&lt;none&gt;</strong> (at the top of the table list) will disallow End values under the above areas of <a href="../FXEditor_Tab_-_Size.html">Size</a>, <a href="../FXEditor_Tab_-_Color.html">Color</a>, <a href="../FXEditor_Tab_-_Alpha.html">Alpha</a>, <a href="../FXEditor_Tab_-_Orbit.html">Orbit</a>, <a href="../FXEditor_Tab_-_Rotate.html">Rotate</a> and <a href="../FXEditor_Tab_-_Offset.html">Offset</a>. <span class="anchor" id="line-21"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Notes about Envelopes/Tables  (last edited 2005-12-05 22:55:37 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="../MattVainio.html" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li><a href="../Notes_about_Envelopes/Tables?action=info">Info</a></li><li><a href="../Notes_about_Envelopes/Tables?action=AttachFile">Attachments</a></li><li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="MyPages">My Pages</option>
+<option value="SubscribeUser">Subscribe User</option>
+<option value="show" disabled class="disabled">------------</option>
+<option value="Despam">Remove Spam</option>
+<option value="PackagePages">Package Pages</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmoin.wikiwikiweb.de/">MoinMoin Powered</a></li><li><a href="http://www.python.org/">Python Powered</a></li><li><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

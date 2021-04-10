@@ -19,3 +19,8 @@ reconstructed from https://www.moddb.com/downloads/iddevnet-archive, own backups
 - Lots of images for Quake4:
     - DefinitionFileExamples: monster_strogg_marine_rocket.jpg
     - LevelEditor_BasicRoom: image01.jpg to image12.jpg (all of them)
+    - Effects_Performance: fx_overdraw_bad.jpg fx_overdraw_good.jpg
+    - ArtReference_CreatingTextures: tex_01.jpg - tex_09.jpg (all of them)
+    - Scripting_ScriptsAndEntities: repairbot1.jpg - repairbot8.jpg (all of them)
+    - The_Properties_of_a_segment: fx_lock.jpg
+    - Basic_FX_file_structure: fx_check.jpg fx_sortorder.jpg
