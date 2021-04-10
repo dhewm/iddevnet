@@ -5,7 +5,7 @@
 <meta name="robots" content="index,nofollow">
 
 <title>ScriptVariable - Quake 4 SDK Documentation</title>
-<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+<script type="text/javascript" src="wiki/common/js/common.js"></script>
 
 <script type="text/javascript">
 <!--// common functions
@@ -76,14 +76,14 @@ function actionsMenuInit(title) {
 </script>
 
 
-<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
-<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
-<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
-<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="wiki/modern/css/projection.css">
 
 <!-- css only for MSIE browsers -->
 <!--[if IE]>
-   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="wiki/modern/css/msie.css">
 <![endif]-->
 
 
@@ -100,7 +100,7 @@ function actionsMenuInit(title) {
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -298,7 +298,7 @@ document.write('<a href="#" onclick="return togglenumber(\'CA-bd0cae13945c62c56b
 <span class="line"><span class="LineNumber">   6 </span></span>
 </pre></div><span class="anchor" id="line-88"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-89"></span><span class="anchor" id="vector"></span> <span class="anchor" id="line-90"></span>
 <h2 id="head-d0025f3b6f344dc74ac2f947bb00414f9e47a5b6">Vector</h2>
-<span class="anchor" id="line-91"></span><p class="line867"><strong>Usage:</strong> A vector is a collection of three floats, organized into an x, y, and z format. They are primarily used for storing locations, or determining directions. <span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span><p class="line867"><img alt="/!\" height="15" src="/wiki/modern/img/alert.png" title="/!\" width="15" /> Access to a vector's three values is gained by using the _x, _y or _z operator. <strong>Not the . dot operator.</strong> <span class="anchor" id="line-94"></span><span class="anchor" id="line-95"></span><p class="line867"><span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span><span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span><div class="codearea" dir="ltr" lang="en">
+<span class="anchor" id="line-91"></span><p class="line867"><strong>Usage:</strong> A vector is a collection of three floats, organized into an x, y, and z format. They are primarily used for storing locations, or determining directions. <span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span><p class="line867"><img alt="/!\" height="15" src="wiki/modern/img/alert.png" title="/!\" width="15" /> Access to a vector's three values is gained by using the _x, _y or _z operator. <strong>Not the . dot operator.</strong> <span class="anchor" id="line-94"></span><span class="anchor" id="line-95"></span><p class="line867"><span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span><span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span><div class="codearea" dir="ltr" lang="en">
 <script type="text/javascript">
 document.write('<a href="#" onclick="return togglenumber(\'CA-46c9642ea5d0d2a786e459fa77764f16a1eec7d3_003\', 1, 1);" \
                 class="codenumbers">Toggle line numbers<\/a>');
@@ -337,7 +337,7 @@ document.write('<a href="#" onclick="return togglenumber(\'CA-fc72fad37aa46c87f4
 <span class="line"><span class="LineNumber">   5 </span> <span class="ID">monster1</span> <span class="SPChar">=</span> $<span class="ID">monster_grunt_1</span><span class="SPChar">;</span></span>
 <span class="line"><span class="LineNumber">   6 </span> <span class="ID">monster2</span> <span class="SPChar">=</span> <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">spawn</span><span class="SPChar">(</span><span class="String">"monster_gunner"</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
 <span class="line"><span class="LineNumber">   7 </span></span>
-</pre></div><span class="anchor" id="line-132"></span><span class="anchor" id="line-133"></span><p class="line867"><img alt="/!\" height="15" src="/wiki/modern/img/alert.png" title="/!\" width="15" /> <strong><a href="/quake4/Tutorial_ScriptEntities">Check here for a more detailed example.</a></strong> <span class="anchor" id="line-134"></span><span class="anchor" id="line-135"></span><ul><li><p class="line862">Entities do not convert into strings. You can use <a href="/quake4/ScriptEvent_getName">getName</a> to get a string version of the entity name. <span class="anchor" id="line-136"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptVariable  (last edited 2005-11-02 23:23:04 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/JimShepard" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
+</pre></div><span class="anchor" id="line-132"></span><span class="anchor" id="line-133"></span><p class="line867"><img alt="/!\" height="15" src="wiki/modern/img/alert.png" title="/!\" width="15" /> <strong><a href="/quake4/Tutorial_ScriptEntities">Check here for a more detailed example.</a></strong> <span class="anchor" id="line-134"></span><span class="anchor" id="line-135"></span><ul><li><p class="line862">Entities do not convert into strings. You can use <a href="/quake4/ScriptEvent_getName">getName</a> to get a string version of the entity name. <span class="anchor" id="line-136"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptVariable  (last edited 2005-11-02 23:23:04 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/JimShepard" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>

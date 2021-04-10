@@ -5,7 +5,7 @@
 <meta name="robots" content="index,nofollow">
 
 <title>ScriptFile Events - Quake 4 SDK Documentation</title>
-<script type="text/javascript" src="/wiki/common/js/common.js"></script>
+<script type="text/javascript" src="wiki/common/js/common.js"></script>
 
 <script type="text/javascript">
 <!--// common functions
@@ -76,14 +76,14 @@ function actionsMenuInit(title) {
 </script>
 
 
-<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/common.css">
-<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/wiki/modern/css/screen.css">
-<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/wiki/modern/css/print.css">
-<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/wiki/modern/css/projection.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="wiki/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="wiki/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="wiki/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="wiki/modern/css/projection.css">
 
 <!-- css only for MSIE browsers -->
 <!--[if IE]>
-   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/wiki/modern/css/msie.css">
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="wiki/modern/css/msie.css">
 <![endif]-->
 
 
@@ -100,7 +100,7 @@ function actionsMenuInit(title) {
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="/quake4/Quake4SDK"><img src="/wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="/quake4/Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -185,9 +185,9 @@ actionsMenuInit('More Actions:');
 
 <div id="page" lang="en" dir="ltr">
 <div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
-<span class="anchor" id="line-1"></span><p class="line867"><img alt="/!\" height="15" src="/wiki/modern/img/alert.png" title="/!\" width="15" /> <strong>This page is under construction</strong> <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">At it's core, the Quake 4 Script System is powered by events. Events are the hooks between the script and the game dll. They are functions which can be called on a number of things, most notably the <a href="/quake4/SystemObject">SystemObject</a>. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line862">Events.script is the script file where all these events are stored. When you alter the game dll to add new events, you must create a matching event stub in events.script. See <a class="nonexistent" href="/quake4/AddingScriptEvents">AddingScriptEvents</a> for more information on that topic. <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line874">During development of Quake 4 we aimed to keep events.script a clear, well commented document. As you work with the scripting system, you should always keep events.script open in your editor for quick reference to all events you can use in the script. <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867">
+<span class="anchor" id="line-1"></span><p class="line867"><img alt="/!\" height="15" src="wiki/modern/img/alert.png" title="/!\" width="15" /> <strong>This page is under construction</strong> <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">At it's core, the Quake 4 Script System is powered by events. Events are the hooks between the script and the game dll. They are functions which can be called on a number of things, most notably the <a href="/quake4/SystemObject">SystemObject</a>. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line862">Events.script is the script file where all these events are stored. When you alter the game dll to add new events, you must create a matching event stub in events.script. See <a class="nonexistent" href="/quake4/AddingScriptEvents">AddingScriptEvents</a> for more information on that topic. <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line874">During development of Quake 4 we aimed to keep events.script a clear, well commented document. As you work with the scripting system, you should always keep events.script open in your editor for quick reference to all events you can use in the script. <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867">
 <h2 id="head-1edfc98e337253ba80457615d1a85a4a2fed96e0">Script Events by Category</h2>
-<span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line862">* <a href="/quake4/SystemObject">SystemObject</a> events, for all the sys.something events such as <a href="/quake4/ScriptEvent_println">println</a>, <a href="/quake4/ScriptEvent_getTime">getTime</a> and <a href="/quake4/ScriptEvent_spawn">spawn</a>. <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line862">* <a class="nonexistent" href="/quake4/EntityEvents">EntityEvents</a> are events that can be called on all entities, <a href="/quake4/ScriptEvent_getName">getName</a>, <a class="nonexistent" href="/quake4/ScriptEvent_setOrigin">setOrigin</a> and <a class="nonexistent" href="/quake4/ScriptEvent_bind">bind</a>. <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line862">* <a class="nonexistent" href="/quake4/AIEvents">AIEvents</a> are events you can call on the game's AI entities such as monsters and buddy marines. <span class="anchor" id="line-16"></span><ul><li style="list-style-type:none"><p class="line891"><img alt="/!\" height="15" src="/wiki/modern/img/alert.png" title="/!\" width="15" /> For most AI actions, you'll want to use the <a class="nonexistent" href="/quake4/ScriptUtilityFunctions">ScriptUtilityFunctions</a> written to combine multi-step AI actions into one function.  <span class="anchor" id="line-17"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptFile Events  (last edited 2005-11-01 17:31:54 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/JimShepard" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
+<span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span><p class="line862">* <a href="/quake4/SystemObject">SystemObject</a> events, for all the sys.something events such as <a href="/quake4/ScriptEvent_println">println</a>, <a href="/quake4/ScriptEvent_getTime">getTime</a> and <a href="/quake4/ScriptEvent_spawn">spawn</a>. <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line862">* <a class="nonexistent" href="/quake4/EntityEvents">EntityEvents</a> are events that can be called on all entities, <a href="/quake4/ScriptEvent_getName">getName</a>, <a class="nonexistent" href="/quake4/ScriptEvent_setOrigin">setOrigin</a> and <a class="nonexistent" href="/quake4/ScriptEvent_bind">bind</a>. <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><p class="line862">* <a class="nonexistent" href="/quake4/AIEvents">AIEvents</a> are events you can call on the game's AI entities such as monsters and buddy marines. <span class="anchor" id="line-16"></span><ul><li style="list-style-type:none"><p class="line891"><img alt="/!\" height="15" src="wiki/modern/img/alert.png" title="/!\" width="15" /> For most AI actions, you'll want to use the <a class="nonexistent" href="/quake4/ScriptUtilityFunctions">ScriptUtilityFunctions</a> written to combine multi-step AI actions into one function.  <span class="anchor" id="line-17"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptFile Events  (last edited 2005-11-01 17:31:54 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="/quake4/JimShepard" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>
