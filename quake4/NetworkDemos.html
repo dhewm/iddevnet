@@ -88,19 +88,19 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="./Quake4SDK">
+<link rel="Start" href="./Quake4SDK.html">
 <link rel="Alternate" title="Wiki Markup" href="./NetworkDemos?action=raw">
 <link rel="Alternate" media="print" title="Print View" href="./NetworkDemos?action=print">
-<link rel="Search" href="./FindPage">
-<link rel="Index" href="./TitleIndex">
-<link rel="Glossary" href="./WordIndex">
-<link rel="Help" href="./HelpOnFormatting">
+<link rel="Search" href="./FindPage.html">
+<link rel="Index" href="./TitleIndex.html">
+<link rel="Glossary" href="./WordIndex.html">
+<link rel="Help" href="./HelpOnFormatting.html">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK.html"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -138,7 +138,7 @@ searchBlur(e);
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li><li class="current"><a href="./NetworkDemos">NetworkDemos</a></li>
+<li class="wikilink"><a href="./GettingStarted.html">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile.html">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod.html">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor.html">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor.html">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor.html">GUIEditor</a></li><li class="wikilink"><a href="./Sounds.html">Sounds</a></li><li class="wikilink"><a href="./Animations.html">Animations</a></li><li class="wikilink"><a href="./ArtReference.html">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent.html">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges.html">RecentChanges</a></li><li class="wikilink"><a href="./FindPage.html">FindPage</a></li><li class="wikilink"><a href="./HelpContents.html">HelpContents</a></li><li class="current"><a href="./NetworkDemos.html">NetworkDemos</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
@@ -191,11 +191,11 @@ actionsMenuInit('More Actions:');
 <h3 id="head-3c2f250012c2bdc988a671fd4d9fb5d0cecf8059">Network demo cvars:</h3>
 <span class="anchor" id="line-13"></span><span class="anchor" id="line-14"></span><ul><li><p class="line891"><strong>demo_snapshotDelay</strong>: How often to record game snapshots to the demo stream <strong>( server netdemo only )</strong> <span class="anchor" id="line-15"></span></li><li><p class="line891"><strong>demo_debug</strong>: verbose various information about the network demo subsystem when using demo commands <span class="anchor" id="line-16"></span></li><li><p class="line891"><strong>demo_enforceFS</strong>: enforce pure filesystem checks when playing back a demo. See below for details <span class="anchor" id="line-17"></span></li><li><p class="line891"><strong>demo_scale</strong>: slows or speeds up the replay ( mostly for debugging purposes ) <span class="anchor" id="line-18"></span><span class="anchor" id="line-19"></span></li></ul><p class="line867">
 <h3 id="head-4a0e43dcd660432f0509931d4daa00dd70c0cf34">Why you should use network timedemos for benchmarking</h3>
-<span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line862">Render demos were written as a driver compatibility testing tool, and never intended as a benchmark tool for the game. A render demo stores render commands and feeds them to the graphics drivers. So all you're benchmarking is the performance of your GPU and it's drivers. Network demos however, will run the game code on the CPU, produce render commands and render frames to the GPU, so they are much closer to a real gameplay situation. That's why you should always use <strong>playNetTimeDemo</strong> for benchmarking rather than render demos. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line862">See <strong><a href="./Benchmarking">Benchmarking</a></strong> for complete information on good benchmarking procedures with Quake 4. <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line867">
+<span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span><p class="line862">Render demos were written as a driver compatibility testing tool, and never intended as a benchmark tool for the game. A render demo stores render commands and feeds them to the graphics drivers. So all you're benchmarking is the performance of your GPU and it's drivers. Network demos however, will run the game code on the CPU, produce render commands and render frames to the GPU, so they are much closer to a real gameplay situation. That's why you should always use <strong>playNetTimeDemo</strong> for benchmarking rather than render demos. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line862">See <strong><a href="./Benchmarking.html">Benchmarking</a></strong> for complete information on good benchmarking procedures with Quake 4. <span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><p class="line867">
 <h3 id="head-a04eb9f2b37bdfd68612f43489d51e4be18eed0c">The demo_enforceFS cvar</h3>
 <span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><p class="line874">When playing back a network demo, it is essential that the game code and assets are exactly the same as they were at the time of recording. If you are using a lot of custom pak files, it's very likely the filesystem needs a reconfiguration before it can play a demo under good conditions. Enable demo_enforceFS ( which is off by default ), so the filesystem will restart with the correct pak files whenever it needs to play a network demo. It will abort if that's not possible. Note that this only works for network demos that have been recorded on a pure server. <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><p class="line867">
 <h3 id="head-9b7fbe55a670c3bf0b3b3d5871eef281be8feae2">Feedback</h3>
-<span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line862">Please send feedback and bug reports about the network demo functionality to <em>ttimo AT idsoftware DOT com</em> <span class="anchor" id="line-32"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">NetworkDemos  (last edited 2006-07-17 22:11:36 by <span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="./TimotheeBesset" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span>)</p>
+<span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line862">Please send feedback and bug reports about the network demo functionality to <em>ttimo AT idsoftware DOT com</em> <span class="anchor" id="line-32"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">NetworkDemos  (last edited 2006-07-17 22:11:36 by <span title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]"><a class="nonexistent" href="./TimotheeBesset.html" title="TimotheeBesset @ hellstorm.idsoftware.com[192.246.40.8]">TimotheeBesset</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>

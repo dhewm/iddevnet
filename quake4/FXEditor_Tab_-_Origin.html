@@ -88,19 +88,19 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="./Quake4SDK">
+<link rel="Start" href="./Quake4SDK.html">
 <link rel="Alternate" title="Wiki Markup" href="./FXEditor_Tab_-_Origin?action=raw">
 <link rel="Alternate" media="print" title="Print View" href="./FXEditor_Tab_-_Origin?action=print">
-<link rel="Search" href="./FindPage">
-<link rel="Index" href="./TitleIndex">
-<link rel="Glossary" href="./WordIndex">
-<link rel="Help" href="./HelpOnFormatting">
+<link rel="Search" href="./FindPage.html">
+<link rel="Index" href="./TitleIndex.html">
+<link rel="Glossary" href="./WordIndex.html">
+<link rel="Help" href="./HelpOnFormatting.html">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK.html"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -138,7 +138,7 @@ searchBlur(e);
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li><li class="current"><a href="./FXEditor_Tab_-_Origin">FXEditor Tab - Origin</a></li>
+<li class="wikilink"><a href="./GettingStarted.html">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile.html">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod.html">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor.html">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor.html">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor.html">GUIEditor</a></li><li class="wikilink"><a href="./Sounds.html">Sounds</a></li><li class="wikilink"><a href="./Animations.html">Animations</a></li><li class="wikilink"><a href="./ArtReference.html">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent.html">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges.html">RecentChanges</a></li><li class="wikilink"><a href="./FindPage.html">FindPage</a></li><li class="wikilink"><a href="./HelpContents.html">HelpContents</a></li><li class="current"><a href="./FXEditor_Tab_-_Origin.html">FXEditor Tab - Origin</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
@@ -185,7 +185,7 @@ actionsMenuInit('More Actions:');
 
 <div id="page" lang="en" dir="ltr">
 <div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
-<span class="anchor" id="line-1"></span><p class="line862">The Origin tab controls placement of effect and bounds in which it will spawn. In the case of using min/max origin numbers, the Origin will be the space in which a particle will spawn. Larger min/max numbers mean a more random spawn location within the origin space. Please see <a href="./Notes_about_Origins">Notes about Origins</a> below for more detailed information. <span class="anchor" id="line-2"></span><hr /><p class="line874"> <span class="anchor" id="line-3"></span>
+<span class="anchor" id="line-1"></span><p class="line862">The Origin tab controls placement of effect and bounds in which it will spawn. In the case of using min/max origin numbers, the Origin will be the space in which a particle will spawn. Larger min/max numbers mean a more random spawn location within the origin space. Please see <a href="./Notes_about_Origins.html">Notes about Origins</a> below for more detailed information. <span class="anchor" id="line-2"></span><hr /><p class="line874"> <span class="anchor" id="line-3"></span>
 <h3 id="head-27c49e96442aef4442cc1f44855955cf2dd09200">Forward</h3>
 <span class="anchor" id="line-4"></span><ul><li style="list-style-type:none">Forward is relative to the normal the effect is played from. <span class="anchor" id="line-5"></span><span class="anchor" id="line-6"></span></li></ul><p class="line867">
 <h3 id="head-727d58055ec124179076d925f3bb9dd91efc76c0">Left</h3>
@@ -222,7 +222,7 @@ actionsMenuInit('More Actions:');
 <span class="anchor" id="line-63"></span><ul><li style="list-style-type:none"><p class="line862">This will generate the forward normal as the center of an origin spread (center of a sphere/shape origin), or the surface of the an origin if <a href="#spawnonsurface">spawn on surface</a> is checked. <span class="anchor" id="line-64"></span></li></ul><p class="line867"><span class="anchor" id="line-65"></span><pre>Example: An origin range of –10 min and 50 max for Forward, Left and Up will have a ‘center’ of the effect that is not the effect origin.
 <span class="anchor" id="line-66"></span></pre><span class="anchor" id="line-67"></span><span class="anchor" id="line-68"></span><p class="line867">
 <h3 id="head-0d248e874c41a57c2f2167deb1cc9981da8deef0">Generate Normal from Effect Origin</h3>
-<span class="anchor" id="line-69"></span><ul><li style="list-style-type:none">This will generate the forward normal from the effect origin, rather than the true center of the effect.  <span class="anchor" id="line-70"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">FXEditor Tab - Origin  (last edited 2005-11-04 00:34:33 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+<span class="anchor" id="line-69"></span><ul><li style="list-style-type:none">This will generate the forward normal from the effect origin, rather than the true center of the effect.  <span class="anchor" id="line-70"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">FXEditor Tab - Origin  (last edited 2005-11-04 00:34:33 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./MattVainio.html" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>

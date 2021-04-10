@@ -88,19 +88,19 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="./Quake4SDK">
+<link rel="Start" href="./Quake4SDK.html">
 <link rel="Alternate" title="Wiki Markup" href="./ScriptError_RunawayLoopError?action=raw">
 <link rel="Alternate" media="print" title="Print View" href="./ScriptError_RunawayLoopError?action=print">
-<link rel="Search" href="./FindPage">
-<link rel="Index" href="./TitleIndex">
-<link rel="Glossary" href="./WordIndex">
-<link rel="Help" href="./HelpOnFormatting">
+<link rel="Search" href="./FindPage.html">
+<link rel="Index" href="./TitleIndex.html">
+<link rel="Glossary" href="./WordIndex.html">
+<link rel="Help" href="./HelpOnFormatting.html">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK.html"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -138,7 +138,7 @@ searchBlur(e);
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li><li class="current"><a href="./ScriptError_RunawayLoopError">ScriptError...ayLoopError</a></li>
+<li class="wikilink"><a href="./GettingStarted.html">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile.html">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod.html">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor.html">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor.html">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor.html">GUIEditor</a></li><li class="wikilink"><a href="./Sounds.html">Sounds</a></li><li class="wikilink"><a href="./Animations.html">Animations</a></li><li class="wikilink"><a href="./ArtReference.html">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent.html">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges.html">RecentChanges</a></li><li class="wikilink"><a href="./FindPage.html">FindPage</a></li><li class="wikilink"><a href="./HelpContents.html">HelpContents</a></li><li class="current"><a href="./ScriptError_RunawayLoopError.html">ScriptError...ayLoopError</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
@@ -185,7 +185,7 @@ actionsMenuInit('More Actions:');
 
 <div id="page" lang="en" dir="ltr">
 <div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
-<span class="anchor" id="line-1"></span><p class="line874">A Runaway Loop Error is generated when a script thread executes a loop continuously without allowing for the rest of the game to continue.  <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">Specifically, you must include a <a href="./ScriptEvent_waitFrame">waitFrame</a> command in your loops to avoid this error. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867">
+<span class="anchor" id="line-1"></span><p class="line874">A Runaway Loop Error is generated when a script thread executes a loop continuously without allowing for the rest of the game to continue.  <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">Specifically, you must include a <a href="./ScriptEvent_waitFrame.html">waitFrame</a> command in your loops to avoid this error. <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867">
 <h2 id="head-e681511a1edec4816fcc3bcf0a2da50116094d9f">Error</h2>
 <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line874">ERROR: [mapname]([linenumber]): Thread 'main': runaway loop error <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><p class="line867"><span class="anchor" id="line-10"></span><pre>ERROR: maps/fail.script(28): Thread 'main': runaway loop error
 <span class="anchor" id="line-11"></span></pre><span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line867">
@@ -257,7 +257,7 @@ document.write('<a href="#" onclick="return togglenumber(\'CA-2dce4fc1d95e396a3d
 <span class="line"><span class="LineNumber">  10 </span> <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">waitFrame</span><span class="SPChar">(</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
 <span class="line"><span class="LineNumber">  11 </span><span class="SPChar">}</span></span>
 <span class="line"><span class="LineNumber">  12 </span></span>
-</pre></div><span class="anchor" id="line-29"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptError RunawayLoopError  (last edited 2005-11-01 19:40:02 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./JimShepard" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
+</pre></div><span class="anchor" id="line-29"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptError RunawayLoopError  (last edited 2005-11-01 19:40:02 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./JimShepard.html" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>

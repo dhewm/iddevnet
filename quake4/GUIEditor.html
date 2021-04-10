@@ -88,19 +88,19 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="./Quake4SDK">
+<link rel="Start" href="./Quake4SDK.html">
 <link rel="Alternate" title="Wiki Markup" href="./GUIEditor?action=raw">
 <link rel="Alternate" media="print" title="Print View" href="./GUIEditor?action=print">
-<link rel="Search" href="./FindPage">
-<link rel="Index" href="./TitleIndex">
-<link rel="Glossary" href="./WordIndex">
-<link rel="Help" href="./HelpOnFormatting">
+<link rel="Search" href="./FindPage.html">
+<link rel="Index" href="./TitleIndex.html">
+<link rel="Glossary" href="./WordIndex.html">
+<link rel="Help" href="./HelpOnFormatting.html">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK.html"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -138,7 +138,7 @@ searchBlur(e);
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink current"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li>
+<li class="wikilink"><a href="./GettingStarted.html">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile.html">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod.html">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor.html">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor.html">FXEditor</a></li><li class="wikilink current"><a href="./GUIEditor.html">GUIEditor</a></li><li class="wikilink"><a href="./Sounds.html">Sounds</a></li><li class="wikilink"><a href="./Animations.html">Animations</a></li><li class="wikilink"><a href="./ArtReference.html">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent.html">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges.html">RecentChanges</a></li><li class="wikilink"><a href="./FindPage.html">FindPage</a></li><li class="wikilink"><a href="./HelpContents.html">HelpContents</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
@@ -187,7 +187,7 @@ actionsMenuInit('More Actions:');
 <div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
 <span class="anchor" id="line-1"></span><p class="line874">This document outlines the basics of creating GUIs in Quake 4. Two types of GUIs exist in the game: overall UI GUIs like the menu system and the HUD, and world GUIs such as elevators, computer screens, and other interactive GUIs in the game. This document covers both types but tends to emphasize menu GUIs as they're far more complex than world GUIs. The information is applicable to both GUI types, however.  <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line862">All of the *.gui files in Quake 4 can be viewed by the GUI editor or in a text editor. The best way to learn the ins and outs of GUI scripting is to look at the GUI files used in Quake 4. To view the GUIs, extract the contents of the <strong>pak001.pk4</strong> file and browse to the <strong>../q4base/GUIs</strong> folder.  <span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line867">
 <h2 id="head-ab30a397e011af1265821d129a1915e1ac65fb7d">Table of Contents</h2>
-<span class="anchor" id="line-6"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-7"></span><ul><li><p class="line891"><a href="./Using_the_GUIEditor">Using the GUIEditor</a> <span class="anchor" id="line-8"></span></li><li><p class="line891"><a href="./Guidelines_for_GUI_Editing_and_Creation">Guidelines for GUI Editing and Creation</a> <span class="anchor" id="line-9"></span></li><li><p class="line891"><a href="./Scripting_Actions_and_Animations">Scripting Actions and Animations</a> <span class="anchor" id="line-10"></span></li><li><p class="line891"><a href="./Floats%2C_Definevec4%2C_and_NamedEvents">Floats, Definevec4, and NamedEvents</a> <span class="anchor" id="line-11"></span></li><li><p class="line891"><a href="./Def_Types">Def Types</a> <span class="anchor" id="line-12"></span></li><li><p class="line891"><a href="./Def_Flags">Def Flags</a> <span class="anchor" id="line-13"></span></li><li><p class="line891"><a href="./GUI_Variables">GUI Variables</a> <span class="anchor" id="line-14"></span></li><li><p class="line891"><a href="./GUI_Parms">GUI Parms</a> <span class="anchor" id="line-15"></span></li><li><p class="line891"><a href="./Font_Information">Font Information</a> <span class="anchor" id="line-16"></span></li><li><p class="line891"><a href="./Adding_Fonts_to_use_in_Quake_4_GUIs">Adding Fonts to use in Quake 4 GUIs</a> <span class="anchor" id="line-17"></span></li><li><p class="line891"><a href="./Placing_a_GUI_In_a_Map">Placing a GUI In a Map</a> <span class="anchor" id="line-18"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">GUIEditor  (last edited 2005-11-04 19:09:59 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+<span class="anchor" id="line-6"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-7"></span><ul><li><p class="line891"><a href="./Using_the_GUIEditor.html">Using the GUIEditor</a> <span class="anchor" id="line-8"></span></li><li><p class="line891"><a href="./Guidelines_for_GUI_Editing_and_Creation.html">Guidelines for GUI Editing and Creation</a> <span class="anchor" id="line-9"></span></li><li><p class="line891"><a href="./Scripting_Actions_and_Animations.html">Scripting Actions and Animations</a> <span class="anchor" id="line-10"></span></li><li><p class="line891"><a href="./Floats%2C_Definevec4%2C_and_NamedEvents.html">Floats, Definevec4, and NamedEvents</a> <span class="anchor" id="line-11"></span></li><li><p class="line891"><a href="./Def_Types.html">Def Types</a> <span class="anchor" id="line-12"></span></li><li><p class="line891"><a href="./Def_Flags.html">Def Flags</a> <span class="anchor" id="line-13"></span></li><li><p class="line891"><a href="./GUI_Variables.html">GUI Variables</a> <span class="anchor" id="line-14"></span></li><li><p class="line891"><a href="./GUI_Parms.html">GUI Parms</a> <span class="anchor" id="line-15"></span></li><li><p class="line891"><a href="./Font_Information.html">Font Information</a> <span class="anchor" id="line-16"></span></li><li><p class="line891"><a href="./Adding_Fonts_to_use_in_Quake_4_GUIs.html">Adding Fonts to use in Quake 4 GUIs</a> <span class="anchor" id="line-17"></span></li><li><p class="line891"><a href="./Placing_a_GUI_In_a_Map.html">Placing a GUI In a Map</a> <span class="anchor" id="line-18"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">GUIEditor  (last edited 2005-11-04 19:09:59 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./MattVainio.html" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>

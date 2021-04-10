@@ -88,20 +88,20 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="./Quake4SDK">
+<link rel="Start" href="./Quake4SDK.html">
 <link rel="Alternate" title="Wiki Markup" href="./MakeAMod-DMSP?action=raw">
 <link rel="Alternate" media="print" title="Print View" href="./MakeAMod-DMSP?action=print">
 <link rel="Appendix" title="dmsp_v1.pk4" href="./MakeAMod-DMSP?action=AttachFile&amp;do=view&amp;target=dmsp_v1.pk4">
-<link rel="Search" href="./FindPage">
-<link rel="Index" href="./TitleIndex">
-<link rel="Glossary" href="./WordIndex">
-<link rel="Help" href="./HelpOnFormatting">
+<link rel="Search" href="./FindPage.html">
+<link rel="Index" href="./TitleIndex.html">
+<link rel="Glossary" href="./WordIndex.html">
+<link rel="Help" href="./HelpOnFormatting.html">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK.html"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -139,7 +139,7 @@ searchBlur(e);
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li><li class="current"><a href="./MakeAMod-DMSP">MakeAMod-DMSP</a></li>
+<li class="wikilink"><a href="./GettingStarted.html">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile.html">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod.html">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor.html">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor.html">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor.html">GUIEditor</a></li><li class="wikilink"><a href="./Sounds.html">Sounds</a></li><li class="wikilink"><a href="./Animations.html">Animations</a></li><li class="wikilink"><a href="./ArtReference.html">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent.html">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges.html">RecentChanges</a></li><li class="wikilink"><a href="./FindPage.html">FindPage</a></li><li class="wikilink"><a href="./HelpContents.html">HelpContents</a></li><li class="current"><a href="./MakeAMod-DMSP.html">MakeAMod-DMSP</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
@@ -353,7 +353,7 @@ actionsMenuInit('More Actions:');
 <span class="anchor" id="line-221"></span>}
 <span class="anchor" id="line-222"></span></pre><span class="anchor" id="line-223"></span><span class="anchor" id="line-224"></span><p class="line862">At this point our neverending train of functions is complete.  If you'd like to try it out for yourself, just put <strong>dmsp_v1.pk4</strong> in your q4base folder, set 'g_skill' to taste, and type 'map dmsp/q4dm4' at the console.  <span class="anchor" id="line-225"></span><span class="anchor" id="line-226"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-227"></span><span class="anchor" id="line-228"></span><p class="line874">It's not perfect, of course.  It's lacking the polish necessary to make it feel finished and professional, but the limitations of what we can and can't do in script eventually make themselves known.  It is, however, pretty remarkable that we're able to do as much as we can. <span class="anchor" id="line-229"></span><span class="anchor" id="line-230"></span><p class="line874">The following are the known issues (all of them easily fixable if this were implemented in code, including the player spawnclass fix that required a custom version of the map): <span class="anchor" id="line-231"></span><span class="anchor" id="line-232"></span><ul><li><p class="line862">Monster radius isn't taken into consideration when placing or choosing spawn points, so larger monsters can sometimes get stuck to walls if the spawnpoint is too close to a surface.  This <em>could</em> be fixed in script, albeit in a rather ugly fashion.  The cheap solution would be to just move all the nulls 32 units in the direction that the matching DM spawn point faces - it's a safe assumption that no DM spawns face walls. <span class="anchor" id="line-233"></span></li><li>The pre-placed items show up with their single player models, which in cases like the 5+ health means ugly temp artwork nobody was meant to see.  A brute force solution in script would be to manually find and replace all of these entities with their MP equivalents. <span class="anchor" id="line-234"></span></li><li>There's no HUD GUI interaction at all, so things like score and combos are either dumped into the console or popped on screen with the debug text, whcih can't be read very well at long distances.  A proper implementation would have to add new HUD events for updates and some place in a modified single player HUD gui for the new numbers. <span class="anchor" id="line-235"></span></li><li>This script cares nothing about system performance, and only stops spawning monsters at the coded limit.  In q4dm4 this is 24, which is isn't that friendly to slower machines.  <span class="anchor" id="line-236"></span><span class="anchor" id="line-237"></span></li></ul><p class="line867"><br />
 <br />
- <span class="anchor" id="line-238"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">MakeAMod-DMSP  (last edited 2005-11-09 17:47:31 by <span title="MattBreit @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./MattBreit" title="MattBreit @ 67.129.250.254[67.129.250.254]">MattBreit</a></span>)</p>
+ <span class="anchor" id="line-238"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">MakeAMod-DMSP  (last edited 2005-11-09 17:47:31 by <span title="MattBreit @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./MattBreit.html" title="MattBreit @ 67.129.250.254[67.129.250.254]">MattBreit</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>

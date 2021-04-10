@@ -88,7 +88,7 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="./Quake4SDK">
+<link rel="Start" href="./Quake4SDK.html">
 <link rel="Alternate" title="Wiki Markup" href="./LevelEditor_BasicRoom?action=raw">
 <link rel="Alternate" media="print" title="Print View" href="./LevelEditor_BasicRoom?action=print">
 <link rel="Appendix" title="image01.jpg" href="./LevelEditor_BasicRoom?action=AttachFile&amp;do=view&amp;target=image01.jpg">
@@ -103,16 +103,16 @@ function actionsMenuInit(title) {
 <link rel="Appendix" title="image10.jpg" href="./LevelEditor_BasicRoom?action=AttachFile&amp;do=view&amp;target=image10.jpg">
 <link rel="Appendix" title="image11.jpg" href="./LevelEditor_BasicRoom?action=AttachFile&amp;do=view&amp;target=image11.jpg">
 <link rel="Appendix" title="image12.jpg" href="./LevelEditor_BasicRoom?action=AttachFile&amp;do=view&amp;target=image12.jpg">
-<link rel="Search" href="./FindPage">
-<link rel="Index" href="./TitleIndex">
-<link rel="Glossary" href="./WordIndex">
-<link rel="Help" href="./HelpOnFormatting">
+<link rel="Search" href="./FindPage.html">
+<link rel="Index" href="./TitleIndex.html">
+<link rel="Glossary" href="./WordIndex.html">
+<link rel="Help" href="./HelpOnFormatting.html">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK.html"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -150,7 +150,7 @@ searchBlur(e);
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li><li class="current"><a href="./LevelEditor_BasicRoom">LevelEditor BasicRoom</a></li>
+<li class="wikilink"><a href="./GettingStarted.html">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile.html">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod.html">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor.html">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor.html">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor.html">GUIEditor</a></li><li class="wikilink"><a href="./Sounds.html">Sounds</a></li><li class="wikilink"><a href="./Animations.html">Animations</a></li><li class="wikilink"><a href="./ArtReference.html">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent.html">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges.html">RecentChanges</a></li><li class="wikilink"><a href="./FindPage.html">FindPage</a></li><li class="wikilink"><a href="./HelpContents.html">HelpContents</a></li><li class="current"><a href="./LevelEditor_BasicRoom.html">LevelEditor BasicRoom</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
@@ -213,7 +213,7 @@ actionsMenuInit('More Actions:');
 <h2 id="head-b81bb6fa272c5ed723ac0b24e5d73bf84c07ccbb">Basic Lighting &amp; Entity Placement</h2>
 <span class="anchor" id="line-124"></span><p class="line862">Given that lights are entities we’ll cover both quickly in the same group.  To drop any entity in the game (an entity could be spawn points, lights, or creatures for example) right click in the 2D window.  A menu will appear.  Select “Info &gt; info_player_start from the list. <span class="anchor" id="line-125"></span><span class="anchor" id="line-126"></span><p class="line874">There will now be a player start somewhere in your map.  This is where the player spawns so it’s important to make sure this is inside your room somewhere.  Go ahead and move it like you would a brush into your room and align it with the floor. <span class="anchor" id="line-127"></span><span class="anchor" id="line-128"></span><p class="line867"><img class="attachment" src="./LevelEditor_BasicRoom?action=AttachFile&amp;do=get&amp;target=image12.jpg" title="attachment:image12.jpg" /> <span class="anchor" id="line-129"></span><span class="anchor" id="line-130"></span><p class="line874">Add a light to the scene to allow the player to see his surroundings.  Right click in the main view again and select “Light.”  A light will now be somewhere in the map, move this light inside of the box room. <span class="anchor" id="line-131"></span><span class="anchor" id="line-132"></span><p class="line874">Hit F3 and your 3D preview will turn into a preview of what your room will look like in game.  Go ahead and move the light around to get a placement that you’d like. <span class="anchor" id="line-133"></span><span class="anchor" id="line-134"></span><p class="line867">
 <h2 id="head-fa01edadd731fc7a3add51a06eb044156af4bff7">Compiling &amp; Running the Map</h2>
-<span class="anchor" id="line-135"></span><p class="line862">Save the map and select BSP &gt; BSP from the menu.  The editor will compile your map in a few short seconds and then you’ll be done.   When the console is done writing out all the files go ahead and hit F2 to load a window copy of the game. <span class="anchor" id="line-136"></span><span class="anchor" id="line-137"></span><p class="line874">For simplicity sake we’re going to run the map using the F2 button.  This can be unstable however and it is a lot safer to run two copies of the game (one editor, one windowed game instance) and then just tab between the two for testing or building. <span class="anchor" id="line-138"></span><span class="anchor" id="line-139"></span><p class="line874">Load your map using the map command: <span class="anchor" id="line-140"></span>map yourmapname” <span class="anchor" id="line-141"></span><span class="anchor" id="line-142"></span><p class="line874">If you saved it in the same spot as described in this tutorial it would be: <span class="anchor" id="line-143"></span>“map tutorial/room.map” <span class="anchor" id="line-144"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">LevelEditor BasicRoom  (last edited 2005-11-15 14:40:21 by <span title="CoreyPeters @ 24-179-217-25.dhcp.mdsn.wi.charter.com[24.179.217.25]"><a class="nonexistent" href="./CoreyPeters" title="CoreyPeters @ 24-179-217-25.dhcp.mdsn.wi.charter.com[24.179.217.25]">CoreyPeters</a></span>)</p>
+<span class="anchor" id="line-135"></span><p class="line862">Save the map and select BSP &gt; BSP from the menu.  The editor will compile your map in a few short seconds and then you’ll be done.   When the console is done writing out all the files go ahead and hit F2 to load a window copy of the game. <span class="anchor" id="line-136"></span><span class="anchor" id="line-137"></span><p class="line874">For simplicity sake we’re going to run the map using the F2 button.  This can be unstable however and it is a lot safer to run two copies of the game (one editor, one windowed game instance) and then just tab between the two for testing or building. <span class="anchor" id="line-138"></span><span class="anchor" id="line-139"></span><p class="line874">Load your map using the map command: <span class="anchor" id="line-140"></span>map yourmapname” <span class="anchor" id="line-141"></span><span class="anchor" id="line-142"></span><p class="line874">If you saved it in the same spot as described in this tutorial it would be: <span class="anchor" id="line-143"></span>“map tutorial/room.map” <span class="anchor" id="line-144"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">LevelEditor BasicRoom  (last edited 2005-11-15 14:40:21 by <span title="CoreyPeters @ 24-179-217-25.dhcp.mdsn.wi.charter.com[24.179.217.25]"><a class="nonexistent" href="./CoreyPeters.html" title="CoreyPeters @ 24-179-217-25.dhcp.mdsn.wi.charter.com[24.179.217.25]">CoreyPeters</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>

@@ -88,19 +88,19 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="./Quake4SDK">
+<link rel="Start" href="./Quake4SDK.html">
 <link rel="Alternate" title="Wiki Markup" href="./ScriptEvent_getTime?action=raw">
 <link rel="Alternate" media="print" title="Print View" href="./ScriptEvent_getTime?action=print">
-<link rel="Search" href="./FindPage">
-<link rel="Index" href="./TitleIndex">
-<link rel="Glossary" href="./WordIndex">
-<link rel="Help" href="./HelpOnFormatting">
+<link rel="Search" href="./FindPage.html">
+<link rel="Index" href="./TitleIndex.html">
+<link rel="Glossary" href="./WordIndex.html">
+<link rel="Help" href="./HelpOnFormatting.html">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK.html"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -138,7 +138,7 @@ searchBlur(e);
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li><li class="current"><a href="./ScriptEvent_getTime">ScriptEvent getTime</a></li>
+<li class="wikilink"><a href="./GettingStarted.html">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile.html">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod.html">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor.html">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor.html">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor.html">GUIEditor</a></li><li class="wikilink"><a href="./Sounds.html">Sounds</a></li><li class="wikilink"><a href="./Animations.html">Animations</a></li><li class="wikilink"><a href="./ArtReference.html">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent.html">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges.html">RecentChanges</a></li><li class="wikilink"><a href="./FindPage.html">FindPage</a></li><li class="wikilink"><a href="./HelpContents.html">HelpContents</a></li><li class="current"><a href="./ScriptEvent_getTime.html">ScriptEvent getTime</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
@@ -192,7 +192,7 @@ actionsMenuInit('More Actions:');
 <span class="anchor" id="line-10"></span>
 <span class="anchor" id="line-11"></span></pre><span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><p class="line867">
 <h2 id="head-6fe6758c4fab835d5e729360907e91cdeeb0f906">Notes</h2>
-<span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><ul><li>getTime retuns the time in seconds since map start. It is accurate to four digits of precision.  <span class="anchor" id="line-16"></span></li><li><p class="line862">For cases where you'd like to halt execution of a thread, consider the <a href="./ScriptEvent_wait">wait</a> command instead. <span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span></li></ul><p class="line867">
+<span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span><ul><li>getTime retuns the time in seconds since map start. It is accurate to four digits of precision.  <span class="anchor" id="line-16"></span></li><li><p class="line862">For cases where you'd like to halt execution of a thread, consider the <a href="./ScriptEvent_wait.html">wait</a> command instead. <span class="anchor" id="line-17"></span><span class="anchor" id="line-18"></span></li></ul><p class="line867">
 <h2 id="head-ea917f08db828099f5505306a06ecf1aca8fe0d9">Example</h2>
 <span class="anchor" id="line-19"></span><span class="anchor" id="line-20"></span><p class="line874">Here we'll use getTime to power a loop which will heal a creature over time. We will restore 100 health per second to the creature for 5 seconds. <span class="anchor" id="line-21"></span><span class="anchor" id="line-22"></span><p class="line867"><span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span><span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span><span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><span class="anchor" id="line-34"></span><span class="anchor" id="line-35"></span><span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><span class="anchor" id="line-38"></span><span class="anchor" id="line-39"></span><span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span><span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span><div class="codearea" dir="ltr" lang="en">
 <script type="text/javascript">
@@ -274,7 +274,7 @@ document.write('<a href="#" onclick="return togglenumber(\'CA-3af8628348447721e4
 <span class="line"><span class="LineNumber">  23 </span> <span class="ID">sys</span><span class="SPChar">.</span><span class="ID">waitFrame</span><span class="SPChar">(</span><span class="SPChar">)</span><span class="SPChar">;</span></span>
 <span class="line"><span class="LineNumber">  24 </span></span>
 <span class="line"><span class="LineNumber">  25 </span><span class="SPChar">}</span></span>
-</pre></div><span class="anchor" id="line-49"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptEvent getTime  (last edited 2005-11-01 18:01:03 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./JimShepard" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
+</pre></div><span class="anchor" id="line-49"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ScriptEvent getTime  (last edited 2005-11-01 18:01:03 by <span title="JimShepard @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./JimShepard.html" title="JimShepard @ 67.129.250.254[67.129.250.254]">JimShepard</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>

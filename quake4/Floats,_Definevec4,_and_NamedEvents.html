@@ -88,19 +88,19 @@ function actionsMenuInit(title) {
 
 
 
-<link rel="Start" href="./Quake4SDK">
+<link rel="Start" href="./Quake4SDK.html">
 <link rel="Alternate" title="Wiki Markup" href="./Floats%2C_Definevec4%2C_and_NamedEvents?action=raw">
 <link rel="Alternate" media="print" title="Print View" href="./Floats%2C_Definevec4%2C_and_NamedEvents?action=print">
-<link rel="Search" href="./FindPage">
-<link rel="Index" href="./TitleIndex">
-<link rel="Glossary" href="./WordIndex">
-<link rel="Help" href="./HelpOnFormatting">
+<link rel="Search" href="./FindPage.html">
+<link rel="Index" href="./TitleIndex.html">
+<link rel="Glossary" href="./WordIndex.html">
+<link rel="Help" href="./HelpOnFormatting.html">
 </head>
 
 <body  lang="en" dir="ltr">
 
 <div id="header">
-<div id="logo"><a href="./Quake4SDK"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
+<div id="logo"><a href="./Quake4SDK.html"><img src="wiki/common/moinmoin.png" alt="MoinMoin Logo"></a></div>
 
 <form id="searchform" method="get" action="">
 <div>
@@ -138,7 +138,7 @@ searchBlur(e);
 
 
 <ul id="navibar">
-<li class="wikilink"><a href="./GettingStarted">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor">GUIEditor</a></li><li class="wikilink"><a href="./Sounds">Sounds</a></li><li class="wikilink"><a href="./Animations">Animations</a></li><li class="wikilink"><a href="./ArtReference">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="./FindPage">FindPage</a></li><li class="wikilink"><a href="./HelpContents">HelpContents</a></li><li class="current"><a href="./Floats%2C_Definevec4%2C_and_NamedEvents">Floats, Def...NamedEvents</a></li>
+<li class="wikilink"><a href="./GettingStarted.html">GettingStarted</a></li><li class="wikilink"><a href="./ScriptFile.html">ScriptFile</a></li><li class="wikilink"><a href="./MakeAMod.html">MakeAMod</a></li><li class="wikilink"><a href="./LevelEditor.html">LevelEditor</a></li><li class="wikilink"><a href="./FXEditor.html">FXEditor</a></li><li class="wikilink"><a href="./GUIEditor.html">GUIEditor</a></li><li class="wikilink"><a href="./Sounds.html">Sounds</a></li><li class="wikilink"><a href="./Animations.html">Animations</a></li><li class="wikilink"><a href="./ArtReference.html">ArtReference</a></li><li class="wikilink"><a href="./DownloadableContent.html">DownloadableContent</a></li><li class="wikilink"><a href="./RecentChanges.html">RecentChanges</a></li><li class="wikilink"><a href="./FindPage.html">FindPage</a></li><li class="wikilink"><a href="./HelpContents.html">HelpContents</a></li><li class="current"><a href="./Floats%2C_Definevec4%2C_and_NamedEvents.html">Floats, Def...NamedEvents</a></li>
 </ul>
 
 <div id="pageline"><hr style="display:none;"></div>
@@ -189,11 +189,11 @@ actionsMenuInit('More Actions:');
 <h3 id="head-c862ad59e39e94e213d61f9db16c520491ce4d70">Floats and Definevec4</h3>
 <span class="anchor" id="line-6"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-7"></span>The syntax for these items are as follows: <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><ul><li style="list-style-type:none"><p class="line891"><strong>float “valuename” “0”</strong> <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span></li></ul><p class="line874">This defines a variable named valuename and sets it to 0.  <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><ul><li style="list-style-type:none"><p class="line891"><strong>definevec4 “yellowtext” “1,1,0,1”</strong> <span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span></li></ul><p class="line862">This defines a vec4 called “yellowtext” and sets its RGB + Alpha value to 1,1,0,1. This is extremely usefull when <a href="#definevec4">used in conjunction with transitions</a> as it allows transitions to reference colors specified as a float rather than hard coded values. If you have a bunch of places you want to transition a color and decide later that you want to change this color, you only have to adjust the desktop float rather than every single place in your onTime animation. <span class="anchor" id="line-16"></span><span class="anchor" id="line-17"></span><p class="line867"><span class="anchor" id="namedevent"></span> <span class="anchor" id="line-18"></span>
 <h3 id="head-a478f4695ffee2ef94c8d8fa31111274ac574aee">namedEvent</h3>
-<span class="anchor" id="line-19"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-20"></span>The syntax for this command is identical to all other scripting functions. namedEvents are usually defined after the floats and vec4s in the Desktop using the <strong>onNamedEvent</strong> function, but they can also be placed in any <a href="./Def_Types">windowDef</a> in the GUI. When the <strong>namedEvent</strong> command is used (either by the GUI itself or from code), it the statements in the corresponding <strong>onNamedEvent</strong> function are executed. <span class="anchor" id="line-21"></span><span class="anchor" id="line-22"></span><p class="line874">The following is a named event defined in the Desktop that sets a windowDef's backcolor: <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span><p class="line867"><span class="anchor" id="line-25"></span><pre>        onNamedEvent SetBackcolor
+<span class="anchor" id="line-19"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-20"></span>The syntax for this command is identical to all other scripting functions. namedEvents are usually defined after the floats and vec4s in the Desktop using the <strong>onNamedEvent</strong> function, but they can also be placed in any <a href="./Def_Types.html">windowDef</a> in the GUI. When the <strong>namedEvent</strong> command is used (either by the GUI itself or from code), it the statements in the corresponding <strong>onNamedEvent</strong> function are executed. <span class="anchor" id="line-21"></span><span class="anchor" id="line-22"></span><p class="line874">The following is a named event defined in the Desktop that sets a windowDef's backcolor: <span class="anchor" id="line-23"></span><span class="anchor" id="line-24"></span><p class="line867"><span class="anchor" id="line-25"></span><pre>        onNamedEvent SetBackcolor
 <span class="anchor" id="line-26"></span>        {
 <span class="anchor" id="line-27"></span>                set "foo::backcolor" "1,0,0,1" ;
 <span class="anchor" id="line-28"></span>        }
-<span class="anchor" id="line-29"></span></pre><span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line862">The following example sends the command to execute that named event when the player selects the <a href="./Def_Types">windowDef</a>: <span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><p class="line867"><span class="anchor" id="line-34"></span><pre>        windowDef foo2
+<span class="anchor" id="line-29"></span></pre><span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span><p class="line862">The following example sends the command to execute that named event when the player selects the <a href="./Def_Types.html">windowDef</a>: <span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><p class="line867"><span class="anchor" id="line-34"></span><pre>        windowDef foo2
 <span class="anchor" id="line-35"></span>        {
 <span class="anchor" id="line-36"></span>                rect 0,0,300,300
 <span class="anchor" id="line-37"></span>                visible 1
@@ -203,7 +203,7 @@ actionsMenuInit('More Actions:');
 <span class="anchor" id="line-41"></span>                        namedEvent "SetBackcolor" ;
 <span class="anchor" id="line-42"></span>                }
 <span class="anchor" id="line-43"></span>        }
-<span class="anchor" id="line-44"></span></pre><span class="anchor" id="line-45"></span><span class="anchor" id="line-46"></span><p class="line862">The following example does the same thing, but references a named event that is defined in the <a href="./Def_Types">windowDef</a> named "foo3" and not in the Desktop: <span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span><p class="line867"><span class="anchor" id="line-49"></span><pre>        windowDef foo2
+<span class="anchor" id="line-44"></span></pre><span class="anchor" id="line-45"></span><span class="anchor" id="line-46"></span><p class="line862">The following example does the same thing, but references a named event that is defined in the <a href="./Def_Types.html">windowDef</a> named "foo3" and not in the Desktop: <span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span><p class="line867"><span class="anchor" id="line-49"></span><pre>        windowDef foo2
 <span class="anchor" id="line-50"></span>        {
 <span class="anchor" id="line-51"></span>                rect 0,0,300,300
 <span class="anchor" id="line-52"></span>                visible 1
@@ -215,7 +215,7 @@ actionsMenuInit('More Actions:');
 <span class="anchor" id="line-58"></span>        }
 <span class="anchor" id="line-59"></span></pre><span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span><p class="line867">
 <h3 id="head-8b6d815dfd0f17b95932699f8a2f3761a165df3f">An Example Desktop Script</h3>
-<span class="anchor" id="line-62"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-63"></span><strong>Floats</strong>, <strong>vec4s</strong>, <strong>namedEvents</strong>, and <strong>onInit</strong> and <strong>onESC</strong> are defined in the Desktop just as other scripts are for other <a href="./Def_Types">windowDefs</a> – hit <strong>ctrl + Enter</strong> to bring up the scripting window and enter them in. The following would be an example Desktop script. Note that the values defined at the top of the Desktop do not end with a semicolon as all other scripting commands do. <span class="anchor" id="line-64"></span><span class="anchor" id="line-65"></span><p class="line867"><span class="anchor" id="line-66"></span><pre>        definevec4      “yellowtext_on”         “1,1,0,1”
+<span class="anchor" id="line-62"></span><p class="line867"><hr /><p class="line874"> <span class="anchor" id="line-63"></span><strong>Floats</strong>, <strong>vec4s</strong>, <strong>namedEvents</strong>, and <strong>onInit</strong> and <strong>onESC</strong> are defined in the Desktop just as other scripts are for other <a href="./Def_Types.html">windowDefs</a> – hit <strong>ctrl + Enter</strong> to bring up the scripting window and enter them in. The following would be an example Desktop script. Note that the values defined at the top of the Desktop do not end with a semicolon as all other scripting commands do. <span class="anchor" id="line-64"></span><span class="anchor" id="line-65"></span><p class="line867"><span class="anchor" id="line-66"></span><pre>        definevec4      “yellowtext_on”         “1,1,0,1”
 <span class="anchor" id="line-67"></span>        definevec4      “yellowtext_off”        “1,1,0,0.5”
 <span class="anchor" id="line-68"></span>        float           “check1”        “0” 
 <span class="anchor" id="line-69"></span>        float           “check2”        “0”
@@ -241,7 +241,7 @@ actionsMenuInit('More Actions:');
 <span class="anchor" id="line-94"></span>        }
 <span class="anchor" id="line-95"></span></pre><span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span><p class="line874">Floats can also be changed using the set command: <span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span><p class="line867"><span class="anchor" id="line-100"></span><pre>        set “desktop::check1” “1” ;
 <span class="anchor" id="line-101"></span></pre><span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span><p class="line867"><span class="anchor" id="definevec4"></span> <span class="anchor" id="line-104"></span>The syntax for using vec4s is slightly different, but straightforward. The following example uses the “yellowtext_on” and “yellowtext_off” vec4s we defined in our example Desktop script: <span class="anchor" id="line-105"></span><span class="anchor" id="line-106"></span><p class="line867"><span class="anchor" id="line-107"></span><pre>        transition “button1::forecolor” “$desktop::yellowtext_off” “$desktop::yellowtext_on” “200” ;
-<span class="anchor" id="line-108"></span></pre><span class="anchor" id="line-109"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Floats, Definevec4, and NamedEvents  (last edited 2005-11-07 19:39:21 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./MattVainio" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
+<span class="anchor" id="line-108"></span></pre><span class="anchor" id="line-109"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">Floats, Definevec4, and NamedEvents  (last edited 2005-11-07 19:39:21 by <span title="MattVainio @ 67.129.250.254[67.129.250.254]"><a class="nonexistent" href="./MattVainio.html" title="MattVainio @ 67.129.250.254[67.129.250.254]">MattVainio</a></span>)</p>
 
 <div id="pagebottom"></div>
 </div>
