@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0043)https://www.iddevnet.com/doom3/commands.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Useful Commands]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Useful Commands</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+Doom 3 has a pretty extensive in-game help system for the console commands.
+Simply type 'listCmds' and it will list every command in the game, along with
+a brief description of the command.  I am including this list here for easy
+reference (though the ingame list will always be more up to date).
+
+</p><p>
+<b>Useful commands for players</b>
+</p><table class="datatable">
+<tbody><tr><td>benchmark             </td><td>benchmark</td></tr>
+<tr><td>bind                  </td><td>binds a command to a key</td></tr>
+<tr><td>centerview            </td><td>centers the view</td></tr>
+<tr><td>checkNewVersion       </td><td>check if a new version of the game is available</td></tr>
+<tr><td>clear                 </td><td>clears the console</td></tr>
+<tr><td>clientDropWeapon      </td><td>drop current weapon</td></tr>
+<tr><td>clientMessageMode     </td><td>ingame gui message mode</td></tr>
+<tr><td>clientVoiceChat       </td><td>voice chats: clientVoiceChat <sound shader=""></sound></td></tr>
+<tr><td>clientVoiceChatTeam   </td><td>team voice chats: clientVoiceChat <sound shader=""></sound></td></tr>
+<tr><td>conDump               </td><td>dumps the console text to a file</td></tr>
+<tr><td>connect               </td><td>connects to a server</td></tr>
+<tr><td>disconnect            </td><td>disconnects from a game</td></tr>
+<tr><td>echo                  </td><td>prints text</td></tr>
+<tr><td>exec                  </td><td>executes a config file</td></tr>
+<tr><td>execMachineSpec       </td><td>execs the appropriate config files and sets cvars based on com_machineSpec</td></tr>
+<tr><td>exit                  </td><td>exits the game</td></tr>
+<tr><td>gfxInfo               </td><td>show graphics info</td></tr>
+<tr><td>kill                  </td><td>kills the player</td></tr>
+<tr><td>LANScan               </td><td>scans LAN for servers</td></tr>
+<tr><td>loadGame              </td><td>loads a game</td></tr>
+<tr><td>map                   </td><td>loads a map</td></tr>
+<tr><td>quit                  </td><td>quits the game</td></tr>
+<tr><td>reconnect             </td><td>reconnect to the last server we tried to connect to</td></tr>
+<tr><td>reset                 </td><td>resets a cvar</td></tr>
+<tr><td>saveGame              </td><td>saves a game</td></tr>
+<tr><td>say                   </td><td>text chat</td></tr>
+<tr><td>sayTeam               </td><td>team text chat</td></tr>
+<tr><td>screenshot            </td><td>takes a screenshot</td></tr>
+<tr><td>set                   </td><td>sets a cvar</td></tr>
+<tr><td>seta                  </td><td>sets a cvar and flags it as archive</td></tr>
+<tr><td>setMachineSpec        </td><td>detects system capabilities and sets com_machineSpec to appropriate value</td></tr>
+<tr><td>sets                  </td><td>sets a cvar and flags it as server info</td></tr>
+<tr><td>sett                  </td><td>sets a cvar and flags it as tool</td></tr>
+<tr><td>setu                  </td><td>sets a cvar and flags it as user info</td></tr>
+<tr><td>toggle                </td><td>toggles a cvar</td></tr>
+<tr><td>unbind                </td><td>unbinds any command from a key</td></tr>
+<tr><td>unbindall             </td><td>unbinds any commands from all keys</td></tr>
+<tr><td>vstr                  </td><td>inserts the current value of a cvar as command text</td></tr>
+<tr><td>wait                  </td><td>delays remaining buffered commands one or more frames</td></tr>
+<tr><td>writeConfig           </td><td>writes a config file</td></tr>
+</tbody></table>
+
+<p>
+<b>Useful commands for demos</b>
+</p><table class="datatable">
+<tbody><tr><td>aviDemo               </td><td>writes AVIs for a demo</td></tr>
+<tr><td>aviGame               </td><td>writes AVIs for the current game</td></tr>
+<tr><td>demoShot              </td><td>writes a screenshot for a demo</td></tr>
+<tr><td>playDemo              </td><td>plays back a demo</td></tr>
+<tr><td>recordDemo            </td><td>records a demo</td></tr>
+<tr><td>stopRecording         </td><td>stops demo recording</td></tr>
+<tr><td>timeDemo              </td><td>times a demo</td></tr>
+<tr><td>timeDemoQuit          </td><td>times a demo and quits</td></tr>
+</tbody></table>
+
+<p>
+<b>Useful commands for server admins</b>
+</p><table class="datatable">
+<tbody><tr><td>gameKick              </td><td>same as kick, but recognizes player names</td></tr>
+<tr><td>heartbeat             </td><td>send a heartbeat to the the master servers</td></tr>
+<tr><td>kick                  </td><td>kick a client by connection number</td></tr>
+<tr><td>nextMap               </td><td>loads the next map on the server</td></tr>
+<tr><td>rcon                  </td><td>sends remote console command to server</td></tr>
+<tr><td>serverForceReady      </td><td>force all players ready</td></tr>
+<tr><td>serverInfo            </td><td>shows server info</td></tr>
+<tr><td>serverMapRestart      </td><td>restart the current game</td></tr>
+<tr><td>serverNextMap         </td><td>change to the next map</td></tr>
+<tr><td>spawnServer           </td><td>spawns a server</td></tr>
+</tbody></table>
+
+<p>
+<b>Useful commands for developers</b>
+</p><table class="datatable">
+<tbody><tr><td>aasStats              </td><td>shows AAS stats</td></tr>
+<tr><td>addarrow              </td><td>adds a debug arrow</td></tr>
+<tr><td>addChatLine           </td><td>internal use - core to game chat lines</td></tr>
+<tr><td>addline               </td><td>adds a debug line</td></tr>
+<tr><td>bindRagdoll           </td><td>binds ragdoll at the current drag position</td></tr>
+<tr><td>blinkline             </td><td>blinks a debug line</td></tr>
+<tr><td>clearLights           </td><td>clears all lights</td></tr>
+<tr><td>closeViewNotes        </td><td>close the view showing any notes for this map</td></tr>
+<tr><td>collisionModelInfo    </td><td>shows collision model info</td></tr>
+<tr><td>combineCubeImages     </td><td>combines six images for roq compression</td></tr>
+<tr><td>crash                 </td><td>causes a crash</td></tr>
+<tr><td>cvar_restart          </td><td>restart the cvar system</td></tr>
+<tr><td>damage                </td><td>apply damage to an entity</td></tr>
+<tr><td>debugger              </td><td>launches the Script Debugger</td></tr>
+<tr><td>deleteSelected        </td><td>deletes selected entity</td></tr>
+<tr><td>devmap                </td><td>loads a map in developer mode</td></tr>
+<tr><td>dir                   </td><td>lists a folder</td></tr>
+<tr><td>dirtree               </td><td>lists a folder with subfolders</td></tr>
+<tr><td>disasmScript          </td><td>disassembles script</td></tr>
+<tr><td>dmap                  </td><td>compiles a map</td></tr>
+<tr><td>editAFs               </td><td>launches the in-game Articulated Figure Editor</td></tr>
+<tr><td>editDecls             </td><td>launches the in-game Declaration Editor</td></tr>
+<tr><td>editGUIs              </td><td>launches the GUI Editor</td></tr>
+<tr><td>editLights            </td><td>launches the in-game Light Editor</td></tr>
+<tr><td>editor                </td><td>launches the level editor Radiant</td></tr>
+<tr><td>editParticles         </td><td>launches the in-game Particle Editor</td></tr>
+<tr><td>editPDAs              </td><td>launches the in-game PDA Editor</td></tr>
+<tr><td>editScripts           </td><td>launches the in-game Script Editor</td></tr>
+<tr><td>editSounds            </td><td>launches the in-game Sound Editor</td></tr>
+<tr><td>envshot               </td><td>takes an environment shot</td></tr>
+<tr><td>error                 </td><td>causes an error</td></tr>
+<tr><td>exportmodels          </td><td>exports models</td></tr>
+<tr><td>finishBuild           </td><td>finishes the build process</td></tr>
+<tr><td>freeze                </td><td>freezes the game for a number of seconds</td></tr>
+<tr><td>game_memory           </td><td>displays game class info</td></tr>
+<tr><td>gameError             </td><td>causes a game error</td></tr>
+<tr><td>getviewpos            </td><td>prints the current view position</td></tr>
+<tr><td>give                  </td><td>gives one or more items</td></tr>
+<tr><td>god                   </td><td>enables god mode</td></tr>
+<tr><td>help                  </td><td>shows help</td></tr>
+<tr><td>hitch                 </td><td>hitches the game</td></tr>
+<tr><td>in_restart            </td><td>restarts the input system</td></tr>
+<tr><td>keepTestModel         </td><td>keeps the last test model in the game</td></tr>
+<tr><td>killMonsters          </td><td>removes all monsters</td></tr>
+<tr><td>killMoveables         </td><td>removes all moveables</td></tr>
+<tr><td>killRagdolls          </td><td>removes all ragdolls</td></tr>
+<tr><td>listActiveEntities    </td><td>lists active game entities</td></tr>
+<tr><td>listAF                </td><td>lists articulated figures</td></tr>
+<tr><td>listAnims             </td><td>lists all animations</td></tr>
+<tr><td>listAudios            </td><td>lists Audios</td></tr>
+<tr><td>listBinds             </td><td>lists key bindings</td></tr>
+<tr><td>listClasses           </td><td>lists game classes</td></tr>
+<tr><td>listCmds              </td><td>lists commands</td></tr>
+<tr><td>listCollisionModels   </td><td>lists collision models</td></tr>
+<tr><td>listCvars             </td><td>lists cvars</td></tr>
+<tr><td>listDecls             </td><td>lists all decls</td></tr>
+<tr><td>listDictKeys          </td><td>lists all keys used by dictionaries</td></tr>
+<tr><td>listDictValues        </td><td>lists all values used by dictionaries</td></tr>
+<tr><td>listEmails            </td><td>lists Emails</td></tr>
+<tr><td>listEntities          </td><td>lists game entities</td></tr>
+<tr><td>listEntityDefs        </td><td>lists entity defs</td></tr>
+<tr><td>listFX                </td><td>lists FX systems</td></tr>
+<tr><td>listGameCmds          </td><td>lists game commands</td></tr>
+<tr><td>listGuis              </td><td>lists guis</td></tr>
+<tr><td>listHuffmanFrequencies </td><td>lists decl text character frequencies</td></tr>
+<tr><td>listImages            </td><td>lists images</td></tr>
+<tr><td>listLines             </td><td>lists all debug lines</td></tr>
+<tr><td>listMaterials         </td><td>lists materials</td></tr>
+<tr><td>listModelDefs         </td><td>lists model defs</td></tr>
+<tr><td>listModels            </td><td>lists all models</td></tr>
+<tr><td>listModes             </td><td>lists all video modes</td></tr>
+<tr><td>listMonsters          </td><td>lists monsters</td></tr>
+<tr><td>listParticles         </td><td>lists particle systems</td></tr>
+<tr><td>listPDAs              </td><td>lists PDAs</td></tr>
+<tr><td>listRenderEntityDefs  </td><td>lists the entity defs</td></tr>
+<tr><td>listRendererCmds      </td><td>lists renderer commands</td></tr>
+<tr><td>listRenderLightDefs   </td><td>lists the light defs</td></tr>
+<tr><td>listServers           </td><td>lists scanned servers</td></tr>
+<tr><td>listSkins             </td><td>lists skins</td></tr>
+<tr><td>listSoundCmds         </td><td>lists sound commands</td></tr>
+<tr><td>listSoundDecoders     </td><td>list active sound decoders</td></tr>
+<tr><td>listSounds            </td><td>lists all sounds</td></tr>
+<tr><td>listSoundShaders      </td><td>lists sound shaders</td></tr>
+<tr><td>listSpawnArgs         </td><td>list the spawn args of an entity</td></tr>
+<tr><td>listSystemCmds        </td><td>lists system commands</td></tr>
+<tr><td>listTables            </td><td>lists tables</td></tr>
+<tr><td>listThreads           </td><td>lists script threads</td></tr>
+<tr><td>listToolCmds          </td><td>lists tool commands</td></tr>
+<tr><td>listTypeInfo          </td><td>list type info</td></tr>
+<tr><td>listVertexCache       </td><td>lists vertex cache</td></tr>
+<tr><td>listVideos            </td><td>lists Videos</td></tr>
+<tr><td>localizeGuis          </td><td>localize guis</td></tr>
+<tr><td>localizeMaps          </td><td>localize maps</td></tr>
+<tr><td>makeAmbientMap        </td><td>makes an ambient map</td></tr>
+<tr><td>MakeMegaTexture       </td><td>processes giant images</td></tr>
+<tr><td>memoryDump            </td><td>creates a memory dump</td></tr>
+<tr><td>memoryDumpCompressed  </td><td>creates a compressed memory dump</td></tr>
+<tr><td>modulateLights        </td><td>modifies shader parms on all lights</td></tr>
+<tr><td>nextAnim              </td><td>shows next animation on test model</td></tr>
+<tr><td>nextFrame             </td><td>shows next animation frame on test model</td></tr>
+<tr><td>nextGUI               </td><td>teleport the player to the next func_static with a gui</td></tr>
+<tr><td>noclip                </td><td>disables collision detection for the player</td></tr>
+<tr><td>notarget              </td><td>disables the player as a target</td></tr>
+<tr><td>parse                 </td><td>prints tokenized string</td></tr>
+<tr><td>path                  </td><td>lists search paths</td></tr>
+<tr><td>playerModel           </td><td>sets the given model on the player</td></tr>
+<tr><td>popLight              </td><td>removes the last created light</td></tr>
+<tr><td>prevAnim              </td><td>shows previous animation on test model</td></tr>
+<tr><td>prevFrame             </td><td>shows previous animation frame on test model</td></tr>
+<tr><td>printAF               </td><td>prints an articulated figure</td></tr>
+<tr><td>printAudio            </td><td>prints an Video</td></tr>
+<tr><td>printEmail            </td><td>prints an Email</td></tr>
+<tr><td>printEntityDef        </td><td>prints an entity def</td></tr>
+<tr><td>printFX               </td><td>prints an FX system</td></tr>
+<tr><td>printMaterial         </td><td>prints a material</td></tr>
+<tr><td>printModel            </td><td>prints model info</td></tr>
+<tr><td>printModelDefs        </td><td>prints a model def</td></tr>
+<tr><td>printParticle         </td><td>prints a particle system</td></tr>
+<tr><td>printPDA              </td><td>prints an PDA</td></tr>
+<tr><td>printSkin             </td><td>prints a skin</td></tr>
+<tr><td>printSoundShader      </td><td>prints a sound shader</td></tr>
+<tr><td>printTable            </td><td>prints a table</td></tr>
+<tr><td>printVideo            </td><td>prints a Audio</td></tr>
+<tr><td>promptKey             </td><td>prompt and sets the CD Key</td></tr>
+<tr><td>recordViewNotes       </td><td>record the current view position with notes</td></tr>
+<tr><td>reexportmodels        </td><td>reexports models</td></tr>
+<tr><td>regenerateWorld       </td><td>regenerates all interactions</td></tr>
+<tr><td>reloadanims           </td><td>reloads animations</td></tr>
+<tr><td>reloadARBprograms     </td><td>reloads ARB programs</td></tr>
+<tr><td>reloadCgPrograms      </td><td>reloads CG programs</td></tr>
+<tr><td>reloadDecls           </td><td>reloads decls</td></tr>
+<tr><td>reloadEngine          </td><td>reloads the engine down to including the file system</td></tr>
+<tr><td>reloadGuis            </td><td>reloads guis</td></tr>
+<tr><td>reloadImages          </td><td>reloads images</td></tr>
+<tr><td>reloadLanguage        </td><td>reload language dict</td></tr>
+<tr><td>reloadModels          </td><td>reloads models</td></tr>
+<tr><td>reloadScript          </td><td>reloads scripts</td></tr>
+<tr><td>reloadSounds          </td><td>reloads all sounds</td></tr>
+<tr><td>reloadSurface         </td><td>reloads the decl and images for selected surface</td></tr>
+<tr><td>remove                </td><td>removes an entity</td></tr>
+<tr><td>removeline            </td><td>removes a debug line</td></tr>
+<tr><td>renderbump            </td><td>renders a bump map</td></tr>
+<tr><td>renderbumpFlat        </td><td>renders a flat bump map</td></tr>
+<tr><td>reportImageDuplication </td><td>checks all referenced images for duplications</td></tr>
+<tr><td>reportSurfaceAreas    </td><td>lists all used materials sorted by surface area</td></tr>
+<tr><td>roq                   </td><td>encodes a roq file</td></tr>
+<tr><td>runAAS                </td><td>compiles an AAS file for a map</td></tr>
+<tr><td>runAASDir             </td><td>compiles AAS files for all maps in a folder</td></tr>
+<tr><td>runReach              </td><td>calculates reachability for an AAS file</td></tr>
+<tr><td>s_restart             </td><td>restarts the sound system</td></tr>
+<tr><td>saveLights            </td><td>saves all lights to the .map file</td></tr>
+<tr><td>saveMoveables         </td><td>save all moveables to the .map file</td></tr>
+<tr><td>saveParticles         </td><td>saves all lights to the .map file</td></tr>
+<tr><td>saveRagdolls          </td><td>save all ragdoll poses to the .map file</td></tr>
+<tr><td>saveSelected          </td><td>saves the selected entity to the .map file</td></tr>
+<tr><td>script                </td><td>executes a line of script</td></tr>
+<tr><td>setviewpos            </td><td>sets the current view position</td></tr>
+<tr><td>showDictMemory        </td><td>shows memory used by dictionaries</td></tr>
+<tr><td>showInteractionMemory </td><td>shows memory used by interactions</td></tr>
+<tr><td>showStringMemory      </td><td>shows memory used by strings</td></tr>
+<tr><td>showTriSurfMemory     </td><td>shows memory used by triangle surfaces</td></tr>
+<tr><td>showViewNotes         </td><td>show any view notes for the current map, successive calls will cycle to the next note</td></tr>
+<tr><td>spawn                 </td><td>spawns a game entity</td></tr>
+<tr><td>startBuild            </td><td>prepares to make a build</td></tr>
+<tr><td>takeViewNotes         </td><td>take notes about the current map from the current view</td></tr>
+<tr><td>teleport              </td><td>teleports the player to an entity location</td></tr>
+<tr><td>testAnim              </td><td>tests an animation</td></tr>
+<tr><td>testBlend             </td><td>tests animation blending</td></tr>
+<tr><td>testBoneFx            </td><td>tests an FX system bound to a joint</td></tr>
+<tr><td>testDamage            </td><td>tests a damage def</td></tr>
+<tr><td>testDeath             </td><td>tests death</td></tr>
+<tr><td>testFx                </td><td>tests an FX system</td></tr>
+<tr><td>testGUI               </td><td>tests a gui</td></tr>
+<tr><td>testid                </td><td>output the string for the specified id.</td></tr>
+<tr><td>testImage             </td><td>displays the given image centered on screen</td></tr>
+<tr><td>testLight             </td><td>tests a light</td></tr>
+<tr><td>testmap               </td><td>tests a map</td></tr>
+<tr><td>testModel             </td><td>tests a model</td></tr>
+<tr><td>testParticleStopTime  </td><td>tests particle stop time on a test model</td></tr>
+<tr><td>testPointLight        </td><td>tests a point light</td></tr>
+<tr><td>testSave              </td><td>writes out a test savegame</td></tr>
+<tr><td>testSaveGame          </td><td>test a save game for a level</td></tr>
+<tr><td>testShaderParm        </td><td>sets a shaderParm on an existing testModel</td></tr>
+<tr><td>testSIMD              </td><td>test SIMD code</td></tr>
+<tr><td>testSkin              </td><td>tests a skin on an existing testModel</td></tr>
+<tr><td>testSound             </td><td>tests a sound</td></tr>
+<tr><td>testVideo             </td><td>displays the given cinematic</td></tr>
+<tr><td>touch                 </td><td>touches a decl</td></tr>
+<tr><td>touchFile             </td><td>touches a file</td></tr>
+<tr><td>touchFileList         </td><td>touches a list of files</td></tr>
+<tr><td>touchGui              </td><td>touches a gui</td></tr>
+<tr><td>touchModel            </td><td>touches a model</td></tr>
+<tr><td>trigger               </td><td>triggers an entity</td></tr>
+<tr><td>unbindRagdoll         </td><td>unbinds the selected ragdoll</td></tr>
+<tr><td>vid_restart           </td><td>restarts renderSystem</td></tr>
+<tr><td>weaponSplat           </td><td>projects a blood splat on the player weapon</td></tr>
+<tr><td>where                 </td><td>prints the current view position</td></tr>
+<tr><td>writeGameState        </td><td>write game state</td></tr>
+<tr><td>writePrecache         </td><td>writes precache commands</td></tr>
+</tbody></table>
+
+<p>
+<b>Internal commands</b>
+</p><table class="datatable">
+<tbody><tr><td>bindunbindtwo         </td><td>binds a key but unbinds it first if there are more than two binds</td></tr>
+<tr><td>rescanSI              </td><td>rescan serverinfo cvars and tell game</td></tr>
+<tr><td>updateUI              </td><td>cause a sync down of game-modified userinfo</td></tr>
+</tbody></table>
+
+<p>
+<b>Commands that worked at one time, but probably not any more</b>
+</p><table class="datatable">
+<tbody><tr><td>aviCmdDemo            </td><td>writes AVIs for a command demo</td></tr>
+<tr><td>compressDemo          </td><td>compresses a demo file</td></tr>
+<tr><td>exitCmdDemo           </td><td>exits a command demo</td></tr>
+<tr><td>playCmdDemo           </td><td>plays back a command demo</td></tr>
+<tr><td>sizeDown              </td><td>makes the rendered view smaller</td></tr>
+<tr><td>sizeUp                </td><td>makes the rendered view larger</td></tr>
+<tr><td>takeViewNotes2        </td><td>extended take view notes</td></tr>
+<tr><td>timeCmdDemo           </td><td>times a command demo</td></tr>
+<tr><td>writeCmdDemo          </td><td>writes a command demo</td></tr>
+</tbody></table>
+
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

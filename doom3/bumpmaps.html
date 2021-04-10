@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0043)https://www.iddevnet.com/doom3/bumpmaps.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Bump Maps]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Bump Maps</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+Most of this was taken from a document written by John Carmack some time ago,
+it was so good I decided to just copy it in here verbatim -- Brian
+
+<div class="subsection">Bump Mapping in DOOM</div>
+
+<p>
+Virtually all geometric surface detail should be represented
+in bump maps instead of drawn into the diffuse maps in the conventional
+style. This allows a single texture to take on different characteristics
+based on it’s interaction with lights.
+
+</p><p>
+Two types of images can be used for bump mapping: height maps and normal maps.
+
+</p><p>
+A height map is a gray scale image, with black being the
+farthest distance away and white being the closest. An addition scale parameter
+is required when using height maps to determine how deep the image is supposed to be.
+You can’t properly cut and paste image fragments between height maps with different
+scale values without distorting the shading. You can add, subtract, airbrush, or
+smooth gray values by hand on a height map with predictable results.
+
+</p><p>
+</p><center><img src="images/bumpmaps_a.png" title="techpanel"></center>
+
+<p>
+A local normal map encodes the actual perturbation angle of the surface at each point
+in the RGB color, so it is complete by itself without any scaling parameters.  You can
+cut and paste between any normal maps without problems, but you can’t reasonably modify
+the angles of normal map surfaces by hand, or create one from scratch. Smoothing a
+normal map works reasonably well in practice, although it does result in denormalized
+pixel values.
+
+</p><p>
+The normal vector is encoded as <span class="">( ( R-128 ) / 128, ( G-128 ) / 128, ( B-128 ) / 128 )</span>,
+so a normal pointing straight up ( 0, 0, 1 ) would be encoded as ( 128, 128, 255 ) in the image.
+Most local normal maps will be primarily bluish, because most of the vectors will be pointing
+up more strongly than any other direction.
+
+</p><p>
+</p><center><img src="images/bumpmaps_b.png" title="technormal"></center>
+
+<p>
+Renderbump is also capable of generating "global normal maps", which encode an absolute direction
+in object space, instead of in local surface space, but global maps cannot be deformed or
+used on different wall orientations in the same object. They have some minor quality and performance
+benefits, so we might wind up using them for some static objects later, but the
+support has been disabled for a while.
+
+</p><p>
+Height maps must be converted to normal maps at load time,
+so it is usually superior to use normal maps unless you need to manually create
+or manipulate the image in a way that is easier with height maps.
+
+</p><p>
+You can’t make a perfectly smooth slope in a height map because of the limited precision
+in the gray scale image. This results in shaded streaks along the slope, especially with
+higher resolution height maps. You may be able to hide that by adding some waviness to
+the surface manually.
+
+</p><div class="subsection">Using Bump Maps</div>
+
+<p>
+Every surface that interacts with light will have a normal map.If one isn’t specified,
+it will default to "_flat", an internally generated normal map with no changes.  There
+is currently no speed benefit to not having a normal map, although it might be possible
+to add a fast path for that in the future.
+
+</p><p>
+Most materials can be specified in the "shortcut" form, where you specify the diffusemap,
+specularmap, and bumpmap, and let the engine generate the full stages for it.
+
+</p><pre class="code">textures/doom/techpanel
+{
+    qer_editorimage ase/techpanel.tga
+    diffusemap      ase/techpanel_diffuse.tga
+    specularmap     ase/techpanel_specular.tga
+    bumpmap         ase/techpanel_local.tga
+}
+</pre>
+
+<p>
+If diffusemap<span class="GramE"> is nor specified, it defaults to a solid white image.<span style="mso-spacerun:yes">&nbsp; If specularmap is
+not specified, specular lighting will be disabled for
+that surface, giving a speedup.
+
+</span></span></p><p>If you need to perform any shader
+system operations, like animation or scrolling, you will have to write the
+stages out separately:
+
+
+
+</p><p>
+"Testbump &lt;image name&gt;" Uses the specified normal map on every surface in
+the world.  If you want to test a heightmap, you must use an image program
+and scale factor to convert it to a normal map: "TestBump heightmap( bumpmaps/squiggle.tga, 4 )"
+
+</p><p>You can modify the lighting calculations to examine the bump
+mapping under different conditions:
+
+</p><p>
+"r_skipSpecular &lt;0 or 1&gt;"<br>
+"r_skipDiffuse &lt;0 or 1&gt;"<br>
+
+</p><div class="subsection">Renderbump</div>
+
+<p>
+The renderbump tools generate normal maps directly from detailed polygonal geometry.
+The high poly count models will be tens of thousands to hundreds of thousands of
+triangles, while the geometry that will use the normal maps can be either simple flat
+brush sides, or game character level geometry of around two thousand triangles.
+
+</p><p>
+The alpha channel of the normal map will contain a mask if there were areas in the
+map that did not directly map to geometry.  This can be copied to a diffuse map to use
+with the alpha test option for per-pixel opacity.  Note that if you use the normal map as
+a template for the specular map, you should explicitly clear or remove the alpha channel,
+because it will prevent more efficient compression forms from being used.
+
+</p><p>
+The generated image will be saved to the game basepath.
+
+</p><p>
+There are two forms, both integrated in the main DOOM executable.
+
+</p><p>
+<b>Flat RenderBump</b>
+
+</p><p>
+</p><pre class="code">RenderBumpFlat [-size &lt;width&gt; &lt;height&gt;] &lt;modelfile&gt;</pre>
+
+<p>
+Size defaults to 256 by 256 if not specified.
+
+This version generates normal maps suitable for mapping on surfaces like standard textures.
+The modelfile should hold a set of triangles that make a generally 2D surface in the XZ plane,
+with the front side facing down negative Z.  The modelFile does not need to have texture
+coordinates, but you should save it with normals if you don’t want the entire thing smooth shaded.
+
+</p><p>
+The generated normal map will be saved to "&lt;modelFile&gt;_local.tga".
+
+</p><p>
+RenderBumpFlat uses the graphics accelerator to draw the normal maps, which makes it very fast,
+but imposes a couple restrictions.  You cannot create an image of higher resolution than the screen,
+and you shouldn’t drag another window over the working window while it is rendering.
+
+</p><p>
+RenderBumpFlat automatically performs 16x oversampling, so the resulting image should be sufficiently anti-aliased.
+
+</p><p>
+<b>General RenderBump</b>
+
+</p><p>
+</p><pre class="code">renderBump &lt;lowPolyModel&gt;</pre>
+
+The renderbump command is used to generate a normal map for a non-flat surface like the surface of a character model in the game.
+<p> 
+The parameters for renderbump are specified in the materials applied to the surfaces of the low detail model
+
+</p><p> 
+</p><pre class="code">renderBump [-size &lt;width&gt; &lt;height&gt;] [-aa &lt;0/1/2&gt;]<br>      [-trace &lt;0.01 - 1.0&gt;] &lt;normalMapImage&gt; &lt;highPolyModel&gt;</pre>
+
+<p>
+Size defaults to 256 by 256 if not specified.
+
+</p><p>
+AA defaults to 1 if not specified.
+
+</p><p>
+Trace defaults to 0.05 if not specified.
+
+</p><p>
+The AA setting determines how much anti-aliasing will be done.  The default level
+of one gives 4x anti-aliasing, while level 2 gives 16x and level 0 gives 1x.
+
+</p><p>
+The trace setting determines how far off of the low poly
+surface that a ray cast will look for triangles in the high poly surface.
+It is expressed in fractions of the largest bounding axis.  Tracing speed goes down
+rapidly as this is increased, but if your high poly geometry isn’t showing up
+in the normal map, you may need to increase this to 0.1 or more.&nbsp; The best solution is
+to try very hard to have the low poly version be a very close match to the high poly version.
+
+</p><p>
+The lowPolyModel must have texture coordinates on it, and care should be taken to make
+sure the mapping is as good as possible.  Before doing a RenderBump, test the model in
+the game with "r_showTexturePolarity 1" and "r_showEdges 1".  Make sure that there aren’t any
+texture seams that aren’t absolutely necessary, and that there are no overlapped texture projections.
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

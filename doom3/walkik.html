@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0041)https://www.iddevnet.com/doom3/walkik.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Walk IK]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Walk IK</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+Walk Inverse Kinematics makes feet stay on the floor, even when walking along uneven terrain.
+
+<p>
+
+The IK animation controller for a walking character
+can be enabled with key/value pairs in the entityDef.
+
+</p><p>
+
+</p><table class="datatable">
+<tbody><tr><td class="nobr">ik_numLegs &lt;num&gt;</td><td>Sets the number of legs</td>
+</tr><tr><td class="nobr">ik_minWaistFloorDist &lt;game units&gt;</td><td>
+Sets the minimum distance of the waist to the ground.<br>
+This minimum distance is usually only used for crawling creatures
+like the trite. If not required do NOT use the key/value pair or
+set it to zero to save CPU.</td>
+</tr><tr><td class="nobr">ik_minWaistAnkleDist &lt;game units&gt;</td><td>
+Sets the minimum distance of the waist to one of the ankles.<br>
+This minimum distance makes sure the waist is always a certain
+distance above the ankles.</td>
+</tr><tr><td class="nobr">ik_footSize &lt;game units&gt;</td><td>
+Sets the size of a foot<br>
+A square of the given size is used to find the height of the floor
+below a foot. If set to zero a single point is used which is
+considerably cheaper and used for instance for the trite.</td>
+</tr><tr><td class="nobr">ik_waist &lt;jointName&gt;</td><td rowspan="6">
+Sets the joints used for the walk IK.<br>
+Where &lt;X&gt; is the leg number starting at 1. So a biped uses 1 and 2,
+and the trite uses 1 up to 6.
+<p>
+The ik_foot joint specifies the location at which the floor height
+is sampled.
+</p><p>
+The two bones modified by the walk IK go from ik_hip to ik_knee and
+from ik_knee to ik_ankle.
+</p><p>
+The vector from the ik_knee joint to the ik_dir joint specifies
+the direction the walk IK will bend knee.
+</p></td>
+</tr><tr><td class="nobr">ik_dir&lt;X&gt; &lt;jointName&gt;</td>
+</tr><tr><td class="nobr">ik_hip&lt;X&gt; &lt;jointName&gt;</td>
+</tr><tr><td class="nobr">ik_knee&lt;X&gt; &lt;jointName&gt;</td>
+</tr><tr><td class="nobr">ik_ankle&lt;X&gt; &lt;jointName&gt;</td>
+</tr><tr><td class="nobr">ik_foot&lt;X&gt; &lt;jointName&gt;</td>
+</tr><tr><td class="nobr">ik_waist &lt;jointName&gt;</td><td>
+The ik_waist joint is used to shift the whole upper body up and
+down based on how far the feet are moved up and down and how far
+the knees are bent.</td>
+</tr></tbody></table>
+
+<div class="subsection">Example</div>
+
+<pre class="code">entityDef monster_demon_imp {
+    "inherit"          "monster_default"
+    "scriptobject"     "monster_demon_imp"
+    "model"            "monster_demon_imp"
+    "ragdoll"          "monster_demon_imp"
+    ...
+    "ik_numLegs"       "2"
+    "ik_footSize"      "4"
+    "ik_waist"         "Body"
+    "ik_hip1"          "Lupleg"
+    "ik_hip2"          "Rupleg"
+    "ik_knee1"         "Lloleg"
+    "ik_knee2"         "Rloleg"
+    "ik_ankle1"        "Lankle_r"
+    "ik_ankle2"        "Rankle_r"
+    "ik_dir1"          "Lknee"
+    "ik_dir2"          "Rknee"
+    "ik_foot1"         "Lball_r"
+    "ik_foot2"         "Rball_r"
+    ...
+}
+</pre>
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

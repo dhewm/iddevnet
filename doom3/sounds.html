@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0041)https://www.iddevnet.com/doom3/sounds.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Sounds]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Sounds</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+Sound shaders are completely new for Doom 3.  They allow for more control over the sounds
+than what was previously allowed in id engines.  They also allow designers to drop sounds
+in levels without having to set some common parameters every time.
+
+</p><p>
+Let's take a look at a simple sound shader:
+</p><pre class="code">c1_sentry_loader_in
+{
+    minDistance	10
+    maxDistance	25
+
+    no_occlusion
+    volume	3
+
+    sound/movers/comm1/sentry_loader_in.wav
+}
+</pre>
+<img src="images/sounds_a.png" align="right" border="1">
+
+<p>
+</p><li>minDistance / maxDistance sets the radius where the sound fades out.  The sound is at maximum
+volume inside 'minDistance' radius, and it completely silent after 'maxDistance' radius.
+</li><li>The no_occlusion key tells the engine not to take level geometry in to account when calculating
+volume.
+</li><li>'volume' is the volume inside the inner radius of the sound.
+</li><li>The last line sets the actual sound file to play.
+
+<p>
+Let's take a look at another one:
+</p><pre class="code">emetal_impacts
+{
+    minDistance	5
+    maxDistance	45
+    volume	5
+    no_dups
+
+    sound/impact/ambient_impacts/emetal_01.wav
+    sound/impact/ambient_impacts/emetal_02.wav
+    sound/impact/ambient_impacts/emetal_03.wav
+    sound/impact/ambient_impacts/emetal_04.wav
+    sound/impact/ambient_impacts/emetal_05.wav
+}
+</pre>
+<p>
+This one has multiple sound files specified, which means the engine will randomly choose one to play.
+
+</p><p>
+The cvar s_maxSoundsPerShader limits the maximum number of sounds that can be in a shader.  This is set
+to 0 (no limit) for high end systems and 1 for low end systems (which means it always plays the first
+sound in the list).
+
+</p><p>
+Here's a list of all the keywords that can be in a sound shader
+</p><table class="datatable">
+<tbody><tr><td class="nobr">minSamples &lt;int&gt;</td><td>Overrides s_maxSoundsPerShader</td>
+</tr><tr><td class="nobr">description &lt;string&gt;</td><td>A short message describing the sound</td>
+</tr><tr><td class="nobr">minDistance &lt;float&gt;</td><td>The closest you can get to the sound before it goes to full volume</td>
+</tr><tr><td class="nobr">maxDistance &lt;float&gt;</td><td>The furthest you can get from the sound before it goes to zero volume</td>
+</tr><tr><td class="nobr">shakes [float]</td><td>Shake the screen when this sound plays.  The shake intensity is volume multiplied by [float] (which defaults to 1)<br>*Should not be used with .ogg files*</td>
+</tr><tr><td class="nobr">volume</td><td>The maximum volume for this sound (volume inside minDistance)</td>
+</tr><tr><td class="nobr">leadinVolume</td><td>The volume of the leadin sound (used to allow light breaking leadin sounds to be much louder than the broken loop)</td>
+</tr><tr><td class="nobr">mask_center</td><td>Play through the center channel</td>
+</tr><tr><td class="nobr">mask_left</td><td>Play through the left channel</td>
+</tr><tr><td class="nobr">mask_right</td><td>Play through the right channel</td>
+</tr><tr><td class="nobr">mask_backleft</td><td>Play through the left rear channel</td>
+</tr><tr><td class="nobr">mask_backright</td><td>Play through the right rear channel</td>
+</tr><tr><td class="nobr">mask_lfe</td><td>Play through the low frequency channel (subwoofer)</td>
+</tr><tr><td class="nobr">soundClass &lt;int&gt;</td><td>sound classes are used to fade most sounds down inside cinematics, leaving dialog flagged with a non-zero class full volume</td>
+</tr><tr><td class="nobr">altSound &lt;sound&gt;</td><td>Used for pairing a specific broken light sound with a normal light sound</td>
+</tr><tr><td class="nobr">no_dups</td><td>Don't play the same sound twice in a row</td>
+</tr><tr><td class="nobr">no_flicker</td><td>Always return 1.0 for volume queries</td>
+</tr><tr><td class="nobr">looping</td><td>Repeat the sound constantly</td>
+</tr><tr><td class="nobr">no_occlusion</td><td>Don't flow through portals, only use a straight line</td>
+</tr><tr><td class="nobr">private</td><td>Only plays for the current listener</td>
+</tr><tr><td class="nobr">global</td><td>Play full volume to all speakers and all listeners</td>
+</tr><tr><td class="nobr">unclamped</td><td>Don't clamp calculated values at 1.0</td>
+</tr><tr><td class="nobr">omnidirectional</td><td>Fall off with distance, but play same volume in all speakers</td>
+</tr><tr><td class="nobr">leadin &lt;file&gt;</td><td>Sound file to use for the lead-in to a looping sound</td>
+</tr></tbody></table>
+<p>
+If no channel masks are set, it will default to playing through all channels.
+
+</p><p>
+Valid sound files are 1 or 2 channel, 16 bit OGG or WAV files at 11025, 22050 or 44100 Hz.
+
+<br>
+        </p></li></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0047)https://www.iddevnet.com/doom3/editor_light.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [The Light Editor]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : The Light Editor</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+The light editor can be opened by typing "editLights" in the console or by
+pressing 'j' in Radiant (because you <b>j</b>uice up the lights).  You need
+to have a light selected in the editor for it to really do anything (or you
+can run around the level in game and select the lights from there).
+
+</p><p>
+There are two types of lights in Doom 3.  Point lights are kind of like a
+light bulb.  There is a center point, and it lights up everything in some
+radius around that center point.  The radius isn't actually spherical.  It's
+actually a box aligned to the world axis.  Projected lights are similar to
+spot lights in that they only shine in a single direction.
+
+</p><div class="subsection">Point lights</div>
+
+<img src="images//editor_light_a.gif" align="right">
+The most confusing thing about the point lights in Doom 3 is the fact that
+there are actually 2 'centers' of the light.  The first is the actual center
+of the light.  It defines the point around which the light map is rendered.
+This is the purple box in radiant.  The second center is the source of the
+shadows and highlights.  The shadows will be extruded from that point.  This
+is really useful for creating a fake kind of cone light.  You position the
+light so it lights up the area you want it to light up, then you move the
+center up so it looks like the light is being cast down from above.  For the
+standard 'light in the ceiling in a hall way' situation, you would position
+the area to cover the hallway, then put the center right below the surface
+of the light model.  To move the center, you can either type the numbers in
+the light editor, or drag the little dot around in radiant.
+
+<p>
+By marking the light as parallel, the light acts as if the center is extruded out
+to infinity.  All the shadows will go in the same direction, and all the highlights
+in the bumps will face the same direction.  This is very handy for creating sunlight.
+
+</p><p>
+The radius is x, y, z is quite simply the size of the light area in each of
+the 3 axis.  Setting equalateral radius just means it's the same radius in all
+3 directions. This is easy to see in the editor.  I'm pretty sure fall-off
+doesn't actually do anything.
+
+</p><div class="subsection">Projected lights</div>
+
+<img src="images//editor_light_b.gif" align="right">
+A projected light goes off in one direction only, away from the light source
+(like a flashlight).  The matrix that you define controls the direction and
+shape of the light.  If you have never really messed with matrices much, just
+remember you are defining 3 sets of (x,y,z) vectors that set the axis of the
+light.  So if the 'target' vector is set to -1,0,0 then the light will be facing
+the negative x axis in the world.  The 'up' and 'right' vectors then defines the
+orientation or rotation of the light, which is really useful when you are using a
+textured light (such as a stained glass window).  In the real world, these 3 vectors
+are always orthogonal (or even orthonormal), but in the game world they don't have
+to be.  The light can easily be skewed to create some interesting effects.  However,
+two vectors cannot be co-linear (pointing in the same direction), as that would make
+no sense.
+
+<div class="subsection">Other stuff</div>
+
+<img src="images//editor_light_d.png" align="right">
+The right side of the editor is pretty self explanitory.  The main thing worth
+mentioning is the brightness slider doesn't actually do anything.
+
+<p>
+The apply different button is for when you have multiple lights selected.  Hitting
+apply different will only change the values on the lights that you changed.  This
+allows you to do things like select a bunch of lights and make them all red without
+affecting the direction, texture, or other properties on them.
+
+</p><p>
+The best way to do it is to just hit F7 to pull up a real time render and play
+around with all the various propeties until it looks good.  There is really no
+other way but through trial and error because it is all very subjective.
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images//span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

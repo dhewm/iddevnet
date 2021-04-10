@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0044)https://www.iddevnet.com/doom3/materials.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Tables &amp; Materials]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Tables &amp; Materials</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+Material decls are similar to shader files from Quake3, but they are a lot
+more powerful.  Materials have a lot of power, especially when combined with
+scripts and GL programs.
+
+</p><div class="subsection">Tables</div>
+
+In Quake3, you could do all kinds of neat things with sin waves, saw tooth waves, square waves and
+other types of waves, but you were pretty much screwed if you wanted any kind of non standard wave form.
+In Doom 3, you can define arbitrary data lookup tables, then reference them in your materials.
+<p>
+The format of a table definiton is:
+</p><pre class="code">table &lt;tablename&gt; { [snap] [clamp] { &lt;data&gt;, &lt;data&gt;, ... } }</pre>
+Where [snap] is an optional key word which means "jump directly from one value to the other (don't blend between values)"
+and [clamp] is an optional key word which means "don't wrap around if the index is outside the range of table elements,
+(return the first value if less or the last value if it's more)".  Both keywords are optional, and can be used together.
+<p>
+Now, armed with this knowledge, we can easily construct a square wave lookup table:
+</p><pre class="code">table squarewave { snap { 0, 1 } }</pre>
+The sin table is a bit harder, but lucky for you, it's already defined shaderDemo.mtr
+
+<div class="subsection">Materials</div>
+
+Every material file has a global section, followed by one or more stages.  The global section,
+as the name implies, sets properties that affect all the stages.  In Quake3 the stages were pretty
+easy to understand because the engine rendered them in order: stage 1, then stage 2, then stage 3,
+etc..  In Doom 3 the order is not quite as simple because of the way the lighting system works, but
+for the most part, they are still rendered in order.
+
+<p>
+Let's look at a simple material (some random wall in the alpha labs):
+</p><pre class="code">textures/alphalabs/a_lfwall21b
+{
+    qer_editorimage textures/alphalabs/a_lfwall21b
+    bumpmap         textures/base_wall/lfwall21_local
+    diffusemap      textures/alphalabs/a_lfwall21b
+    specularmap     textures/alphalabs/a_lfwall21b_s
+}
+</pre>
+<p>
+The first line is the name of the material (which in this case also happens to be the name of the diffuse map).
+Notice the absence of a 'material' keyword.  This is because it is in a .mtr file, where the 'material' keyword
+is assumed.  If you chose to put this in another type of file, you would need the 'material' keyword.
+
+</p><p>
+The global section begins right after the open curly brace.   The first key word we see is qer_editorimage, which
+tells Radiant which image to use in the editor.  This is the image used in the texture window, as well as in the 3D
+view.  Next we define the bump map (normal map), the diffuse map (colors), and the specular map (gloss).  This is about
+as basic of a material file you can get, while still using the advanced lighting features.  Technically all you need
+is 'diffusemap', in which case the specular map is black, the bump map is blue, and the editorimage is the diffusemap.
+Creating an entire map with those types of materials will look roughly like Quake 3.
+
+</p><p>
+This material looks like it doesn't have any stages, but in fact it has 3 stages.  The 'bumpmap' 'diffusemap' and
+'specularmap' keywords are simply shortcuts for stages as we will see later.
+
+</p><div class="subsection">Shaders in Materials</div>
+
+Doom 3 has the ability to use custom GL vertex and fragment programs when rendering a stage of a
+material.  This is mostly seen in the 'heat haze' effects around fire, in the warping effects on
+glass, and in the warping effects on various projectiles (like the BFG).  For documentation on how
+to write your own vertex and fragment programs, take a look at these two documents: 
+<a href="http://oss.sgi.com/projects/ogl-sample/registry/ARB/vertex_program.txt">Vertex Programs</a>,
+<a href="http://oss.sgi.com/projects/ogl-sample/registry/ARB/fragment_program.txt">Fragment Programs</a>.
+There is nothing stopping an artist from writing those, but I would really let a programmer handle
+writing the GL program.  The main thing an artist or level designer needs to know is how to use the
+GL program in their materials.
+
+<p>
+
+This is the material file for outdoor glass, which is one of the more complex materials in the game:
+</p><pre class="code">textures/glass/outdoor_glass1
+{
+    noSelfShadow
+    noshadows
+    twosided
+    translucent
+    glass
+    forceoverlays
+    sort decal
+
+    qer_editorimage textures/glass/glass1
+    {
+        vertexProgram heatHaze.vfp
+        vertexParm  0  0 , 0  // texture scrolling
+        vertexParm  1  .5  // magnitude of the distortion
+
+        fragmentProgram heatHaze.vfp
+        fragmentMap 0  _currentRender
+        fragmentMap 1  textures/sfx/vp1 // the normal map for distortion
+    }
+    {
+        maskcolor				
+        map makealpha(textures/glass/glass1)
+    }	
+    {
+        blend gl_dst_alpha, gl_one
+        maskalpha
+        cubeMap env/gen2
+        red     Parm0
+        green   Parm1
+        blue    Parm2
+        texgen  reflect
+    }
+    {
+        blend filter
+        map textures/glass/outdoor_glass1fx
+    }
+}
+</pre>
+
+<p>
+First the global section sets up some properties for the material.  Two keywords to take note of:
+'glass' specifies the sound that is made when things hit it (<i>NOT</i> the way it looks).  The
+'forceoverlays' keyword forces decals like blood to draw on it.  Normally blood and weapon decals
+are disabled on transparent surfaces because it tends to look wrong.
+</p><p>
+The first stage in this material is what sets up the vertex and pixel program.  The programs are
+defined in "glprogs/heatHaze.vfp".  This stage is completely skipped on older (non ARB2) hardware,
+and is actually drawn last on modern hardware because of the reference to _currentRender.  As the
+comments explain, for this particular vertex program, parm 0 defines the texture scrolling, and
+parm 1 defines how much the image is distorted.  The meaning of these parms depends completely
+on how the vertex program is written, so consult your programmer.
+</p><p>
+The second stage sets up an alpha channel stage.  It doesn't actually write anything to the screen,
+but rather it sets some values in the alpha channel which are used in the next stage.
+</p><p>
+The third stage is the main color stage.  Because 'blend' references gl_dst_alpha, the color value
+depends on the alpha value set in stage 2.  Normally we would just put the alpha value directly in
+the image map, but this stage uses a 6 sided cube map texture, which moves with the viewer (because
+of texgen reflect).  We don't want the alpha channel to move, however, so we have to set it in a
+different stage.  'red', 'green', and 'blue' being set to 'param0', 'param1', and 'param2' allow the
+level designer to change the color of the glass by changing the 'shaderParm' values in the editor.
+As you will see later, this could be shortened to just 'colored'
+</p><p>
+The fourth stage just blends a static image map on top.
+
+</p><div class="subsection">Math and Logic</div>
+
+Materials in Doom 3 can contain mathematical and logical expressions.  These expressions are evaluated
+for each material every frame, and are what cause normally boring surfaces to come alive.  This is a
+replacement for the rather limited shader commands in Quake 3 such as tcMod scroll, rgbGen, etc.
+
+<p>
+Let's take a look at a material to see these features in use:
+</p><pre class="code">models/weapons/soulcube/soulcube3fx
+{
+    noSelfShadow
+    translucent
+    noShadows
+    {
+        if ( parm7 &gt; 3 )
+        blend add
+        map models/weapons/soulcube/soulcube3fx
+        rgb scTable[ time * .5 ] 
+    }
+}
+</pre>
+
+<p>
+In Doom 3, certain stages of the material can be selectively turned on and off.  The 'if' command in this
+example means "only draw this material if parm7 is greater than 3."  There are a few places where parm7 can
+get set, one of them is in the editor with the 'shaderParm0' to 'shaderParm11' keys.  Another place is in
+the script file (such as with weapons).  Of course, it can also get set in the code.
+
+</p><p>
+Notice the use of a lookup table in this material.  Here we are using 'time' (which is a floating point number
+that increases forever) to look up a value in 'scTable' (which was defined using a 'table' decl earlier).
+
+</p><p>
+The mathematical operators you can use in a material are %, /, *, -, and +.  You can also use the boolean
+operators &lt;, &gt;, &lt;=, &gt;=, ==, !=, &amp;&amp;, and ||.  The meaning of the symbols is the same as in C/C++, Java, PHP, etc.
+Mathematical expressions should be enclosed in parenthesis (there are cases where they don't have to be, such as
+when they are used as an index to a lookup table, but it never hurts to have too many.  For the operands, you can
+use a lookup table, any numerical constant, and any of the following variables:
+</p><ul>
+<li>time: Forever increasing floating point value that returns the current time in seconds
+</li><li>parm0-parm11: Parameters that can be set a number of ways (discussed above)
+</li><li>global0-global7: Not used right now
+</li><li>fragmentPrograms: Constant that is 1 if ARB fragment programs are available.  This is mostly used for
+disabling a stage by specifying "if ( fragmentPrograms == 1 )"
+</li><li>sound: The current sound amplitude of the entity using this material.  This is used to create light
+materials that pulse with the sound.
+</li></ul>
+
+<div class="subsection">Reference</div>
+
+<p>
+<b>Global Keywords for regular materials</b><br>
+</p><table class="datatable">
+<tbody><tr><td class="nobr">qer_editorimage &lt;map&gt;</td><td>Image to display in the editor</td>
+</tr><tr><td class="nobr">description &lt;string&gt;</td><td>Just a simple description for people using this material</td>
+</tr><tr><td class="nobr">polygonOffset [float]</td><td>offset the depth buffer to combat z-fighting</td>
+</tr><tr><td class="nobr">noShadows</td><td>Don't cast shadows</td>
+</tr><tr><td class="nobr">noSelfShadow</td><td>This material doesn't cast shadows on the model it's on (but it does on other models)</td>
+</tr><tr><td class="nobr">forceShadows</td><td>Allows nodraw surfaces to cast shadows</td>
+</tr><tr><td class="nobr">noOverlays</td><td>Overlay / Decal suppression</td>
+</tr><tr><td class="nobr">forceOverlays</td><td>Force decal overlays for alpha tested or translucent surfaces</td>
+</tr><tr><td class="nobr">translucent</td><td>Draw with an alpha blend</td>
+</tr><tr><td class="nobr">clamp</td><td>Don't repeat the texture for texture coords outside [0,&nbsp;1]</td>
+</tr><tr><td class="nobr">zeroclamp</td><td>guarantee 0,0,0,255 edge for projected textures</td>
+</tr><tr><td class="nobr">alphazeroclamp</td><td>Guarante 0 alpha edge for projected textures</td>
+</tr><tr><td class="nobr">forceOpaque</td><td>Used for skies-behind-windows</td>
+</tr><tr><td class="nobr">twoSided</td><td>Draw the front and back.  Implies no-shadows, because the shadow volume would be coplanar with the surface, giving depth fighting</td>
+</tr><tr><td class="nobr">backSided</td><td>Draw only the back.  This also implies no-shadows</td>
+</tr><tr><td class="nobr">mirror</td><td>Use to make mirrors</td>
+</tr><tr><td class="nobr">noFog</td><td>Don't fog this surface</td>
+</tr><tr><td class="nobr">unsmoothedTangents</td><td>Uses the single largest area triangle for each vertex, instead of smoothing all</td>
+</tr><tr><td class="nobr">guisurf &lt;guifile&gt;<br>guisurf entity[2|3]</td><td>This surface has a gui on it.  Use <samp>"somegui.gui"</samp> to specify the gui, or entity, entity2, entity3, etc for the level designer to set it in Radiant.</td>
+</tr><tr><td class="nobr">sort &lt;type&gt;</td><td>Type is one of: subview, opaque, decal, far, medium, close, almostNearest, nearest, postProcess</td>
+</tr><tr><td class="nobr">spectrum &lt;int&gt;</td><td>Spectrums are used for "invisible writing" that can only be illuminated by a light of matching spectrum</td>
+</tr><tr><td class="nobr">deform &lt;type&gt;</td><td>See Below</td>
+</tr><tr><td class="nobr">decalInfo &lt;staySeconds&gt;<br>&lt;fadeSeconds&gt; [start rgb] [end rgb]</td><td>Used in decal materials to set how long the decal stays, and how it fades out.</td>
+</tr><tr><td class="nobr">renderbump &lt;args...&gt;</td><td>Renderbump command options.  See <a href="bumpmaps.html">bump mapping</a></td>
+</tr><tr><td class="nobr">diffusemap &lt;map&gt;</td><td>shortcut for <pre class="code">{<br>  blend diffusemap<br>  map &lt;map&gt;<br>}</pre></td>
+</tr><tr><td class="nobr">specularmap &lt;map&gt;</td><td>shortcut for <pre class="code">{<br>  blend specularmap<br>  map &lt;map&gt;<br>}</pre></td>
+</tr><tr><td class="nobr">bumpmap &lt;map&gt;</td><td>shortcut for <pre class="code">{<br>  blend bumpmap<br>  map &lt;map&gt;<br>}</pre></td>
+</tr><tr><td class="nobr">DECAL_MACRO</td><td>shortcut for <pre class="code">polygonOffset 1<br>discrete<br>sort decal<br>noShadows</pre></td>
+</tr></tbody></table>
+<p>
+<b>Deforms</b><br>
+</p><table class="datatable">
+<tbody><tr><td class="nobr">sprite</td><td>Deform the triangles of this surface to always face the viewer</td></tr>
+<tr><td class="nobr">tube</td><td>Pivot a rectangular quad along the center of its long axis<br>Note that a geometric tube with even quite a few sides tube will almost certainly render much faster than this, so this should only be for faked volumetric tubes.  Make sure this is used with twosided translucent shaders, because the exact side order may not be correct.</td></tr>
+<tr><td class="nobr">flare &lt;size&gt;</td><td>Build a translucent border that's always facing the viewer.  This only works on quads (surfaces with 4 vertices).  Used to make lens flares around lights.</td></tr>
+<tr><td class="nobr">expand &lt;amount&gt;</td><td>Expand the surface along it's normals.</td></tr>
+<tr><td class="nobr">move &lt;amount&gt;</td><td>Moves the surface along the X axis, mostly just for demoing the deforms.  Example: <samp>deform move (time * 1)</samp></td></tr>
+<tr><td class="nobr">turbulent &lt;table&gt; &lt;range&gt;<br>  &lt;timeoffset&gt; &lt;domain&gt;</td><td>Turbulently deforms the S, and T values.<br>Example: <samp>deform turbulent sinTable 0.05 (time * 1) 10</samp></td></tr>
+<tr><td class="nobr">eyeBall</td><td>Each eyeball surface should have an separate upright triangle behind it, long end pointing out the eye, and another single triangle in front of the eye for the focus point.  The texture coordinates on the eyeball surface will be deformed so that the center is lined up with the vector going from the origin triangle to the focus triangle.</td></tr>
+<tr><td class="nobr">particle &lt;particleDecl&gt;</td><td>Emit particles from the surface instead of drawing it.</td></tr>
+<tr><td class="nobr">particle2 &lt;particleDecl&gt;</td><td>Like particle, but ignores the surface area so small surfaces emit the same number of particles as large surfaces.</td></tr>
+</tbody></table>
+
+<p>
+<b>Global Keywords for light materials</b><br>
+</p><table class="datatable">
+<tbody><tr><td class="nobr">noShadows</td><td>This light doesn't cast shadows</td>
+</tr><tr><td class="nobr">forceShadows</td><td>fog, blend, and ambient lights don't cast shadows by default.  This forces them to cast shadows</td>
+</tr><tr><td class="nobr">noPortalFog</td><td>This fog volume won't ever consider a portal fogged out</td>
+</tr><tr><td class="nobr">fogLight</td><td>Option to fill with fog from viewer instead of light from center</td>
+</tr><tr><td class="nobr">blendLight</td><td>Perform simple blending of the projection, instead of interacting with bumps and textures</td>
+</tr><tr><td class="nobr">ambientLight</td><td>An ambient light has non-directional bump mapping and no specular</td>
+</tr><tr><td class="nobr">lightFalloffImage &lt;map&gt;</td><td>specifies the image to use for the third axis of projected light volumes</td>
+</tr></tbody></table>
+
+<p>
+<b>Global Surface Parameters</b><br>
+</p><table class="datatable">
+<tbody><tr><td>solid</td><td>may need to override a clearSolid</td>
+</tr><tr><td>water</td><td>used for water</td>
+</tr><tr><td>playerclip</td><td>solid to players</td>
+</tr><tr><td>monsterclip</td><td>solid to monsters</td>
+</tr><tr><td>moveableclip</td><td>solid to moveable entities</td>
+</tr><tr><td>ikclip</td><td>solid to IK</td>
+</tr><tr><td>blood</td><td>used to detect blood decals</td>
+</tr><tr><td>trigger</td><td>used for triggers</td>
+</tr><tr><td>aassolid</td><td>solid for AAS</td>
+</tr><tr><td>aasobstacle</td><td>used to compile an obstacle into AAS that can be enabled/disabled</td>
+</tr><tr><td>flashlight_trigger</td><td>used for triggers that are activated by the flashlight</td>
+</tr><tr><td>nonsolid</td><td>clears the solid flag</td>
+</tr><tr><td>nullNormal</td><td>renderbump will draw as 0x80 0x80 0x80, which won't collect light from any angle</td>
+
+</tr><tr><td>areaportal</td><td>divides areas</td>
+</tr><tr><td>qer_nocarve</td><td>don't cut brushes in editor</td>
+
+</tr><tr><td>discrete</td><td>surfaces should not be automatically merged together or clipped to the world, because they represent discrete objects like gui shaders mirrors, or autosprites</td>
+</tr><tr><td>noFragment</td><td>dmap won't cut surface at each bsp boundary</td>
+</tr><tr><td>slick</td><td>affects game physics (not implemented?)</td>
+</tr><tr><td>collision</td><td>collision surface.  if a model has no collision surfaces, then all surfaces are considered collision surfaces</td>
+</tr><tr><td>noimpact</td><td>don't make impact explosions or marks</td>
+</tr><tr><td>nodamage</td><td>no falling damage when hitting</td>
+</tr><tr><td>ladder</td><td>player can climb up this surface</td>
+</tr><tr><td>nosteps</td><td>no footstep sounds</td>
+
+</tr><tr><td>metal</td><td rowspan="15">Surface types for sound effects and blood splats</td>
+</tr><tr><td>stone</td>
+</tr><tr><td>flesh</td>
+</tr><tr><td>wood</td>
+</tr><tr><td>cardboard</td>
+</tr><tr><td>liquid</td>
+</tr><tr><td>glass</td>
+</tr><tr><td>plastic</td>
+</tr><tr><td>ricochet</td>
+
+</tr><tr><td>surftype10</td>
+</tr><tr><td>surftype11</td>
+</tr><tr><td>surftype12</td>
+</tr><tr><td>surftype13</td>
+</tr><tr><td>surftype14</td>
+</tr><tr><td>surftype15</td>
+</tr></tbody></table>
+
+<p>
+<b>Stage Keywords</b><br>
+</p><table class="datatable">
+<tbody><tr><td>blend &lt;type&gt;<br>blend &lt;src&gt;,&nbsp;&lt;dst&gt;</td><td>
+<p>
+Blend types:
+</p><table class="datatable">
+<tbody><tr><th>Type</th><th>Src</th><th>Dst</th>
+</tr><tr><td>blend</td><td>gl_src_alpha</td><td>gl_one_minus_src_alpha</td>
+</tr><tr><td>add</td><td>gl_one</td><td>gl_one</td>
+</tr><tr><td>filter</td><td>gl_dst_color</td><td>gl_zero</td>
+</tr><tr><td>modulate</td><td>gl_dst_color</td><td>gl_zero</td>
+</tr><tr><td>none</td><td>gl_zero</td><td>gl_one</td>
+</tr><tr><td>bumpmap</td><td colspan="2">Normal map</td>
+</tr><tr><td>diffusemap</td><td colspan="2">Diffuse map</td>
+</tr><tr><td>specularmap</td><td colspan="2">Specular map</td>
+</tr></tbody></table>
+<p>
+Source blend modes:
+</p><table class="datatable">
+<tbody><tr><td>gl_one</td><td>Constant 1</td>
+</tr><tr><td>gl_zero</td><td>Constant 0</td>
+</tr><tr><td>gl_dst_color</td><td>The color currently on the screen</td>
+</tr><tr><td>gl_one_minus_dst_color</td><td>One minus the color currently on the screen</td>
+</tr><tr><td>gl_src_alpha</td><td>The alpha channel of the source image</td>
+</tr><tr><td>gl_one_minus_src_alpha</td><td>One minus the alpha channel of the source image</td>
+</tr><tr><td>gl_dst_alpha</td><td>The alpha channel of the screen image</td>
+</tr><tr><td>gl_one_minus_dst_alpha</td><td>One minus the alpha channel of the screen image</td>
+</tr><tr><td>gl_src_alpha_saturate</td><td>Minimum of the source alpha and one minus screen alpha</td>
+</tr></tbody></table>
+<p>
+Destination blend modes:
+</p><table class="datatable">
+<tbody><tr><td>gl_one</td><td>Constant 1</td>
+</tr><tr><td>gl_zero</td><td>Constant 0</td>
+</tr><tr><td>gl_src_color</td><td>The color of the source image</td>
+</tr><tr><td>gl_one_minus_src_color</td><td>One minus the color of the source image</td>
+</tr><tr><td>gl_src_alpha</td><td>The alpha channel of the source image</td>
+</tr><tr><td>gl_one_minus_src_alpha</td><td>One minus the alpha channel of the source image</td>
+</tr><tr><td>gl_dst_alpha</td><td>The alpha channel of the screen image</td>
+</tr><tr><td>gl_one_minus_dst_alpha</td><td>One minus the alpha channel of the screen image</td>
+</tr></tbody></table>
+</td>
+</tr><tr><td class="nobr">map &lt;map&gt;</td><td>The image program to use for this stage</td>
+</tr><tr><td class="nobr">remoteRenderMap &lt;int&gt; &lt;int&gt;</td><td>Width and Height of the buffer to render a remote image in to (for cameras).  The entity this material is applied to has to support remote render views.</td>
+</tr><tr><td class="nobr">mirrorRenderMap &lt;int&gt; &lt;int&gt;</td><td>Width and Height of the buffer to render a mirror in to.  This of course makes this stage a mirror stage, which is different from using the 'mirror' global keyword because that makes the entire material a mirror, rather than just one stage.</td>
+</tr><tr><td class="nobr">videomap [loop] &lt;file&gt;</td><td>This stage uses a video stream as an image map</td>
+</tr><tr><td class="nobr">soundmap [waveform]</td><td>This stage uses a sound meter from the sound system as an image map.  Specify 'waveform' to get a scope rather than bars.</td>
+</tr><tr><td class="nobr">cubeMap &lt;map&gt;</td><td>This stage uses a cube map as the image map.  Looks for _px, _py, _pz, _nx, _ny, _nz for the positive x, y, z, and negative x, y, z sides</td>
+</tr><tr><td class="nobr">cameraCubeMap &lt;map&gt;</td><td>This stage uses a cube map in camera space.  Looks for _forward, _back, _left, _right, _up, and _down</td>
+</tr><tr><td class="nobr">ignoreAlphaTest</td><td>Always use DEPTHFUNC_LEQUAL rather than DEPTHFUNC_EQUAL which is normally used for opaque and alpha tested surfaces</td>
+</tr><tr><td class="nobr">nearest</td><td>Use nearest texture filtering</td>
+</tr><tr><td class="nobr">linear</td><td>Use linear texture filtering</td>
+</tr><tr><td class="nobr">clamp</td><td rowspan="3">Same as the global keywords.  Use to override a global clamp for a specific stage.</td>
+</tr><tr><td class="nobr">zeroclamp</td>
+</tr><tr><td class="nobr">alphazeroclamp</td>
+</tr><tr><td class="nobr">noclamp</td><td>Use to set texture repeat for a stage when global clamp is set</td>
+</tr><tr><td class="nobr">uncompressed</td><td rowspan="2">Do not compress this image in medium quality mode</td>
+</tr><tr><td class="nobr">highquality</td>
+</tr><tr><td class="nobr">forceHighQuality</td><td>Do not compress this image in low quality mode</td>
+</tr><tr><td class="nobr">nopicmip</td><td>Ignore the image_downSize cvar</td>
+</tr><tr><td class="nobr">vertexColor</td><td>Multiply the pixel color by the vertex color</td>
+</tr><tr><td class="nobr">inverseVertexColor</td><td>Multiply the pixel color by one minus the vertex color</td>
+</tr><tr><td class="nobr">privatePolygonOffset &lt;float&gt;</td><td>Explict larger (or negative) polygon offset for this stage</td>
+</tr><tr><td class="nobr">texGen &lt;type&gt;</td><td>Type is one of: normal, reflect, skybox, wobbleSky &lt;exp&gt;&nbsp;&lt;exp&gt;&nbsp;&lt;exp&gt;</td>
+</tr><tr><td class="nobr">scroll &lt;exp&gt;, &lt;exp&gt;</td><td rowspan="2">Scroll the texture coordinates</td>
+</tr><tr><td class="nobr">translate &lt;exp&gt;, &lt;exp&gt;</td>
+</tr><tr><td class="nobr">scale &lt;exp&gt;, &lt;exp&gt;</td><td>Just scales without a centering</td>
+</tr><tr><td class="nobr">centerScale &lt;exp&gt;, &lt;exp&gt;</td><td>Subtracts 0.5, then scales, then adds 0.5</td>
+</tr><tr><td class="nobr">shear &lt;exp&gt;, &lt;exp&gt;</td><td>Subtracts 0.5, then shears, then adds 0.5</td>
+</tr><tr><td class="nobr">rotate &lt;exp&gt;</td><td>Subtracts 0.5, then rotates, then adds 0.5</td>
+</tr><tr><td class="nobr">maskRed</td><td>Don't write to the red channel</td>
+</tr><tr><td class="nobr">maskGreen</td><td>Don't write to the blue channel</td>
+</tr><tr><td class="nobr">maskBlue</td><td>Don't write to the green channel</td>
+</tr><tr><td class="nobr">maskAlpha</td><td>Don't write to the alpha channel</td>
+</tr><tr><td class="nobr">maskColor</td><td>Shortcut for <pre class="code">maskRed<br>maskGreen<br>maskBlue</pre></td>
+</tr><tr><td class="nobr">maskDepth</td><td>Don't write to the depth buffer</td>
+</tr><tr><td class="nobr">alphaTest &lt;exp&gt;</td><td>Only write if the alpha value is greater than &lt;exp&gt;</td>
+</tr><tr><td class="nobr">red &lt;exp&gt;</td><td>Set the red vertex color</td>
+</tr><tr><td class="nobr">green &lt;exp&gt;</td><td>Set the green vertex color</td>
+</tr><tr><td class="nobr">blue &lt;exp&gt;</td><td>Set the blue vertex color</td>
+</tr><tr><td class="nobr">alpha &lt;exp&gt;</td><td>Set the alpha vertex value</td>
+</tr><tr><td class="nobr">rgb &lt;exp&gt;</td><td>Shortcut for <pre class="code">red &lt;exp&gt;<br>green &lt;exp&gt;<br>blue &lt;exp&gt;</pre></td>
+</tr><tr><td class="nobr">rgba &lt;exp&gt;</td><td>Shortcut for <pre class="code">red &lt;exp&gt;<br>green &lt;exp&gt;<br>blue &lt;exp&gt;<br>alpha &lt;exp&gt;</pre></td>
+</tr><tr><td class="nobr">color &lt;exp0&gt;, &lt;exp1&gt;, &lt;exp2&gt;, &lt;exp3&gt;</td><td>Shortcut for <pre class="code">red exp0<br>green exp1<br>blue exp2<br>alpha exp3</pre></td>
+</tr><tr><td class="nobr">colored</td><td>Shortcut for <pre class="code">color parm0, parm1, parm2, parm3</pre></td>
+</tr><tr><td class="nobr">if &lt;exp&gt;</td><td>Conditionally disable stages</td>
+</tr><tr><td class="nobr">fragmentProgram &lt;prog&gt;</td><td>Use an ARB fragment program with this stage</td>
+</tr><tr><td class="nobr">vertexProgram &lt;prog&gt;</td><td>Use an ARB vertex program with this stage</td>
+</tr><tr><td class="nobr">program &lt;prog&gt;</td><td>Shortcut for <pre class="code">fragmentProgram &lt;prog&gt;<br>vertexProgram &lt;prog&gt;</pre></td>
+</tr><tr><td class="nobr">vertexParm &lt;index&gt; &lt;exp0&gt;<br>[,exp1] [,exp2] [,exp3]</td><td>Values to pass to the vertex program.  One expression gets repeated across all 4 values.  Two expressions put 0, 1 in z, w.  Three expressions put 1 in w.</td>
+</tr><tr><td class="nobr">fragmentMap &lt;index&gt; [options] &lt;map&gt;</td><td>The image map to use for texture unit &lt;index&gt;<br>[options] can be cubeMap, cameraCubeMap, nearest, linear, clamp, noclamp, zeroclamp, alphazeroclamp, forceHighQuality, uncompressed, highquality, or nopicmip</td>
+</tr><tr><td class="nobr">megaTexture &lt;mega&gt;</td><td>This stage uses a mega texture (super secret)</td>
+</tr></tbody></table>
+
+<p>
+<b>Parameters Key</b><br>
+</p><table class="datatable">
+<tbody><tr><td>&lt;float&gt;</td><td>Any number</td>
+</tr><tr><td>&lt;int&gt;</td><td>Any number without a fractional part</td>
+</tr><tr><td>&lt;string&gt;</td><td>Any value enclosed in quotes</td>
+</tr><tr><td>&lt;index&gt;</td><td>An integer number that is an index into an array</td>
+</tr><tr><td>&lt;map&gt;</td><td>An image map, which may include image programs (below)</td>
+</tr><tr><td>&lt;prog&gt;</td><td>A vertex / frament program.  Written using the GL ARB shader language.  These files are stored in the glprogs directory</td>
+</tr><tr><td>&lt;exp&gt;</td><td>An expression that is evaluated every frame.</td>
+</tr></tbody></table>
+
+<p>
+<b>Image Program Functions</b><br>
+These can be used anywhere that accepts &lt;map&gt; and can be nested
+</p><table class="datatable">
+<tbody><tr><td class="nobr">heightmap(&lt;map&gt;, &lt;float&gt;)</td><td>Turns a grayscale height map into a normal map.  &lt;float&gt; varies the bumpiness</td>
+</tr><tr><td class="nobr">addnormals(&lt;map&gt;, &lt;map&gt;)</td><td>Adds two normal maps together.  Result is normalized.</td>
+</tr><tr><td class="nobr">smoothnormals(&lt;map&gt;)</td><td>Does a box filter on the normal map, and normalizes the result.</td>
+</tr><tr><td class="nobr">add(&lt;map&gt;, &lt;map&gt;)</td><td>Adds two images without normalizing the result</td>
+</tr><tr><td class="nobr">scale(&lt;map&gt;, &lt;float&gt; [,float] [,float] [,float])</td><td>Scales the RGBA by the specified factors.  Defaults to 0.</td>
+</tr><tr><td class="nobr">invertAlpha(&lt;map&gt;)</td><td>Inverts the alpha channel (0 becomes 1, 1 becomes 0)</td>
+</tr><tr><td class="nobr">invertColor(&lt;map&gt;)</td><td>Inverts the R, G, and B channels</td>
+</tr><tr><td class="nobr">makeIntensity(&lt;map&gt;)</td><td>Copies the red channel to the G, B, and A channels</td>
+</tr><tr><td class="nobr">makeAlpha(&lt;map&gt;)</td><td>Sets the alpha channel to an average of the RGB channels.  Sets the RGB channels to white.</td>
+</tr></tbody></table>
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

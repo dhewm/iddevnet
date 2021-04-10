@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0040)https://www.iddevnet.com/doom3/skins.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Skins]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Skins</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+Skins allow you to quickly and easily remap textures on a model.  Since
+the textures on a model are defined in the actual model file, using a
+skin is the only way to dynamically change a model texture.
+
+</p><p>
+Skins are most often used for hiding parts of a model, but they can also
+be used to have a one model with two different textures.  For example, the
+imps in hell use the same model as the imps in the rest of the game, but
+the have a slightly more hellish look.  This was done by specifying
+a different skin in the entity definition.
+
+</p><p>
+Take this skin for example:
+</p><pre class="code">skin skins/models/weapons/3rox {
+	models/weapons/rocketlauncher/rshell1 textures/common/nodraw
+	models/weapons/rocketlauncher/rshell2 textures/common/nodraw
+}
+</pre>
+<p>
+This is used on the rocketlauncher when you have 3 rockets.  It hides
+rocket shell number 1 and 2 by changing them to the 'nodraw' texture.
+This makes it look like you only have 3 rockets in your rocket launcher.
+
+</p><p>
+The syntax is really easy.  It is a list of key/val pairs
+where the key is the old texture (specified in the model) and the
+val is the new texture to use.
+
+</p><p>
+You may have noticed that <b>the material name cannot have spaces in it.</b>
+
+</p><p>
+Here's a demonstration of the Imp vs the Hell Imp:<br>
+<br><img src="skins_imp.png"><br>
+<b style="color: #aa0000">NOTE: This image file (skins_imp.png) is missing, if you have it please <a href="https://github.com/dhewm/iddevnet/issues">get in touch!</a></b>
+
+<!--
+<style class="text/css">
+#imp {
+    background-image: url("skins_imp.png");
+    display: block;
+    width: 320px;
+    height: 240px;
+}
+#imp:hover {
+    background-position: -320px 0px;
+}
+</style>
+<a href="https://www.iddevnet.com/doom3/skins.php#" id="imp"></a> -->
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

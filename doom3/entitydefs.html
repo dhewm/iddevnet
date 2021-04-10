@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0045)https://www.iddevnet.com/doom3/entitydefs.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Entity Defs]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Entity Defs</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+An entityDef is literally nothing more than a collection of key/value pairs with
+a name.  They are generally used to define entities (hence the name), but they can
+really be used to define anything that can be defined with a list of key/value pairs
+The meaning of the keys and values depends completely on the type of object it is,
+but there are two key/value pairs that remain constant regardless of type.
+
+</p><p>
+The "spawnclass" key defines the C++ class that 'spawns' this entity.  Items use
+<i>idItem</i>, trigger_once uses <i>idTrigger_Multiple</i>, monsters use <i>idAI</i>, etc.  If you know
+C++, you can add new spawn classes to the game code if existing ones don't suit your
+needs.  Entities without the "spawnclass" key cannot be spawned.
+
+</p><p>
+The "inherit" key tells the game to copy all the key/value pairs from another
+entityDef.  Circular references are impossible because each entityDef is only parsed
+once (you will get an error).  This is an incredibly useful key.  You can do things
+like create a default monster that all monsters inherit from.  This not only saves
+typing, but it allows you to change something in one place and have it affect a
+bunch of objects (which is both a blessing and a curse).
+
+</p><p>
+</p><div class="subsection">Editor Keys</div>
+
+Any key that begins with editor_ is used by the editor.  Some of the keys
+it specifially looks for are:
+<table class="datatable">
+<tbody><tr><th>Key</th><th>Value / Description</th>
+</tr><tr><td class="nobr">editor_color</td><td>3 floats that define the color of the entity in the editor</td>
+</tr><tr><td class="nobr">editor_mins<br>editor_max</td><td>3 floats each that define the size of the bounding box for the entity.  ? can be used to create dynamic sized entities (such as triggers).  Note: the size in the editor isn't always the size in the game because the collision geometry may be specified elsewhere.</td>
+</tr><tr><td class="nobr">editor_usage</td><td>Text describing what the entity is and how to use it</td>
+</tr><tr><td class="nobr">editor_material</td><td>The material to apply to the entity</td>
+</tr><tr><td class="nobr">editor_var &lt;key&gt;</td><td>A text description describing the spawnvar &lt;key&gt;.  This allows the level designer to override values in the entityDef</td>
+</tr><tr><td class="nobr">editor_copy &lt;key&gt;</td><td>Copy the key from the entity def to the actual entity when an object of this type is created</td>
+</tr><tr><td class="nobr">editor_rotatable</td><td>Bool Set to 1 if the entity can be rotated freely</td>
+</tr><tr><td class="nobr">editor_showangle</td><td>Bool Set to 1 to show the angle arrow</td>
+</tr><tr><td class="nobr">editor_mover</td><td>Bool Set to 1 to use "movedir" rather than "angle" as the angle</td>
+</tr><tr><td class="nobr">editor_env</td><td>Bool Set to 1 if the object is some kind of environmental rag doll</td>
+</tr><tr><td class="nobr">editor_combatnode</td><td>Bool Set to 1 to draw the combat area for this entity</td>
+</tr><tr><td class="nobr">editor_light</td><td>Bool Set to 1 to treat this entity like a light</td>
+</tr></tbody></table>
+
+<p>
+</p><div class="subsection">The Shotgun</div>
+<p>
+Let's take a look at an example entityDef for the shotgun<br>
+(This isn't actually the way it looks in the def file, I've rearranged some things for clarity)<br>
+</p><pre class="code">entityDef weapon_shotgun {
+    // Global
+    "spawnclass"                "idItem"
+
+    // Used by the Editor
+    "editor_color"              ".3 .3 1"
+    "editor_mins"               "-16 -16 0"
+    "editor_maxs"               "16 16 32"
+    "editor_usage"              "Shotgun"
+    "editor_rotatable"          "1"
+
+    // Used by idItem
+    "def_dropItem"              "moveable_item_shotgun"
+    "inv_name"                  "Shotgun"
+    "inv_weapon"                "weapon_shotgun"
+    "inv_ammo_shells"           "4"
+    "inv_item"                  "5"
+
+    "snd_acquire"               "sound_weapon_acquire"
+    "snd_respawn"               "sound_weapon_respawn"
+
+    // Used by idEntity
+    "size"                      "32 32 32"
+    "model"                     "models/weapons/shotgun/w_shotgun2.lwo"
+
+    // Used by idWeapon
+    "model_view"                "viewmodel_shotgun"
+    "model_world"               "worldmodel_shotgun"
+    "joint_attach"              "SHOTGUN_ATTACHER"
+    "icon"                      "guis/assets/hud/wpn_2"
+
+    "weapon_scriptobject"       "weapon_shotgun"
+    "def_projectile"            "projectile_bullet_shotgun"
+    "ammoType"                  "ammo_shells"
+    "ammoRequired"              "1"
+    "clipSize"                  "8"
+    "lowAmmo"                   "2"
+    "mtr_flashShader"           "muzzleflash"
+    "flashColor"                "1 0.8 0.4"
+    "flashRadius"               "120"
+    "silent_fire"               "0"
+    "recoilTime"                "325"
+    "recoilAngles"              "-1 0 0"
+    
+    "weaponAngleOffsetAverages" "15"
+    "weaponAngleOffsetScale"    ".40"
+    "weaponAngleOffsetMax"      "20"
+    "weaponOffsetTime"          "500"
+    "weaponOffsetScale"         "0.005"
+
+    "hide_time"                 "0.3"
+    "hide_distance"             "-15"
+
+    "smoke_muzzle"              "shotgunmuzzlesmoke.prt"
+    "def_ejectBrass"            "debris_shotgunbrass"
+    "ejectBrassDelay"           "650"
+
+    // Used by scripts
+    "spread"                    "22"
+    "skin_invisible"            "skins/shotgun_invis"
+}
+</pre>
+
+<p>
+Looking at this script, we begin to see there are a 3 distinct sections of the code that all
+use this entityDef.  The first is the editor, which we can pretty much ignore.  The next piece
+of code is idItem.  This makes sense because we specify 'idItem' as the
+spawnclass, so naturally that class will want to peek at some values to spawn the object properly.
+The reason idEntity cares about this entity is idItem derives from idEntity. This means every
+idItem <b>is</b> an idEntity.  Almost everything in the game code is derived from idEntity.
+(It's similar to how we can use 'inherit' to copy common attributes from another entityDef).
+The confusing part is where idWeapon fits in to the picture.  We know a shotgun is a weapon, but
+there doesn't appear to be any place where we tell the code that.  The magic key here is inv_weapon.
+That key tells idItem that the item is a weapon, and uses the weapon_shotgun entityDef to define the
+parameters for idWeapon.  It just so happens that the entityDef for the idItem is named the same as
+the entityDef for the idWeapon.
+
+</p><p>
+It is important to note that although they are all set to "weapon_shotgun" they don't have to be.
+In fact they aren't for items like the backpack.  That is an item that gives you health, armor, and
+a crapload of ammo.  The backpack entityDef defines the object in the world, but the other stuff is
+defined elsewhere.  To test this, you can add "inv_weapon" "weapon_shotgun" to the "item_medkit"
+entityDef and notice you get a shotgun everytime you pick up a med kit.
+
+</p><p>
+Another real important key is "weapon_scriptobject"  This tells the game code which script to run
+to make the shotgun work.  In this case, the object name is the same as the entity name, but again,
+it doesn't have to be.  When you equip the shotgun, it tells the weapon code to start using the
+"weapon_shotgun" object (defined in weapon_shotgun.script).  An interesting aside is there is only
+ever one weapon script running.  When you switch weapons, it doesn't destroy the script object and
+create a new one, it merely tells the script object to morph into a new type.
+
+</p><p>
+The missing part to our puzzle is the damage.  After all, a shotgun without damage is just a toy. The
+way the damage gets linked in seems odd, but it actually works really nicely.  When you press the
+attack button, the shotgun script calls launchProjectiles(13), which launches 13 projectiles. These
+projectiles are also entities, defined by the "def_projectile" key to be "projectile_bullet_shotgun".
+
+</p><p>
+If we look at "projectile_bullet_shotgun", we see it is an idProjectile, and it has a boatload of
+properties that define how it looks, to how it flies, how it explodes, how it sounds when it hits
+various types of surfaces, and a bunch of other stuff.  One thing it defines is "def_damage", which
+is an entityDef that defines damage.  Turns out there's a lot more to damage than just how much
+it hurts.  There's also how it looks in first person, how it looks in third person, how it knocks
+you back, and whether or not it can gib a body.  Looking at "damage_shotgun" we see each pellet does
+14 points of damage.  Multiply that by 13 pellets and you get lots of pain.
+
+</p><p>
+</p><div class="subsection">Precache</div>
+entityDefs play a very important role during level load time.  The assets a level loads is determined
+by walking the entityDefs defined in the level, and in the code.  It is very important to follow these
+naming guides when creating new entityDefs in order for the precache to work right:
+<p>
+</p><table class="datatable" style="float: left">
+<tbody><tr><th>Prefix</th><th>Type</th>
+</tr><tr><td>snd</td><td>Sound decls</td>
+</tr><tr><td>mtr</td><td>Materials</td>
+</tr><tr><td>model</td><td>Models</td>
+</tr><tr><td>smoke</td><td>Smoke systems</td>
+</tr><tr><td>gui</td><td>GUI files</td>
+</tr><tr><td>def</td><td>Another entityDef</td>
+</tr><tr><td>skin</td><td>Skins</td>
+</tr><tr><td>pda_name</td><td>PDAs</td>
+</tr><tr><td>fx</td><td>fx</td>
+</tr><tr><td>video</td><td>Video decls</td>
+</tr><tr><td>audio</td><td>Audio logs</td>
+</tr><tr><td>inv_icon</td><td>Inventory icons</td>
+</tr></tbody></table>
+
+<p>
+There are a few other ones you can find by looking in the game code, but they are pretty much depreciated
+and should not be used.  Failure to use these prefixes means not all assets will get loaded at map load.
+They will be loaded when referenced, causing hitches in game play (that's bad).
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

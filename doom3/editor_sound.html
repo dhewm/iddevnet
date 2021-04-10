@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0047)https://www.iddevnet.com/doom3/editor_sound.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [The Sound Editor]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : The Sound Editor</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+The sound editor can be opened by typing "editSounds" in the console.  It
+will probably take a while to load, because it is scanning and loading a
+bunch of sounds, be patient.  The sound editor was designed for a sound guy
+(non-level designer) to run around the levels and create a spooky aureal
+experience, so it works independant of radiant.
+
+</p><p>
+When the sound editor is up, you can switch to the game easily by clicking
+"Switch to Game" but when the game is up, you can't exactly mouse over
+to the sound editor.  There are a few ways of switching back, but the easiest
+is to bind a key to "editSounds" (type "bind &lt;key&gt; editSounds" in
+the console).
+
+</p><p>
+<img src="images/editor_sound_a.png" align="right">
+At first glance, the sound editor is kind of daunting, but it's really
+not all that complex when you get down to it.  The bare minimum you need
+to do to make a sound play in the world is click the 'Drop Speaker...' button
+(near the bottom).  This will place a speaker in front of you.  Next browse
+the tree in the middle and double click on a sound (I'm fond of loop_fan_1
+in the sound/fans.sndshd file).  Technically that's all you need to get
+a sound emitter in the game, but there are obviously other things you can do.
+
+</p><p>
+To move sounds around in the world, use the y+ y- x+ x- z+ z- buttons in
+the top-right of the window.  It may seem like a clunky interface, but it
+actually starts to feel right after using it for a bit (you can just click
+on a sound, move it left a few units and go on your way).
+
+</p><p>
+A lot of the options present in the window can also be changed in the sound
+shader.  If the value is set to 0 in the editor, then it uses the value in
+the sound shader.  This means if a sound shader has shakes, then setting "shakes"
+to 0 in the editor will not disable the shakes.  This also means if a flag
+is turned on in the sound shader, it cannot be turned off in the editor.  Keep
+this in mind if a sound is looping even though "Looping" is not checked.
+
+</p><p>
+Here's a brief description of all the check boxes you can check:
+</p><table class="datatable">
+<tbody><tr><td>Occlusion</td><td>Don't flow through portals, only use straight line</td>
+</tr><tr><td>Omnidirectional</td><td>Fall off with distance, but play same volume in all speakers</td>
+</tr><tr><td>Looping</td><td>Repeat the sound continuously</td>
+</tr><tr><td>Plain</td><td>- Unused -</td>
+</tr><tr><td>Triggered</td><td>Don't start playing until the entity is triggered</td>
+</tr><tr><td>Unclamped</td><td>Don't clamp calculated volumes at 1.0</td>
+</tr></tbody></table>
+
+<p>
+The "Trigger" button will trigger the selected entity.  Useful for testing the
+sound on an entity that needs to be triggered first.
+
+</p><p>
+The group name, and groups selection box lets you group multiple sounds together
+for ease in searching and selection (in theory)  I don't think anyone actually
+ended up using that feature though, which makes me think it doesn't work right.
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

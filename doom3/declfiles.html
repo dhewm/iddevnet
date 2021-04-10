@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0044)https://www.iddevnet.com/doom3/declfiles.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Decl Files]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Decl Files</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+The core of Doom 3 is driven by what we lovingly refer to as 'decl files' which is short for
+'declaration files'.  A decl file contains one or more decl types.  These types <b>can</b> be mixed and
+matched, but we tend to keep all the decls of a certain type in a certain file. There are 15 decl types
+that come in standard Doom 3, but more decls can be added by mod authors.
+
+</p><p>
+<b>The standard 15 decls</b>
+</p><table class="datatable" width="100%">
+<tbody><tr><th>#define</th><th>Keyword</th><th>File</th><th>Description</th>
+</tr><tr><td>DECL_TABLE</td>		<td><a href="materials.html">table</a></td><td>.mtr</td><td>Material Look-up tables</td>
+</tr><tr><td>DECL_MATERIAL</td>	<td><a href="materials.html">material</a></td><td>.mtr</td><td>Material Definitions</td>
+</tr><tr><td>DECL_SKIN</td>		<td><a href="skins.html">skin</a></td><td>.skin</td><td>Skin Files</td>
+</tr><tr><td>DECL_SOUND</td>		<td><a href="sounds.html">sound</a></td><td>.sndshd</td><td>Sound Shaders</td>
+</tr><tr><td>DECL_ENTITYDEF</td>	<td><a href="entitydefs.html">entityDef</a></td><td>.def</td><td>Entity Definitions</td>
+</tr><tr><td>DECL_MODELDEF</td>	<td><a href="models.html">model</a></td><td>.def</td><td>Model Definitions</td>
+</tr><tr><td>DECL_FX</td>		<td><a href="fx.html">fx</a></td><td>.fx</td><td>Special Effects</td>
+</tr><tr><td>DECL_PARTICLE</td>	<td><a href="particles.html">particle</a></td><td>.prt</td><td>Particles</td>
+</tr><tr><td>DECL_AF</td>		<td><a href="afs.html">articulatedFigure</a></td><td>.af</td><td>Articulated Figures (rag dolls)</td>
+</tr><tr><td>DECL_PDA</td>		<td><a href="pdas.html">pda</a></td><td>.pda</td><td>PDAs</td>
+</tr><tr><td>DECL_VIDEO</td>		<td><a href="pdas.html">video</a></td><td>.pda</td><td>Video Discs</td>
+</tr><tr><td>DECL_AUDIO</td>		<td><a href="pdas.html">audio</a></td><td>.pda</td><td>Audio Logs</td>
+</tr><tr><td>DECL_EMAIL</td>		<td><a href="pdas.html">email</a></td><td>.pda</td><td>Emails</td>
+</tr><tr><td>DECL_MODELEXPORT</td>	<td><a href="modelexport.html">export</a></td><td>.def</td><td>Export sections</td>
+</tr><tr><td>DECL_MAPDEF</td>	<td><a href="mapdefs.html">mapDef</a></td><td>.def</td><td>Map definitions</td>
+</tr></tbody></table>
+
+<p>
+<b>Useful decl related console commands</b>
+</p><table class="datatable" width="100%">
+<tbody><tr><th>Command</th><th>Description</th>
+</tr><tr><td>listDecls</td><td>Lists all the decls that have been scanned (but not necessarily loaded)</td>
+</tr><tr><td>reloadDecls</td><td>Reloads all the decls that have been changed since the last reload (pass "all" to reload all decls)</td>
+</tr><tr><td>touch</td><td>This causes a decl to be loaded, parsed, and cached</td>
+
+</tr><tr><td>listTables</td><td rowspan="12">
+<br>
+List the Decls of a certain type that are parsed and have been referenced this level.
+<p>You can pass it 'all' to list all the decls (including unparsed ones) or 'ever' to list
+parsed decls that have ever been referenced (not just in this level).<br>
+</p><ul>
+<li>The first column contains a '*' if the decl is referenced this level, a '.' if it has ever
+been referenced, and a blank if it has never been referenced.<br>
+</li><li>The second column contains a 'D' if the decl is 'defaulted' (referenced but not defined,
+so it uses the default definition).<br>
+</li><li>The third column is the decl index<br>
+</li><li>The fourth column is either the decl name, or some data specific to the decl type
+</li></ul>
+</td>
+</tr><tr><td>listMaterials</td>
+</tr><tr><td>listSkins</td>
+</tr><tr><td>listSoundShaders</td>
+
+</tr><tr><td>listEntityDefs</td>
+</tr><tr><td>listFX</td>
+</tr><tr><td>listParticles</td>
+</tr><tr><td>listAF</td>
+
+</tr><tr><td>listPDAs</td>
+</tr><tr><td>listEmails</td>
+</tr><tr><td>listVideos</td>
+</tr><tr><td>listAudios</td>
+
+</tr><tr><td>printTable</td><td rowspan="12">
+<br>
+<br>
+Prints a decl (to the console) along with some useful information about it's current state.
+You have to pass it the name of a decl to print.
+</td>
+</tr><tr><td>printMaterial</td>
+</tr><tr><td>printSkin</td>
+</tr><tr><td>printSoundShader</td>
+
+</tr><tr><td>printEntityDef</td>
+</tr><tr><td>printFX</td>
+</tr><tr><td>printParticle</td>
+</tr><tr><td>printAF</td>
+
+</tr><tr><td>printPDA</td>
+</tr><tr><td>printEmail</td>
+</tr><tr><td>printVideo</td>
+</tr><tr><td>printAudio</td>
+</tr></tbody></table>
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

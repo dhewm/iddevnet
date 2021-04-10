@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0041)https://www.iddevnet.com/doom3/editor.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [DOOMEdit]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : DOOMEdit</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+DOOMEdit is loosely based on Quake 3 radiant, but with some subtle differences.<br>
+Below is a quick "getting started" guide, which can be particularly useful for programmers
+who want to created test maps.  Look to <a href="http://www.qeradiant.com/wikifaq/index.php?DOOM3%20Level%20Editing">qeradiant.com</a>
+for more advanced information on Radiant.
+
+</p><div class="subsection">Starting her up</div>
+
+The easiest way to start the editor is by typing <samp>editor</samp> in the console.
+If you open the editor a lot, you'll probably want to create a direct short cut to it.
+
+<p>
+1: Right-Click the Doom 3 short cut and select "Copy" then "Paste" it in the same place (so you get "Copy
+of Shortcut to Doom" or something similar).
+
+</p><p>
+2: Rename this shortcut to "DOOMEdit"
+
+</p><p>
+3: Right-click the new shortcut and select "Properties".
+Specify the following for "Target":<br>
+<samp>"C:\Doom3\Doom3.exe" +set r_fullscreen 0 +editor +set com_allowConsole 1</samp><br>
+(This of course assumes you have Doom 3 installed in C:\Doom3\)
+
+</p><p>
+The editor does not work with antialiasing turned on, so you may need to add:<br>
+<samp>+set r_multiSamples 0</samp>
+
+</p><p>
+The first time you open DOOMEdit, you will want to click <kbd>File-&gt;Project Settings</kbd> and
+change all the paths to point to wherever you have Doom 3 installed (by default they are set to
+where the level designers here at id have Doom 3 installed).  There is a small bug in that dialog
+box, after you click <kbd>OK</kbd>, you will need to copy the "doom.qe4" into the "base" folder.
+
+</p><div class="subsection">Moving Brushes</div>
+
+DOOM level editing is all about placing convex polytopes, also known as 'brushes'.  A brush is
+basically an arbitrary convex shape.  Making a map with brushes is similar to making a structure
+with legos.  You have a series of convex blocks that you fit together to create rooms and other
+objects.
+
+<p>
+To create a brush, just click and drag within the 2D view window.  This should create a red rectangle
+which defines the size of your brush.  If you continue to click and drag, you will only resize the
+selected brush.  In order to create a new brush, you must first unselect the old brush by hitting
+<kbd>Escape</kbd>.
+
+</p><p>
+You can reselect a previously created brush by clicking it while holding <kbd>Shift</kbd>.  If there
+are multiple brushes stacked on top of each other, you can cycle through them by clicking
+while holding <kbd>Alt+Shift</kbd>.
+
+</p><p>
+You can duplicate the selected brush by hitting <kbd>Space Bar</kbd>, and you can delete it by hitting <kbd>Backspace</kbd>.
+
+</p><div class="subsection">Making a simple room</div>
+
+A map in Doom 3 has to be completely sealed in.  That means there cannot be any space
+between two brushes.  A map that is not completely sealed will "leak" when you try to compile it.
+
+<p>
+The way to create a room is to create 6 brushes: 4 sides, a floor and a ceiling.  Experienced level
+designers will drag out all 6 brushes manually, but if you're a programmer, or you're in a hurry,
+you can use the CSG subtract tool.
+
+</p><p>
+</p><ul>
+<li>Drag out a brush you want to be the external size of your room (you can adjust the height by using the "Z" window).
+</li><li>Hit <kbd>escape</kbd> and drag out a brush that is one grid unit smaller on all 6 sides (again, use the "Z" window to change the top and bottom).
+<p>
+You should now have one box inside another box, with the smaller box selected.
+</p><p>
+</p></li><li>Click <kbd>Selection-&gt;CSG-&gt;Subtract</kbd>.
+<p>
+You should now have 6 brushes, with all of them selected.
+</p><p>
+</p></li><li>Click the "Media" tab in the "Inspectors" window.<br>
+</li><li>Expand out Textures-&gt;textures-&gt;base_wall
+</li><li>Click on some textures and notice the textures change in the 3D camera window.<br>
+</li><li>Find a texture that you like and hit <kbd>Escape</kbd> to unselect the brush (leaving the texture applied to it).
+</li></ul>
+
+<p>
+We're almost ready to compile, but first we need to place a player start entity so the game will know where to put our player.
+Right-click in the 2D window and select <kbd>info-&gt;info_player_start</kbd>.  A red square with a dot in it should have appeared under
+your cursor.  You may want to move it down in the "Z" window so it is right above the floor.
+
+</p><p>
+Save the map in <samp>C:\Doom3\base\maps\mymap1.map</samp>.
+
+</p><p>
+Now it's time to compile the map!  Click <kbd>Bsp-&gt;bsp</kbd>.
+
+</p><p>
+If everything went ok, then in the "Console" window you should see "no entities in map that use aas_cyberdemon" as the last line.
+If you see "******* leaked *******" then your map map leaked (see below).
+
+</p><p>
+The final step is to test the map.  Hit <kbd>F2</kbd> to switch back to the game.  Drop the console and type <samp>map mymap1</samp>.  Your map
+will be pitch black because we didn't add any lights, but you can use your flashlight to look around.
+
+</p><p>
+
+Now that you know you can make a simple 6 sided room and load it up, you can start adding more advanced things.  The first thing you'll
+probably want to add is a light.  Right-click in the grid and select "light".  A purple box should appear, indicating the size of the
+light (all lights in Doom 3 are square).  You can also add weapons, monsters, physics objects, and other random crap by using the same
+right click method.
+
+</p><div class="subsection">Leaks!</div>
+
+<img src="images/leek.gif" align="right">
+
+Levels in Doom 3 (and Quake for that matter) have to be completely sealed in.  This means there can't be any cracks from the "inside" of the
+level to the "outside" of the level (also known as the void).  For a map to be completely sealed in, the brushes should form a complete volume
+with no gaps between them.
+
+<p>
+There are three common situations that cause leaks:
+
+</p><ul>
+<li>There is an entity outside the map. All entities must be completely inside the map.  There cannot be any entities
+poking through a brush or hanging out in the void (unless they are marked as noflood).
+</li><li>There is a gap between two brushes. This is simple enough to imagine.
+</li><li>A "hull" brush has a non-solid texture applied to it.  This is probably the hardest situation to figure out because
+it will look like there is no leak.  The problem is even though there is a brush there, it may have a texture indicating
+that it is not solid (for example a trigger texture).
+</li></ul>
+
+<p>
+There is a tool to help track down leaks known as the "Pointfile" tool (in the "File" menu).  This tool draws a line from
+the leaking entity to the location of the leak.  If the leak was caused by the entity being halfway inside the map and
+halfway outside then nothing will be drawn (because the entity location and the leak location are the same).  After
+loading the point file, you can press Ctrl+Shift+K and it will take you right to the leak.
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

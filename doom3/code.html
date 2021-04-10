@@ -1,12 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<HTML>
-<HEAD>
-	<TITLE>id.sdk [The Code]</title>
-    <LINK REL="stylesheet" HREF="style.css">
-</HEAD>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0039)https://www.iddevnet.com/doom3/code.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [The Code]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
 
-<BODY marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
 
 <table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
 	<tr>
@@ -35,18 +35,19 @@
             </div>
 		</td>
 		<td class="mainContent">
+
 <p>
 
 The Code is where all the real fun starts to happen.  The Doom 3 SDK comes with pretty much half the source code for the game.  I will briefly go over the major portions in the SDK, and touch on some subsystems that are in the main engine.
 
-<div class="subsection">Compiling</div>
+</p><div class="subsection">Compiling</div>
 The first thing you're going to need to do is make sure you can build and run the code.  We developed it using Visual Studio.Net, it may or may not work in 6.0.  Ideally all you have to do is double-click the solution file and hit build.  It will create a gamex86.dll in the output folder.  You're going to want to move this to your mod folder with either a batch file, a post build step, or just by changing the linker output directory.
 
 <p>
 A quick way to test if your code
 is being used is by opening up Entity.cpp, scrolling idEntity::Spawn and inserting this code
 right at the beginning after the "if ( def )" line:
-<pre class="code">gameLocal.Printf("Hello %s!\n", classname);</pre>
+</p><pre class="code">gameLocal.Printf("Hello %s!\n", classname);</pre>
 
 This should cause "Hello &lt;classname&gt;!" to appear in the console any time a new entity spawns.
 
@@ -64,60 +65,60 @@ as well as the event system and the save game system.  The game system is very a
 anything about the actual game that is built on top of it.  All it knows how to do is create objects,
 fire events, and walk the objects for saving and restoring.
 
-<p>
+</p><p>
 When you specify the "spawnclass" in an entitydef it calls idClass::CreateInstance to create a instance of that
 spawn class.  The classes are registered with idClass by using the CLASS_DECLARATION macro defined in Class.h
 
-<p>
+</p><p>
 <b>AI</b><br>
 The AI folder doesn't actually contain the AI for the monsters (those are defined in scripts).  Rather the C++ AI
 code is the 'glue' that ties the scripts to the rest of the game.  It contains routing and pathing through the AAS
 (Area Awareness System), as well as event handling.  The core object is idAI, which derives from
 idActor-&gt;idAFEntity_Gibbable-&gt;idAFEntity_Base-&gt;idAnimatedEntity-&gt;idEntity-&gt;idClass.
 
-<p>
+</p><p>
 In Doom 3, routing is "how do I get from one area of the map to the other" whereas pathing is "how do I navigate
 around that chair".  The difference is subtle but important.
 
-<p>
+</p><p>
 AI is the game system that is most closely tied to the actual game that is being produced.  An example
 is idAI_Vagary, which contains special code for the Vagary to pick up and throw objects at the player.
 
-<p>
+</p><p>
 AI_events.cpp contains all the code to handle events in the AI scripts.  Most of the functions are simply stubs that
 call into AI.cpp, where the bulk of the code is.  An example of that is Event_KickObstacles, which just fixes up the
 arguments and calls KickObstacles().
 
 
-<p>
+</p><p>
 <b>Physics</b><br>
 The Doom 3 game code ships with the entire Doom 3 physics system.  There is absolutely no physics code in the core
 engine itself.  Even the LCP solvers are in idLib.  The physics code is absolutely massive, but luckily you don't
 have to have a PhD in Physics to understand what most of it is doing and (more importantly) how to use it.
 
-<p>
+</p><p>
 An idPhysics object is a tool to manipulate the position and orientation of an entity.  The physics object is a
 container for idClipModels used for collision detection.  The physics system deals with moving these collision models
 through the world according to the laws of physics or other rules.
 
-<p>
+</p><p>
 Every idEntity has a pointer to an idPhysics object, the object can be moved around using idForces, though there
 are other ways to move it.  Every frame the idEntity updates its visual model from the origin and axis information
 in the physics system.
 
-<p>
+</p><p>
 The render system has a visual model of every entity, and the physics system has a clip model of every entity
 (sometimes called combat model).  A collision model can be loaded from the map model (using any surfaces marked as
 clip), or it can be generated from the render model (by default it uses all surfaces in the render model, but a
 simplified object can be created with the "<samp>textures/common/collision</samp>" material applied to it, in which
 case it uses that simplified model instead), or it can be loaded from a .cm file (created using DOOMEdit).
 
-<p>
+</p><p>
 There are multiple subclasses of idPhysics which all implement specialized types of physics.  For example, doors
 use idPhysics_Parametric, rag dolls uses idPhysics_AF, etc.  Most of the physics types are self explanitory,
 and all of them have a brief description at the top of the .h file.
 
-<p>
+</p><p>
 If you don't want physics to be
 run on an object, make sure the TH_PHYSICS flag is cleared (for example, when an object comes to rest).  You should
 unlink the clip model if an object cannot be touched (rather than just setting the content mask to 0).  This will
@@ -125,25 +126,25 @@ speed up collision detection because it won't even visit that clip model.  You s
 jitters in things that could cause the physics to be run constantly on an object.  There are a few console commands
 to aid in debugging physics slow downs.  The most useful is probably g_showActiveEntities.
 
-<p>
+</p><p>
 <b>Anim</b><br>
 The animation system doesn't decide which animations to play (that is done in scripts), but rather it is in charge
 blending animations, lerping between frames, blending bone weights, and calling frame commands.
 
-<p>
+</p><p>
 In Doom 3, there are 4 different animation channels ("torso", "legs", "head", "eyelids") as well as a fifth pseudo
 channel ("all").  A different animation can be playing on each animation chanel simultaneously.  This avoids the
 quake 2 "running while firing" problem, as well as the quake 3 "my model is in pieces" problem.  There is one
 single mesh, but each animation affects a different set of bones.  All of this is handled in Anim_Blend.  It also
 handles blending between two completely different animations (for example when you switch between weapons).
 
-<p>
+</p><p>
 The frame commands (defined in the modelDef) are called from ServiceAnims.  Every time it updates the animation, it
 sees if it passed a 'boundry' where a frame command was defined.  It is actually really easy to add your own frame
 commands.  You just have to add an item to the frameCommandType_t enum, then implement the case statements for it in
 AddFrameCommand and CallFrameCommands.
 
-<p>
+</p><p>
 <b>Script</b><br>
 Similar to Anim, the Script subsystem is pretty generic, and doesn't really know about Doom at all.
 The main entry point into the script system is through idProgram.  There is only ever one program living in
@@ -151,7 +152,7 @@ the system (it is a member of idGameLocal).  It scans the scripts directory and 
 contained therein.  It holds all the function and variable information.  idProgram is the only class that
 uses idCompiler.  idCompiler is the Op Code generator.  It uses the lexer and parser defined in idLib.
 
-<p>
+</p><p>
 To actually call a script function, create a new idThread (which should be allocated with new, not created
 on the stack).  There are static functions in idThread that handle the tracking of currently active threads.
 Every thread has an idInterpreter, which contains all the stack information and instruction pointer for a
@@ -160,7 +161,7 @@ provides every thread a chance to run every frame.  The thread runs until it get
 encounters a pause event, such as sys.pause, sys.waitFor, or sys.wait (there's also a wait command on ai
 objects).
 
-<div class="subsection">Game Utility files</div>
+</p><div class="subsection">Game Utility files</div>
 
 <p>
 <b>Network</b><br>
@@ -174,7 +175,7 @@ as well all know, they do get out of sync.  The snapshot mechanism will periodic
 sync with the server.  There are other ways to send updates, for example client events and reliable messages, but
 those should be easy enough to figure out if you need to use them.
 
-<p>
+</p><p>
 <b>Game / GameLocal</b><br>
 idGame is the interface class for the entire game dll.  It is the only thing the core engine sees.  The first thing
 the engine does when it loads up a game dll is call GetGameAPI, passing it interface pointers to a bunch of internal
@@ -184,47 +185,47 @@ game interface.  Since gameLocal is a global object in the game dll, a lot of re
 getting thrown in there.  The really important functions are defined in idGame as well (such as InitFromNewMap,
 RunFrame, and Draw).
 
-<p>
+</p><p>
 MultiplayerGame defines all the multiplayer specific game code, such as keeping score and voting.
 
-<p>
+</p><p>
 <b>Pvs</b><br>
 The PVS (Potentially Visible Set) tracks what areas can be seen from what other areas.  It is calculated at map load
 from the render portals.  It allows the game code to determine if objects or monsters should go dormant, and is also
 used by the network code to determine which updates to send to which clients.
 
-<p>
+</p><p>
 <b>AF</b><br>
 idAF is an articulated figure helper class.  It contains a pointer to an animator, which it uses to move around the
 object.  It doesn't do any solving (that is all done in idPhysics_AF), but applies the solved AF positions to the
 entity model (remember, the physics model is a completely seperate system from the render system).
 
-<p>
+</p><p>
 <b>IK</b><br>
 idIK is the inverse kinematics helper class.  It is currently only used by actors to keep their feet on the ground,
 but it could easily be used for more.  It is used similarly to idAF.
 
-<p>
+</p><p>
 <b>PlayerIcon</b><br>
 idPlayerIcon is a helper class for drawing the lag and chat icons above the player head in multiplayer.
 
-<p>
+</p><p>
 <b>PlayerView</b><br>
 idPlayerView is a helper utility that renders the scene from the players perspective.  It's where the PDA gets drawn,
 as well as where last minute effects such as screen blood splats, berserker, influence, and double vision views, and
 screen fades get handled.
 
-<p>
+</p><p>
 <b>SmokeParticles</b><br>
 The smoke particle system is used for particle effects that are constantly changing position or orientation in a
 completely non-paramentric way.  An example of this is is smoke effect coming out of the 
 
-<p>
+</p><p>
 <b>GameEdit</b><br>
 Ok I lied, the core engine also sees idGameEdit.  This is a utility class that allows the editors (like the
 <a href="editor_af.html">AFEditor</a>) to manipulate entities while the game is running.
 
-<div class="subsection">Game Entities</div>
+</p><div class="subsection">Game Entities</div>
 
 Now that I've gone over the major systems that the game builds on, I can start to talk about the actual game code.
 The rest of the code I'm going to talk about is almost all derived from idEntity.  These are things like doors,
@@ -237,27 +238,27 @@ idEntity is the base class from which all entities are derived.  It handles most
 maintenance functions that are common to all entities, such as spawning, thinking, running physics, binding,
 playing sounds, showing, hiding, etc.
 
-<p>
+</p><p>
 Entity.cpp also contains idAnimatedEntity, which is just an entity that has an associated animator (which can
 play animations).
 
-<p>
+</p><p>
 <b>WorldSpawn</b><br>
 The worldspawn is an entity that represents the entire level itself.  The only code
 here reads some properties from the map to set up gravity and stamina, and to call the level script.
 
-<p>
+</p><p>
 <b>Camera</b><br>
 idCamera is used for objective screenshots (when the objective tool tip pops up), as well as
 for cinematic cameras.  The bulk of the code deals with following the animation (defined in a md5camera class).
 Cameras can also be bound to moving entities (since any entity can be bound to any other entity).
 
-<p>
+</p><p>
 <b>SecurityCamera</b><br>
 Security cameras are used to make panning, breakable security cameras (such as the
 ones in CPU).  They simply move side to side, minding their own business.
 
-<p>
+</p><p>
 <b>BrittleFracture</b><br>
 BrittleFracture is the term for any object that shatters rather spectacularly when
 it is damaged.  Generally this means glass, but technically you could put any texture you want on a BrittleFracture
@@ -267,21 +268,21 @@ glass are run through the physics system as part of an idPhysics_StaticMulti.  T
 slow.  Hacks could be done to speed it up by treating the shards as particles instead (thereby not running them
 through the physics system) but that wouldn't look quite as good.
 
-<p>
+</p><p>
 <b>Fx</b><br>
 An FX entity is a container object for <a href="fx.html">special effects</a>.  This file also
 contains idTeleporter which is the teleporter destination entity.
 
-<p>
+</p><p>
 <b>Light</b><br>
 The idLight entity represents just about everything that can be done with lights: turning
 on and off, pulsating with sounds, fading in and out, etc.
 
-<p>
+</p><p>
 <b>Sound</b><br>
 idSound is like idLight but for sounds
 
-<p>
+</p><p>
 <b>Item</b><br>
 Items are things the player can pick up to get something.  Weapons, health, armor, etc are
 all items.  This file defines the base idItem (which is used for most things), as well as idMoveableItem
@@ -292,13 +293,13 @@ iventory.  The difference between an item and a moveable item lies in how the en
 react when they touch the item.  For regular items, the object will go right through it, but for moveable
 items, the item will get pushed by the mover.
 
-<p>
+</p><p>
 <b>Moveable</b><br>
 An idMoveable is like a moveable item that you can't pick up.  Examples are the hamburger
 that people love to punch, crates, soda cans, trash cans, trash, etc...  There are two special case moveables
 defined: idBarrel and idExplodingBarrel.  I hope the behaviour is obvious for those two.
 
-<p>
+</p><p>
 <b>Trigger</b><br>
 A trigger is an entity that triggers a target entity or calls a script when something happens.  "something"
 depends on what kind of trigger it is.  There are touch triggers for players, touch triggers for monsters,
@@ -306,18 +307,18 @@ timer triggers, hurt triggers, fade triggers, triggers that only trigger after t
 certain number of times, triggers that only trigger for certain entities, etc.  The main thing to keep in
 mind is whenever the trigger gets triggered, it will send an Activate event to any entities it targets.
 
-<p>
+</p><p>
 <b>Target</b><br>
 A target is used as the target of a trigger.  There are about 30 different target entity types, and they do
 wildly different things, so I'm not going to mention them.  Luckily most targets tend to be fairly small
 (having only an Event_Activate function), so I'd take a minute to just scan through Target.h
 
-<p>
+</p><p>
 <b>Misc</b><br>
 Misc is where we put entities that didn't really fit anywhere else.  It contains things like idVacuumEntity
 and idPlayerStart.  It contains about 30 entities as well, so I'm not going to go over those either.
 
-<p>
+</p><p>
 <b>AFEntity</b><br>
 An AFEntity is an entity with an associated articulated figure.  It can actually be one of many different types
 of entities.  Players, monsters, vehicles, chains (such as the crane), and generic dead bodies are all AF entities.
@@ -325,9 +326,8 @@ There is an idAFEntity_Base class which contains some basic functions all AF ent
 is idAFEntity_Gibbable, idAFEntity_Vehicle, idAFEntity_SteamPipe, and idAFEntity_ClawFourFingers.  The AFEntity doesn't
 actually do much other than spawn and destroy the AF entity because all the real work is done in idAF, and idPhysics_AF.
 
-<p>
-<pre>
-idClass
+</p><p>
+</p><pre>idClass
 +-idEntity
   +-idAnimatedEntity
     |-idWeapon
@@ -353,26 +353,26 @@ doesn't always need one (an actor with no script with just stand there and blink
 is derived from idAFEntity_Gibbable.
 
 
-<p>
+</p><p>
 <b>Player</b><br>
 idPlayer is... the player.  It handles input handling, item handling, cinematics, animations, teleportation, and a whole
 slew of other things (roughly 8,000 lines worth).  Player.cpp is also home to idInventory, which is just a helper class
 for the player's inventory.
 
-<p>
+</p><p>
 <b>Projectile</b><br>
 An idProjectile is an entity that flies through the world and causes damage to whatever it hits.  Generally they are fired
 by weapons (see below) but they don't have to be.  For example, the Revenant creates projectiles, but he technically
 doesn't have any weapon (the shoulder mounted rocket launchers are part of his model, and the rockects are spawned in
 script).
 
-<p>
+</p><p>
 <b>Weapon</b><br>
 An idWeapon is an entity the player holds in front of him as he runs around in the game.  It may or may not shoot projectiles,
 but most of the time it does.  The interesting thing about idWeapon is there is one per player rather than
 one per weapon.  When the player switches weapons, it simply loads a new weapon script into the existing idWeapon.
 
-<div class="subsection">The Engine Code</div>
+</p><div class="subsection">The Engine Code</div>
 
 Now that we've gone over a bunch of the systems you have the source code to, let's go over some systems you don't have the code for.
 
@@ -381,17 +381,16 @@ Now that we've gone over a bunch of the systems you have the source code to, let
 Sys is where all the operating system specific calls go.  Things like locking memory and spawning threads go in here.  All the
 functions and classes are defined in sys_public.h in the 'sys' folder.  All of the functions accessible to the game are members
 of the idSys singleton (which you access through the global 'sys' object).
-<p>
+</p><p>
 <b>Common</b><br>
 idCommon handles starting up and shutting down all the other systems (including the game system).  It also performs error, warning, and
 debug messsage printing (it routes the message to the log file, console, early console, dedicated console, or whoever else needs it).<br>
 In the engine, the code looks something like this:
-<pre class="code">
-void main(void) {
+</p><pre class="code">void main(void) {
     Sys_Init();
-    common->Init();
+    common-&gt;Init();
     while (1) {
-        common->Frame();
+        common-&gt;Frame();
     }
 }
 </pre>
@@ -401,13 +400,13 @@ void main(void) {
 idCmdSystem handles commands the user types in to any one of the consoles (in-game, dedicated, or editor).  The game code can
 also pass commands directly to the command system for processing.  Every frame the command system will parse out the command buffer
 and execute any waiting commands by calling the callback functions associated with the commands.  For example, "quit" will call the
-Com_Quit_f callback function (which then calls common->Quit).
+Com_Quit_f callback function (which then calls common-&gt;Quit).
 
-<p>
+</p><p>
 <b>CVar System</b><br>
 idCVarSystem handles console variables.  Console variables in Doom 3 are way cooler than console variables in previous engines.
 They are added to the CVar system like this:
-<pre class="code">idCVar com_showFPS( "com_showFPS", "0", CVAR_BOOL|CVAR_SYSTEM, "" );</pre>
+</p><pre class="code">idCVar com_showFPS( "com_showFPS", "0", CVAR_BOOL|CVAR_SYSTEM, "" );</pre>
 The constructor for idCVar will add the cvar to a static list of cvars, which will then get added to the cvar system when it starts
 up.  You can then access the cvar through the instantiated object.  You can also access cvars through functions in the actual cvar
 system, but this is a bit slower (because it has to do the lookup every time rather than storing it off in the cvar object).
@@ -420,23 +419,23 @@ search the game directory, then the game pack files, then the base directory, th
 pure mode, then the file system will only check the pack files.  File system tracks all files that are accessed on the server for doing
 the pure checks, it can also be set to copy mode (fs_copyfiles) to help in making builds.
 
-<p>
+</p><p>
 <b>Networking System</b><br>
 The game system really only has access to two parts of the networking system: callbacks to read/write (idGame::ClientReadSnapshot /
 idGame::ServerWriteSnapshot) and functions to send and recieve reliable messages (in idNetworkSystem).  There are a few other
 functions in idNetworkSystem to get statistics like ping and packet loss.
 
-<p>
+</p><p>
 <b>Render System</b><br>
 The renderer is broken in to 3 different conceptual parts:
-<p>
-<li>The RenderWorld is very similar to a scene graph.  It contains all the render models and textures in the scene arranged in some
+</p><p>
+</p><li>The RenderWorld is very similar to a scene graph.  It contains all the render models and textures in the scene arranged in some
 easy to cull fashion.  It handles culling and dispatches commands to the back end.
 <p>
-<li>The back end is a heavily optimized system for rendering triangle soups.  There is a seperate back end written for each major
+</p></li><li>The back end is a heavily optimized system for rendering triangle soups.  There is a seperate back end written for each major
 hardware architecture that Doom 3 supports (NV20, R300, ARB, ARB2, CG).
 <p>
-<li>The Render System manages all the render worlds (there can be more than one), and works as an entry point for the render system.
+</p></li><li>The Render System manages all the render worlds (there can be more than one), and works as an entry point for the render system.
 
 <p>
 <b>Sound System</b><br>
@@ -444,45 +443,46 @@ The sound system is very similar to the render system in that there is a sound w
 hard stuff, and the sound system just serves as a ring leader.  The sound world keeps track of where all the emitters are, what state
 they are in, and where the listener is.
 
-<p>
+</p><p>
 <b>Render Model Manager</b><br>
 idRenderModelManager handles loading and freeing of render models.  The models can be in a variety of file formats including BSP,
 LWO and ASE.  The model manager caches the model data the first time it is requested.  Every model that is going to be used for a
 level should be loaded by the model manager during level load (in between BeginLevelLoad and EndLevelLoad calls).  This will ensure
 minimal disk hits during actual game play.
 
-<p>
+</p><p>
 <b>User Interface Manager</b><br>
 idUserInterfaceManager behaves exactly like the model manager, except for GUIs.
 
-<p>
+</p><p>
 <b>Declaration Manager</b><br>
 idDeclManager handles loading, caching, reading, and writing any kind of decl.  It scans the directories and parses out decls, automagically
 creating the proper decl object for each type.  You can register your own custom decl types with the decl manager, as well as new folders
 for it to scan.  Just like the other managers, any decls that it loads should be done during the designated level load time to prevent
 unnecessary disk hits.
 
-<p>
+</p><p>
 <b>AAS file manager</b><br>
 idAASFileManager loads and frees AAS (area awareness system) files.  It is the only way to get an idAASFile in the game code.
 
-<p>
+</p><p>
 <b>Collision Model Manager</b><br>
 The collision model manager is exactly like the render model manager, except for the physics system rather than the render system.
 
 
 <br>
-        </td>
+        </p></li></td>
 	</tr>
 	<tr>
-		<td colspan=2 bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
 	</tr>
-</table>
+</tbody></table>
 
-<table border=0 cellpadding=0 cellspacing=0 width=770>
-    <tr>
-        <td align=left class="legalese">Copyright &copy; 2004 <a href="http://www.idsoftware.com">id software</a></td>
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
     </tr>
-</table>
-</body>
-</html>
+</tbody></table>
+
+
+</body></html>

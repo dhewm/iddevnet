@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0045)https://www.iddevnet.com/doom3/script_map.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Map Scripts]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Map Scripts</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+Map scripts allow the level designer to create more advanced trickery than
+was previously possible with the old target/trigger system (though the target/trigger
+system has not gone away, they work in parallel).  When a map starts up, the
+function specified in the worldspawn "call" key is called.  That function
+can perform additional setup, spawn threads, etc.  The best way to
+explain is by example, so open up map_marscity2.script.
+
+<p>
+The first thing to notice in the mars city 2 script is <span class="code">namespace map_marscity2</span>.
+Namespaces in DoomScript work the same as in C++, they provide a convenient
+way to seperate functions and variables that may otherwise have the same name.
+Since we wrap all our functions in the map_marscity2 namespace, we don't have
+to worry about another map using a function with the same name as one of our
+functions.
+
+</p><p>
+The "call" key in marscity2.map is set to <span class="code">map_marscity2::main</span> which is defined
+at the bottom of map_marscity2.script.  The double colon works the same as in
+C++ and specifies which namespace the function is in.  All the main function
+does in this example is create a thread out of the video_request_speaker function
+(defined above it).
+
+</p><p>
+If you aren't quite sure what threads are in C++, don't worry because they are
+slightly different in DoomScript anyway.  They are mini-threads rather than OS threads,
+but that's not really important.  Normally when you call a function, your code stops
+until that function finishes, but when you create a thread to call the function, your
+code keeps going.
+
+</p><p>
+In the marscity2 example, we have to create a thread because the
+"video_request_speaker" function loops for a very long time (To be more specific, it
+loops as long as "request_speaker" is set to 1).  That function plays the "video linkup
+requested" sound, waits a second, then does it again.
+
+</p><p>
+When you walk up to the terminal, you hit a trigger with "call" set to <span class="code">map_marscity2::connect_sarge_speaker</span>.
+
+</p><p>
+If we examine that function, we see the first thing it does is set "request_speaker" to 0,
+which causes the "while" loop in the "video_request_speaker" thread to exit.  It then tells "speaker_280"
+(which is the "video linkup requested" speaker) to stop playing sounds, triggers the "sarge_monitor"
+entity (which causes a message to pop up on screen), and "speaker_281" ("connection established").  It waits
+a quarter second, triggers "speaker_282" (sarges speech), and triggers the monitor again (which causes Sarge
+to pop up on the screen).  Finally, it triggers "relay_111" which waits 32 seconds before triggering a bunch
+of crap such as "give security clearance" and "make sarge stop talking".
+
+</p><p>
+The last part could have also been done in the script by
+waiting 32 seconds, then triggering everything through the scripts, but this particular
+level designer decided to just trigger the relay and have it do all the leg work.  The main
+benefit of doing it with a relay rather than in script is it's easier to see and edit in radiant.
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

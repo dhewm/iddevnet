@@ -1,0 +1,747 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0040)https://www.iddevnet.com/doom3/cvars.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Cvars]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Cvars</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+A cvar is a console variable.  You can change the value through the console by typing the cvar name, a space, and the new value.
+Typing only the cvar name will tell you the current value of the cvar.
+
+<p>Most cvars are prefixed by the subsystem they belong to, here is a list of the various prefixes and sub systems:
+</p><ul>
+<li>aas - area awareness system (ai pathing)
+</li><li>af - articulated figures (rag dolls)
+</li><li>ai - artificial intelligence
+</li><li>cm - collision model
+</li><li>com - common
+</li><li>con - console
+</li><li>fs - file system
+</li><li>g - game
+</li><li>gui - gui system
+</li><li>ik - inverse kinematics
+</li><li>image - image loading
+</li><li>in - input
+</li><li>m - mouse
+</li><li>net - network
+</li><li>pm - player movement
+</li><li>r - renderer
+</li><li>s - sound
+</li><li>si - server info
+</li><li>sys - system
+</li><li>ui - user interface
+</li><li>win - windows</li></ul>
+
+<p>
+
+</p><table class="datatable">
+<tbody><tr><th>Cvar</th><th>Description</th>
+</tr><tr><td>aas_goalArea</td><td>type: int (cheat)<br></td>
+</tr><tr><td>aas_pullPlayer</td><td>type: int (cheat)<br></td>
+</tr><tr><td>aas_randomPullPlayer</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>aas_showAreas</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>aas_showFlyPath</td><td>type: int (cheat)<br></td>
+</tr><tr><td>aas_showHideArea</td><td>type: int (cheat)<br></td>
+</tr><tr><td>aas_showPath</td><td>type: int (cheat)<br></td>
+</tr><tr><td>aas_showPushIntoArea</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>aas_showWallEdges</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>aas_test</td><td>type: int (cheat)<br></td>
+</tr><tr><td>af_contactFrictionScale</td><td>scales the contact friction<br>type: float (cheat)<br></td>
+</tr><tr><td>af_forceFriction</td><td>force the given friction value<br>type: float (cheat)<br></td>
+</tr><tr><td>af_highlightBody</td><td>name of the body to highlight<br>type: string (cheat)<br></td>
+</tr><tr><td>af_highlightConstraint</td><td>name of the constraint to highlight<br>type: string (cheat)<br></td>
+</tr><tr><td>af_jointFrictionScale</td><td>scales the joint friction<br>type: float (cheat)<br></td>
+</tr><tr><td>af_maxAngularVelocity</td><td>maximum angular velocity<br>type: float (cheat)<br></td>
+</tr><tr><td>af_maxLinearVelocity</td><td>maximum linear velocity<br>type: float (cheat)<br></td>
+</tr><tr><td>af_showActive</td><td>show tree-like structures of articulated figures not at rest<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showBodies</td><td>show bodies<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showBodyNames</td><td>show body names<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showConstrainedBodies</td><td>show the two bodies contrained by the highlighted constraint<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showConstraintNames</td><td>show constraint names<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showConstraints</td><td>show constraints<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showInertia</td><td>show the inertia tensor of each body<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showLimits</td><td>show joint limits<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showMass</td><td>show the mass of each body<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showPrimaryOnly</td><td>show primary constraints only<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showTimings</td><td>show articulated figure cpu usage<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showTotalMass</td><td>show the total mass of each articulated figure<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showTrees</td><td>show tree-like structures<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_showVelocity</td><td>show the velocity of each body<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_skipFriction</td><td>skip friction<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_skipLimits</td><td>skip joint limits<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_skipSelfCollision</td><td>skip self collision detection<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_testSolid</td><td>test for bodies initially stuck in solid<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>af_timeScale</td><td>scales the time<br>type: float (cheat)<br></td>
+</tr><tr><td>af_useImpulseFriction</td><td>use impulse based contact friction<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_useJointImpulseFriction</td><td>use impulse based joint friction<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>af_useLinearTime</td><td>use linear time algorithm for tree-like structures<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>af_useSymmetry</td><td>use constraint matrix symmetry<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>ai_blockedFailSafe</td><td>enable blocked fail safe handling<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>ai_debugMove</td><td>draws movement information for monsters<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>ai_debugScript</td><td>displays script calls for the specified monster entity number<br>type: int (cheat)<br></td>
+</tr><tr><td>ai_debugTrajectory</td><td>draws trajectory tests for monsters<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>ai_showCombatNodes</td><td>draws attack cones for monsters<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>ai_showObstacleAvoidance</td><td>draws obstacle avoidance information for monsters.  if 2, draws obstacles for player, as well<br>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>ai_showPaths</td><td>draws path_* entities<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>ai_testPredictPath</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>cm_backFaceCull</td><td>cull back facing polygons<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>cm_debugCollision</td><td>debug the collision detection<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>cm_drawColor</td><td>color used to draw the collision models<br>type: string (cheat)<br></td>
+</tr><tr><td>cm_drawFilled</td><td>draw filled polygons<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>cm_drawInternal</td><td>draw internal edges green<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>cm_drawMask</td><td>collision mask<br>type: string [none, solid, opaque, water, playerclip, monsterclip, moveableclip, ikclip, blood, body, corpse, trigger, aas_solid, aas_obstacle, flashlight_trigger] (cheat)<br></td>
+</tr><tr><td>cm_drawNormals</td><td>draw polygon and edge normals<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>cm_testAngle</td><td>type: float (cheat)<br></td>
+</tr><tr><td>cm_testBox</td><td>type: string (cheat)<br></td>
+</tr><tr><td>cm_testBoxRotation</td><td>type: string (cheat)<br></td>
+</tr><tr><td>cm_testCollision</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>cm_testLength</td><td>type: float (cheat)<br></td>
+</tr><tr><td>cm_testModel</td><td>type: int (cheat)<br></td>
+</tr><tr><td>cm_testOrigin</td><td>type: string (cheat)<br></td>
+</tr><tr><td>cm_testRadius</td><td>type: float (cheat)<br></td>
+</tr><tr><td>cm_testRandomMany</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>cm_testReset</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>cm_testRotation</td><td>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>cm_testTimes</td><td>type: int (cheat)<br></td>
+</tr><tr><td>cm_testWalk</td><td>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>com_allowConsole</td><td>allow toggling console with the tilde key<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>com_asyncInput</td><td>sample input from the async thread<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_asyncSound</td><td>0: mix sound inline. 1: mix sound from the async thread. 2: mix from sound driver thread<br>type: int (cheat)<br></td>
+</tr><tr><td>com_aviDemoHeight</td><td>type: string (cheat)<br></td>
+</tr><tr><td>com_aviDemoSamples</td><td>type: string (cheat)<br></td>
+</tr><tr><td>com_aviDemoTics</td><td>type: string (cheat)<br></td>
+</tr><tr><td>com_aviDemoWidth</td><td>type: string (cheat)<br></td>
+</tr><tr><td>com_compressDemos</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_compressSaveGame</td><td>compress save games<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_fixedTic</td><td>type: string (cheat)<br></td>
+</tr><tr><td>com_forceGenericSIMD</td><td>force generic platform independent SIMD<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>com_guid</td><td>type: string (read only)<br></td>
+</tr><tr><td>com_journal</td><td>1 = record journal, 2 = play back journal<br>type: string (init)<br></td>
+</tr><tr><td>com_logDemos</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_machineSpec</td><td>hardware classification, -1 = not detected, 0 = low quality, 1 = medium quality, 2 = high quality, 3 = ultra quality<br>type: int<br></td>
+</tr><tr><td>com_makingBuild</td><td>1 when making a build<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_memoryMarker</td><td>used as a marker for memory stats<br>type: int (init)<br></td>
+</tr><tr><td>com_minTics</td><td>type: string (cheat)<br></td>
+</tr><tr><td>com_preciseTic</td><td>run one game tick every async thread update<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>com_preloadDemos</td><td>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>com_purgeAll</td><td>purge everything between level loads<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>com_showAngles</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_showAsyncStats</td><td>show async network stats<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>com_showDemo</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_showFPS</td><td>show frames rendered per second<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>com_showMemoryUsage</td><td>show total and per frame memory usage<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>com_showSoundDecoders</td><td>show sound decoders<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>com_showTics</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_skipGameDraw</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_skipRenderer</td><td>skip the renderer completely<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>com_speeds</td><td>show engine timings<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>com_timestampPrints</td><td>print time with each console print, 1 = msec, 2 = sec<br>type: string (cheat)<br></td>
+</tr><tr><td>com_updateLoadSize</td><td>update the load size after loading a map<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>com_videoRam</td><td>holds the last amount of detected video ram<br>type: int<br></td>
+</tr><tr><td>com_wipeSeconds</td><td>type: string (cheat)<br></td>
+</tr><tr><td>con_noPrint</td><td>print on the console but not onscreen when console is pulled up<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>con_notifyTime</td><td>time messages are displayed onscreen when console is pulled up<br>type: string (cheat)<br></td>
+</tr><tr><td>con_speed</td><td>speed at which the console moves up and down<br>type: string (cheat)<br></td>
+</tr><tr><td>decl_show</td><td>set to 1 to print parses, 2 to also print references<br>type: string (cheat)<br></td>
+</tr><tr><td>developer</td><td>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>fs_basepath</td><td>type: string (init)<br></td>
+</tr><tr><td>fs_caseSensitiveOS</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>fs_cdpath</td><td>type: string (init)<br></td>
+</tr><tr><td>fs_copyfiles</td><td>type: int [0, 4]
+ (init)<br></td>
+</tr><tr><td>fs_debug</td><td>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>fs_devpath</td><td>type: string (init)<br></td>
+</tr><tr><td>fs_game</td><td>type: string (init)<br></td>
+</tr><tr><td>fs_restrict</td><td>type: bool (init)<br>default: 0 (false)</td>
+</tr><tr><td>fs_savepath</td><td>type: string (init)<br></td>
+</tr><tr><td>g_armorProtection</td><td>armor takes this percentage of damage<br>type: float<br></td>
+</tr><tr><td>g_armorProtectionMP</td><td>armor takes this percentage of damage in mp<br>type: float<br></td>
+</tr><tr><td>g_balanceTDM</td><td>maintain even teams<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>g_blobSize</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_blobTime</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_bloodEffects</td><td>show blood splats, sprays and gibs<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>g_cinematic</td><td>skips updating entities that aren't marked 'cinematic' '1' during cinematics<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>g_cinematicMaxSkipTime</td><td># of seconds to allow game to run when skipping cinematic.  prevents lock-up when cinematic doesn't end.<br>type: float [0, 3600]
+ (cheat)<br></td>
+</tr><tr><td>g_countDown</td><td>pregame countdown in seconds<br>type: int [4, 3600]
+<br></td>
+</tr><tr><td>g_damageScale</td><td>scale final damage on player by this factor<br>type: float<br></td>
+</tr><tr><td>g_debugAnim</td><td>displays information on which animations are playing on the specified entity number.  set to -1 to disable.<br>type: int (cheat)<br></td>
+</tr><tr><td>g_debugBounds</td><td>checks for models with bounds &amp;gt; 2048<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_debugCinematic</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_debugDamage</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_debugMove</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_debugMover</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_debugScript</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_debugTriggers</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_debugWeapon</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_decals</td><td>show decals such as bullet holes<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>g_disasm</td><td>disassemble script into base/script/disasm.txt on the local drive when script is compiled<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_doubleVision</td><td>show double vision when taking damage<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>g_dragDamping</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_dragEntity</td><td>allows dragging physics objects around by placing the crosshair over them and holding the fire button<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_dragShowSelection</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_dropItemRotation</td><td>type: string (cheat)<br></td>
+</tr><tr><td>g_dvAmplitude</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_dvFrequency</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_dvTime</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_editEntityMode</td><td>0 = off<br>1 = lights<br>2 = sounds<br>3 = articulated figures<br>4 = particle systems<br>5 = monsters<br>6 = entity names<br>7 = entity models<br>type: int [0, 7]
+ (cheat)<br></td>
+</tr><tr><td>g_exportMask</td><td>type: string (cheat)<br></td>
+</tr><tr><td>g_flushSave</td><td>1 = don't buffer file writing for save games.<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_fov</td><td>type: int<br></td>
+</tr><tr><td>g_frametime</td><td>displays timing information for each game frame<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_gameReviewPause</td><td>scores review time in seconds (at end game)<br>type: int [2, 3600]
+<br></td>
+</tr><tr><td>g_gravity</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_gunX</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_gunY</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_gunZ</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_healthTakeAmt</td><td>how much health to take in nightmare mode<br>type: int<br></td>
+</tr><tr><td>g_healthTakeLimit</td><td>how low can health get taken in nightmare mode<br>type: int<br></td>
+</tr><tr><td>g_healthTakeTime</td><td>how often to take health in nightmare mode<br>type: int<br></td>
+</tr><tr><td>g_kickAmplitude</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_kickTime</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_knockback</td><td>type: int (cheat)<br></td>
+</tr><tr><td>g_mapCycle</td><td>map cycling script for multiplayer games - see mapcycle.scriptcfg<br>type: string<br></td>
+</tr><tr><td>g_maxShowDistance</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_monsters</td><td>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>g_mpWeaponAngleScale</td><td>Control the weapon sway in MP<br>type: float (cheat)<br></td>
+</tr><tr><td>g_muzzleFlash</td><td>show muzzle flashes<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>g_nightmare</td><td>if nightmare mode is allowed<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>g_password</td><td>game password<br>type: string<br></td>
+</tr><tr><td>g_projectileLights</td><td>show dynamic lights on projectiles<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>g_showActiveEntities</td><td>draws boxes around thinking entities.  dormant entities (outside of pvs) are drawn yellow.  non-dormant are green.<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_showBrass</td><td>enables ejected shells from weapon<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>g_showcamerainfo</td><td>displays the current frame # for the camera when playing cinematics<br>type: string<br></td>
+</tr><tr><td>g_showCollisionModels</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_showCollisionTraces</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_showCollisionWorld</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_showEnemies</td><td>draws boxes around monsters that have targeted the the player<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_showEntityInfo</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_showHud</td><td>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>g_showPlayerShadow</td><td>enables shadow of player model<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>g_showProjectilePct</td><td>enables display of player hit percentage<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>g_showPVS</td><td>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>g_showTargets</td><td>draws entities and thier targets.  hidden entities are drawn grey.<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_showTestModelFrame</td><td>displays the current animation and frame # for testmodels<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_showTriggers</td><td>draws trigger entities (orange) and thier targets (green).  disabled triggers are drawn grey.<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_showviewpos</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_skill</td><td>type: int (cheat)<br></td>
+</tr><tr><td>g_skipFX</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_skipParticles</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_skipViewEffects</td><td>skip damage and other view effects<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_spectatorChat</td><td>let spectators talk to everyone during game<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>g_stopTime</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_TDMArrows</td><td>draw arrows over teammates in team deathmatch<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>g_testDeath</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>g_testHealthVision</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_testModelAnimate</td><td>test model animation,<br>0 = cycle anim with origin reset<br>1 = cycle anim with fixed origin<br>2 = cycle anim with continuous origin<br>3 = frame by frame with continuous origin<br>4 = play anim once<br>type: int [0, 4]
+ (cheat)<br></td>
+</tr><tr><td>g_testModelBlend</td><td>number of frames to blend<br>type: int (cheat)<br></td>
+</tr><tr><td>g_testModelRotate</td><td>test model rotation speed<br>type: string (cheat)<br></td>
+</tr><tr><td>g_testParticle</td><td>test particle visualation, set by the particle editor<br>type: int (cheat)<br></td>
+</tr><tr><td>g_testParticleName</td><td>name of the particle being tested by the particle editor<br>type: string (cheat)<br></td>
+</tr><tr><td>g_testPostProcess</td><td>name of material to draw over screen<br>type: string (cheat)<br></td>
+</tr><tr><td>g_timeEntities</td><td>when non-zero, shows entities whose think functions exceeded the # of milliseconds specified<br>type: float (cheat)<br></td>
+</tr><tr><td>g_useDynamicProtection</td><td>scale damage and armor dynamically to keep the player alive more often<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>g_vehicleForce</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_vehicleSuspensionDamping</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_vehicleSuspensionDown</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_vehicleSuspensionKCompress</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_vehicleSuspensionUp</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_vehicleTireFriction</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_vehicleVelocity</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_version</td><td>game version<br>type: string (read only)<br></td>
+</tr><tr><td>g_viewNodalX</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_viewNodalZ</td><td>type: float (cheat)<br></td>
+</tr><tr><td>g_voteFlags</td><td>vote flags. bit mask of votes not allowed on this server<br>bit 0 (+1)   restart now<br>bit 1 (+2)   time limit<br>bit 2 (+4)   frag limit<br>bit 3 (+8)   game type<br>bit 4 (+16)  kick player<br>bit 5 (+32)  change map<br>bit 6 (+64)  spectators<br>bit 7 (+128) next map<br>type: int<br></td>
+</tr><tr><td>gamedate</td><td>type: string (read only)<br></td>
+</tr><tr><td>gamename</td><td>type: string (read only)<br></td>
+</tr><tr><td>gui_configServerRate</td><td>type: int (read only)<br></td>
+</tr><tr><td>gui_debug</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>gui_edit</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>gui_filter_gameType</td><td>Gametype filter<br>type: int<br></td>
+</tr><tr><td>gui_filter_idle</td><td>Idle servers filter<br>type: int<br></td>
+</tr><tr><td>gui_filter_password</td><td>Password filter<br>type: int<br></td>
+</tr><tr><td>gui_filter_players</td><td>Players filter<br>type: int<br></td>
+</tr><tr><td>gui_mediumFontLimit</td><td>type: string<br></td>
+</tr><tr><td>gui_smallFontLimit</td><td>type: string<br></td>
+</tr><tr><td>ik_debug</td><td>show IK debug lines<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>ik_enable</td><td>enable IK<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>image_anisotropy</td><td>set the maximum texture anisotropy if available<br>type: string<br></td>
+</tr><tr><td>image_cacheMegs</td><td>maximum MB set aside for temporary loading of full-sized precompressed images<br>type: string<br></td>
+</tr><tr><td>image_cacheMinK</td><td>maximum KB of precompressed files to read at specification time<br>type: int<br></td>
+</tr><tr><td>image_colorMipLevels</td><td>development aid to see texture mip usage<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>image_downSize</td><td>controls texture downsampling<br>type: string<br></td>
+</tr><tr><td>image_downSizeBump</td><td>controls normal map downsampling<br>type: string<br></td>
+</tr><tr><td>image_downSizeBumpLimit</td><td>controls normal map downsample limit<br>type: string<br></td>
+</tr><tr><td>image_downSizeLimit</td><td>controls diffuse map downsample limit<br>type: string<br></td>
+</tr><tr><td>image_downSizeSpecular</td><td>controls specular downsampling<br>type: string<br></td>
+</tr><tr><td>image_downSizeSpecularLimit</td><td>controls specular downsampled limit<br>type: string<br></td>
+</tr><tr><td>image_filter</td><td>changes texture filtering on mipmapped images<br>type: string [GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR_MIPMAP_LINEAR, GL_NEAREST, GL_LINEAR, GL_NEAREST_MIPMAP_NEAREST, GL_NEAREST_MIPMAP_LINEAR]<br></td>
+</tr><tr><td>image_forceDownSize</td><td>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>image_ignoreHighQuality</td><td>ignore high quality setting on materials<br>type: string<br></td>
+</tr><tr><td>image_lodbias</td><td>change lod bias on mipmapped images<br>type: string<br></td>
+</tr><tr><td>image_preload</td><td>if 0, dynamically load all images<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>image_roundDown</td><td>round bad sizes down to nearest power of two<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>image_showBackgroundLoads</td><td>1 = print number of outstanding background loads<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>image_useAllFormats</td><td>allow alpha/intensity/luminance/luminance+alpha<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>image_useCache</td><td>1 = do background load image caching<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>image_useCompression</td><td>0 = force everything to high quality<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>image_useNormalCompression</td><td>2 = use rxgb compression for normal maps, 1 = use 256 color compression for normal maps if available<br>type: int<br></td>
+</tr><tr><td>image_useOfflineCompression</td><td>write a batch file for offline compression of DDS files<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>image_usePrecompressedTextures</td><td>use .dds files if present<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>image_writeNormalTGA</td><td>write .tgas of the final normal maps for debugging<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>image_writeNormalTGAPalletized</td><td>write .tgas of the final palletized normal maps for debugging<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>image_writePrecompressedTextures</td><td>write .dds files if necessary<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>image_writeTGA</td><td>write .tgas of the non normal maps for debugging<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>in_alwaysRun</td><td>always run (reverse _speed button) - only in MP<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>in_anglespeedkey</td><td>angle change scale when holding down _speed button<br>type: float<br></td>
+</tr><tr><td>in_freeLook</td><td>look around with mouse (reverse _mlook button)<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>in_mouse</td><td>enable mouse input<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>in_pitchspeed</td><td>pitch change speed when holding down look _lookUp or _lookDown button<br>type: float<br></td>
+</tr><tr><td>in_toggleCrouch</td><td>pressing _movedown button toggles player crouching/standing<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>in_toggleRun</td><td>pressing _speed button toggles run on/off - only in MP<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>in_toggleZoom</td><td>pressing _zoom button toggles zoom on/off<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>in_yawspeed</td><td>yaw change speed when holding down _left or _right button<br>type: float<br></td>
+</tr><tr><td>lcp_showFailures</td><td>show LCP solver failures<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>logFile</td><td>1 = buffer log, 2 = flush after each print<br>type: string<br></td>
+</tr><tr><td>logFileName</td><td>name of log file, if empty, qconsole.log will be used<br>type: string<br></td>
+</tr><tr><td>m_pitch</td><td>mouse pitch scale<br>type: float<br></td>
+</tr><tr><td>m_showMouseRate</td><td>shows mouse movement<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>m_smooth</td><td>number of samples blended for mouse viewing<br>type: int [1, 8]
+<br></td>
+</tr><tr><td>m_strafeScale</td><td>mouse strafe movement scale<br>type: float<br></td>
+</tr><tr><td>m_strafeSmooth</td><td>number of samples blended for mouse moving<br>type: int [1, 8]
+<br></td>
+</tr><tr><td>m_yaw</td><td>mouse yaw scale<br>type: float<br></td>
+</tr><tr><td>mod_validSkins</td><td>valid skins for the game<br>type: string<br></td>
+</tr><tr><td>net_allowCheats</td><td>Allow cheats in network game<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>net_channelShowDrop</td><td>show dropped packets<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>net_channelShowPackets</td><td>show all packets<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>net_clientMaxPrediction</td><td>maximum number of milliseconds a client can predict ahead of server.<br>type: int<br></td>
+</tr><tr><td>net_clientMaxRate</td><td>maximum rate requested by client from server in bytes/sec<br>type: int<br></td>
+</tr><tr><td>net_clientPredictGUI</td><td>test guis in networking without prediction<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>net_clientPrediction</td><td>additional client side prediction in milliseconds<br>type: int<br></td>
+</tr><tr><td>net_clientRemoteConsoleAddress</td><td>remote console address<br>type: string<br></td>
+</tr><tr><td>net_clientRemoteConsolePassword</td><td>remote console password<br>type: string<br></td>
+</tr><tr><td>net_clientServerTimeout</td><td>server time out in seconds<br>type: int<br></td>
+</tr><tr><td>net_clientShowSnapshot</td><td>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>net_clientShowSnapshotRadius</td><td>type: float (cheat)<br></td>
+</tr><tr><td>net_clientSmoothing</td><td>type: float [0, 0.95]
+ (cheat)<br></td>
+</tr><tr><td>net_clientUsercmdBackup</td><td>number of usercmds to resend<br>type: int<br></td>
+</tr><tr><td>net_forceDrop</td><td>percentage packet loss<br>type: int (cheat)<br></td>
+</tr><tr><td>net_forceLatency</td><td>milliseconds latency<br>type: int (cheat)<br></td>
+</tr><tr><td>net_ip</td><td>local IP address<br>type: string (cheat)<br></td>
+</tr><tr><td>net_LANServer</td><td>config LAN games only - affects clients and servers<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>net_master0</td><td>idnet master server address<br>type: string (read only)<br></td>
+</tr><tr><td>net_master1</td><td>1st master server address<br>type: string<br></td>
+</tr><tr><td>net_master2</td><td>2nd master server address<br>type: string<br></td>
+</tr><tr><td>net_master3</td><td>3rd master server address<br>type: string<br></td>
+</tr><tr><td>net_master4</td><td>4th master server address<br>type: string<br></td>
+</tr><tr><td>net_port</td><td>local IP port number<br>type: int (cheat)<br></td>
+</tr><tr><td>net_serverAllowServerMod</td><td>allow server-side mods<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>net_serverClientTimeout</td><td>client time out in seconds<br>type: int<br></td>
+</tr><tr><td>net_serverDedicated</td><td>1 = text console dedicated server, 2 = graphical dedicated server<br>type: int [0, 2]
+<br></td>
+</tr><tr><td>net_serverDrawClient</td><td>number of client for which to draw view on server<br>type: int (cheat)<br></td>
+</tr><tr><td>net_serverMaxClientRate</td><td>maximum rate to a client in bytes/sec<br>type: int<br></td>
+</tr><tr><td>net_serverMaxUsercmdRelay</td><td>maximum number of usercmds from other clients the server relays to a client<br>type: int [1, 10]
+<br></td>
+</tr><tr><td>net_serverReloadEngine</td><td>perform a full reload on next map restart (including flushing referenced pak files) - decreased if &amp;gt; 0<br>type: int<br></td>
+</tr><tr><td>net_serverRemoteConsolePassword</td><td>remote console password<br>type: string<br></td>
+</tr><tr><td>net_serverSnapshotDelay</td><td>delay between snapshots in milliseconds<br>type: int<br></td>
+</tr><tr><td>net_serverZombieTimeout</td><td>disconnected client timeout in seconds<br>type: int<br></td>
+</tr><tr><td>net_socksEnabled</td><td>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>net_socksPassword</td><td>type: string<br></td>
+</tr><tr><td>net_socksPort</td><td>type: int<br></td>
+</tr><tr><td>net_socksServer</td><td>type: string<br></td>
+</tr><tr><td>net_socksUsername</td><td>type: string<br></td>
+</tr><tr><td>net_verbose</td><td>1 = verbose output, 2 = even more verbose output<br>type: int [0, 2]
+<br></td>
+</tr><tr><td>password</td><td>client password used when connecting<br>type: string<br></td>
+</tr><tr><td>pm_air</td><td>how long in milliseconds the player can go without air before he starts taking damage<br>type: int<br></td>
+</tr><tr><td>pm_bboxwidth</td><td>x/y size of player's bounding box<br>type: float<br></td>
+</tr><tr><td>pm_bobpitch</td><td>type: float<br></td>
+</tr><tr><td>pm_bobroll</td><td>type: float<br></td>
+</tr><tr><td>pm_bobup</td><td>type: float<br></td>
+</tr><tr><td>pm_crouchbob</td><td>bob much faster when crouched<br>type: float<br></td>
+</tr><tr><td>pm_crouchheight</td><td>height of player's bounding box while crouched<br>type: float<br></td>
+</tr><tr><td>pm_crouchrate</td><td>time it takes for player's view to change from standing to crouching<br>type: float<br></td>
+</tr><tr><td>pm_crouchspeed</td><td>speed the player can move while crouched<br>type: float<br></td>
+</tr><tr><td>pm_crouchviewheight</td><td>height of player's view while crouched<br>type: float<br></td>
+</tr><tr><td>pm_deadheight</td><td>height of player's bounding box while dead<br>type: float<br></td>
+</tr><tr><td>pm_deadviewheight</td><td>height of player's view while dead<br>type: float<br></td>
+</tr><tr><td>pm_jumpheight</td><td>approximate hieght the player can jump<br>type: float<br></td>
+</tr><tr><td>pm_maxviewpitch</td><td>amount player's view can look down<br>type: float<br></td>
+</tr><tr><td>pm_minviewpitch</td><td>amount player's view can look up (negative values are up)<br>type: float<br></td>
+</tr><tr><td>pm_modelView</td><td>draws camera from POV of player model (1 = always, 2 = when dead)<br>type: int [0, 2]
+<br></td>
+</tr><tr><td>pm_noclipspeed</td><td>speed the player can move while in noclip<br>type: float<br></td>
+</tr><tr><td>pm_normalheight</td><td>height of player's bounding box while standing<br>type: float<br></td>
+</tr><tr><td>pm_normalviewheight</td><td>height of player's view while standing<br>type: float<br></td>
+</tr><tr><td>pm_runbob</td><td>bob faster when running<br>type: float<br></td>
+</tr><tr><td>pm_runpitch</td><td>type: float<br></td>
+</tr><tr><td>pm_runroll</td><td>type: float<br></td>
+</tr><tr><td>pm_runspeed</td><td>speed the player can move while running<br>type: float<br></td>
+</tr><tr><td>pm_spectatebbox</td><td>size of the spectator bounding box<br>type: float<br></td>
+</tr><tr><td>pm_spectatespeed</td><td>speed the player can move while spectating<br>type: float<br></td>
+</tr><tr><td>pm_stamina</td><td>length of time player can run<br>type: float<br></td>
+</tr><tr><td>pm_staminarate</td><td>rate that player regains stamina. divide pm_stamina by this value to determine how long it takes to fully recharge.<br>type: float<br></td>
+</tr><tr><td>pm_staminathreshold</td><td>when stamina drops below this value, player gradually slows to a walk<br>type: float<br></td>
+</tr><tr><td>pm_stepsize</td><td>maximum height the player can step up without jumping<br>type: float<br></td>
+</tr><tr><td>pm_thirdPerson</td><td>enables third person view<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>pm_thirdPersonAngle</td><td>direction of camera from player in 3rd person in degrees (0 = behind player, 180 = in front)<br>type: float<br></td>
+</tr><tr><td>pm_thirdPersonClip</td><td>clip third person view into world space<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>pm_thirdPersonDeath</td><td>enables third person view when player dies<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>pm_thirdPersonHeight</td><td>height of camera from normal view height in 3rd person<br>type: float<br></td>
+</tr><tr><td>pm_thirdPersonRange</td><td>camera distance from player in 3rd person<br>type: float<br></td>
+</tr><tr><td>pm_usecylinder</td><td>use a cylinder approximation instead of a bounding box for player collision detection<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>pm_walkbob</td><td>bob slowly when walking<br>type: float<br></td>
+</tr><tr><td>pm_walkspeed</td><td>speed the player can move while walking<br>type: float<br></td>
+</tr><tr><td>r_aspectRatio</td><td>aspect ratio of view:<br>0 = 4:3<br>1 = 16:9<br>2 = 16:10<br>type: int [0, 2]
+<br></td>
+</tr><tr><td>r_brightness</td><td>changes gamma tables<br>type: float [0.5, 2]
+<br></td>
+</tr><tr><td>r_cgFragmentProfile</td><td>arbfp1, fp30<br>type: string<br></td>
+</tr><tr><td>r_cgVertexProfile</td><td>arbvp1, vp20, vp30<br>type: string<br></td>
+</tr><tr><td>r_checkBounds</td><td>compare all surface bounds with precalculated ones<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_clear</td><td>force screen clear every frame, 1 = purple, 2 = black, 'r g b' = custom<br>type: string (cheat)<br></td>
+</tr><tr><td>r_customHeight</td><td>custom screen height<br>type: int<br></td>
+</tr><tr><td>r_customWidth</td><td>custom screen width<br>type: int<br></td>
+</tr><tr><td>r_debugArrowStep</td><td>step size of arrow cone line rotation in degrees<br>type: int [0, 120]
+<br></td>
+</tr><tr><td>r_debugLineDepthTest</td><td>perform depth test on debug lines<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>r_debugLineWidth</td><td>width of debug lines<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>r_debugPolygonFilled</td><td>draw a filled polygon<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_demonstrateBug</td><td>used during development to show IHV's their problems<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_displayRefresh</td><td>optional display refresh rate option for vid mode<br>type: int [0, 200]
+ (cheat)<br></td>
+</tr><tr><td>r_finish</td><td>force a call to glFinish() every frame<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_flareSize</td><td>scale the flare deforms from the material def<br>type: float (cheat)<br></td>
+</tr><tr><td>r_forceLoadImages</td><td>draw all images to screen after registration<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>r_frontBuffer</td><td>draw to front buffer for debugging<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_fullscreen</td><td>0 = windowed, 1 = full screen<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>r_gamma</td><td>changes gamma tables<br>type: float [0.5, 3]
+<br></td>
+</tr><tr><td>r_glDriver</td><td>"opengl32", etc.<br>type: string (cheat)<br></td>
+</tr><tr><td>r_hdr_bloomFraction</td><td>fraction to smear across neighbors<br>type: float (cheat)<br></td>
+</tr><tr><td>r_hdr_exposure</td><td>maximum light scale<br>type: float (cheat)<br></td>
+</tr><tr><td>r_hdr_gamma</td><td>monitor gamma power<br>type: float (cheat)<br></td>
+</tr><tr><td>r_hdr_monitorDither</td><td>random dither in monitor space<br>type: float (cheat)<br></td>
+</tr><tr><td>r_hdr_useFloats</td><td>use a floating point rendering buffer<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_ignore</td><td>used for random debugging without defining new vars<br>type: string (cheat)<br></td>
+</tr><tr><td>r_ignore2</td><td>used for random debugging without defining new vars<br>type: string (cheat)<br></td>
+</tr><tr><td>r_ignoreGLErrors</td><td>ignore GL errors<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_inhibitFragmentProgram</td><td>ignore the fragment program extension<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_jitter</td><td>randomly subpixel jitter the projection matrix<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_jointNameOffset</td><td>offset of joint names when r_showskel is set to 1<br>type: float (cheat)<br></td>
+</tr><tr><td>r_jointNameScale</td><td>size of joint names when r_showskel is set to 1<br>type: float (cheat)<br></td>
+</tr><tr><td>r_lightAllBackFaces</td><td>light all the back faces, even when they would be shadowed<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_lightScale</td><td>all light intensities are multiplied by this<br>type: float (cheat)<br></td>
+</tr><tr><td>r_lightSourceRadius</td><td>for soft-shadow sampling<br>type: float (cheat)<br></td>
+</tr><tr><td>r_lockSurfaces</td><td>allow moving the view point without changing the composition of the scene, including culling<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_logFile</td><td>number of frames to emit GL logs<br>type: int (cheat)<br></td>
+</tr><tr><td>r_materialOverride</td><td>overrides all materials<br>type: string (cheat)<br></td>
+</tr><tr><td>r_megaTextureLevel</td><td>draw only a specific level<br>type: int (cheat)<br></td>
+</tr><tr><td>r_mergeModelSurfaces</td><td>combine model surfaces with the same material<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_mode</td><td>video mode number<br>type: int<br></td>
+</tr><tr><td>r_multiSamples</td><td>number of antialiasing samples<br>type: int<br></td>
+</tr><tr><td>r_offsetfactor</td><td>polygon offset parameter<br>type: float (cheat)<br></td>
+</tr><tr><td>r_offsetunits</td><td>polygon offset parameter<br>type: float (cheat)<br></td>
+</tr><tr><td>r_orderIndexes</td><td>perform index reorganization to optimize vertex use<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_renderer</td><td>hardware specific renderer path to use<br>type: string [best, arb, arb2, Cg, exp, nv10, nv20, r200]<br></td>
+</tr><tr><td>r_sb_biasScale</td><td>scale factor for jitter bias<br>type: float (cheat)<br></td>
+</tr><tr><td>r_sb_frustomFOV</td><td>oversize FOV for point light side matching<br>type: float (cheat)<br></td>
+</tr><tr><td>r_sb_jitterScale</td><td>scale factor for jitter offset<br>type: float (cheat)<br></td>
+</tr><tr><td>r_sb_lightResolution</td><td>Pixel dimensions for each shadow buffer, 64 - 2048<br>type: int (cheat)<br></td>
+</tr><tr><td>r_sb_linearFilter</td><td>use GL_LINEAR instead of GL_NEAREST on shadow maps<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_sb_noShadows</td><td>don't draw any occluders<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_sb_occluderFacing</td><td>0 = front faces, 1 = back faces, 2 = midway between<br>type: int (cheat)<br></td>
+</tr><tr><td>r_sb_polyOfsFactor</td><td>polygonOffset factor for drawing shadow buffer<br>type: float (cheat)<br></td>
+</tr><tr><td>r_sb_polyOfsUnits</td><td>polygonOffset units for drawing shadow buffer<br>type: float (cheat)<br></td>
+</tr><tr><td>r_sb_randomize</td><td>randomly offset jitter texture each draw<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_sb_samples</td><td>0, 1, 4, or 16<br>type: int (cheat)<br></td>
+</tr><tr><td>r_sb_screenSpaceShadow</td><td>build shadows in screen space instead of on surfaces<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_sb_showFrustumPixels</td><td>color the pixels contained in the frustum<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_sb_singleSide</td><td>only draw a single side (0-5) of point lights<br>type: int (cheat)<br></td>
+</tr><tr><td>r_sb_useCulling</td><td>cull geometry to individual side frustums<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_sb_usePbuffer</td><td>draw offscreen<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_sb_viewResolution</td><td>Width of screen space shadow sampling<br>type: int (cheat)<br></td>
+</tr><tr><td>r_screenFraction</td><td>for testing fill rate, the resolution of the entire screen can be changed<br>type: int (cheat)<br></td>
+</tr><tr><td>r_shadowPolygonFactor</td><td>scale value for stencil shadow drawing<br>type: float (cheat)<br></td>
+</tr><tr><td>r_shadowPolygonOffset</td><td>bias value added to depth test for stencil shadow drawing<br>type: float (cheat)<br></td>
+</tr><tr><td>r_shadows</td><td>enable shadows<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_showAlloc</td><td>report alloc/free counts<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showCull</td><td>report sphere and box culling stats<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showDefs</td><td>report the number of modeDefs and lightDefs in view<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showDemo</td><td>report reads and writes to the demo file<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showDepth</td><td>display the contents of the depth buffer and the depth range<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showDominantTri</td><td>draw lines from vertexes to center of dominant triangles<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showDynamic</td><td>report stats on dynamic surface generation<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showEdges</td><td>draw the sil edges<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showEntityScissors</td><td>show entity scissor rectangles<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showImages</td><td>1 = show all images instead of rendering, 2 = show in proportional size<br>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>r_showIntensity</td><td>draw the screen colors based on intensity, red = 0, green = 128, blue = 255<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showInteractionFrustums</td><td>1 = show a frustum for each interaction, 2 = also draw lines to light origin, 3 = also draw entity bbox<br>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>r_showInteractions</td><td>report interaction generation activity<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showInteractionScissors</td><td>1 = show screen rectangle which contains the interaction frustum, 2 = also draw construction lines<br>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>r_showLightCount</td><td>1 = colors surfaces based on light count, 2 = also count everything through walls, 3 = also print overdraw<br>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>r_showLights</td><td>1 = just print volumes numbers, highlighting ones covering the view, 2 = also draw planes of each volume, 3 = also draw edges of each volume<br>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>r_showLightScale</td><td>report the scale factor applied to drawing for overbrights<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showLightScissors</td><td>show light scissor rectangles<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showMegaTexture</td><td>display all the level images<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showMegaTextureLabels</td><td>draw colored blocks in each tile<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showMemory</td><td>print frame memory utilization<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showNormals</td><td>draws wireframe normals<br>type: float (cheat)<br></td>
+</tr><tr><td>r_showOverDraw</td><td>1 = geometry overdraw, 2 = light interaction overdraw, 3 = geometry and light interaction overdraw<br>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>r_showPortals</td><td>draw portal outlines in color based on passed / not passed<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showPrimitives</td><td>report drawsurf/index/vertex counts<br>type: int (cheat)<br></td>
+</tr><tr><td>r_showShadowCount</td><td>colors screen based on shadow volume depth complexity, &amp;gt;= 2 = print overdraw count based on stencil index values, 3 = only show turboshadows, 4 = only show static shadows<br>type: int [0, 4]
+ (cheat)<br></td>
+</tr><tr><td>r_showShadows</td><td>1 = visualize the stencil shadow volumes, 2 = draw filled in<br>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>r_showSilhouette</td><td>highlight edges that are casting shadow planes<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showSkel</td><td>draw the skeleton when model animates, 1 = draw model with skeleton, 2 = draw skeleton only<br>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>r_showSmp</td><td>show which end (front or back) is blocking<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showSurfaceInfo</td><td>show surface material name under crosshair<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showSurfaces</td><td>report surface/light/shadow counts<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showTangentSpace</td><td>shade triangles by tangent space, 1 = use 1st tangent vector, 2 = use 2nd tangent vector, 3 = use normal vector<br>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>r_showTexturePolarity</td><td>shade triangles by texture area polarity<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showTextureVectors</td><td> if &amp;gt; 0 draw each triangles texture (tangent) vectors<br>type: float (cheat)<br></td>
+</tr><tr><td>r_showTrace</td><td>show the intersection of an eye trace with the world<br>type: int (cheat)<br></td>
+</tr><tr><td>r_showTris</td><td>enables wireframe rendering of the world, 1 = only draw visible ones, 2 = draw all front facing, 3 = draw all<br>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>r_showUnsmoothedTangents</td><td>if 1, put all nvidia register combiner programming in display lists<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showUpdates</td><td>report entity and light updates and ref counts<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showVertexCache</td><td>type: int (cheat)<br></td>
+</tr><tr><td>r_showVertexColor</td><td>draws all triangles with the solid vertex color<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_showViewEntitys</td><td>1 = displays the bounding boxes of all view models, 2 = print index numbers<br>type: int (cheat)<br></td>
+</tr><tr><td>r_singleArea</td><td>only draw the portal area the view is actually in<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_singleEntity</td><td>suppress all but one entity<br>type: int (cheat)<br></td>
+</tr><tr><td>r_singleLight</td><td>suppress all but one light<br>type: int (cheat)<br></td>
+</tr><tr><td>r_singleSurface</td><td>suppress all but one surface on each entity<br>type: int (cheat)<br></td>
+</tr><tr><td>r_singleTriangle</td><td>only draw a single triangle per primitive<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipAmbient</td><td>bypasses all non-interaction drawing<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipBackEnd</td><td>don't draw anything<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipBlendLights</td><td>skip all blend lights<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipBump</td><td>uses a flat surface instead of the bump map<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipCopyTexture</td><td>do all rendering, but don't actually copyTexSubImage2D<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipDeforms</td><td>leave all deform materials in their original state<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipDiffuse</td><td>use black for diffuse<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipDynamicTextures</td><td>don't dynamically create textures<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipFogLights</td><td>skip all fog lights<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipFrontEnd</td><td>bypasses all front end work, but 2D gui rendering still draws<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipGuiShaders</td><td>1 = skip all gui elements on surfaces, 2 = skip drawing but still handle events, 3 = draw but skip events<br>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>r_skipInteractions</td><td>skip all light/surface interaction drawing<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipLightScale</td><td>don't do any post-interaction light scaling, makes things dim on low-dynamic range cards<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipMegaTexture</td><td>only use the lowest level image<br>type: int (cheat)<br></td>
+</tr><tr><td>r_skipNewAmbient</td><td>bypasses all vertex/fragment program ambient drawing<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipOverlays</td><td>skip overlay surfaces<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipParticles</td><td>1 = skip all particle systems<br>type: int [0, 1]
+ (cheat)<br></td>
+</tr><tr><td>r_skipPostProcess</td><td>skip all post-process renderings<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipRender</td><td>skip 3D rendering, but pass 2D<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipRenderContext</td><td>NULL the rendering context during backend 3D rendering<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipROQ</td><td>skip ROQ decoding<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipSpecular</td><td>use black for specular1<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipSubviews</td><td>1 = don't render any gui elements on surfaces<br>type: int (cheat)<br></td>
+</tr><tr><td>r_skipSuppress</td><td>ignore the per-view suppressions<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipTranslucent</td><td>skip the translucent interaction rendering<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_skipUpdates</td><td>1 = don't accept any entity or light updates, making everything static<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_slopNormal</td><td>merge normals that dot less than this<br>type: string (cheat)<br></td>
+</tr><tr><td>r_slopTexCoord</td><td>merge texture coordinates this far apart<br>type: string (cheat)<br></td>
+</tr><tr><td>r_slopVertex</td><td>merge xyz coordinates this far apart<br>type: string (cheat)<br></td>
+</tr><tr><td>r_subviewOnly</td><td>1 = don't render main view, allowing subviews to be debugged<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_swapInterval</td><td>changes wglSwapIntarval<br>type: int<br></td>
+</tr><tr><td>r_terrainScale</td><td>vertically scale USGS data<br>type: int (cheat)<br></td>
+</tr><tr><td>r_testARBProgram</td><td>experiment with vertex/fragment programs<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_testGamma</td><td>if &amp;gt; 0 draw a grid pattern to test gamma levels<br>type: float [0, 195]
+ (cheat)<br></td>
+</tr><tr><td>r_testGammaBias</td><td>if &amp;gt; 0 draw a grid pattern to test gamma levels<br>type: float (cheat)<br></td>
+</tr><tr><td>r_testStepGamma</td><td>if &amp;gt; 0 draw a grid pattern to test gamma levels<br>type: float (cheat)<br></td>
+</tr><tr><td>r_useCachedDynamicModels</td><td>cache snapshots of dynamic models<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useClippedLightScissors</td><td>0 = full screen when near clipped, 1 = exact when near clipped, 2 = exact always<br>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>r_useCombinerDisplayLists</td><td>put all nvidia register combiner programming in display lists<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useConstantMaterials</td><td>use pre-calculated material registers if possible<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useCulling</td><td>0 = none, 1 = sphere, 2 = sphere + box<br>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>r_useDeferredTangents</td><td>defer tangents calculations after deform<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useDepthBoundsTest</td><td>use depth bounds test to reduce shadow fill<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useEntityCallbacks</td><td>if 0, issue the callback immediately at update time, rather than defering<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useEntityCulling</td><td>0 = none, 1 = box<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useEntityScissors</td><td>1 = use custom scissor rectangle for each entity<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_useExternalShadows</td><td>1 = skip drawing caps when outside the light volume, 2 = force to no caps for testing<br>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>r_useFrustumFarDistance</td><td>if != 0 force the view frustum far distance to this distance<br>type: float (cheat)<br></td>
+</tr><tr><td>r_useIndexBuffers</td><td>use ARB_vertex_buffer_object for indexes<br>type: int [0, 1]
+<br></td>
+</tr><tr><td>r_useInfiniteFarZ</td><td>use the no-far-clip-plane trick<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useInteractionCulling</td><td>1 = cull interactions<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useInteractionScissors</td><td>1 = use a custom scissor rectangle for each shadow interaction, 2 = also crop using portal scissors<br>type: int [-2, 2]
+ (cheat)<br></td>
+</tr><tr><td>r_useInteractionTable</td><td>create a full entityDefs * lightDefs table to make finding interactions faster<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useLightCulling</td><td>0 = none, 1 = box, 2 = exact clip of polyhedron faces, 3 = also areas<br>type: int [0, 3]
+ (cheat)<br></td>
+</tr><tr><td>r_useLightPortalFlow</td><td>use a more precise area reference determination<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useLightScissors</td><td>1 = use custom scissor rectangle for each light<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useNodeCommonChildren</td><td>stop pushing reference bounds early when possible<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useNV20MonoLights</td><td>use pass optimization for mono lights<br>type: int (cheat)<br></td>
+</tr><tr><td>r_useOptimizedShadows</td><td>use the dmap generated static shadow volumes<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_usePortals</td><td> 1 = use portals to perform area culling, otherwise draw everything<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_usePreciseTriangleInteractions</td><td>1 = do winding clipping to determine if each ambiguous tri should be lit<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>r_useScissor</td><td>scissor clip as portals and lights are processed<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useShadowCulling</td><td>try to cull shadows from partially visible lights<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useShadowProjectedCull</td><td>discard triangles outside light volume before shadowing<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useShadowSurfaceScissor</td><td>scissor shadows by the scissor rect of the interaction surfaces<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useShadowVertexProgram</td><td>do the shadow projection in the vertex program on capable cards<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useSilRemap</td><td>consider verts with the same XYZ, but different ST the same for shadows<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useStateCaching</td><td>avoid redundant state changes in GL_*() calls<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useTripleTextureARB</td><td>cards with 3+ texture units do a two pass instead of three pass<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useTurboShadow</td><td>use the infinite projection with W technique for dynamic shadows<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useTwoSidedStencil</td><td>do stencil shadows in one pass with different ops on each side<br>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>r_useVertexBuffers</td><td>use ARB_vertex_buffer_object for vertexes<br>type: int [0, 1]
+ (cheat)<br></td>
+</tr><tr><td>r_vertexBufferMegs</td><td>type: int (cheat)<br></td>
+</tr><tr><td>r_znear</td><td>near Z clip plane distance<br>type: float [0.001, 200]
+ (cheat)<br></td>
+</tr><tr><td>radiant_entityMode</td><td>type: string<br></td>
+</tr><tr><td>rb_showActive</td><td>show rigid bodies that are not at rest<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>rb_showBodies</td><td>show rigid bodies<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>rb_showInertia</td><td>show the inertia tensor of each rigid body<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>rb_showMass</td><td>show the mass of each rigid body<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>rb_showTimings</td><td>show rigid body cpu usage<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>rb_showVelocity</td><td>show the velocity of each rigid body<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>s_clipVolumes</td><td>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>s_constantAmplitude</td><td>type: float (cheat)<br></td>
+</tr><tr><td>s_doorDistanceAdd</td><td>reduce sound volume with this distance when going through a door<br>type: float<br></td>
+</tr><tr><td>s_dotbias2</td><td>type: float (cheat)<br></td>
+</tr><tr><td>s_dotbias6</td><td>type: float (cheat)<br></td>
+</tr><tr><td>s_drawSounds</td><td>type: int [0, 2]
+ (cheat)<br></td>
+</tr><tr><td>s_force22kHz</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>s_globalFraction</td><td>volume to all speakers when not spatialized<br>type: float<br></td>
+</tr><tr><td>s_maxSoundsPerShader</td><td>type: string<br></td>
+</tr><tr><td>s_meterTopTime</td><td>type: int<br></td>
+</tr><tr><td>s_minVolume2</td><td>type: float (cheat)<br></td>
+</tr><tr><td>s_minVolume6</td><td>type: float (cheat)<br></td>
+</tr><tr><td>s_noSound</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>s_numberOfSpeakers</td><td>number of speakers<br>type: string<br></td>
+</tr><tr><td>s_playDefaultSound</td><td>play a beep for missing sounds<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>s_quadraticFalloff</td><td>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>s_realTimeDecoding</td><td>type: bool (init)<br>default: 1 (true)</td>
+</tr><tr><td>s_reverse</td><td>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>s_showLevelMeter</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>s_showStartSound</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>s_singleEmitter</td><td>mute all sounds but this emitter<br>type: int (cheat)<br></td>
+</tr><tr><td>s_spatializationDecay</td><td>type: float<br></td>
+</tr><tr><td>s_subFraction</td><td>volume to subwoofer in 5.1<br>type: float<br></td>
+</tr><tr><td>s_useOcclusion</td><td>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>s_volume_dB</td><td>volume in dB<br>type: float<br></td>
+</tr><tr><td>sensitivity</td><td>mouse view sensitivity<br>type: float<br></td>
+</tr><tr><td>si_fragLimit</td><td>frag limit<br>type: int [1, 100]
+<br></td>
+</tr><tr><td>si_gameType</td><td>game type - singleplayer, deathmatch, Tourney, Team DM or Last Man<br>type: string [singleplayer, deathmatch, Tourney, Team DM, Last Man]<br></td>
+</tr><tr><td>si_idleServer</td><td>game clients are idle<br>type: bool (init)<br>default: 0 (false)</td>
+</tr><tr><td>si_map</td><td>map to be played next on server<br>type: string<br></td>
+</tr><tr><td>si_maxPlayers</td><td>max number of players allowed on the server<br>type: int [1, 4]
+<br></td>
+</tr><tr><td>si_name</td><td>name of the server<br>type: string<br></td>
+</tr><tr><td>si_pure</td><td>server is pure and does not allow modified data<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>si_spectators</td><td>allow spectators or require all clients to play<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>si_teamDamage</td><td>enable team damage<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>si_timeLimit</td><td>time limit in minutes<br>type: int [0, 60]
+<br></td>
+</tr><tr><td>si_usePass</td><td>enable client password checking<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>si_version</td><td>engine version<br>type: string (read only)<br></td>
+</tr><tr><td>si_warmup</td><td>do pre-game warmup<br>type: bool<br>default: 0 (false)</td>
+</tr><tr><td>sys_arch</td><td>type: string (init)<br></td>
+</tr><tr><td>sys_cpustring</td><td>type: string (init)<br></td>
+</tr><tr><td>sys_lang</td><td>type: string [english, spanish, italian, german, french, russian, polish, korean, japanese, chinese]<br></td>
+</tr><tr><td>sys_showMallocs</td><td>type: string (cheat)<br></td>
+</tr><tr><td>timescale</td><td>scales the time<br>type: string (cheat)<br></td>
+</tr><tr><td>ui_autoReload</td><td>auto reload weapon<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>ui_autoSwitch</td><td>auto switch weapon<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>ui_chat</td><td>player is chatting<br>type: bool (read only)<br>default: 0 (false)</td>
+</tr><tr><td>ui_name</td><td>player name<br>type: string<br></td>
+</tr><tr><td>ui_ready</td><td>player is ready to start playing<br>type: string<br></td>
+</tr><tr><td>ui_showGun</td><td>show gun<br>type: bool<br>default: 1 (true)</td>
+</tr><tr><td>ui_skin</td><td>player skin<br>type: string [skins/characters/player/marine_mp, skins/characters/player/marine_mp_red, skins/characters/player/marine_mp_blue, skins/characters/player/marine_mp_green, skins/characters/player/marine_mp_yellow]<br></td>
+</tr><tr><td>ui_spectate</td><td>play or spectate<br>type: string<br></td>
+</tr><tr><td>ui_team</td><td>player team<br>type: string [Red, Blue]<br></td>
+</tr><tr><td>win_allowAltTab</td><td>allow Alt-Tab when fullscreen<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>win_allowMultipleInstances</td><td>allow multiple instances running concurrently<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>win_notaskkeys</td><td>disable windows task keys<br>type: int (cheat)<br></td>
+</tr><tr><td>win_outputDebugString</td><td>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>win_outputEditString</td><td>type: bool (cheat)<br>default: 1 (true)</td>
+</tr><tr><td>win_timerUpdate</td><td>allows the game to be updated while dragging the window<br>type: bool (cheat)<br>default: 0 (false)</td>
+</tr><tr><td>win_username</td><td>windows user name<br>type: string (init)<br></td>
+</tr><tr><td>win_viewlog</td><td>type: int (cheat)<br></td>
+</tr><tr><td>win_xpos</td><td>horizontal position of window<br>type: int<br></td>
+</tr><tr><td>win_ypos</td><td>vertical position of window<br>type: int<br></td>
+</tr></tbody></table>
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright &#169; 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+
+</body></html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0038)https://www.iddevnet.com/doom3/afs.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Articulated Figures]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Articulated Figures</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+Articulated figures are called "rag dolls" by most people.  The
+following is an excellent document explaining how they work,
+typed up by the most excellent MrElusive.
+
+</p><div class="subsection">1. Articulated Figures &amp; Skeletal Models</div>
+
+An articulated figure is a collection of rigid bodies and constraints that hold
+these bodies together. A dynamic simulation based on Newtonian mechanics is used
+to move the bodies through the world under the influence of forces and collisions.
+Each body of an articulated figure modifies one of the joints of a skeletal model.
+The change in rotation of a body relative to it's initial position is applied to
+a joint of the skeletal model.
+
+<p>
+To create an articulated figure an md5 mesh with skeleton is required (.md5mesh).
+Furthermore an initial animation (.md5anim) is required with a single animation
+frame. This animation frame sets the model in a pose which is used to create the
+articulated figure. For human like characters this is usually a T-pose. The single
+frame of the initial animation also specifies the initial joint positions as they
+are modified by the bodies of the articulated figure.
+
+</p><p>
+Each articulated figure is specified in a separate .af file, stored in the base/af/
+folder. To load and test an articulated figure in the game an entityDef is created
+in one of the .def files stored in the base/def/ folder. Such an entityDef typically
+looks like the following:
+
+</p><pre class="code">entityDef env_ragdoll_fatty {
+  "editor_color"          "1 .5 0"
+  "editor_mins"           "-8 -8 -8"
+  "editor_maxs"           "8 8 8"
+  "editor_usage"          "Ragdoll for monster_zombie_fat\n"
+  "spawnclass"            "idAFEntity"
+  "bleed"                 "1"
+  "sleep"                 "1"
+  "skin"                  "skins/models/monsters/fatty.skin"
+  "model"                 "models/md5/monsters/zfat/zfat.md5mesh"
+  "anim af_pose"          "models/md5/monsters/zfat/initial.md5anim"
+  "articulatedFigure"     "monster_zombie_fat"
+}
+</pre>
+
+<p>
+
+The "spawnclass" always points to "idAFEntity". The key "sleep" is set to 1 so the
+articulated figure will not immediately start moving when spawned. The "model" key
+points to the md5 mesh. The "anim" key with "af_pose" extension points to the file
+with the initial animation. The "articulatedFigure" key points to the .af file to
+be used.
+
+</p><p>
+
+A .af file first stores a section with general settings followed by a collection of
+bodies and constraints.
+
+
+</p><div class="subsection">2. Settings</div>
+
+The articulated figure settings are specified with a structure as follows:
+<pre class="code">settings {
+   key   params
+}
+</pre>
+
+<p>
+</p><table class="datatable">
+<tbody><tr><td class="nobr">mesh "md5mesh"</td><td>The md5 mesh used for the articulated figure</td>
+</tr><tr><td class="nobr">anim "md5anim"</td><td>The initial animation (t-pose)</td>
+</tr><tr><td class="nobr">skin "skin"</td><td>A skin to use</td>
+</tr><tr><td class="nobr">friction &lt;linear&gt;, &lt;angular&gt;, &lt;contact&gt;</td><td>
+The default friction for all bodies.<br>
+The linear and angular friction values specify the translational and rotational air
+friction. The contact friction value specifies the friction with contact surfaces.
+The friction values are usually in the range [0, 1].
+</td>
+</tr><tr><td class="nobr">selfCollision 0/1</td><td>The default setting for self collision detection</td>
+</tr><tr><td class="nobr">suspendSpeed<br>&lt;linear velocity&gt; &lt;angular velocity&gt;<br>&lt;linear acceleration&gt; &lt;angular acceleration&gt;</td><td>
+The speed at which the articulated figure comes to rest<br>
+The specified linear and angular velocity is the maximum velocity at which the
+articulated figure may come to rest. The specified linear and angular acceleration
+is the maximum acceleration at which the articulated figure may come to rest.
+</td>
+</tr><tr><td class="nobr">totalMass &lt;mass&gt;</td><td>The total mass of the articulated figure.<br>
+If the total mass is set to a value greater than zero then the mass of each body
+is scaled such that the total mass of the articulated figure equals the given mass.
+</td>
+</tr></tbody></table>
+
+<div class="subsection">3. Bodies</div>
+
+A body is specified with a structure as follows:
+<pre class="code">body "name" {
+   key  params
+}
+</pre>
+
+<p>
+</p><table class="datatable">
+<tbody><tr><td class="nobr">joint "joint name"</td><td>The joint the body modifies<br>
+There is always one body which modifies the origin joint of the skeletal model.
+The position and orientation of this body are used to move the whole skeletal
+model through the world. The joint key for this body is set to "origin". 
+</td>
+</tr><tr><td class="nobr">model [collision model]</td><td>
+A body can use several different collision models. Such a collision model is
+specified with the model key:
+<samp>
+model box( (min_x, min_y, min_z), (max_x, max_y, max_z) )
+model octahedron( (min_x, min_y, min_z), (max_x, max_y, max_z) )
+model dodecahedron( (min_x, min_y, min_z), (max_x, max_y, max_z) )
+model cone( (min_x, min_y, min_z), (max_x, max_y, max_z), numSides )
+model cylinder( (min_x, min_y, min_z), (max_x, max_y, max_z), numSides )
+model bone( (start_x, start_y, start_z), (end_x, end_y, end_z), width )
+model custom( "name" )
+</samp>
+</td>
+</tr><tr><td class="nobr">origin ( x, y, z )</td><td>
+The collision model has to be placed at the right position relative to the joint
+which is modified by the body.  This key specifies the position of the center of the collision model.
+</td>
+</tr><tr><td class="nobr">angles ( pitch, yaw, roll )</td><td>The collision model can be rotated about it's origin with the angles key</td>
+</tr><tr><td class="nobr">density &lt;value&gt;</td><td>The density of the collision model. The mass of the body equals the density times the volume of the collision model.</td>
+</tr><tr><td class="nobr">friction &lt;linear&gt;, &lt;angular&gt;, &lt;contact&gt;</td><td>
+Different friction properties can be specified for each body.<br>
+The linear and angular friction values specify the translational and rotational
+air friction. The contact friction value specifies the friction with contact
+surfaces. The friction values are usually in the range [0, 1].
+</td>
+</tr><tr><td class="nobr">selfCollision 0/1</td><td>Set self collision detection per body</td>
+</tr><tr><td class="nobr">containedjoints "jointlist"</td><td>
+Projectiles collide with the visual mesh of the skeletal model. For an impact
+position on the mesh the nearest joint of the skeletal model is taken. From this
+joint the impact is transferred to one of the bodies of the articulated figure.
+Each body has a list with joints that are more or less contained by the body. The
+impact near a joint is transferred to the body that contains the joint. A joint
+can only be contained by one body and each joint must be contained by a body. The
+joints contained by a body are specified with the containedjoints key.</td>
+</tr></tbody></table>
+
+<div class="subsection">4. Constraints</div>
+
+Several constraints can be used to connect the bodies of an articulated figures.
+A constraint is specified with a structure as follows:
+<pre class="code">constraintType "name" {
+   key  params
+}
+</pre>
+
+The constraintType is one of the following constraint types:<br>
+
+<ul>
+<li>ballAndSocketJoint
+</li><li>universalJoint
+</li><li>hinge
+</li><li>spring
+</li></ul>
+
+For each constraint two bodies are specified which are connected by the constraint.
+These bodies are specified with the body1 and body2 key.
+<pre class="code">body1 "name"
+body2 "name"
+</pre>
+
+<p>
+The body2 key may point to the special body called "world" and in this case the
+constraint will connect body1 to the world.
+
+</p><p>
+Other than the two connected bodies, each constraint has a number of settings specific
+to the constraint type as listed below.
+
+
+</p><div class="subsection">4.1 Ball and Socket Joint</div>
+
+<table class="datatable">
+<tbody><tr><td class="nobr">anchor ( x, y, z )</td><td>Specifies the center of the ball (required)</td>
+</tr><tr><td class="nobr">conelimit ( axis_x, axis_y, axis_z ),<br>&lt;angle&gt;, ( shaft_x, shaft_y, shaft_z )</td><td>
+Specifies a cone shaped limit.<br>
+The cone axis is specified by the first vector. The angle of the cone at the
+top follows. The cone is attached to body2. Next a shaft is specified which is
+attached to body1 and is constrained to always stay within the cone.
+</td>
+</tr><tr><td class="nobr">pyramidlimit ( axis1_x, axis1_y, axis1_z ),<br>&lt;angle1&gt;, &lt;angle2&gt;, &lt;angle3&gt;,<br>( shaft_x, shaft_y, shaft_z )</td><td>
+Specifies a pyramid shaped limit.<br>
+The pyramid axis is specified by the first vectors. The first and second angle specify the
+angles at the top of the pyramid. The third angle specifies the rotation of the pyramid
+about the pyramid axis. The pyramid is attached to body2. Next a shaft is specified which
+is attached to body1 and is constrained to always stay within the pyramid.
+</td>
+</tr><tr><td class="nobr">friction &lt;value&gt;</td><td>Specifies joint friction. The friction value is usually in the range [0, 1].</td>
+</tr></tbody></table>
+
+
+<div class="subsection">4.2 Universal Joint</div>
+
+An universal joint works very similar to a ball and socket joint. However the rotation
+about two shafts attached to the bodies is also constrained.
+
+<p>
+</p><table class="datatable">
+<tbody><tr><td class="nobr">anchor ( x, y, z )</td><td>Specifies the anchor of the universal joint (required)</td>
+</tr><tr><td class="nobr">shafts ( dir1_x, dir1_y, dir1_z ),<br>( dir2_x, dir2_y, dir2_z )</td><td>Specifies the two shafts (required)<br>
+The first shaft is attached to body1 and points into or towards body1. The second shaft
+is attached to body2 and points into or towards body2. The rotation of body1 relative to
+body2 about these shafts is constrained.
+</td>
+</tr><tr><td class="nobr">conelimit ( axis_x, axis_y, axis_z ), angle</td><td>
+Specifies a cone shaped limit<br>
+The cone axis is specified by the first vector. The angle of the cone at the
+top follows. The cone is attached to body2. The first shaft attached to body1 is
+constrained to always stay within the cone.
+</td>
+</tr><tr><td class="nobr">pyramidlimit ( axis1_x, axis1_y, axis1_z ),<br>angle1, angle2, angle3</td><td>
+Specifies a pyramid shaped limit.<br>
+The pyramid axis is specified by the first vectors. The first and second angle specify
+angles at the top of the pyramid. The third angle specifies the rotation of the pyramid
+about the pyramid axis. The pyramid is attached to body2. The first shaft attached to
+body1 is constrained to always stay within the pyramid.
+</td>
+</tr><tr><td class="nobr">friction &lt;value&gt;</td><td>Specifies joint friction. The friction value is usually in the range [0, 1].</td>
+</tr></tbody></table>
+
+<div class="subsection">4.3 Hinge</div>
+
+A hinge is specified by an anchor and a hinge axis about which the two bodies are
+allowed to rotate relative to each other. 
+
+<p>
+</p><table class="datatable">
+<tbody><tr><td class="nobr">anchor ( x, y, z )</td><td>Specifies the anchor</td>
+</tr><tr><td class="nobr">axis ( axis_x, axis_y, axis_z )</td><td>Specifies the hinge axis</td>
+</tr><tr><td class="nobr">limit angle1, angle2, angle3</td><td>Specifies a V-shaped limit<br>
+The first angle specifies the center of the V-shaped limit. The angle which specifies
+the width of the V-shaped limit follows. The V-shape is attached to body2. Next a shaft
+is specified which is attached to body1 and is constrained to always stay within the
+V-shape. The orientation of this shaft is specified with the third angle.</td>
+</tr><tr><td class="nobr">friction &lt;value&gt;</td><td>Specifies joint friction. The friction value is usually in the range [0, 1].</td>
+</tr></tbody></table>
+
+<div class="subsection">4.4 Spring</div>
+
+A spring is specified by two anchors, one on each constrained body.
+
+<p>
+</p><table class="datatable">
+<tbody><tr><td class="nobr">anchor1 ( x, y, z )</td><td>Specifies the first anchor</td>
+</tr><tr><td class="nobr">anchor2 ( x, y, z )</td><td>Specifies the second anchor</td>
+</tr><tr><td class="nobr">friction &lt;value&gt;</td><td>Specifies joint friction. The friction value is usually in the range [0, 1].</td>
+</tr><tr><td class="nobr">stretch &lt;value&gt;</td><td>Spring constant when the spring is stretched</td>
+</tr><tr><td class="nobr">compress &lt;value&gt;</td><td>Spring constant when the spring is compressed</td>
+</tr><tr><td class="nobr">damping &lt;value&gt;</td><td>Spring damping</td>
+</tr><tr><td class="nobr">restLength &lt;value&gt;</td><td>Rest length of the spring</td>
+</tr><tr><td class="nobr">minLength &lt;value&gt;</td><td>Minimum length of the spring</td>
+</tr><tr><td class="nobr">maxLength &lt;value&gt;</td><td>Maximum length of the spring</td>
+</tr></tbody></table>
+
+
+<div class="subsection">5. Additional script features</div>
+
+3D vectors are used to specify positions, directions and orientations of bodies and
+constraints. There are four ways to specify such a vector in a .af file
+
+<p>
+</p><table class="datatable">
+<tbody><tr><td class="nobr">( x, y, z )</td><td>Position relative to the md5 origin</td>
+</tr><tr><td class="nobr">joint( "joint name" )</td><td>Position of a joint</td>
+</tr><tr><td class="nobr">bonecenter( "start joint name", "end joint name" )</td><td>Center of a bone between two joints</td>
+</tr><tr><td class="nobr">bonedir( "start joint name", "end joint name" )</td><td>Direction of a bone from one joint to another</td>
+</tr></tbody></table>
+
+
+<div class="subsection">6. Optimizing articulated figures</div>
+
+<ul>
+<li>Minimize the number of bodies and constraints
+</li><li>Use low complexity collision models
+</li><li>Create one tree structure
+</li><li>Don't use joint friction where possible, although joint friction might add stability
+</li><li>Don't use self collision detection on bodies that don't need it
+</li></ul>
+
+<div class="subsection">7. Problems</div>
+
+<ol>
+<li><b>The articulated figure behaves weird or explodes.</b><br>
+	Make sure the mass of each body is within a reasonable range. Use af_showMass 1
+	to show the mass of each body. A body mass in the range [1, 100] usually works
+	well. Connecting a very heavy body with a lightweight body often causes problems.
+	It's usually also wise not to make the articulatd figure too heavy. The forces
+	required to keep heavy bodies together can grow quite large and might not be
+	represented accurately in the physics engine.
+    <p>
+</p></li><li><b>The articulated figure behaves weird or explodes.</b><br>
+	Make sure the inertia tensor of each body describes a reasonable balanced object.
+	Use af_showInertia 1 to show the inertia tensor of each body. Wildly different
+	diagonal elements of the inertia tensor may cause instability. The per body
+	inertia scale may be used to scale the inertia tensor of a body such that the
+	diagonal elements end up in a reasonable range relative to each other.
+	<p>
+</p></li><li><b>The articulated figure is jumpy and energy seems to enter the system.</b><br>
+	Make sure there are no contact points fighting with joint like constraints. When for
+	instance three bodies are connected with two universal joints, and the bodies are
+	relatively close to each other. The outer two bodies might be considered in contact.
+	The figure will be pulled apart at the contact points while the universal joints try
+	to keep the bodies together. Jumpy behaviour is often the result. Disabling self
+	collision on the whole figure or on certain bodies can fix the problem.
+    <p>
+</p></li></ol>
+
+<div class="subsection">8. Ingame editing of articulated figures</div>
+
+Several cvars and console commands are available ingame to (re)load and visualize
+articulated figures.
+
+<p>
+Once an entity def is created for an articulated figure, the 'spawn' console
+command followed by the name of the entity def can be used to load the articulated
+figure in the game. The 'reloadAFs' console command can be used to reload all
+articulated figures. This command causes all articulated figures to snap back to
+the pose specified by the initial animation.
+
+</p><p>
+To visualize several physical properties of the articulated figures the following
+cvars can be used:
+
+</p><p>
+</p><table class="datatable">
+<tbody><tr><td>af_showBodies</td><td>Show the collision models of the bodies</td>
+</tr><tr><td>af_showBodyNames</td><td>Show the name of each body</td>
+</tr><tr><td>af_showMass</td><td>Show the mass of each body</td>
+</tr><tr><td>af_showTotalMass</td><td>Show the total mass of the articulated figure</td>
+</tr><tr><td>af_showInertia</td><td>Show the inertia tensor matrix of each body</td>
+</tr><tr><td>af_showActive</td><td>Show tree only if the articulated figures is not at rest</td>
+</tr><tr><td>af_showVelocity</td><td>Show a linear and angular velocity vector for each body</td>
+</tr><tr><td>af_showConstraints</td><td>Show all constraints</td>
+</tr><tr><td>af_showConstraintNames</td><td>Show the name of each constraint</td>
+</tr><tr><td>af_showConstrainedBodies</td><td>Show the two bodies constrained by the constraint</td>
+</tr><tr><td>af_showPrimaryOnly</td><td>Show primary constraints only</td>
+</tr><tr><td>af_showTrees</td><td>Show the tree structure(s) of the articulated figure</td>
+</tr><tr><td>af_showLimits</td><td>Show joint limits</td>
+</tr></tbody></table>
+
+<p>
+The skeleton of an md5 model can be visualized by setting the cvar 'r_showSkel' to 1.
+
+</p><p>
+To test articulated figures ingame it is useful to be able to pick them up and drag
+them around. When the cvar g_dragEntity is set to 1, an articulated figures can be
+selected and moved through the world. To select an articulated figure, the crosshair
+is pointed at a position somewhere on the visual mesh, and the attack button is
+pressed. While the attack button is pressed the articulated figure can be dragged
+through the world by walking around (or flying in noclip mode) and looking around.
+
+</p><p>
+The last articulated figure selected for dragging is contained in a yellow bounding
+box. This articulated figure can be removed from the game with the console command:
+'deleteRagdoll'. Once articulated figures are positioned in a map they can be saved
+to the .map file by using the console command: 'saveRagdolls'. Articulated figures
+saved to a .map file are not deleted from the .map file with the 'deleteRagdoll'
+command. Any articulated figure can ofcourse still be deleted from a .map file in
+the level editor.
+
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

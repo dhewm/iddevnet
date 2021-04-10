@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Mod Basics]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Mod Basics</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+A 'mod' is a modification to the game.  Generally it involves changing
+the source code as well as adding assets, but it doesn't always have to.
+Making a mod for Doom3 is very similar to making a mod for Quake III Arena.
+The biggest change (apart from the rendering) is that there is a lot more
+behavior defined in text files rather than code.
+
+</p><p>
+<img src="images/basics_a.png" align="right">
+
+Mods are stored in the Doom 3 folder as siblings to the 'base' folder (not <i>in</i>
+the 'base' folder). The base folder is where the standard Doom 3 code and assets
+are stored.  If you are <i>not</i> running a mod, then everything is taken from
+'base'. When you load a mod, the base folder is searched only if a file cannot be
+found in the mod folder.  This allows you to reference files in standard Doom 3
+without having to distribute them with your mod.  This method was used in Quake 3.
+
+</p><p>
+Doom 3 populates the 'Mods' menu by scanning the for any subfolders containing
+<a href="packfiles.html">Pack Files</a>.  It gets the name from a file in the mod folder
+named 'description.txt'  This file should contain 1 line of text no more than
+about 40 characters long.  If the description file is missing, it uses the
+name of the directory.
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

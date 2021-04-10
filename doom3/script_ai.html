@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0044)https://www.iddevnet.com/doom3/script_ai.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [AI Scripts]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : AI Scripts</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+The AI scripts are a couple of orders of magnitude more complex than the map or weapon scripts.
+I honestly wouldn't even try touching them unless you know C++ really well.
+
+</p><p>
+Bernie probably has the most simple ai script (he just walks towards you tries to smack
+you), but even that is more complex than most of the weapon scripts.
+
+</p><p>
+I will put more documentation here later.
+
+</p><div class="subsection">Handy AI Functions</div>
+<table class="datatable">
+<tbody><tr><td class="nobr">findEnemy [useFOV]</td><td>Returns the first living enemy the actor can see.  If <var>useFOV</var> is true then it only returns enemies in the actors field of view.  Returns null if the actor is outside the player PVS.</td></tr>
+<tr><td class="nobr">findEnemyAI [useFOV]</td><td>Returns the nearest living enemy the actor can see (rather than the first enemy, which may not be the closest).  Otherwise behaves like findEnemy.</td></tr>
+<tr><td class="nobr">findEnemyInCombatNodes</td><td>Returns the first living enemy visible to the combat nodes this actor is targeting.</td></tr>
+<tr><td class="nobr">closestReachableEnemyOfEntity [entity]</td><td>Returns the living enemy closest to a specified entity.  The sentry uses this to attack actors close to the player.</td></tr>
+<tr><td class="nobr">heardSound [ignore_team]</td><td>If an alert sound was created in the area of the actor, this function returns the sound.  Otherwise it returns null.  <var>ignore_team</var> will cause it to skip sounds made by team members.</td></tr>
+<tr><td class="nobr">setEnemy [entity]</td><td>Sets the enemy if this actor to <var>entity</var>.</td></tr>
+<tr><td class="nobr">clearEnemy</td><td>Sets this actor to not have an enemy.</td></tr>
+<tr><td class="nobr">muzzleFlash [jointname]</td><td>Trigger a muzzle flash on the joint named <var>jointname</var></td></tr>
+<tr><td class="nobr">createMissile [jointname]</td><td>Creates a projectile (specified by "def_projectile" in the actor entityDef) bound to the joint named <var>jointname</var>, then returns the projectile.</td></tr>
+<tr><td class="nobr">attackMissile [jointname]</td><td>Launches a projectile at the enemy from the joint named <var>jointname</var>.  Returns the projectile entity.</td></tr>
+<tr><td class="nobr">fireMissileAtTarget [jointname],<br>[targetname]</td><td>Launches a projectile at the specified target entity.  Otherwise behaves like attackMissile.</td></tr>
+<tr><td class="nobr">launchMissile [origin], [angles]</td><td>Launches a projectile from the specified origin and angles.  Returns the projectile.</td></tr>
+<tr><td class="nobr">attackMelee [meleeDef]</td><td>Performs a melee attack using the specified melee damageDef (see melee_commandoTentacle in actor_zombie_commando.def for an example definition).  Returns true if it hit something.</td></tr>
+<tr><td class="nobr">directDamage [target], [damageDef]</td><td>Perform direct damage to a <var>target</var> entity, using the damageDef specified by <var>damageDef</var>.</td></tr>
+<tr><td class="nobr">radiusDamageFromJoint [jointname],<br>[damageDef]</td><td>Perform radius damage using the specified damageDef.  The center of the radius is attached to the joint specified by <var>jointname</var>.</td></tr>
+<tr><td class="nobr">attackBegin [damageDef]</td><td>Starts an attack, if the actor touches anything during the attack, he will deal direct damage to the object using the specified damageDef.</td></tr>
+<tr><td class="nobr">attackEnd</td><td>Ends an attack.</td></tr>
+<tr><td class="nobr">meleeAttackToJoint [jointname],<br>[damageDef]</td><td>Deal direct damage using the specified damageDef to any entities between the eye position and the specified joint.  This is used by the commando to damage anything that touches the tentacle.</td></tr>
+<tr><td class="nobr">randomPath</td><td>Random returns one of the path entity targeted by this actor.</td></tr>
+<tr><td class="nobr">canBecomeSolid</td><td>Returns true if there is nothing intersecting this actors collision geometry.</td></tr>
+<tr><td class="nobr">becomeSolid</td><td>Makes the actor solid.  Enables and links the actor clip model and allows the actor to take damage (assuming "noDamage" is not set).</td></tr>
+<tr><td class="nobr">becomeRagdoll</td><td>Turns the actor into a ragdoll.  Used to make Ed (the scientist with the lamp) 'die' at the end.</td></tr>
+<tr><td class="nobr">stopRagdoll</td><td>Disables the ragdoll and returns control to the animator.  Used for monsters that are resurrected by the Archvile.</td></tr>
+<tr><td class="nobr">setHealth [health]</td><td>Sets the health for the actor.  Used for resurecting things, and also for the scientist in MC Underground who turns into a zombie.</td></tr>
+<tr><td class="nobr">getHealth</td><td>Returns the health of the actor.</td></tr>
+<tr><td class="nobr">allowDamage</td><td>Enables the actor to take damage.</td></tr>
+<tr><td class="nobr">ignoreDamage</td><td>Makes the actor not take damage.</td></tr>
+<tr><td class="nobr">getCurrentYaw</td><td>Returns the current yaw angle (heading, facing direction) of the actor.</td></tr>
+<tr><td class="nobr">turnTo [angle]</td><td>Sets the ideal yaw for the actor (does not actually set the yaw, the actor will turn over a few frames).</td></tr>
+<tr><td class="nobr">turnToPos [position]</td><td>Sets the ideal yaw for the actor so he is facing the specified position.</td></tr>
+<tr><td class="nobr">turnToEntity [entity]</td><td>Sets the ideal yaw for the actor so he is facing the specified entity.</td></tr>
+<tr><td class="nobr">moveStatus</td><td>Returns the current move status of the actor, which is one of the following:<br>MOVE_STATUS_DONE,
+	MOVE_STATUS_MOVING,
+	MOVE_STATUS_WAITING,
+	MOVE_STATUS_DEST_NOT_FOUND,
+	MOVE_STATUS_DEST_UNREACHABLE,
+	MOVE_STATUS_BLOCKED_BY_WALL,
+	MOVE_STATUS_BLOCKED_BY_OBJECT,
+	MOVE_STATUS_BLOCKED_BY_ENEMY,
+	MOVE_STATUS_BLOCKED_BY_MONSTER</td></tr>
+<tr><td class="nobr">stopMove</td><td>Sets the move status to MOVE_STATUS_DONE.</td></tr>
+<tr><td class="nobr">moveToCover</td><td>Tell the actor to try to move to an area that the enemy can't see.</td></tr>
+<tr><td class="nobr">moveToEnemy</td><td>Tell the actor to try to move towards the enemy, or the last known enemy position.</td></tr>
+<tr><td class="nobr">moveToEnemyHeight</td><td>Move to be the same height as the enemy (used for the guardian seekers).</td></tr>
+<tr><td class="nobr">moveOutOfRange [entity], [range]</td><td>Tell the actor to move away from the specified entity by at least <var>range</var> units.</td></tr>
+<tr><td class="nobr">moveToAttackPosition [entity],<br>[animation]</td><td>Tell the actor to move to some position where it can attack <var>entity</var> using the specified <var>animation</var>.  Used by the setry because he has to get into his 'attack pose' before he can start firing.</td></tr>
+<tr><td class="nobr">wander</td><td>Tell the actor to just randomly wander around with no particular direction.</td></tr>
+<tr><td class="nobr">moveToEntity [entity]</td><td>Tell the actor to get as close as possible to <var>entity</var> (within 8 units).</td></tr>
+<tr><td class="nobr">moveToPosition [pos]</td><td>Tell the actor to move as close as possible to the specified position (within 8 units).</td></tr>
+<tr><td class="nobr">slideTo [pos], [time]</td><td>Slide the actor over to the position over <var>time</var> seconds.  Used to make sure actors are in the exact spot before triggering something.  <var>time</var> is normally pretty small (0.25), but it doesn't have to be.</td></tr>
+<tr><td class="nobr">facingIdeal</td><td>Returns true if the actor is facing his ideal yaw angle (as set by turnTo or a similar function).</td></tr>
+<tr><td class="nobr">faceEnemy</td><td>Tell the actor to continually turn towards the last known enemy position.</td></tr>
+<tr><td class="nobr">faceEntity [entity]</td><td>Tell the actor to continually turn towards the specified entity.</td></tr>
+<tr><td class="nobr">getCombatNode</td><td>Returns a combat node that is closer to the enemy than the current actor position.</td></tr>
+<tr><td class="nobr">enemyInCombatCone [combatCone],<br>[useCurrentEnemyPosition]</td><td>Returns true if the enemy is in the specified combat cone.  If <var>useCurrentPosition</var> is true then it will use the actual enemy position, otherwise it will use the last known position.</td></tr>
+<tr><td class="nobr">waitMove</td><td>Doesn't return until the current move is finished.  Not used in Doom 3.</td></tr>
+<tr><td class="nobr">getJumpVelocity [pos], [speed], [maxHeight]</td><td>Returns a velocity vector that will cause the actor to land at the position.  Returns a zero vector if the jump is impossible.  <var>jumpHeight</var> is the maximum height the jump is allowed to get.</td></tr>
+<tr><td class="nobr">entityInAttackCone [entity]</td><td>Returns true if the entity is our attack cone.</td></tr>
+<tr><td class="nobr">canSee [entity]</td><td>Returns true if the entity is in our field of view and not behind a wall.</td></tr>
+<tr><td class="nobr">setTalkTarget [entity]</td><td>Sets the talk target to the specified entity and sets AI_TALK to true (if <var>entity</var> is null then it sets AI_TALK to false).</td></tr>
+<tr><td class="nobr">getTalkTarget</td><td>Returns the current talk target.</td></tr>
+<tr><td class="nobr">setTalkState [state]</td><td>Talk state is one of:<br>	TALK_NEVER,
+	TALK_DEAD,
+	TALK_OK,
+	TALK_BUSY</td></tr>
+<tr><td class="nobr">enemyRange</td><td>Returns the distance to the enemy.</td></tr>
+<tr><td class="nobr">enemyRange2D</td><td>Returns the distance to the enemy in 2d (ignoring Z).</td></tr>
+<tr><td class="nobr">getEnemy</td><td>Returns the current enemy entity.</td></tr>
+<tr><td class="nobr">getEnemyPos</td><td>Returns the last known position of the current enemy.</td></tr>
+<tr><td class="nobr">getEnemyEyePos</td><td>Returns the last known position of the eye of the current enemy.</td></tr>
+<tr><td class="nobr">predictEnemyPos [time]</td><td>Return the predicted position of the current enemy <var>time</var> seconds from now.</td></tr>
+<tr><td class="nobr">canHitEnemy</td><td>Returns true if there is nothing in between the actor and his enemy (or the actor and someone else on the enemy team).</td></tr>
+<tr><td class="nobr">canHitEnemyFromAnim [animation]</td><td>Returns true if a projectile launched using the specified animation would hit the enemy.</td></tr>
+<tr><td class="nobr">canHitEnemyFromJoint [jointname]</td><td>Returns true if a projectile launched from the specified joint would hit the enemy.</td></tr>
+<tr><td class="nobr">enemyPositionValid</td><td>Returns false if the actor knows for a fact the enemy is not at the last known position.</td></tr>
+<tr><td class="nobr">chargeAttack [damageDef]</td><td>Calls <var>attackBegin(damageDef)</var> then moves directly towards the enemy position.</td></tr>
+<tr><td class="nobr">testChargeAttack</td><td>Returns the time it would take to hit the enemy if the actor ran straight towards it.  Returns 0 if there is something in the way.</td></tr>
+<tr><td class="nobr">testMoveToPosition [position]</td><td>Returns true if there is nothing between the actor and the position.</td></tr>
+<tr><td class="nobr">testAnimMoveTowardEnemy [animation]</td><td>Returns true if the actor can hit the enemy while running the specified animation without anything getting in the way.</td></tr>
+<tr><td class="nobr">testAnimMove [animation]</td><td>Returns true if the actor can perform the animation without something getting in the way.</td></tr>
+<tr><td class="nobr">testMeleeAttack</td><td>Returns true if a melee attack would hit the enemy.</td></tr>
+<tr><td class="nobr">testAnimAttack [animation]</td><td>Returns true if performing the specified animation would hit the player.</td></tr>
+<tr><td class="nobr">shrivel [time]</td><td>Modifies shaderparm 8 from 1.0 to 0.5 over <var>time</var> (will return after multiple frames).  Not used in Doom 3.</td></tr>
+<tr><td class="nobr">burn</td><td>Cause the actor to burn and fizzle away.</td></tr>
+<tr><td class="nobr">clearBurn</td><td>Reset the actor burn time (so the actor is no longer burned).</td></tr>
+<tr><td class="nobr">preBurn</td><td>Turn shadows off.</td></tr>
+<tr><td class="nobr">setSmokeVisibility [smokeSystem], [state]</td><td>Turn the specified smoke particle system on or off (by setting <var>state</var> to true or false).</td></tr>
+<tr><td class="nobr">numSmokeEmitters</td><td>Returns the number of smoke emitters on the actor.</td></tr>
+<tr><td class="nobr">waitAction [action]</td><td>Doesn't return until the specified action finishes.  In this context <var>action</var> is generally an animation name.</td></tr>
+<tr><td class="nobr">stopThinking</td><td>Causes the thread to end and the actor to go dormant.</td></tr>
+<tr><td class="nobr">getTurnDelta</td><td>Returns the angle in degrees between the current yaw and the ideal yaw.</td></tr>
+<tr><td class="nobr">getMoveType</td><td>Gets the current move type.  Move type is one of:<br>
+	MOVETYPE_DEAD,
+	MOVETYPE_ANIM,
+	MOVETYPE_SLIDE,
+	MOVETYPE_FLY,
+	MOVETYPE_STATIC</td></tr>
+<tr><td class="nobr">setMoveType</td><td>Sets the current move type.</td></tr>
+<tr><td class="nobr">saveMove</td><td>Save the current move to an internal variable.</td></tr>
+<tr><td class="nobr">restoreMove</td><td>Restore a previously saved move.</td></tr>
+<tr><td class="nobr">allowMovement [flag]</td><td>Pass true to let the actor move around.</td></tr>
+<tr><td class="nobr">enableClip</td><td>Enable the actor collision geometry.</td></tr>
+<tr><td class="nobr">disableClip"</td><td>Disable the actor collision geometry.</td></tr>
+<tr><td class="nobr">enableGravity"</td><td>Make the actor obey the laws of physics.</td></tr>
+<tr><td class="nobr">disableGravity"</td><td>Make the actor float around like gravity didn't exist.</td></tr>
+<tr><td class="nobr">enableAFPush"</td><td>Set "af_push_moveables" to true.</td></tr>
+<tr><td class="nobr">disableAFPush"</td><td>Set "af_push_moveables" to false.</td></tr>
+<tr><td class="nobr">setFlySpeed [speed]</td><td>Set "fly_speed".</td></tr>
+<tr><td class="nobr">setFlyOffset [offset]</td><td>Set "fly_offset".</td></tr>
+<tr><td class="nobr">clearFlyOffset</td><td>Reset "fly_offset" to whatever it was in the spawn agrs.</td></tr>
+<tr><td class="nobr">getClosestHiddenTarget [type]</td><td>Returns the closest entity of the specified type that the player cannot see.  Used to find lost combat nodes that the player can't see.</td></tr>
+<tr><td class="nobr">getRandomTarget [type]</td><td>Randomly returns a target of the specified type.</td></tr>
+<tr><td class="nobr">travelDistanceToPoint [pos]</td><td>Returns the actual travel distance to the specified position (SLOW).</td></tr>
+<tr><td class="nobr">travelDistanceToEntity [entity]</td><td>Returns the actual travel distance to the specified entity (SLOW).</td></tr>
+<tr><td class="nobr">travelDistanceBetweenPoints [pointa], [pointb]</td><td>Returns the actual travel distance from point a to point b (SLOW).</td></tr>
+<tr><td class="nobr">travelDistanceBetweenEntities [ent1], [ent2]</td><td>Returns the actual travel distance from entity 1 to entity 2 (SLOW).</td></tr>
+<tr><td class="nobr">lookAt [entity], [duration]</td><td>Aim an actors head and eyes at an entity for some amount of time.</td></tr>
+<tr><td class="nobr">lookAtEnemy [duration]</td><td>Aim an actors head and eyes at his enemy for some amount of time.</td></tr>
+<tr><td class="nobr">setBoneMod [flag]</td><td>Enables or disables head looking.</td></tr>
+<tr><td class="nobr">kill</td><td>Kills the actor.</td></tr>
+<tr><td class="nobr">wakeOnFlashlight [flag]</td><td>Pass true to have the actor activate when the flashlight shines on it.</td></tr>
+<tr><td class="nobr">locateEnemy</td><td>Update the last known enemy position.</td></tr>
+<tr><td class="nobr">kickObstacles [entity], [force]</td><td>Apply some kick force to objects in front of the actor, focusing extra attention on <var>entity</var> (which can be null).</td></tr>
+<tr><td class="nobr">getObstacle</td><td>Returns the entity that's blocking the actors movement (likely candidate to be kicked).</td></tr>
+<tr><td class="nobr">pushPointIntoAAS [pos]</td><td>Tries to push the position into a valid AAS area.  Returns the new position.</td></tr>
+<tr><td class="nobr">getTurnRate</td><td>Returns "turn_rate"</td></tr>
+<tr><td class="nobr">setTurnRate [rate]</td><td>Sets "turn_rate"</td></tr>
+<tr><td class="nobr">animTurn [maxAngle]</td><td>Enable or disable animation controlled turning.  Pass in the maximum degrees the animation turns, or 0 to disable.</td></tr>
+<tr><td class="nobr">allowHiddenMovement [flag]</td><td>Pass true to run physics even when the actor is hidden.</td></tr>
+<tr><td class="nobr">findActorsInBounds [mins], [maxs]</td><td>Returns an actor inside the specified bounds.</td></tr>
+<tr><td class="nobr">canReachPosition [pos]</td><td>Returns true if it is possible for the actor to move to the specified position.</td></tr>
+<tr><td class="nobr">canReachEntity [entity]</td><td>Returns true if it is possible for the actor to move to the specified entity.</td></tr>
+<tr><td class="nobr">canReachEnemy</td><td>Returns true if it is possible for the actor to move to his enemy.</td></tr>
+<tr><td class="nobr">getReachableEntityPosition [entity]</td><td>Return the position of the entity within the AAS if possible or just the position otherwise.</td></tr>
+</tbody></table>
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

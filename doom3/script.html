@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0041)https://www.iddevnet.com/doom3/script.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Scripts]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Scripts</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+Scripts are about as close to programming Doom 3 as you can possibly get
+without having to purchase Visual C++.  The language is similar to C++,
+but is arguably a bit easier to learn and use.
+
+</p><p>
+There are three major components in Doom 3 that are controlled by scripts:
+</p><ul>
+<li><a href="script_map.html">Map Stuff</a>
+</li><li><a href="script_weapon.html">Weapons</a>
+</li><li><a href="script_ai.html">AI (Monsters)</a>
+</li></ul>
+
+I listed them there roughly in order of difficulty.  The map scripts are
+trivial to write and understand, the weapon scripts are fairly easy, and
+the AI scripts are a considerably more complex.
+
+<p>
+The scritping system is based around the idea of objects and events.
+
+</p><p>Objects are referenced with $name where "name" is the name of the object in DOOMEdit.
+
+</p><p>Events look like C++ member function calls, and you can really think of them
+that way.  To send the 'hide' event to speaker_280, you'd write <samp>$speaker_280.hide();</samp>
+
+</p><p>
+There is a special object known as 'sys' which is where all the system calls (like print)
+hide.  All the events (including system calls) can all be found in "doom_events.script"
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0039)https://www.iddevnet.com/doom3/guis.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [GUIs]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : GUIs</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+After working with the Doom 3 GUIs a while you will both love and hate them.
+GUI of course stands for Graphical User Interface.  The GUI system is used for every
+single menu in the game, as well as the HUD, and random control panels you see placed
+around the levels.  The system in Doom 3 is pretty simple in that there aren't very
+many commands, but the ones that are there are very powerful.
+</p><p>
+The whole system is based around nested windows and events (like javascript).  There
+is one top level window called 'Desktop', then one or more windows that are 'children'
+of the desktop, then zero or more windows that are children of the children, etc...
+</p><p>
+Here's an example of a very simple GUI that could be used as a display on a computer
+screen or something (since it's not really interactive):
+</p><pre class="code">windowDef Desktop {
+    rect      0, 0, 640, 480
+    backcolor 0, 0, 0, 1
+
+    windowDef Text1 {
+        rect        35, 50, 285, 200 
+        backcolor   0.5, 0.6, 0.6, 0.3
+        bordercolor 0.5, 0.6, 0.6, 1
+        bordersize  1
+        text        "This is some Text!"
+        font        "fonts/bank"
+        textscale   0.5
+        textalign   1
+        shadow      1
+        forecolor   0.7, 0.7, 0.4, 1
+        visible     1
+
+        windowDef Text2 {
+            rect        5, 80, 275, 20 
+            backcolor   0.0, 0.0, 0.0, 0.3
+            bordercolor 1, 1, 1, 1
+            bordersize  1
+            text        "This is more Text!"
+            font        "fonts/bank"
+            textscale   0.5
+            textalign   1
+            textaligny  -13
+            forecolor   0.4, 0.7, 0.7, 1
+            visible     1
+        }
+    }
+
+    windowDef Text3 {
+        rect        350, 400, 285, 200 
+        text        "Amazing"
+        textalign   1
+    }
+}
+</pre>
+
+<p>
+To see what this looks like, paste the above code in to a file called "mygui.gui" in the
+"guis" subdirectory of your mod, then type, "testGUI guis/mygui.gui" in the console.  If
+you want to change something and see the results, you don't have to exit the game.  You
+can just type, "reloadGuis" in the console, and the change should show up immediately.
+For more advanced guis, you may have to hit escape and use "testGui" again after using
+"reloadGuis".
+
+</p><div class="subsection">Events and Scripts</div>
+
+<p>
+Now let's go ahead and make it a bit more interesting.  Change the definition for Text3
+to this:
+</p><pre class="code">windowDef Text3 {
+    rect        350, 400, 285, 200
+    text        "Amazing"
+    textalign   1
+
+    onTime 0 {
+        transition rect "350, 400, 285, 200" "350, 300, 285, 200" "2000" ;
+        transition forecolor "1 1 1 1" "1 0 0 1" "1000" ;
+    }
+    onTime 1000 {
+        transition forecolor "1 0 0 1" "0 0 1 1" "1000" ;
+    }
+    onTime 2000 {
+        transition rect "350, 300, 285, 200" "350, 400, 285, 200" "2000" ;
+        transition forecolor "0 0 1 1" "1 1 0 1" "1000" ;
+    }
+    onTime 3000 {
+        transition forecolor "1 1 0 1" "1 1 1 1" "1000" ;
+    }
+    onTime 4000 {
+        resetTime 0 ;
+    }
+}
+</pre>
+
+<p>
+Amazing indeed.  This simple change makes the amazing text bounce up and down while changing colors.
+
+</p><p>
+This code basically says:<br>
+</p><ul>
+<li>At time 0:  Start a transition of the rectangle from "350, 400, 285, 200"
+to "350, 300, 285, 200" over 2 seconds, and start transitioning the foreground color
+from white to red over 1 second.
+</li><li>At time 1000 (1 second): Transition from red to blue over 1 second.
+</li><li>At time 2000 (2 seconds): Transition the rectangle back down over 2 seconds, and transition the color
+from blue to yellow.
+</li><li>At 3 seconds: Trasition from yellow back to white over 1 second.
+</li><li>At 4 seconds, start all over again.
+</li></ul>
+
+<p>
+The built in timer and the transition commands are very powerful tools.  It should
+be noted that each window keeps it's own timer, so 'resetTime 0' only resets the time for the current
+window.  If we wanted to reset the time for another window, we could say "resetTime Text1 0" and if we
+wanted to transition properties of a different window, we would say "transition Text1::foreground ..."
+
+</p><p>
+The other thing to note is  <u><b>a semicolon is required at the end of every line inside a script block.</b></u>
+We will learn about script blocks in a second, but anything that starts with "on" is probably a script block.
+
+</p><div class="subsection">Interaction</div>
+
+<p>
+Our gui is currently very fascinating to look at, but we can't do anything with it... yet.
+
+</p><p>
+There is a small issue witth the 'testGUI' command.  You'll notice you don't have a cursor when you testGUI,
+but if you apply this gui to a surface in game, the cursor will appear.  This is because world guis are
+handled a bit differently than menu guis.  For testing purposes, we're going to turn our world gui into
+a menu gui so we can use the cursor with the 'testGUI' command.  Set 'menugui 1' in the desktop window,
+and you will see your cursor when you testGUI (side note: to turn off the cursor for world guis, set
+'nocursor 1').
+
+</p><p>
+Even though you can move your cursor around, you still can't click stuff.  Why don't we go ahead fix that now.
+Add "notime 1" to Text3, and replace "onTime 4000" with this:
+</p><pre class="code">onTime 4000 {
+    set notime 1 ;
+}
+onAction {
+    set notime 0 ;
+    resetTime 0 ;
+}
+</pre>
+
+<p>
+Assuming all went well, the amazing text should do it's little dance every time you click it.  Amazing.
+
+</p><p>
+If typing text really isn't your thing, there <b>is</b> a gui editor.  Type '<a href="editor_gui.html">editGuis</a>' at the console to
+launch it.  A word of warning: It tends to crash. a lot. And it doesn't handle very complex guis with a
+lot of transitions too well (it only shows the windows in their initial states).  I use it to lay out a
+basic idea of what I want, then go in to the .gui file to fix it up and add scripts.
+
+</p><div class="subsection">GUI reference</div>
+
+<p>
+<b>Window Types</b>
+</p><table class="datatable" width="100%">
+<tbody><tr><td>windowDef</td><td>Standard window</td>
+</tr><tr><td>animationDef</td><td>Non-visible window.  Not really used in Doom 3, so it may not work</td>
+</tr><tr><td>editDef</td><td>A window that the user can type text in (the 'Server Name' box)</td>
+</tr><tr><td>choiceDef</td><td>A window that allows the user to toggle between a few different choices.  The yes/no windows are choice defs, as is the game type window in the create server menu</td>
+</tr><tr><td>sliderDef</td><td>A window similar to a scroll bar.  The volume control is a slider def, as are the scroll bars in multi-line edit windows and list windows</td>
+</tr><tr><td>bindDef</td><td>A window that allows the user to bind a key to a command</td>
+</tr><tr><td>listDef</td><td>A window that displays a list of items, needs code to work right</td>
+</tr><tr><td>markerDef</td><td>Not used in Doom 3, probably doesn't work</td>
+</tr><tr><td>fieldDef</td><td>Not used in Doom 3, probably doesn't work</td>
+</tr><tr><td>renderDef</td><td>A window that displays a rendered 3d scene</td>
+</tr></tbody></table>
+
+<p>
+<b>Event handlers</b>
+</p><table class="datatable" width="100%">
+<tbody><tr><td>onTime &lt;time&gt;</td><td>Runs the event at T+&lt;time&gt; milliseconds.  The timeline is not static, and can be reset with the 'resetTime' command</td>
+</tr><tr><td>onNamedEvent &lt;event&gt;</td><td>Allows the code to trigger custom events.  The 'overwrite save game' window is implemented with a named event</td>
+</tr><tr><td>onAction</td><td>Runs the event when the user does something with the window.  For most windows, this means 'left mouse button down', but it is also fired when the text changes in an editDef or the choice changes in a choiceDef</td>
+</tr><tr><td>onActionRelease</td><td>Runs the event when the action is finished.  For most windows, this means 'left mouse button up', but the editDef and choiceDef behave oddly</td>
+</tr><tr><td>onMouseEnter</td><td>Runs the event when the mouse enters the window rectangle.  Note this event is NOT RELIABLE because of issues with z-ordering and fast mice</td>
+</tr><tr><td>onMouseExit</td><td>Runs the event when the mouse exits the window rectangle.  Note this event is also NOT RELIABLE.  It is very possible to get a mouse enter, but no mouse exit message</td>
+</tr><tr><td>onActivate</td><td>Runs the event when the gui is first activated (for world guis, when the user first puts his cursor over the gui).  This should be put in the desktop window</td>
+</tr><tr><td>onDeactivate</td><td>Runs the event when the guis is deactivated (opposite of onActivate)</td>
+</tr><tr><td>onEsc</td><td>Runs this event when the user presses the escape button on his keyboard</td>
+</tr><tr><td>onEvent</td><td>Runs this event every frame.  The scripts in here should be very small because.. well.. they are run every frame.  Internally this is called onFrame, but we had to leave it as onEvent so as to not break existing guis</td>
+</tr><tr><td>onTrigger</td><td>Runs this event when the entity it is attached to is triggered.  Should be put in the desktop window</td>
+</tr><tr><td>onEnter</td><td>Runs this event when the user presses enter in a listDef or editDef (also called when the user double-clicks a listdef)</td>
+</tr><tr><td>onEnterRelease</td><td>Runs this event when the user lets go of the enter key.  listDef does not use this event</td>
+</tr></tbody></table>
+
+<p>
+<b>Script commands</b>
+</p><table class="datatable" width="100%">
+<tbody><tr><td>set [window::]&lt;variable&gt; &lt;value&gt;</td><td>Sets some variable to some value</td>
+</tr><tr><td>setFocus &lt;window&gt;</td><td>Sets the focus to some window</td>
+</tr><tr><td>endGame</td><td>Ends the game (sets g_nightmare to true and calls disconnect)</td>
+</tr><tr><td>resetTime [window] [time]</td><td>Resets the timeline for some window to some time.  If you specify window, you have to specify time.  If you don't specify anything, it resets the current window to time 0</td>
+</tr><tr><td>showCursor &lt;bool&gt;</td><td>Shows or hides the cursor</td>
+</tr><tr><td>resetCinematics</td><td>Resets the cinematics playing in the window to frame 0</td>
+</tr><tr><td>transition [window::]&lt;variable&gt; &lt;from&gt; &lt;to&gt; &lt;time&gt; [ &lt;accel&gt; &lt;decel&gt; ]</td><td>Linearly interpolates a variable from one value to another over time (in milliseconds).  accel and decel are values &lt; 1 that specify a fraction of the time spent accelerating or decelerating (defaults to 0).  If accel + decel &gt; 1 it normalizes them.</td>
+</tr><tr><td>localSound &lt;sound&gt;</td><td>Plays a sound</td>
+</tr><tr><td>runScript &lt;function&gt;</td><td>Runs the specified function in the game script</td>
+</tr><tr><td>evalRegs</td><td>Re-eveluates window registers (variables).  Should not be needed anymore</td>
+</tr></tbody></table>
+
+<p>
+<b>Window registers</b><br>
+These can be changed at run time with the set command (or transition for vecs and floats)
+</p><table class="datatable" width="100%">
+<tbody><tr><th>Variable</th><th>Type</th><th>Default</th><th></th>
+</tr><tr><td>rect</td><td>rect (vec4)</td><td>0, 0, 0, 0</td><td>x, y, width, height dimensions of the window.  x, y relative to parent</td>
+</tr><tr><td>visible</td><td>bool</td><td>true</td><td>Show or hide the window</td>
+</tr><tr><td>noevents</td><td>bool</td><td>false</td><td>Disable all events for the window</td>
+</tr><tr><td>forecolor</td><td>color (vec4)</td><td>1, 1, 1, 1</td><td>Text color</td>
+</tr><tr><td>hovercolor</td><td>color (vec4)</td><td>1, 1, 1, 1</td><td>Text color when the cursor is over it</td>
+</tr><tr><td>backcolor</td><td>color (vec4)</td><td>0, 0, 0, 0</td><td>Solid background color</td>
+</tr><tr><td>bordercolor</td><td>color (vec4)</td><td>0, 0, 0, 0</td><td>Border color</td>
+</tr><tr><td>matcolor</td><td>color (vec4)</td><td>1, 1, 1, 1</td><td>Color of the background material</td>
+</tr><tr><td>scale</td><td>vec2</td><td></td><td>Unused</td>
+</tr><tr><td>translate</td><td>vec2</td><td></td><td>Unused</td>
+</tr><tr><td>rotate</td><td>float</td><td>0</td><td>Rotate everything in the window some degrees</td>
+</tr><tr><td>textscale</td><td>float</td><td>1</td><td>Uniformly scale the size of the text</td>
+</tr><tr><td>text</td><td>string</td><td></td><td>Text to display in the window</td>
+</tr><tr><td>background</td><td>string</td><td></td><td>Background material to use</td>
+</tr><tr><td>varbackground</td><td>string</td><td></td><td>Unused</td>
+</tr><tr><td>runscript</td><td>string</td><td></td><td>Unused</td>
+</tr><tr><td>cvar</td><td>string</td><td></td><td>See: editDef</td>
+</tr><tr><td>choices</td><td>string</td><td></td><td>See: choiceDef</td>
+</tr><tr><td>choiceVar</td><td>string</td><td></td><td>See: choiceDef</td>
+</tr><tr><td>bind</td><td>string</td><td></td><td>See: bindDef</td>
+</tr><tr><td>modelRotate</td><td>vec4</td><td></td><td>See: renderDef</td>
+</tr><tr><td>modelOrigin</td><td>vec4</td><td></td><td>See: renderDef</td>
+</tr><tr><td>lightOrigin</td><td>vec4</td><td></td><td>See: renderDef</td>
+</tr><tr><td>lightColor</td><td>vec4</td><td></td><td>See: renderDef</td>
+</tr><tr><td>viewOffset</td><td>vec4</td><td></td><td>See: renderDef</td>
+</tr></tbody></table>
+
+<p>
+Additional user variables may be defined with the 'definevec4', 'definefloat', and 'float' commands.  Note you
+<b>cannot</b> set the initial value for the variable (it will always be 0).  There are guis in Doom 3 that specify
+an initial value, but it is ignored.  Example:
+</p><pre class="code">windowDef Desktop {
+    rect      0, 0, 640, 480
+    backcolor 0, 0, 0, 1
+    float     myfloat
+    definefloat myotherfloat
+    definevec4  myvec4
+}
+</pre>
+
+<p>
+<b>Window variables</b><br>
+These can be changed in the file, but cannot be changed at run time<br>
+</p><table class="datatable" width="100%">
+<tbody><tr><th>Variable</th><th>Type</th><th>Default</th><th></th>
+</tr><tr><td>showtime</td><td>bool</td><td>false</td><td>Displays the window time (debug)</td>
+</tr><tr><td>showcoords</td><td>bool</td><td>false</td><td>Displays the window coordinates (debug)</td>
+</tr><tr><td>forceaspectwidth</td><td>float</td><td>640</td><td>Force a specific draw surface width (use on desktop window)</td>
+</tr><tr><td>forceaspectheight</td><td>float</td><td>480</td><td>Force a specific draw surface height (use on desktop window)</td>
+</tr><tr><td>matscalex</td><td>float</td><td>1</td><td>Scales the background material in the x direction</td>
+</tr><tr><td>matscaley</td><td>float</td><td>1</td><td>Scales the background material in the y direction</td>
+</tr><tr><td>bordersize</td><td>float</td><td>0</td><td>Sets the size of the border, note you must set this to something other than 0 for borderColor to do anything</td>
+</tr><tr><td>nowrap</td><td>bool</td><td>false</td><td>Don't wrap text that can't fit in the rectangle</td>
+</tr><tr><td>shadow</td><td>bool</td><td>false</td><td>Use a black drop-shadow when drawing the text</td>
+</tr><tr><td>textalign</td><td>int</td><td>0</td><td>Specify the text alginment (0=left; 1=center; 2=right)</td>
+</tr><tr><td>textalignx</td><td>float</td><td>0</td><td>Offset the x value of the text relative to the window</td>
+</tr><tr><td>textaligny</td><td>float</td><td>0</td><td>Offset the y value of the text relative to the window</td>
+</tr><tr><td>shear</td><td>vec2</td><td>0, 0</td><td>"shear" the rectangle, which turns it into a parallelogram.  Range is 0 to 1</td>
+</tr><tr><td>wantenter</td><td>bool</td><td>false</td><td>Sends onAction to the window when the user presses enter</td>
+</tr><tr><td>naturalmatscale</td><td>bool</td><td>false</td><td>Uses the real size of the background material</td>
+</tr><tr><td>noclip</td><td>bool</td><td>false</td><td>Don't clip draw operations that lie outside the window rectangle</td>
+</tr><tr><td>nocursor</td><td>bool</td><td>false</td><td>Hide the cursor (use on desktop window)</td>
+</tr><tr><td>menugui</td><td>bool</td><td>false</td><td>This gui is full screen (use on desktop window)</td>
+</tr><tr><td>modal</td><td>bool</td><td>false</td><td>This window eats events if active, used for pop-up boxes</td>
+</tr><tr><td>invertrect</td><td>bool</td><td>false</td><td>This window is upside-down</td>
+</tr><tr><td>name</td><td>string</td><td>&lt;name&gt;</td><td>Set the window name, this overrides the name specified before the open curly brace</td>
+</tr><tr><td>play</td><td>string</td><td></td><td>Prints a warning message telling you not to use it</td>
+</tr><tr><td>comment</td><td>string</td><td></td><td>Free form comment area</td>
+</tr><tr><td>font</td><td>string</td><td></td><td>Sets the font.  Choices are "fonts/micro" "fonts/bank" or "fonts/an"</td>
+</tr></tbody></table>
+
+<p>
+<b>Window variables (editDef)</b><br>
+</p><table class="datatable" width="100%">
+<tbody><tr><th>Variable</th><th>Type</th><th>Default</th><th></th>
+</tr><tr><td>maxchars</td><td>int</td><td>128</td><td>Maximum number of characters that can be typed</td>
+</tr><tr><td>numeric</td><td>bool</td><td>false</td><td>This control only accepts numbers</td>
+</tr><tr><td>wrap</td><td>bool</td><td>false</td><td>Text larger than the width of the control is wrapped, and a scroll bar (slider) is created if the text goes beyond the height</td>
+</tr><tr><td>readonly</td><td>bool</td><td>false</td><td>Text cannot be edited</td>
+</tr><tr><td>forceScroll</td><td>bool</td><td>false</td><td>The control is forced to scroll to the bottom</td>
+</tr><tr><td>source</td><td>string</td><td></td><td>File to read the initial text from</td>
+</tr><tr><td>password</td><td>bool</td><td>false</td><td>The control displays asterisks (***) rather than the text</td>
+</tr><tr><td>cvar</td><td>string</td><td></td><td>The cvar to attach to.  It displays the value of the cvar, and changes the cvar when the user changes the text</td>
+</tr><tr><td>liveUpdate</td><td>bool</td><td>true</td><td>If set, the cvar is changed as the text is changed, and the text changes as the cvar changes.  Otherwise only changes when "cvar read" or "cvar write" is sent</td>
+</tr><tr><td>cvarGroup</td><td>string</td><td></td><td>Cvar group this item belongs to.  This makes it possible to update all the cvars of a group with a cvar read/write command.  For example, "cvar read audio" would update all controls with the cvarGroup set to audio</td>
+</tr></tbody></table>
+
+<p>
+<b>Window variables (choiceDef)</b><br>
+</p><table class="datatable" width="100%">
+<tbody><tr><th>Variable</th><th>Type</th><th>Default</th><th></th>
+</tr><tr><td>choicetype</td><td>int</td><td>0</td><td>0=The cvar contains a 0 based index, 1=The cvar contains a value string</td>
+</tr><tr><td>currentchoice</td><td>int</td><td>0</td><td>The currently selected choice</td>
+</tr><tr><td>choices</td><td>string</td><td></td><td>Semicolon seperated list of choices (Yes;No)</td>
+</tr><tr><td>values</td><td>string</td><td>&lt;choices&gt;</td><td>Semicolon seperated list of values (should have the same number of items as 'choices')</td>
+</tr><tr><td>gui</td><td>string</td><td></td><td>GUI parm to attach to, will contain the currentchoice as a numeric</td>
+</tr><tr><td>cvar</td><td>string</td><td></td><td>See: editDef</td>
+</tr><tr><td>liveUpdate</td><td>bool</td><td>true</td><td>See: editDef</td>
+</tr><tr><td>cvarGroup</td><td>string</td><td></td><td>See: editDef</td>
+</tr></tbody></table>
+
+<p>
+<b>Window variables (sliderDef)</b><br>
+</p><table class="datatable" width="100%">
+<tbody><tr><th>Variable</th><th>Type</th><th>Default</th><th></th>
+</tr><tr><td>low</td><td>float</td><td>0</td><td>The minimum value</td>
+</tr><tr><td>high</td><td>float</td><td>100</td><td>The maximum value</td>
+</tr><tr><td>stepsize<br>step</td><td>float</td><td>1</td><td>The amount to change when the arrow keys are used</td>
+</tr><tr><td>vertical</td><td>bool</td><td>false</td><td>The slider goes up and down</td>
+</tr><tr><td>scrollbar</td><td>bool</td><td>false</td><td>This slider is used as a scroll bar</td>
+</tr><tr><td>thumbshader</td><td>string</td><td></td><td>Material to use for the "thumb" (the part that moves)</td>
+</tr><tr><td>cvar</td><td>string</td><td></td><td>See: editDef</td>
+</tr><tr><td>liveUpdate</td><td>bool</td><td>true</td><td>See: editDef</td>
+</tr><tr><td>cvarGroup</td><td>string</td><td></td><td>See: editDef</td>
+</tr></tbody></table>
+
+<p>
+<b>Window variables (bindDef)</b><br>
+</p><table class="datatable" width="100%">
+<tbody><tr><th>Variable</th><th>Type</th><th>Default</th><th></th>
+</tr><tr><td>bind</td><td>string</td><td></td><td>Command to bind to</td>
+</tr></tbody></table>
+
+<p>
+<b>Window variables (listDef)</b><br>
+</p><table class="datatable" width="100%">
+<tbody><tr><th>Variable</th><th>Type</th><th>Default</th><th></th>
+</tr><tr><td>horizontal</td><td>bool</td><td>false</td><td>This list goes left-to-right (untested)</td>
+</tr><tr><td>listname</td><td>string</td><td></td><td>The name of the list.  The code uses this to populate the list with items</td>
+</tr><tr><td>tabstops</td><td>string</td><td></td><td>Comma seperated list of pixel offsets for a multi-column list</td>
+</tr><tr><td>tabaligns</td><td>string</td><td></td><td>Comma seperated list of 'textalign's for each column</td>
+</tr><tr><td>multipleSel</td><td>bool</td><td>false</td><td>Multiple items can be selected (requires code support)</td>
+</tr></tbody></table>
+
+<p>
+<b>Window variables (renderDef)</b><br>
+</p><table class="datatable" width="100%">
+<tbody><tr><th>Variable</th><th>Type</th><th>Default</th><th></th>
+</tr><tr><td>model</td><td>string</td><td></td><td>Model (file, not def) to render</td>
+</tr><tr><td>anim</td><td>string</td><td></td><td>Animation to play</td>
+</tr><tr><td>animClass</td><td>string</td><td></td><td>entityDef to grab the animation from</td>
+</tr><tr><td>lightOrigin</td><td>vec4</td><td><nobr>-128,0,0,1</nobr></td><td>Position of the light</td>
+</tr><tr><td>lightColor</td><td>color (vec4)</td><td>1,1,1,1</td><td>Color of the light</td>
+</tr><tr><td>modelOrigin</td><td>vec4</td><td>0,0,0,0</td><td>Position of the model</td>
+</tr><tr><td>modelRotate</td><td>vec4</td><td>0,0,0,0</td><td>x,y,z rotation</td>
+</tr><tr><td>viewOffset</td><td>vec4</td><td><nobr>-128,0,0,1</nobr></td><td>Position of the camera</td>
+</tr><tr><td>needsRender</td><td>bool</td><td>true</td><td>Dirty flag, set it to true if something changes so the scene is rendered again</td>
+</tr></tbody></table>
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

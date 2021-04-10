@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0041)https://www.iddevnet.com/doom3/models.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Models]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Models</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+<b>A model decl defines an animated model</b> in the game.  <b>Static models don't need decls</b>,
+they can be specified by the actual file name. Anything that animates does need a decl.
+
+</p><p>
+All a model decl does is tie a mesh to an set of animations.  Therefore if a model doesn't have
+animations, it doesn't need a model decl.
+
+</p><p>
+The number of commands that can be in a model definition is quite small, here's a full list:
+</p><table class="datatable">
+<tbody><tr><th>Command</th><th>Description</th>
+</tr><tr><td class="nobr">inherit &lt;model&gt;</td><td>Copies everything from another model definition</td>
+</tr><tr><td class="nobr">skin &lt;skin&gt;</td><td>Specify the <a href="skins.html">skin</a> to use</td>
+</tr><tr><td class="nobr">mesh &lt;file&gt;</td><td>Specify the mesh file to use (.md5mesh)</td>
+</tr><tr><td class="nobr">remove &lt;anim&gt;</td><td>Remove an animation from the definition.  Used to get rid of unwanted animations that were inherited with the 'inherit' command.</td>
+</tr><tr><td class="nobr">anim &lt;name&gt; &lt;file&gt; [ { ... } ]</td><td>An animation definiton (described below)</td>
+</tr><tr><td class="nobr">offset &lt;x, y, z&gt;</td><td>Offset the model from the origin</td>
+</tr><tr><td class="nobr">channel &lt;name&gt; ( &lt;joints&gt; )</td><td>Set up an animation channel.</td>
+</tr></tbody></table>
+
+<p>
+
+The channel command allows animations to play only on certain joints.  For example, you can have a walking
+animation playing on the legs, a yo-yo animation playing on the torso, and a chewing bubble gum animation
+playing on the head.
+
+</p><p>
+Let's take a look at a shortened version of our good friend, the cyberdemon:
+</p><pre class="code">model monster_boss_cyberdemon
+{
+    mesh          models/md5/monsters/cyberdemon/cyberdemon.md5mesh
+    channel torso ( *Waist )
+    channel legs  ( *Hips Body origin ROT -*Waist)
+
+    anim af_pose  models/md5/monsters/cyberdemon/af_pose.md5anim
+    anim ik_pose  models/md5/monsters/cyberdemon/ik_pose.md5anim
+
+    anim stand    models/md5/monsters/cyberdemon/idle.md5anim
+    anim idle     models/md5/monsters/cyberdemon/idle.md5anim
+    anim sight1   models/md5/monsters/cyberdemon/sight.md5anim {
+        frame 16.5  sound_voice    snd_sight1
+    }
+    anim walk     models/md5/monsters/cyberdemon/walk3.md5anim {
+        frame 17    sound_body snd_footstep
+        frame 17    triggerSmokeParticle cyber_rfoot_dust
+        frame 37    sound_body snd_footstep
+        frame 37    triggerSmokeParticle cyber_lfoot_dust
+    }
+    anim pain     models/md5/monsters/cyberdemon/pain_big1.md5anim {
+        frame 1    call overrideLegs
+        frame 1    sound_voice snd_pain
+        frame 16   sound_body  snd_footstep
+        frame 49   sound_body  snd_footstep
+    }
+}
+</pre>
+<p>
+
+You'll notice the mesh and the animations are defined in seperate files and
+glued together with this decl.  That means you can use the same animation file
+with multiple meshes (really handy).  You can also reference the same animation
+file multiple times in the same model (for example, notice the 'idle' animation
+and the 'stand' animation both use 'cyberdemon/idle.md5anim').
+
+</p><p>
+Apart from tying animations to meshes, this decl type allows us to specify events that
+happen on certain frames.  This makes it trivial to sync sounds and special effects
+to things like footsteps, weapons fire, etc.
+
+</p><p>
+In this example, the 'snd_sight1' sound is played on the voice channel at frame 16.5
+of the 'sight1' animation.  snd_footstep is played on the body channel at frames 16 and
+49 of the 'pain' animation.
+
+</p><p>
+Here's a chart that lists all the available frame commands:<br>
+</p><table class="datatable">
+<tbody><tr><th>Command</th><th>Description</th>
+</tr><tr><td class="nobr">call &lt;function&gt;</td><td>Calls the specified script function</td>
+</tr><tr><td class="nobr">object_call &lt;function&gt;</td><td>Calls the specified script function on the entity</td>
+</tr><tr><td class="nobr">event &lt;event&gt; [args...]</td><td>Sends the specified event to the entity</td>
+</tr><tr><td class="nobr">sound &lt;snd&gt;</td><td>Plays the specified sound on any available channel</td>
+</tr><tr><td class="nobr">sound_voice &lt;snd&gt;</td>
+<td rowspan="9">
+Plays the specified sound on the specified channel. If a sound is being played
+on the body channel, and another sound is requested to play, then the first
+sound is halted.  Since the footstep sounds are all defined to be on the body
+channel, there will never be 2 footstop sounds played twice on the same entity
+at the same time.
+</td>
+</tr><tr><td class="nobr">sound_voice2 &lt;snd&gt;</td>
+</tr><tr><td class="nobr">sound_body &lt;snd&gt;</td>
+</tr><tr><td class="nobr">sound_body2 &lt;snd&gt;</td>
+</tr><tr><td class="nobr">sound_body3 &lt;snd&gt;</td>
+</tr><tr><td class="nobr">sound_weapon &lt;snd&gt;</td>
+</tr><tr><td class="nobr">sound_global &lt;snd&gt;</td>
+</tr><tr><td class="nobr">sound_item &lt;snd&gt;</td>
+</tr><tr><td class="nobr">sound_chatter &lt;snd&gt;</td>
+</tr><tr><td class="nobr">skin &lt;skin&gt;</td><td>Changes the model's skin to &lt;skin&gt;</td>
+</tr><tr><td class="nobr">fx &lt;fx&gt;</td><td>Triggers an effect defined by the decl &lt;fx&gt;</td>
+</tr><tr><td class="nobr">trigger &lt;name&gt;</td><td>Triggers the level trigger named &lt;name&gt;</td>
+</tr><tr><td class="nobr">recordDemo &lt;name&gt;</td><td>Starts recording a demo named &lt;name&gt; or stops recording if blank</td>
+</tr><tr><td class="nobr">aviGame &lt;name&gt;</td><td>Starts an aviGame named &lt;name&gt;  Useful for making animations to be used on video screens (such as all the talking head videos in Doom 3)</td>
+</tr></tbody></table>
+
+<p>
+There are some frame commands that are just shortcuts to various built in events:<br>
+</p><table class="datatable" style="float: left">
+<tbody><tr><th>Command</th><th>Shortcut for</th>
+</tr><tr><td class="nobr">triggerSmokeParticle ...</td><td>event triggerParticles ...</td>
+</tr><tr><td class="nobr">melee ...</td><td>event attackMelee ...</td>
+</tr><tr><td class="nobr">direct_damage ...</td><td>event directDamage ...</td>
+</tr><tr><td class="nobr">attack_begin ...</td><td>event attackBegin ...</td>
+</tr><tr><td class="nobr">attack_end</td><td>event attackEnd</td>
+</tr><tr><td class="nobr">muzzle_flash ...</td><td>event muzzleFlash ...</td>
+</tr><tr><td class="nobr">create_missile ...</td><td>event createMissile ...</td>
+</tr><tr><td class="nobr">launch_missile ...</td><td>event launchMissile ...</td>
+</tr><tr><td class="nobr">fire_missile_at_target ...</td><td>event fireMissileAtTarget ...</td>
+</tr><tr><td class="nobr">footstep</td><td>event footstep</td>
+</tr><tr><td class="nobr">leftfoot</td><td>event leftfoot</td>
+</tr><tr><td class="nobr">rightfoot</td><td>event rightfoot</td>
+</tr></tbody></table>
+<table class="datatable">
+<tbody><tr><th>Command</th><th>Shortcut for</th>
+</tr><tr><td>jump</td><td>event jump</td>
+</tr><tr><td>enableEyeFocus</td><td>event enableEyeFocus</td>
+</tr><tr><td>disableEyeFocus</td><td>event disableEyeFocus</td>
+</tr><tr><td>disableGravity</td><td>event disableGravity</td>
+</tr><tr><td>enableGravity</td><td>event enableGravity</td>
+</tr><tr><td>enableClip</td><td>event enableClip</td>
+</tr><tr><td>disableClip</td><td>event disableClip</td>
+</tr><tr><td>enableWalkIK</td><td>event enableWalkIK</td>
+</tr><tr><td>disableWalkIK</td><td>event disableWalkIK</td>
+</tr><tr><td>enableLegIK</td><td>event enableLegIK</td>
+</tr><tr><td>disableLegIK</td><td>event disableLegIK</td>
+</tr></tbody></table>
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

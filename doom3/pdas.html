@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0039)https://www.iddevnet.com/doom3/pdas.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [PDAs]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : PDAs</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+PDA decls are probably the easiest decl to understand because they are so simple.
+There is an editor for PDAs (<a href="editor_pda.html">editPDAs</a>) not because they are
+hard, but because they are tedious (especially when you are making 100 of them).
+
+</p><p>
+A PDA is actually made up of multiple decls.  There is the PDA itself, then there
+are the emails that go in the PDA, the Audio Logs, and the Videos.  Note in vanilla
+Doom 3, the 'Personal' PDA is the only PDA that can contain videos, but it cannot
+contain any Audio Logs.  If there is a video in a non-personal PDA, it gets copied
+to the Personal PDA when it is picked up.  Doom 3 actually defines 'Personal PDA'
+to mean whichever PDA is picked up first, so it's up to the level designer to make
+sure the actual personal PDA is picked up before any others.
+
+</p><p>
+Let's take a look at the PDA for James Holiday:
+</p><pre class="code">pda commoutside_holiday {
+    name         "James Holiday"
+    fullname     "James A. Holiday"
+    icon         "guis/assets/pda/icon_jholiday"
+    id           "7085-64"
+    post         "Communications Transfer"
+    title        "Transport Controller"
+    security     "COMM Transfer Access"
+    pda_email    "commoutside_holiday_email_1"
+    pda_email    "commoutside_holiday_email_2"
+    pda_audio    "commoutside_holiday_audio_1"
+}
+</pre>
+
+<p>
+Pretty simple to figure out I hope.  The icon is not actually used in Doom 3, but
+we were going to use it at one time.  Everything in there is for display
+purpose only, which means if you change the 'security' key, it doesn't actually
+change your security clearance (it only changes what it <b>says</b> your security
+clearance is).  Actual security clearance is defined by the presence or abscense of
+various items in your inventory.
+
+</p><p>
+let's take a look at an email:
+</p><pre class="code">email commoutside_holiday_email_2 {
+    date    "11-15-2145"
+    to      "James Holiday"
+    from    "Shipping Authority"
+    subject "Site 1 needs"
+    text {
+        "Blah blah, this is an email.\n\n"
+        "Blah blah, this is line 2\n\n"
+        "-Shipping Authority"
+    }
+}
+</pre>
+
+<p>
+The format for the email is pretty self explanitory.  The biggest 'gotcha'
+(and the biggest reason to use the editor) is every line has to be in quotes, and you
+have to use \n to create new lines.  That has been the biggest reason for PDAs to break
+during Doom 3 development.
+
+</p><p>
+Now let's look at the audio log:
+</p><pre class="code">audio commoutside_holiday_audio_1 {
+    name    "Artifact Transport Concerns"
+    info    "Made by: James Holiday\nDate: 09-24-2145\nArchive: Yes"
+    preview "sound/vo/video/novideo"
+    audio   "audiolog_commoutside_holiday_1"
+}
+</pre>
+
+<p>
+Again, pretty self explanitory.  The info and preview didn't end up getting used in the final
+build of the game, but at one time the gui showed little icons and info beside each audio log.
+Now all you really need is 'name' and 'audio'
+
+</p><p>
+Next, let's take a look at the first video you get when you pick up your PDA:
+</p><pre class="code">video marine_sop {
+    name    "Marine Command Briefing"
+    info    "Creator: Marine HQ\nDate: 03/11/45\n\nOperating Procedures\n"
+    video   "video/video_marine_sops"
+    audio   "video_marine_sops"
+    preview "guis/assets/cpuserver/uac.tga"
+}
+</pre>
+
+<p>
+Again, info is just used for display.  Preview is the image shown in the box before you hit 'play'.
+Video is the material to use after you hit play (technically it can be any material, but a material
+with a roq in it makes the most sense).  Audio is the sound to play in sync with the video.
+
+</p><p>
+Videos can be attached to video discs by setting the 'video' key on an 'item_videocd' entity.
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

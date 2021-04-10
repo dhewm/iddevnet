@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0048)https://www.iddevnet.com/doom3/script_weapon.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Weapon Scripts]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Weapon Scripts</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+Weapon scripts can do everything that map scripts can, they just don't have as many objects
+to fondle.
+
+<p>
+The most confusing thing about a weapon script is probably the fact that it's
+an object of type idWeapon.  That means you don't have to specify an object
+name when you send an event, because it sends the event to itself.  Seasoned C++
+programmers will recognize it as the hidden this pointer.
+
+</p><p>
+Normally you would say <span class="code">$something.hide();</span>
+but when the function is defined in an object, you can just say <span class="code">hide();</span>
+and it will automatically know what the object is.  In the case of a weapon script,
+the object is the weapon itself.  You will see this again when looking at AI scripts
+(the object will be the monster).
+
+</p><p>
+Let's analyze the weapon_pistol.script for a bit.  Right after the #define section, we <i>forward
+declare</i> the weapon_pistol object, and say it's going to <i>inherit</i> from weapon_base.
+The inheritance allows us to put some common functions in weapon_base and have them available
+to all weapons.  We specify what variables and functions are going to be in our weapon.  After
+the object definition, we find declarations for all the functions we said we were going to have.
+
+</p><p>
+When a weapon is selected (with an impulse command or by picking it up), the init function is
+called on the weapon object.  Generally this will read some default values from the weapon
+entityDef and set the weapon state to "Raise".
+
+</p><div class="subsection">Weapon States</div>
+
+<p>
+The weaponState function is the key to driving the weapon code.  This function controls
+transitioning from various weapon states, which are defined by member functions in the
+weapon object.  The first parameter is the name of the state to switch to (which should be
+a function name), the second parameter is the number of frames over which to blend the
+animation during the state change.
+
+</p><p>
+A good example of a state change is in <span class="code">weapon_pistol::Reload</span>.  The
+function starts the reload animation and waits for it to finish.  It then adds some bullets to
+the clip and transitions to the Idle state.  The animDone function takes a blend count as the
+second argument.  In this case the blend count is 4, so it will return true when there are only
+4 frames left in the animation to play.  We pass this same value to the weaponState function
+so it knows that there are still 4 frames left to play in the current animation.  The weaponState
+function stores this information so when the idle animation starts playing, the first 4 frames
+are blended with the last 4 frames of the previous animation (which was reload).
+
+</p><p>
+This animation blending allows smooth transitions between completely different animations without
+really ugly jerky movements.
+
+</p><div class="subsection">Handy Weapon Functions</div>
+
+<table class="datatable">
+<tbody><tr><td class="nobr">getOwner</td><td>Returns the player entity holding this weapon</td>
+</tr><tr><td class="nobr">nextWeapon</td><td>Cycles to the next weapon in the player inventory</td>
+</tr><tr><td class="nobr">weaponState [state], [blend]</td><td>(Described above)</td>
+</tr><tr><td class="nobr">useAmmo [amount]</td><td>Subtracts ammo from the clip</td>
+</tr><tr><td class="nobr">addToClip [amount]</td><td>Adds ammo to the clip</td>
+</tr><tr><td class="nobr">ammoInClip</td><td>Returns how much ammo is in the clip</td>
+</tr><tr><td class="nobr">ammoAvailable</td><td>Returns how many shots are left</td>
+</tr><tr><td class="nobr">totalAmmoCount</td><td>Returns how much ammo is left</td>
+</tr><tr><td class="nobr">clipSize</td><td>Returns the size of a clip</td>
+</tr><tr><td class="nobr">weaponOutOfAmmo</td><td>Tells the game code that the weapon is out of ammo</td>
+</tr><tr><td class="nobr">weaponReady</td><td>Tells the game code that the weapon is ready to fire</td>
+</tr><tr><td class="nobr">weaponReloading</td><td>Tells the game code that the weapon is reloading</td>
+</tr><tr><td class="nobr">weaponHolstered</td><td>Tells the game code that the weapon is lowered</td>
+</tr><tr><td class="nobr">weaponRising</td><td>Tells the game code that the weapon is rising</td>
+</tr><tr><td class="nobr">weaponLowering</td><td>Tells the game code that the weapon is lowering</td>
+</tr><tr><td class="nobr">flashlight [enable]</td><td>Enable or disable a constant muzzle flash</td>
+</tr><tr><td class="nobr">launchProjectiles [numProjectiles],<br>[spread], [fuseOffset],<br>[launchPower], [dmgPower]</td>
+<td>
+Launches the projectile defined by "def_projectile" in the weapon entityDef.
+It also subtracts the appropriate amount of ammo from the clip, sets up the
+muzzle flash and smoke, alerts nearby AI, kicks the view back, and resets
+shader parms 4 and 5 (diversity and timeOffset).
+<p>
+<u>numProjectiles</u> specifies how many projectiles are launched.<br>
+<u>spread</u> specifies the spread angle (in degrees).<br>
+<u>fuseOffset</u> specifies how far in the fuse should start (for grenades this
+is how long you held the fire button).<br>
+<u>launchPower</u> is a value that is multiplied by the projectile
+velocity (so 1.0 is normal velocity for the projectile).  The grenades use this
+to make it so holding down the button longer makes them go faster.<br>
+<u>dmgPower</u> is like launchPower but for the damage.<br>
+</p></td>
+</tr><tr><td class="nobr">createProjectile</td>
+<td>
+Creates and returns a new projectile entity defined by "def_projectile".  It doesn't actually do
+anything with the projectile except return it.  You'll probably want to use launchProjectiles
+almost every time.  This function is currently only used by the hand grenade to have something
+to attach the sound to.
+</td>
+</tr><tr><td class="nobr">ejectBrass</td><td>Randomly tosses some debris entities defined by the "def_ejectBrass" key in the weapon entityDef.</td>
+</tr><tr><td class="nobr">melee</td><td>Checks for entities within "melee_distance" range and does whatever is defined by "def_melee".  This includes pushing, stealing, and damaging the other entity (as well as performing the sound).  Returns true if something was hit.</td>
+</tr><tr><td class="nobr">getWorldModel</td><td>Returns the entity for the actual animated weapon model.<br>Currently only used by the chaingun to spin the barrel on the model.</td>
+</tr><tr><td class="nobr">allowDrop [allow]</td><td>Pass true to prevent the player from dropping the weapon.<br>Currently only used when the BFG overcharges.</td>
+</tr><tr><td class="nobr">isInvisible</td><td>Returns true if the player has the invisibility powerup</td>
+</tr><tr><td class="nobr">autoReload</td><td>Returns true if the player has "ui_autoReload" set.</td>
+</tr><tr><td class="nobr">netReload</td><td>This function will cause the server send a reload event to the clients.  The reload event signals WEAPON_NETRELOAD, which the weapon script catches to reload on the client side.  This is needed so you can see when other clients are reloading their weapons.  It should always be called before changing to the "Reload" weaponState.</td>
+</tr><tr><td class="nobr">netEndReload</td><td>Similar to netReload, but called when the weapon is finished reloading.<br>Currently only used by the shotgun (because you can abort a reload).</td>
+</tr></tbody></table>
+
+<br>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>

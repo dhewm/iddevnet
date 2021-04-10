@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0042)https://www.iddevnet.com/doom3/mapdefs.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>id.sdk [Map Defs]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<table border=0 cellpadding=0 cellspacing=0 style="width: 100%; height: 99px">
+	<tr>
+		<td style="width: 171px"><img src="images/doom.jpg" style="width: 171px; height: 99px" alt=""></td>
+		<td style="background: url(images/tile.gif)">
+			<table border=0 cellpadding=0 cellspacing=0 width=600>
+				<tr>
+                    <td style="height: 19px; background: url(images/sdk.gif) no-repeat"></td>
+                    <td rowspan=4 align=right><img src="images/id.gif" style="width: 42px; height: 99px" alt=""></td>
+                </tr>
+				<tr><td style="height: 29px; background: url(images/top.jpg) no-repeat"></td></tr>
+				<tr><td style="height: 27px; background: url(images/middle.gif)" class="title">&nbsp;&nbsp; Making DOOM 3 Mods : Map Defs</td></tr>
+				<tr><td style="height: 24px; background: url(images/bottom.jpg) no-repeat"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 style="width: 770px">
+	<tr>
+		<td colspan=2 style="background: url(images/boxtop.gif);"><img src="images/span.jpg" style="width: 397px; height: 20px; float: left" alt=""></td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top; width: 152px; background: url(images/tileleft.gif)">
+            <div class="leftMenu">
+                <script src="menu.js"></script>
+            </div>
+		</td>
+		<td class="mainContent">
+
+<p>
+A map definition is very much like a .arena file from Quake 3.  It defines
+the name of the map, what gameplay modes it supports, and how large it is
+(in bytes) at each quality mode.
+
+</p><p>
+</p><table width="100%" border="1" cellspacing="0" cellpadding="4">
+<tbody><tr><td valign="top">
+Here's a sample one for Alpha Labs 1:
+<pre class="code">mapDef game/alphalabs1 {
+    "name"     "Alpha Labs Sector 1"
+    "devname"  "05-Alpha 1"
+    "singleplayer"    "1"
+    "size0"    "208322592"
+    "size1"    "208322592"
+    "size2"    "325950691"
+    "size3"    "470025492"
+}
+</pre>
+</td><td valign="top">
+And a DM map to compare:
+<pre class="code">mapDef game/mp/d3dm5 {
+    "name"       "Lights Out"
+    "Deathmatch" "1"
+    "Team DM"    "1"
+    "Last Man"   "1"
+    "Tourney"    "1"
+    "size0"      "93855710"
+    "size1"      "93855710"
+    "size2"      "156267217"
+    "size3"      "237413960"
+}
+</pre>
+</td>
+</tr></tbody></table>
+
+<p>
+The fields in this decl should be pretty easy to figure out, "devname" is the
+internal name that we refered to the map by.  It was mostly used by the
+'takeViewNotes2' command, which probably doesn't work any more (it was used
+internally to help with finding bugs).
+
+</p><p>
+A map can still be loaded for a specific game type, even if the mapDef doesn't
+have the game type listed, by specifying the map in the console.  The game type
+is only used for listing maps in the create server and vote menus.
+
+</p><p>
+The only hard part about creating a mapDef is specifying the sizes.  The cvar
+"com_updateLoadSize" helps with this a lot.  When that cvar is set to 1, the game
+will automatically update the size info in the map def after the map has loaded
+(it must not be set read only). After making a build, we would run a batch file
+that launched the game with com_updateLoadSize set, load a map, exit the game,
+repeat.  We would do this for all 4 quality modes (though size0 and size1 tend
+to always be the same).
+
+</p><p>
+Here's a snippet from the batch file:
+</p><pre class="code" style="overflow:auto; width:600px; height: 100px;">doom3.exe +com_updateLoadSize 1 +map game\admin.map +quit
+doom3.exe +com_updateLoadSize 1 +map game\alphalabs1.map +quit
+doom3.exe +com_updateLoadSize 1 +si_map game\mp\d3dm1.map +si_pure 0 +spawnserver +quit
+doom3.exe +com_updateLoadSize 1 +si_map game\mp\d3dm2.map +si_pure 0 +spawnserver +quit
+</pre>
+
+<p>
+The mapdef does not have to be in a def file.  It can be in any file you want,
+even a material file!  I would strongly suggest, though, creating &lt;mymap&gt;.def
+in the defs folder with a mapdef in it (along with any entityDefs or custom
+models you may be using).
+
+<br>
+        </p></td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#CCCCCC"><img src="images/span2.gif" style="width: 397px; height: 8px; float: left;"></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="770">
+    <tbody><tr>
+        <td align="left" class="legalese">Copyright © 2004 <a href="http://www.idsoftware.com/">id software</a></td>
+    </tr>
+</tbody></table>
+
+
+</body></html>
