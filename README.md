@@ -4,23 +4,25 @@ reconstructed from https://www.moddb.com/downloads/iddevnet-archive, own backups
 
 # Missing files (not available on archive.org either):
 - Doom3/downloads/testbox_textures.zip
+  this one might never have been available: https://web.archive.org/web/20060720042901/http://www.iddevnet.com/doom3/downloads/testbox_textures.zip
 - Doom3/skins_imp.png
-
-- The Examples and Debug HUD for Quake4 (https://web.archive.org/web/20080720014114/http://www.iddevnet.com/quake4/DownloadableContent)
-    - debug_huds.zip
-    - Quake 4 Animation Examples: animations.zip
-    - Font stuff: q4font.zip (q4font.exe), marine_ANSI.zip (ANSI example font) marine_symbol.zip (Symbol example font)
-    - MakeAMod DMSP (Deathmatch Singleplayer): dmsp_v1.pk4
-    - MakeAMod-InstaGib: q4-instagib.zip
-    - Example Definition Files: monster_strogg_marine_rocket.def monster_slimy_lobber.def
-    - ExampleMaps: programmerexamplemaps.zip map_ai_tetherexamples.zip
-    - Quake 4 Art Examples: Quake_4_Texture_Reference.zip Quake_4_Model_Reference.zip Quake_4_Modeling_Parts_Junkyard.zip
+- Quake 4 Animation Examples: animations.zip  
+  see https://web.archive.org/web/20101007092356/http://iddevnet.com/quake4/AnimationExamples
 
 - Lots of images for Quake4:
+    - BasicScriptTutorial: basicscripttutorial4.png
     - DefinitionFileExamples: monster_strogg_marine_rocket.jpg
-    - LevelEditor_BasicRoom: image01.jpg to image12.jpg (all of them)
+    - LevelEditor_BasicRoom: image01.jpg - image12.jpg (all of them)
     - Effects_Performance: fx_overdraw_bad.jpg fx_overdraw_good.jpg
     - ArtReference_CreatingTextures: tex_01.jpg - tex_09.jpg (all of them)
     - Scripting_ScriptsAndEntities: repairbot1.jpg - repairbot8.jpg (all of them)
     - The_Properties_of_a_segment: fx_lock.jpg
     - Basic_FX_file_structure: fx_check.jpg fx_sortorder.jpg
+    - ArtReference_CreatingCreatures: image_01.jpg - image_14.jpg (all of them, though I'm not sure they were ever really uploaded)
+    - Notes_about_Origins: fx_origins.jpg
+    - ArtReference_Q4Shaders_AnimatedStrips: shader_stripimage1.jpg shader_stripimage2.jpg
+    - LevelEditor_Clipping: fx_origins.jpg, airdefense1_editor.jpg, core_shaft.jpg, mp_angleclip.jpg
+    - Entity_MonsterBerserker: monster_berserker.jpg
+    - Adding_Fonts_to_use_in_Quake_4_GUIs: guied_ansi.jpg, guied_symbol.jpg
+    - FX_Entity_Editor: fx_enteditor.jpg
+    - Sounds_SoundPlacement: image1.jpg, image2.jpg

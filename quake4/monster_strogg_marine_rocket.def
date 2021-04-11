@@ -1,0 +1,84 @@
+//------------------------------------------------
+// SDK Example Content
+// Rocket Launcher Strogg Marine
+//
+// Compare the entries in this def file to those of the monster_strogg_marine_sgun
+// (monster_strogg_marine.def) as an example of how to implement new monsters
+// and monster attacks using only existing AI code.
+//
+//								aweldon Nov 05
+//------------------------------------------------
+
+entityDef projectile_strogg_marine_rocket
+{
+	// We'll just steal the standard single player rocket.
+	"inherit"					"projectile_rocket"
+	
+	// ...but that does a little too much damage!
+	"def_damage"				"damage_strogg_marine_rocket"
+	"def_splash_damage"			"damage_strogg_marine_rocket_splash"
+}
+
+entityDef damage_strogg_marine_rocket 
+{
+	// Inherit the standard single player rocket damage
+	"inherit"				"damage_rocketDirect"
+	
+	// Lower damage from 150 to something more reasonable.
+	"damage"					"65"
+}
+
+entityDef damage_strogg_marine_rocket_splash 
+{
+	// Inherit the standard single player rocket splash damage
+	
+	// Lower damage from 150 to something more reasonable.
+	"damage"					"45"
+
+	// This might also get a little messy...
+	"gib"						"1"
+}
+
+entityDef monster_strogg_marine_rocket
+{
+	"inherit"			"monster_strogg_marine_sgun" 			// Use the shotgun guy as a base
+	"editor_usage"			"Rocket Strogg Marine"				// What will display in the editor
+	"editor_ignore"			"0"						// Show the entity in the right click menu
+	"model"				"monster_strogg_marine_sgun"			// Use the mesh and anims from the shotgun guy
+	"skin"				"skins/monsters/strogg_marine/smv_shotgun"	// Leave the skin as the shotgun guy
+
+	// --------------------------------- Defs   ----------------------------------
+	"minShots"				"1" 			// Will fire at least once.
+	"maxShots"				"3"			// ...and up to 3 times in sequence.
+	// These refer only to the number of times the fire animation will play, and not how many physical shots are fired
+	// That can be modified by including multiple shots on frame commands or by upping the count per attack.
+	
+	"actionTimer_rangedAttack_rate"		".5" 			// Was .25. Time between attacks
+
+	"action_rangedAttack"			"1"
+	"action_rangedAttack_anim"		"shotgun_range_attack"	// Anim to play when attacking
+	"action_rangedAttack_minRange"		"128"			// Minimum attack range in units. Was 0 on shotgun.
+	"action_rangedAttack_maxRange"		"640"			// Maximum attack range in units. Was 400 on shotgun.
+	"action_rangedAttack_failrate"		"0"			// Attack will never fail.
+
+	"action_rollAttack_rate"		"2"			// Was .25. Time between attacks.
+	
+	"action_strafe"				"0"			// Disable Strafing
+
+	"def_attack_base"			"projectile_strogg_marine_rocket"	// Use our new projectile for base attacks.
+	"attack_base_count"			"1"			// One projectile
+	"attack_base_spread"			"0"			// no spread
+	"attack_base_hitscan"			"0"			// Does not hit instantly
+	"attack_base_accuracy"			"1"			// increased accuracy
+
+	"def_attack_jointDir"			"projectile_strogg_marine_rocket"	// Use our new projectile for joint attacks.
+	"attack_jointDir_locktojoint"		"1"			// Lock to joint direction
+	"attack_jointDir_count"			"1"			// One projectile
+	"attack_jointDir_spread"		"0"			// no spread
+	"attack_jointDir_hitscan"		"0"			// does not hit instantly
+	"attack_jointDir_accuracy"		"0"			// no change
+
+	// --------------------------------- Effects ---------------------------------
+	"fx_blaster_muzzleflash"	"effects\weapons\rocket\muzzleflash_world.fx"	// Rocket launcher muzzle flash
+	"snd_weapon_fire"		"weapon_rocket_fire"				// Rocket launcher sound shader
+}

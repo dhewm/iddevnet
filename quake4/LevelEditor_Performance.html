@@ -91,9 +91,6 @@ function actionsMenuInit(title) {
 <link rel="Start" href="./Quake4SDK.html">
 <link rel="Alternate" title="Wiki Markup" href="./LevelEditor_Performance?action=raw">
 <link rel="Alternate" media="print" title="Print View" href="./LevelEditor_Performance?action=print">
-<link rel="Appendix" title="sdk_batchsize.jpg" href="./LevelEditor_Performance?action=AttachFile&amp;do=view&amp;target=sdk_batchsize.jpg">
-<link rel="Appendix" title="sdk_debughud.jpg" href="./LevelEditor_Performance?action=AttachFile&amp;do=view&amp;target=sdk_debughud.jpg">
-<link rel="Appendix" title="sdk_lightcount.jpg" href="./LevelEditor_Performance?action=AttachFile&amp;do=view&amp;target=sdk_lightcount.jpg">
 <link rel="Search" href="./FindPage.html">
 <link rel="Index" href="./TitleIndex.html">
 <link rel="Glossary" href="./WordIndex.html">
@@ -200,7 +197,7 @@ actionsMenuInit('More Actions:');
 <br />
  <span class="anchor" id="line-20"></span><strong>g_showdebughud</strong> – values range from 1 to 11 <span class="anchor" id="line-21"></span>This will replace the HUD with specific readouts about sound, networking, physics, and so on, depending on the value you set.  (Note: You will need to download the <a href="./DebugHud.html">DebugHud</a> available on this site, since the debug guis weren’t included with the shipped game.)  The value we’re concerned with is 5. <span class="anchor" id="line-22"></span><br />
 <br />
- <span class="anchor" id="line-23"></span><img class="attachment" src="./LevelEditor_Performance?action=AttachFile&amp;do=get&amp;target=sdk_debughud.jpg" title="attachment:sdk_debughud.jpg" /> <span class="anchor" id="line-24"></span><br />
+ <span class="anchor" id="line-23"></span><img class="attachment" src="sdk_debughud.jpg" title="attachment:sdk_debughud.jpg" /> <span class="anchor" id="line-24"></span><br />
 <br />
  <span class="anchor" id="line-25"></span>On the left is a readout of timing information in milliseconds.  <span class="anchor" id="line-26"></span><br />
 <br />
@@ -215,7 +212,7 @@ actionsMenuInit('More Actions:');
 <br />
  <span class="anchor" id="line-49"></span>To see how many passes are being made and where, set <strong>r_showlightcount</strong> to 1. <span class="anchor" id="line-50"></span><br />
 <br />
- <span class="anchor" id="line-51"></span><img class="attachment" src="./LevelEditor_Performance?action=AttachFile&amp;do=get&amp;target=sdk_lightcount.jpg" title="attachment:sdk_lightcount.jpg" /> <span class="anchor" id="line-52"></span><br />
+ <span class="anchor" id="line-51"></span><img class="attachment" src="sdk_lightcount.jpg" title="attachment:sdk_lightcount.jpg" /> <span class="anchor" id="line-52"></span><br />
 <br />
  <span class="anchor" id="line-53"></span>Colored regions indicate the number of passes.  Red is 1, green is 2, blue is 3, cyan is 4, magenta is 5, and white is 6+.  If you’re seeing a lot of white, you need to relight that area. <span class="anchor" id="line-54"></span><br />
 <br />
@@ -275,7 +272,7 @@ actionsMenuInit('More Actions:');
 <br />
  <span class="anchor" id="line-120"></span>Spotting areas with too many draws is simple enough, but to identify where in that scene all the draws are coming from we added <strong>r_showBatchSize</strong>.  It works just like r_showtris, with the same effects for values of 1, 2, and 3, but the outlines will be colored based on the size of the smallest batch they’re in.  It scales from pink (batch size less than ten, meaning bad) through red, orange, yellow, and stops at green (batch size greater than 500, meaning good).  <span class="anchor" id="line-121"></span><br />
 <br />
- <span class="anchor" id="line-122"></span><img class="attachment" src="./LevelEditor_Performance?action=AttachFile&amp;do=get&amp;target=sdk_batchsize.jpg" title="attachment:sdk_batchsize.jpg" /> <span class="anchor" id="line-123"></span><br />
+ <span class="anchor" id="line-122"></span><img class="attachment" src="sdk_batchsize.jpg" title="attachment:sdk_batchsize.jpg" /> <span class="anchor" id="line-123"></span><br />
 <br />
  <span class="anchor" id="line-124"></span>This can be a hard display to read, the main problem being that lots of pink isn’t always bad and green isn’t always good.  You can have a scene with a lot of pink and red batching, but if your draws are only in the 400 range you won’t really suffer for it.  On the other hand, if your scene is full of decals they’ll batch individually (one for each blood splat, say), but if you crank up the subdivisions on each decal they’ll jump up to a few hundred triangles each and voila, they’re green, which doesn’t actually solve the problem. <span class="anchor" id="line-125"></span><br />
 <br />
