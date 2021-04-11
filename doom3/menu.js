@@ -18,7 +18,7 @@ var a = {
 
 "__models__":"-",
 "modelexport":"Exporting Models",
-"modelexport_3dsmax":"Exporting Models with 3ds Max",
+"modelexport_3dsmax":"&rdca; &hellip; with 3ds Max",
 "models":"Model Decls",
 "skins":"Skins",
 
