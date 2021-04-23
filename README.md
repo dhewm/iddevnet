@@ -12,4 +12,4 @@ The following is missing:
 - `Doom3/downloads/testbox_textures.zip` (of https://iddevnet.dhewm3.org/doom3/modelexport_3dsmax.html)  
   this one might never have been available: https://web.archive.org/web/20060720042901/http://www.iddevnet.com/doom3/downloads/testbox_textures.zip
 - `Doom3/skins_imp.png` (of https://iddevnet.dhewm3.org/doom3/skins.html)
-- `guied_ansi.jpg`, `guied_symbol.jpg` (of [Adding_Fonts_to_use_in_Quake_4_GUIs](https://iddevnet.dhewm3.org/quake4/Adding_Fonts_to_use_in_Quake_4_GUIs.html))
+- `Quake4/guied_ansi.jpg` and `Quake4/guied_symbol.jpg` (of [Adding_Fonts_to_use_in_Quake_4_GUIs](https://iddevnet.dhewm3.org/quake4/Adding_Fonts_to_use_in_Quake_4_GUIs.html))
